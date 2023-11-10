@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h3>index page</h3>
+	<p>테스트1</p>
 </body>
 </html>
