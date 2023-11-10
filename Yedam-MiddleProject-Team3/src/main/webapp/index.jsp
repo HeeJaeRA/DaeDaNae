@@ -10,5 +10,6 @@
 	<h3>index page</h3>
 	<p>테스트1</p>
 	<p>하이다예</p>
+	<p>예빈</p>
 </body>
 </html>
