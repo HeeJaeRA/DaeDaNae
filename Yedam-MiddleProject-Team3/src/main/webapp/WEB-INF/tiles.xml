@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions SYSTEM "path/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="mainpage" template="/WEB-INF/layouts/main/template.jsp">
+		<put-attribute name="title" value="메인화면" />
+		<put-attribute name="header" value="/WEB-INF/layouts/main/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/main/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:product/*" extends="mainpage">
+		<put-attribute name="body" value="/WEB-INF/main/{1}.jsp" />
+	</definition>
+	
+	<definition name="adminpage" template="/WEB-INF/layouts/admin/template.jsp">
+		<put-attribute name="title" value="메인화면" />
+		<put-attribute name="header" value="/WEB-INF/layouts/admin/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/admin/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/admin/footer.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:admin/*" extends="adminpage">
+		<put-attribute name="body" value="/WEB-INF/admin/{1}.jsp" />
+	</definition>
+
+	<definition name="WILDCARD:*" extends="mainpage">
+		<put-attribute name="body" value="/WEB-INF/{1}.jsp" />
+	</definition>
+
+</tiles-definitions>
