@@ -20,5 +20,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="co/yedam/main/mapper/MainMapper.xml" />	
+		<mapper resource="co/yedam/board/mapper/BoardMapper.xml" />	
 	</mappers>
 </configuration>
