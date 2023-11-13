@@ -21,5 +21,6 @@
 	<mappers>
 		<mapper resource="co/yedam/main/mapper/MainMapper.xml" />	
 		<mapper resource="co/yedam/board/mapper/BoardMapper.xml" />	
+		<mapper resource="co/yedam/product/mapper/ProductMapper.xml" />	
 	</mappers>
 </configuration>

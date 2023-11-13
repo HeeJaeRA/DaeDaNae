@@ -18,6 +18,8 @@ import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
+import co.yedam.product.web.ProductInfoControl;
+import co.yedam.product.web.ProductListControl;
 
 
 public class FrontController extends HttpServlet {
@@ -53,6 +55,10 @@ public class FrontController extends HttpServlet {
 		//map.put("/addReview.do", new AddReviewControl());
 		//map.put("/updateReview.do", new UpdateReviewControl());
 		//map.put("/removeReview.do", new RemoveReviewControl());
+		
+		//템플릿 테스트용
+		map.put("/productList.do", new ProductListControl());
+		map.put("/productInfo.do", new ProductInfoControl());
 		
 	}
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.product.mapper.ProductMapper">
+
+<select id="selectList" resultType="co.yedam.product.service.ProductVO">
+	SELECT * FROM TBL_PRODUCT ORDER BY PROD_CODE
+</select>
+
+<select id="select" resultType="co.yedam.product.service.ProductVO">
+	SELECT * FROM TBL_PRODUCT WHERE PROD_CODE = #{id}
+</select>
+
+<select id="selectRlist" resultType="co.yedam.product.service.ProductVO">
+	SELECT * FROM TBL_PRODUCT ORDER BY LIKE_IT DESC
+</select>
+
+</mapper>
