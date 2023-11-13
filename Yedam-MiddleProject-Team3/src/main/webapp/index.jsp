@@ -5,3 +5,5 @@
 <p>test</p>
 <p>다예test</p>
 <p>예빈</p>
+
+<jsp:forward page="loginForm.do"></jsp:forward>
