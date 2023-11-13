@@ -28,6 +28,7 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		
 //		map.put("/main.do", new MainPageControl());
+
 		map.put("/main.do", new MainControl());
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
@@ -41,7 +42,7 @@ public class FrontController extends HttpServlet {
 		//삭제화면..
 		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
-		
+
 		//로그인, 로그아웃, 회원가입
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());
