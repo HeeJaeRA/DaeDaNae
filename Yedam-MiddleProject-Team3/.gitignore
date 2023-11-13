@@ -16,7 +16,6 @@ local.properties
 .classpath
 .project
 META-INF/
-images/
 
 # External tool builders
 .externalToolBuilders/
