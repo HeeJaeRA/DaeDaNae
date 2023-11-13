@@ -4,8 +4,5 @@
 <h3>index</h3>
 <p>test</p>
 <p>다예test</p>
-<<<<<<< HEAD
 <p>ㅋㅋ</p>
-=======
 <p>예빈</p>
->>>>>>> branch 'develop' of https://github.com/HeeJaeRA/Project.git
