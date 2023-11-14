@@ -1,25 +1,19 @@
 package co.yedam.common;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LogoutControl implements Command {
+public class JoinFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-req.getSession().invalidate();
-		
+		String path = "WEB-INF/main/joinForm.jsp";
 		try {
-			resp.sendRedirect("main.do");
-		} catch (IOException e) {
-			
+			req.getRequestDispatcher(path).forward(req, resp);
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 
 	}
 
 }
-
-
