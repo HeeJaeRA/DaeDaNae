@@ -17,11 +17,10 @@
 <!--    자유게시판 오픈되게.. -->
 <!-- } -->
 	<a href="noticeBoard.do"><input type="button" value = "공지사항"></a>
-	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a>
 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a>
 		
 		
-<h3>전체게시글(임시..)</h3>
+<h3>QnA게시판</h3>
 
 <table class="table" border="1">
 	<thead>
@@ -38,7 +37,7 @@
 
 		</tr>
 	<tbody>
-		<c:forEach items="${list }" var="vo">
+		<c:forEach items="${qnaList }" var="vo">
 			<tr>
 				<td>${vo.boardCode }</td>
 				<td><a href="getBoard.do?bco=${vo.boardCode }">${vo.boardTitle }</a></td>

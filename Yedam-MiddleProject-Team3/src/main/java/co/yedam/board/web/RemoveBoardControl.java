@@ -18,10 +18,10 @@ public class RemoveBoardControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		String bno = req.getParameter("bno");
+		String bco = req.getParameter("bco");
 		BoardService svc = new BoardServiceImpl();
 
-		if (svc.removeBoard(Integer.parseInt(bno))) {
+		if (svc.removeBoard(Integer.parseInt(bco))) {
 			try {
 				resp.sendRedirect("boardList.do");
 			} catch (IOException e) {

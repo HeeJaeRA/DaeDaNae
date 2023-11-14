@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
+import co.yedam.board.web.FreeBoardControl;
 import co.yedam.board.web.GetBoardControl;
 import co.yedam.board.web.MainControl;
 import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyControl;
+import co.yedam.board.web.NoticeBoardControl;
+import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
-import co.yedam.board.web.RemoveFormControl;
 import co.yedam.product.web.ProductInfoControl;
 import co.yedam.product.web.ProductListControl;
 
@@ -32,9 +34,12 @@ public class FrontController extends HttpServlet {
 //		map.put("/main.do", new MainPageControl());
 
 		map.put("/main.do", new MainControl());
+		
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
-		
+		map.put("/noticeBoard.do", new NoticeBoardControl());
+		map.put("/qnaBoard.do", new QnaBoardControl());
+		map.put("/freeBoard.do", new FreeBoardControl());
 		
 		map.put("/boardForm.do", new BoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
@@ -42,7 +47,6 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyForm.do", new ModifyControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		//삭제화면..
-		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
 
 		//로그인, 로그아웃, 회원가입
