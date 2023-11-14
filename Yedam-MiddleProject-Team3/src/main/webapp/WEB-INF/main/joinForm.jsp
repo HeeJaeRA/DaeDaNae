@@ -28,8 +28,8 @@
 	<p>빈칸을 작성해 주세요</p>
 	<form method="post" action="join.do" class="requires-validation" novalidate>
 	<div class="col-md-12">
-                               아이디<input class="form-control" type="text" name="joinId" placeholder="아이디를 입력하세요" required="" style="width: 540px; background-color: 808080;">
-                               <button>아이디 중복확인</button>
+                               아이디<input class="form-control"  type="text" name="joinId" placeholder="아이디를 입력하세요" required="" style="width: 540px; background-color: 808080;">
+                               <button id="join-id">아이디 중복확인</button>
                                <div class="valid-feedback">사용가능한 아이디 입니다!</div>
                                <div class="invalid-feedback">사용 불가능한 아이디 입니다ㅠ</div>
                             </div>
@@ -56,7 +56,7 @@
                             
      <div class="col-md-12">
                                닉네임<input class="form-control" type="text" name="joinNickname" placeholder="닉네임을 입력하세요" required="" style="width: 540px; background-color: 808080;">
-                               <button>닉네임 중복확인</button>
+                               <button id="join-nick">닉네임 중복확인</button>
                                <div class="valid-feedback">사용 가능한 닉네임 입니다</div>
                                <div class="invalid-feedback">이미 사용중인 닉네임 입니다</div>
                             </div>
@@ -181,23 +181,20 @@
 
 <script>
 
+//아이디 중복버튼
+document.querySelector('#join-id').addEventListener('click',function(e){
+})
 
-//회원가입 버튼
-document.querySelector('#join').addEventListener('click',function(e){
-	let 
-	<!--아이디 중복확인 -->
-	if(list.userId == vo.userId){
-		return;
-    }
+//닉네임 중복버튼
+document.querySelector('#join-nick').addEventListener('click',function(e){
+})
 	
-	<!--닉네임 중복확인 -->
-	if(list.nickName == vo.nickName){
-		return;
-	     }
-		
-	<!--동의합니다 체크확인 -->	
-	if(#aprove == null){
-		return;
+	//회원가입 버튼
+	
+document.querySelector('#join').addEventListener('click',function(e){
+	//동의 체크박스
+document.querySelector('#invalidCheck').addEventListener('click',function(e){
+	
 	
 	}
 	
