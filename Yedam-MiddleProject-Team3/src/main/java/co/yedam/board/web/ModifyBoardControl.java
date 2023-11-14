@@ -1,6 +1,9 @@
 package co.yedam.board.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +23,41 @@ public class ModifyBoardControl implements Command {
 		// 파라메터활용 -> 데이터수정 -> 목록 이동.
 
 		BoardVO vo = new BoardVO();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		String title = req.getParameter("title");
-		String writer = req.getParameter("writer");
-		String content = req.getParameter("content");
-		int boardNo = Integer.parseInt(req.getParameter("bno"));
+		int boardCode = Integer.parseInt(req.getParameter("bco"));
+		String boardCategory = req.getParameter("boardCategory");
+		String boardTitle = req.getParameter("boardTitle");
+		String userID = req.getParameter("userID");
 
-		vo.setTitle(title);
-		vo.setWriter(writer);
-		vo.setContent(content);
-		vo.setBoardNo(boardNo);
+		Date writeDate = null;
+		try {
+			writeDate = sdf.parse("writeDate");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Date updateDate = null;
+		try {
+			updateDate = sdf.parse("updateDate");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String boardContent = req.getParameter("boardContent");
+		int boardView = Integer.parseInt(req.getParameter("boardView"));
+		int likeCnt = Integer.parseInt(req.getParameter("likeCnt"));
+
+		vo.setBoardCode(boardCode);
+		vo.setBoardCategory(boardCategory);
+		vo.setBoardTitle(boardTitle);
+		vo.setUserId(userID);
+		vo.setWriteDate(writeDate);
+		vo.setUpdateDate(updateDate);
+		vo.setBoardContent(boardContent);
+		vo.setBoardView(boardView);
+		vo.setLikeCnt(likeCnt);
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.editBoard(vo)) {
