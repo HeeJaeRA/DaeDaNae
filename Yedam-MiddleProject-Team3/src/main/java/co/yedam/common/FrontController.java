@@ -19,8 +19,6 @@ import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
-import co.yedam.product.web.ProductInfoControl;
-import co.yedam.product.web.ProductListControl;
 import co.yedam.restaurant.web.AddressListControl;
 import co.yedam.restaurant.web.CategoryListControl;
 import co.yedam.restaurant.web.RestaurantListControl;
@@ -32,10 +30,6 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		
-
-//		map.put("/main.do", new MainControl());
-		
 
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());

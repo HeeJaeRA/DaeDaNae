@@ -14,6 +14,14 @@
 		<put-attribute name="body" value="/WEB-INF/restaurant/{1}.jsp" />
 	</definition>
 	
+	<definition name="WILDCARD:board/*" extends="restaurantpage">
+		<put-attribute name="body" value="/WEB-INF/board/{1}.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:main/*" extends="restaurantpage">
+		<put-attribute name="body" value="/WEB-INF/main/{1}.jsp" />
+	</definition>
+	
 	<definition name="adminpage" template="/WEB-INF/layouts/admin/template.jsp">
 		<put-attribute name="title" value="관리자메인화면" />
 		<put-attribute name="header" value="/WEB-INF/layouts/admin/header.jsp" />

@@ -7,7 +7,7 @@ public class JoinFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "WEB-INF/main/joinForm.jsp";
+		String path = "/main/joinForm.tiles";
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		}catch(Exception e){
