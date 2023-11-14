@@ -13,13 +13,15 @@ import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.GetBoardControl;
-import co.yedam.board.web.MainControl;
 import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
 import co.yedam.product.web.ProductInfoControl;
 import co.yedam.product.web.ProductListControl;
+import co.yedam.restaurant.web.AddressListControl;
+import co.yedam.restaurant.web.CategoryListControl;
+import co.yedam.restaurant.web.RestaurantListControl;
 
 
 public class FrontController extends HttpServlet {
@@ -29,9 +31,6 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		
-//		map.put("/main.do", new MainPageControl());
-
-		map.put("/main.do", new MainControl());
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		
@@ -56,9 +55,9 @@ public class FrontController extends HttpServlet {
 		//map.put("/updateReview.do", new UpdateReviewControl());
 		//map.put("/removeReview.do", new RemoveReviewControl());
 		
-		//템플릿 테스트용
-		map.put("/productList.do", new ProductListControl());
-		map.put("/productInfo.do", new ProductInfoControl());
+		map.put("/restaurantList.do", new RestaurantListControl());
+		map.put("/addressList.do", new AddressListControl());
+		map.put("/categoryList.do", new CategoryListControl());
 		
 	}
 
