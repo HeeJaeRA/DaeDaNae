@@ -10,7 +10,7 @@ public class LoginFormControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) {
 		
-		String path = "WEB-INF/main/loginForm.jsp";
+		String path = "main/loginForm.tiles";
 		try {
 			req.getRequestDispatcher(path).forward(req, res);
 		} catch (Exception e) {

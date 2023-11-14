@@ -12,11 +12,7 @@
 <!-- <script src="error.js"></script> -->
 </head>
 <body>
-	<header>
-		<div id="header">
-			<p>회원가입 페이지</p>
-		</div>
-	</header>
+
 
 	
 	<div class="form-body">
@@ -30,43 +26,43 @@
 	<div class="col-md-12">
                                아이디<input class="form-control"  type="text" name="joinId" placeholder="아이디를 입력하세요" required="" style="width: 540px; background-color: 808080;">
                                <button id="join-id">아이디 중복확인</button>
-                               <div class="valid-feedback">사용가능한 아이디 입니다!</div>
-                               <div class="invalid-feedback">사용 불가능한 아이디 입니다ㅠ</div>
+                               <div class="valid-feedback" style="display:none">사용가능한 아이디 입니다!</div>
+                               <div class="invalid-feedback" style="display:none">사용 불가능한 아이디 입니다ㅠ</div>
                             </div>
                             
     <div class="col-md-12">
                                비밀번호<input class="form-control" type="password" name="joinPw" placeholder="비밀번호를 입력하세요" required="" style="width: 540px; background-color: 808080;">
                       
-                               <div class="valid-feedback">사용가능한 비밀번호 입니다</div>
-                               <div class="invalid-feedback">비밀번호를 다시 확인하세요</div>
+                               <div class="valid-feedback" style="display:none">사용가능한 비밀번호 입니다</div>
+                               <div class="invalid-feedback" style="display:none">비밀번호를 다시 확인하세요</div>
                             </div>
     <div class="col-md-12">
                                비밀번호 재확인<input class="form-control" type="password" name="reJoinPw" placeholder="비밀번호를 재입력하세요" required="" style="width: 540px; background-color: 808080;">
                       
-                               <div class="valid-feedback">비밀번호가 일치합니다</div>
-                               <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
+                               <div class="valid-feedback" style="display:none">비밀번호가 일치합니다</div>
+                               <div class="invalid-feedback" style="display:none">비밀번호가 일치하지 않습니다</div>
                             </div>
                             
     <div class="col-md-12">
                                이름<input class="form-control" type="text" name="joinName" placeholder="이름을 입력하세요" required="" style="width: 540px; background-color: 808080;">
                               
-                               <div class="valid-feedback">Username field is valid!</div>
-                               <div class="invalid-feedback">Username field cannot be blank!</div>
+                               <div class="valid-feedback" style="display:none">Username field is valid!</div>
+                               <div class="invalid-feedback" style="display:none">Username field cannot be blank!</div>
                             </div>
                             
      <div class="col-md-12">
                                닉네임<input class="form-control" type="text" name="joinNickname" placeholder="닉네임을 입력하세요" required="" style="width: 540px; background-color: 808080;">
                                <button id="join-nick">닉네임 중복확인</button>
-                               <div class="valid-feedback">사용 가능한 닉네임 입니다</div>
-                               <div class="invalid-feedback">이미 사용중인 닉네임 입니다</div>
+                               <div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
+                               <div class="invalid-feedback" style="display:none">이미 사용중인 닉네임 입니다</div>
                             </div>
                             
                             
     <div class="col-md-12">
                                전화번호<input class="form-control" type="tell" name="jointell" placeholder="전화번호를 입력하세요(-(하이픈) 제외)" required="" maxlength="11" style="width: 540px; background-color: 808080;">
                                
-                               <div class="valid-feedback">바르게 입력 가능합니다</div>
-                               <div class="invalid-feedback">하이픈 없으 11자로 입력해주세요</div>
+                               <div class="valid-feedback" style="display:none">바르게 입력 가능합니다</div>
+                               <div class="invalid-feedback" style="display:none">하이픈 없이 11자로 입력해주세요</div>
                            	 </div>
                             
                             
@@ -91,14 +87,14 @@
     <div class="col-md-12">
                                성별
                                <button>남성</button> <button>여성</button>
-                               <div class="valid-feedback">사용 가능한 닉네임 입니다</div>
-                               <div class="invalid-feedback">이미 사용중인 닉네임 입니다</div>
+                               <div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
+                               <div class="invalid-feedback" style="display:none">이미 사용중인 닉네임 입니다</div>
                             </div>
                             
     <div class="form-check">
                           <input class="form-check-input" type="checkbox" value="[필수]동의하세요" id="invalidCheck" required="">
                           <label class="form-check-label">[필수]동의하세요</label>
-                         <div class="invalid-feedback">다시 확인!!!</div>
+                         <div class="invalid-feedback" style="display:none">동의하세요 확인!!!</div>
                         </div>
                             
                   
@@ -180,23 +176,55 @@
 </script>
 
 <script>
-
+let invalid = document.querySelector('.invalid-feedback').cloneNode(true);
+let valid = document.querySelector('.valid-feedback').cloneNode(true);
 //아이디 중복버튼
 document.querySelector('#join-id').addEventListener('click',function(e){
+if(list.userId != vo.userId){
+	invalid.querySelector('invalid:nth-of-type(1)').style.display='block';
+	//아이디 칸 초기화 시키는 함수
+	return;
+}else{
+	valid.querySelector('valid:nth-of-type(1)').style.display='block';
+	//비밀번호 칸으로 커서 이동 함수
+}
 })
 
 //닉네임 중복버튼
 document.querySelector('#join-nick').addEventListener('click',function(e){
+	if(list.Nickname != vo.Nickname){
+		invalid.querySelector('invalid:nth-of-type(5)').style.display='block';
+		//닉네임 칸 초기화 시키는 함수
+		return;
+	}else{
+		valid.querySelector('valid:nth-of-type(5)').style.display='block';
+		//전화번호 칸으로 커서 이동 함수
+	}
 })
 	
-	//회원가입 버튼
+	//회원가입 버튼(회원등록)
 	
 document.querySelector('#join').addEventListener('click',function(e){
-	//동의 체크박스
-document.querySelector('#invalidCheck').addEventListener('click',function(e){
+	//동의 체크박스가 체크되어 있지 않으면 가입이 안됨
+if(document.querySelector('#invalidCheck').value ==null){
+	invalid.querySelector('invalid:nth-of-type(8)').style.display='block';
+	return;
+	else{
+		//ajax.값=>전달
+		fetch('addMember.do',{
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+			body:
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			//.submit()
+		})
+		})
+	}//else
+}
 	
 	
-	}
+	}//회원가입버튼
 	
 		
 })
