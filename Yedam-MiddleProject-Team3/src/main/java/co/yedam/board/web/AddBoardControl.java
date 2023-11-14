@@ -1,6 +1,9 @@
 package co.yedam.board.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,51 +22,41 @@ public class AddBoardControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		BoardVO vo = new BoardVO();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	
+		int boardCode = Integer.parseInt(req.getParameter("boardCode"));
+		String boardCategory = req.getParameter("boardCategory");
+		String boardTitle = req.getParameter("boardTitle");
+		String userID = req.getParameter("userID");
+		Date writeDate = null;
+		Date updateDate = null;
 		
-		if (req.getMethod().equals("GET")) {
-			// 제목 ,내용, 작성자.
-			String title = req.getParameter("title");
-			String writer = req.getParameter("writer");
-			String content = req.getParameter("content");
-
-			
-			vo.setTitle(title);
-			vo.setContent(content);
-			vo.setWriter(writer);
-
-			
-
-		} else if (req.getMethod().equals("POST")) { // 18행 IF...GET방식과 POST방식 비교
-			String saveDir = req.getServletContext().getRealPath("images");
-			int size = 5*1024*1024;
-			//MultipartRequest mr;
-			try {
-				MultipartRequest mr = //
-						new MultipartRequest(req,  //요청정보
-								saveDir, //저장 경로
-								size, //최대 업로드 가능한 파일 크기
-								"UTF-8", //인코딩 방식
-								new DefaultFileRenamePolicy()//리네임 정책
-								);
-				String title = mr.getParameter("title");
-				String writer = mr.getParameter("writer");
-				String content = mr.getParameter("content");
-				String img = mr.getFilesystemName("img");
-				
-			
-				vo.setTitle(title);
-				vo.setWriter(writer);
-				vo.setImage(img);
-				vo.setContent(content);
-				
-				
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}//end of if.
+		try {
+			writeDate = sdf.parse(req.getParameter("writeDate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}		
 		
+		
+		try {
+			updateDate = sdf.parse(req.getParameter("updateDate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		String boardContent = req.getParameter("boardContent");
+		int boardView = Integer.parseInt(req.getParameter("boardView"));
+		int likeCnt = Integer.parseInt(req.getParameter("likeCnt"));
+		
+		vo.setBoardCode(boardCode);
+		vo.setBoardCategory(boardCategory);
+		vo.setBoardTitle(boardTitle);
+		vo.setUserId(userID);
+		vo.setWriteDate(writeDate);
+		vo.setUpdateDate(updateDate);
+		vo.setBoardContent(boardContent);
+		vo.setBoardView(boardView);
+		vo.setLikeCnt(likeCnt);
+
 		BoardService svc = new BoardServiceImpl();
 		if (svc.addBoard(vo)) {
 			try {

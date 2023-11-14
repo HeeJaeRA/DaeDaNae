@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.board.mapper.BoardMapper">
-	<select id="selectList"
-		resultType="co.yedam.board.service.BoardVO">
-		SELECT * FROM BOARD ORDER BY BOARD_NO
+	<select id="selectList" resultType="co.yedam.board.service.BoardVO">
+		SELECT * FROM BOARD 
+	</select>
+	
+	<select id="selectQnaList" resultType="co.yedam.board.service.BoardVO">
+		select * from board where board_category = 'QnA게시판'
+	</select>
+	<select id="selectNoticeList" resultType="co.yedam.board.service.BoardVO">
+		select * from board where board_category = '공지사항'
 	</select>
 
+	<select id="selectFreeList" resultType="co.yedam.board.service.BoardVO">
+		select * from board where board_category = '자유게시판'
+	</select>
+	
 	<select id="select" resultType="co.yedam.board.service.BoardVO"
 		parameterType="int">
-		select * from board where board_no=#{boardNo}
+		select * from board where board_code=#{boardCode}
 	</select>
-	<update id="updateCnt" parameterType="int">
-		UPDATE BOARD SET view_cnt = view_cnt+1
-		where board_no = #{boardNo}
+	
+	
+	
+	
+	
+	
+	<update id="boardView" parameterType="int">
+		UPDATE BOARD SET board_view = board_view+1
+		where board_code = #{boardCode}
 	</update>
 
 	<insert id="insert"
 		parameterType="co.yedam.board.service.BoardVO">
-		INSERT INTO BOARD(BOARD_NO, TITLE, CONTENT, WRITER, image)
-		VALUES(seq_board.nextval, #{title}, #{content}, #{writer}, #{image})
+		INSERT INTO BOARD(BOARD_CODE, BOARD_CATEGORY, BOARD_TITLE, USER_ID,WRITE_DATE,UPDATE_DATE,BOARD_CONTENT,BOARD_VIEW,LIKECNT)
+		VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, #{writeDate},#{updateDate},#{boardContent},#{boardView},#{likeCnt})
 	</insert>
 
 	<update id="update" parameterType="co.yedam.board.service.BoardVO">
 		UPDATE BOARD SET
-		TITLE=#{title}, CONTENT=#{content},
-		IMAGE=nvl(#{image},image), LAST_UPDATE=SYSDATE WHERE
-		BOARD_NO=#{boardNo}
+		BOARD_TITLE=#{boardTitle},
+		UPDATE_DATE=#{updateDate},
+		BOARD_CONTENT=#{boardContent}
+		
 	</update>
 
 	<delete id="delete" parameterType="int">
 		delete from board where
-		board_no=#{boardNo}
+		board_code=#{boardCode}
 	</delete>
 
 <!-- 파라미터가 2개인 경우 에는 @Param을 사용 -->
