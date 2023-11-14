@@ -13,7 +13,7 @@
 		</form>
 
 		<div>
-			<button class="btn btn-light" type="submit">로그인</button>
+			<button style="width: 74px; height: 38px;" class="btn btn-light" type="submit">로그인</button>
 		</div>
 	</div>
 </nav>

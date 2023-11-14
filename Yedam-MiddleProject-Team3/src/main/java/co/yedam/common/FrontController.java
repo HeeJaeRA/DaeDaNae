@@ -59,7 +59,7 @@ public class FrontController extends HttpServlet {
 		//템플릿 테스트용
 		map.put("/productList.do", new ProductListControl());
 		map.put("/productInfo.do", new ProductInfoControl());
-		
+		map.put("/adMain.do", new AdminMainControl());		
 	}
 
 	@Override
