@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<head>
 
-<link rel="stylesheet" href="resources/boot-shop/css/loginStyle.css">
-</head>
-<body>
     <div class="login-wrapper">
         <h1 id = "title">로그인화면</h1>
         <form action="login.do" method="post" id="login-form">
@@ -22,7 +18,6 @@
             
         </form>
     </div>
-</body>
 
 
 
