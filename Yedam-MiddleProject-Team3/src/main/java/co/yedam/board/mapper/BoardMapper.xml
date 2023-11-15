@@ -23,10 +23,6 @@
 	</select>
 	
 	
-	
-	
-	
-	
 	<update id="boardView" parameterType="int">
 		UPDATE BOARD SET board_view = board_view+1
 		where board_code = #{boardCode}

@@ -19,8 +19,6 @@ public class RestaurantListControl implements Command {
 		RestaurantService svc = new RestaurantServiceImpl();
 		List<RestaurantVO> list = svc.selectAllList();
 
-//		System.out.println(list);
-
 		req.setAttribute("list", list);
 
 		try {

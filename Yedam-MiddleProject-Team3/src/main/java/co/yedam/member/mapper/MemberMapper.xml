@@ -4,16 +4,35 @@
 	
 	<!--로그인시 아이디 비번 받기  -->
 	<select id="getUser" resultType="co.yedam.member.service.MemberVO"> 
-	SELECT*FROM USERTABLE WHERE USERID=#{ID} AND USERPW=#{PW}
+	SELECT*FROM USERTABLE WHERE USER_ID=#{id} AND USER_PW=#{pw}
 	</select>
-	<!--회원가입시 아이디 닉네임 중복확인용 리스트  -->
+	<!--멤버조회  -->
 	<select id="memberList" resultType="co.yedam.member.service.MemberVO">
 	SELECT*FROM USERTABLE
 	</select>
-	<!--회원가입시 등록  -->
-	<select id="insert" parameterType="co.yedam.member.service.MemberVO">
-	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME, GRADE, PHONE,
-	 ADRESS, GUN_GU, RESCNT, MONE,IMAGE) VALUES (#{USERID}, #{USERPW}, #{USERNAME}, 
-	 #{NICKNAME}, user, #{PHONE}, #{ADDRESS}, #{GUNGU}, 0, 0,  #{IMAGE})
+	
+	<!--회원가입시 아이디 닉네임 중복확인용 리스트  -->
+	<select id="memberId" resultType="co.yedam.member.service.MemberVO">
+	SELECT*FROM USERTABLE where user_id=#{id}
 	</select>
-	</mapper>
+	<!--회원가입시 아이디 닉네임 중복확인용 리스트  -->
+	<select id="memberNick" resultType="co.yedam.member.service.MemberVO">
+	SELECT*FROM USERTABLE where nickName=#{nickName}
+	</select>
+	
+	<!--회원가입시 등록  -->
+	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
+	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME, PHONE,
+	 ADDRESS, GUN_GU,IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
+	 #{nickName}, #{phone}, #{address}, #{gunGu}, #{image},#{gender})
+	</insert>
+	
+	<select id="getCoupon" resultType="co.yedam.member.service.MemberVO">
+	SELECT C.USER_ID, U.USER_NAME, U.NICKNAME, U.GENDER, C.COUPON_CODE, C.COUPON_TYPE FROM COUPON C LEFT JOIN USERTABLE U ON C.USER_ID = U.USER_ID
+	</select>
+	
+	<insert id="insertCoupon" parameterType="co.yedam.member.service.MemberVO">
+	INSERT INTO COUPON VALUES 
+	</insert>
+
+</mapper>

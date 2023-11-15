@@ -14,7 +14,7 @@ public class FreeBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "WEB-INF/board/freeBoardList.jsp";
+		String path = "board/freeBoardList.tiles";
 		
 		// boardNo : 1 => DB search => jsp.
 	

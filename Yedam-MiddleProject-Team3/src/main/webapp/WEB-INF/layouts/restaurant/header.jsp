@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="primary">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#"><img
+		<a class="navbar-brand" href="restaurantList.do"><img
 			src="resources/images/logo.png"></a>
 
 		<form class="d-flex">
@@ -13,7 +13,7 @@
 		</form>
 
 		<div>
-			<button class="btn btn-light" type="submit">로그인</button>
+			<button class="btn btn-light" onclick="location.href='loginForm.do'">로그인</button>
 		</div>
 	</div>
 </nav>
@@ -25,8 +25,9 @@
 		<div class="collapse navbar-collapse" id="navbarColor04">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">QnA</a></li>
+				<li class="nav-item"><a class="nav-link" href="noticeBoard.do">Notice</a></li>
+				<li class="nav-item"><a class="nav-link" href="freeBoard.do">Free</a></li>
+				<li class="nav-item"><a class="nav-link" href="qnaBoard.do">QnA</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Event</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
