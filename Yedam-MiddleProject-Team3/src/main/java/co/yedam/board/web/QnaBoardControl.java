@@ -14,7 +14,7 @@ public class QnaBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "WEB-INF/board/qnaBoardList.jsp";
+		String path = "board/qnaBoardList.tiles";
 		
 		// boardNo : 1 => DB search => jsp.
 	
@@ -22,6 +22,7 @@ public class QnaBoardControl implements Command {
 		List<BoardVO> list = svc.selectQnaList();
 
 		req.setAttribute("qnaList", list);
+		
 		//System.out.println(vo);
 		// 요청재지정.
 		try {

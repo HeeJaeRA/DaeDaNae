@@ -14,7 +14,7 @@ public class NoticeBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "WEB-INF/board/noticeBoardList.jsp";
+		String path = "board/noticeBoardList.tiles";
 	
 		BoardService svc = new BoardServiceImpl();
 		
