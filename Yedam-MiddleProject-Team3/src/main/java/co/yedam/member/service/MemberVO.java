@@ -7,12 +7,15 @@ public class MemberVO {
 	public String userId;
 	public String userPw;
 	public String userName;
-	public String nickName;
+	public String nickname;
 	public String grade;
 	public String phone;
 	public String address;
 	public String gunGu;
-	public int resCnt;
 	public int money;
 	public String image;
+	public String gender;
+	
+	public String couponCode;
+	public String couponType;
 }

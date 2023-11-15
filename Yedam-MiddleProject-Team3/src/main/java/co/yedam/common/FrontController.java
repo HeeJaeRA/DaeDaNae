@@ -19,10 +19,12 @@ import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
+import co.yedam.member.web.AdminCouponControl;
+import co.yedam.member.web.AdminmemberListControl;
 import co.yedam.restaurant.web.AddressListControl;
+import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
 import co.yedam.restaurant.web.RestaurantListControl;
-
 
 public class FrontController extends HttpServlet {
 
@@ -62,8 +64,13 @@ public class FrontController extends HttpServlet {
 		map.put("/addressList.do", new AddressListControl());
 		map.put("/categoryList.do", new CategoryListControl());
 
-		map.put("/adMain.do", new AdminMainControl());	
-		
+		//관리자 페이지
+		map.put("/adMain.do", new AdminMainControl());
+		map.put("/adMemberList.do", new AdminmemberListControl());
+		map.put("/adRestaurantList.do", new AdminRestaurantListControl());
+		map.put("/adCouponList.do", new AdminCouponControl());
+		map.put("/chartForm.do", new ChartFormControl());
+		map.put("/drawChart.do", new DrawChartControl());
 	}
 
 	@Override

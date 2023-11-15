@@ -1,6 +1,7 @@
 package co.yedam.restaurant.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -28,6 +29,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public List<RestaurantVO> selectAddress(String rsGu) {
 		return mapper.selectAddress(rsGu);
+	}
+
+	@Override
+	public List<Map<String, Object>> getResCountByLike() {
+		return mapper.getResCountByLike();
 	}
 
 }

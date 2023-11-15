@@ -16,4 +16,13 @@
 	 ADRESS, GUN_GU, RESCNT, MONE,IMAGE) VALUES (#{USERID}, #{USERPW}, #{USERNAME}, 
 	 #{NICKNAME}, user, #{PHONE}, #{ADDRESS}, #{GUNGU}, 0, 0,  #{IMAGE})
 	</select>
-	</mapper>
+	
+	<select id="getCoupon" resultType="co.yedam.member.service.MemberVO">
+	SELECT C.USER_ID, U.USER_NAME, U.NICKNAME, U.GENDER, C.COUPON_CODE, C.COUPON_TYPE FROM COUPON C LEFT JOIN USERTABLE U ON C.USER_ID = U.USER_ID
+	</select>
+	
+	<insert id="insertCoupon" parameterType="co.yedam.member.service.MemberVO">
+	INSERT INTO COUPON VALUES 
+	</insert>
+
+</mapper>

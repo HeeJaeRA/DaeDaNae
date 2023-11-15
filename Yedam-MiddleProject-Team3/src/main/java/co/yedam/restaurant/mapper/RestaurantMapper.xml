@@ -2,16 +2,25 @@
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.restaurant.mapper.RestaurantMapper">
 
-<select id="selectAllList" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT
-</select>
+	<select id="selectAllList"
+		resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT
+	</select>
 
-<select id="selectCategory" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT
-</select>
+	<select id="selectCategory"
+		resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT,
+		STARCNT
+	</select>
 
-<select id="selectAddress" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
-</select>
+	<select id="selectAddress"
+		resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
+	</select>
+
+	<select id="getResCountByLike" resultType="map">
+		SELECT RS_NAME
+		"RESTAURANT_NAME", LIKECNT FROM RESTAURANT WHERE LIKECNT >= 50 ORDER BY LIKECNT
+	</select>
 
 </mapper>

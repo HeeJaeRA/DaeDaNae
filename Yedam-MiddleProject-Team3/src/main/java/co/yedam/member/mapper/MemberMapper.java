@@ -12,5 +12,8 @@ public interface MemberMapper {
 		public MemberVO getUser(@Param("id") String id, @Param("pw") String pw);
 		public List<MemberVO> memberList();
 	//회원가입시 등록
-		public int insert(MemberVO vo);	
+		public int insert(MemberVO vo);
+		
+	//회원 쿠폰 관리
+	public List<MemberVO> getCoupon();
 }
