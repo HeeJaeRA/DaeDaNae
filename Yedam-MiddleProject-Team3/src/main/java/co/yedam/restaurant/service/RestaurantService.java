@@ -1,6 +1,7 @@
 package co.yedam.restaurant.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RestaurantService {
 	
@@ -11,4 +12,6 @@ public interface RestaurantService {
 	
 	public RestaurantVO getRestaurant(String rcode);
 
+	//레스토랑 인기 차트
+	public List<Map<String, Object>> getResCountByLike();
 }

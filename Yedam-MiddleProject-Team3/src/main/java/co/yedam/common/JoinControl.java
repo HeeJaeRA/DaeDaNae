@@ -36,17 +36,19 @@ public class JoinControl implements Command {
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
 			String gunGu = mr.getParameter("gungu");
-			String img = mr.getFilesystemName("image"); 
+			String img = mr.getFilesystemName("image");
+			String gender = mr.getParameter("gender");
 			
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-			vo.setNickName(nickName);
+			vo.setNickname(nickName);
 			//vo.setGrade(grade);
 			vo.setPhone(phone);
 			vo.setAddress(address);
 			vo.setGunGu(gunGu);
 			vo.setImage(img);
+			vo.setGender(gender);
 					 
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -56,6 +58,8 @@ public class JoinControl implements Command {
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		
+		System.out.println(vo);
+		System.out.println(list);
 		
 		if (svc.addMember(vo)) {
 			try {

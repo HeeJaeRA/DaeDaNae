@@ -30,4 +30,15 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 		public boolean addMember(MemberVO vo) {
 			return mapper.insert(vo) ==1;
 		}
+	//관리자페이지_쿠폰
+	@Override
+	public List<MemberVO> couponList() {
+		return mapper.getCoupon();
+	}
+	@Override
+	public List<MemberVO> addCoupon() {
+		return null;
+	}
+
+
 }
