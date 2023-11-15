@@ -15,4 +15,5 @@ public class MemberVO {
 	public int resCnt;
 	public int money;
 	public String image;
+	public String gender;
 }

@@ -45,12 +45,16 @@ public class FrontController extends HttpServlet {
 		//삭제화면..
 		map.put("/removeBoard.do", new RemoveBoardControl());
 
-		//로그인, 로그아웃, 회원가입
+		//로그인, 로그아웃
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
+		//회원가입
 		map.put("/joinForm.do", new JoinFormControl());
 		map.put("/join.do", new JoinControl());
+		//회원가입시 중복확인
+		map.put("/repeatedId.do", new RepeatedIdControl());
+		map.put("/repeatedNick.do", new RepeatedNickControl());
 		
 		//리뷰댓글
 		//map.put("/review.do", new ReviewControl());

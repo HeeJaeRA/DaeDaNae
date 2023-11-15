@@ -21,10 +21,18 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	public MemberVO loginCheck(@Param("id")String id, @Param("pw")String pw) {
 		return mapper.getUser(id, pw);
 	}
-	//회원가입시 아이디, 닉네임 중복확인시 필요함
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
+	}
+	//회원가입시 아이디, 닉네임 중복확인시 필요함
+	@Override
+	public MemberVO memberId(@Param("id")String id) {
+		return mapper.memberId(id);
+	}
+	@Override
+	public MemberVO memberNick(@Param("nickName")String nickName) {
+		return mapper.memberNick( nickName);
 	}
 	@Override
 		public boolean addMember(MemberVO vo) {
