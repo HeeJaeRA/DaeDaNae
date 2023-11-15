@@ -25,7 +25,7 @@ ${list}
 						<form method="post" action="join.do" class="requires-validation" novalidate>
 							<div class="col-md-12">
 
-								아이디<input class="form-control" type="text" name="joinId" id="id"
+								아이디<input class="form-control" type="text" name="id" id="id" value="id"
 									placeholder="아이디를 입력하세요" required=""
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-id">아이디 중복확인</button>
@@ -34,7 +34,7 @@ ${list}
 							</div>
 
 							<div class="col-md-12">
-								비밀번호<input class="form-control" type="password" name="joinPw" id="pw"
+								비밀번호<input class="form-control" type="password" name="pw" id="pw" value="pw"
 									placeholder="비밀번호를 입력하세요" required=""
 									style="width: 540px; background-color: 808080;">
 
@@ -51,7 +51,8 @@ ${list}
 							</div>
 
 							<div class="col-md-12">
-								이름<input class="form-control" type="text" name="Name" id="name" placeholder="이름을 입력하세요"
+								이름<input class="form-control" type="text" name="name" id="name" value="name"
+								placeholder="이름을 입력하세요"
 									required="" style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">Username field is valid!</div>
@@ -59,7 +60,7 @@ ${list}
 							</div>
 
 							<div class="col-md-12">
-								닉네임<input class="form-control" type="text" name="Nickname" id="nickName"
+								닉네임<input class="form-control" type="text" name="nickName" id="nickName" value="nickName"
 									placeholder="닉네임을 입력하세요" required=""
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-nick">닉네임 중복확인</button>
@@ -69,7 +70,7 @@ ${list}
 
 
 							<div class="col-md-12">
-								전화번호<input class="form-control" type="tell" name="tell" id="tell"
+								전화번호<input class="form-control" type="tell" name="tell" id="tell" value="tell"
 									placeholder="전화번호를 입력하세요(-(하이픈) 포함)" required="" maxlength="13"
 									style="width: 540px; background-color: 808080;">
 
@@ -86,7 +87,7 @@ ${list}
 
 								<input type="text" id="sample4_roadAddress" class="form-control"
 									class="d_form mini line" placeholder="도로명주소" readonly><br>
-								<input type="text" id="sample4_jibunAddress" class="form-control"
+								<input type="text" id="sample4_jibunAddress" class="form-control" value="address"
 									class="d_form mini line" placeholder="지번주소" readonly><br>
 								<span id="guide" style="color: #999; display: none"></span>
 								<input type="text" id="sample4_detailAddress" class="d_form mini line addressCheck"
@@ -95,15 +96,19 @@ ${list}
 
 
 							<div class="col-md-12">
-								프로필 사진<input class="form-control" type="file" name="joinImg"
+								프로필 사진<input class="form-control" type="file" name="image" value="image"
 									style="width: 540px; background-color: 808080;">
 
 							</div>
 
-							<div class="col-md-12" id=gender>
-								성별
-								<button type="button" id=genderM>남성</button> <button type="button"
-									id=genderW>여성</button>
+							<div class="col-md-12">
+								성별<input class="form-control" type="text" name="gender" id="gender" value="gender"
+									placeholder="성별을 입력하세요(남성, 여성)" required="" 
+									style="width: 540px; background-color: 808080;">
+
+								<div class="valid-feedback" style="display:none"></div>
+								<div class="invalid-feedback" style="display:none">남성, 여성으로 입력해주세요</div>
+							</div>
 
 							</div>
 
@@ -191,7 +196,7 @@ ${list}
 		let cnt = 0;
 		let cntn = 0;
 		console.log(document.querySelector('.invalid-feedback:nth-of-type(1)'));
-		let listAry = "${list}";
+		//let listAry = "${list}";
 		//아이디 중복버튼
 		document.querySelector('#join-id').addEventListener('click', function (e) {
 			cnt += 1;
@@ -199,18 +204,20 @@ ${list}
 			fetch('repeatedId.do',{
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: 'id=' +id
+				body: 'id=' +id //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
 				if(result.retCode == "OK"){
-					document.querySelector('.valid-feedback:nth-of-type(0)').style.display = 'block';
-					document.querySelector('#pw').focus();
-					return;
+					document.getElementsByClassName('invalid-feedback')[0].style.display='block';
+					//document.querySelector('.invalid-feedback:nth-of-type(0)').style.display = 'block';
+					document.querySelector('#id').value = '';
 				}else {
 					
-					document.querySelector('.invalid-feedback:nth-of-type(0)').style.display = 'block';
-					document.querySelector('#id').value = '';
+					document.getElementsByClassName('valid-feedback')[0].style.display='block';
+					//document.querySelector('.valid-feedback:nth-of-type(0)').style.display = 'block';
+					document.querySelector('#pw').focus();
+					return;
 				}
 				
 			})
@@ -220,10 +227,13 @@ ${list}
 		//비밀번호 재확인 일치
 		let pw = document.querySelector('#pw').cloneNode(true);
 		let rePw = document.querySelector('#rePw').cloneNode(true);
-		if (pw != rePw) {
-			document.querySelector('.invalid-feedback:nth-of-type(2)').style.display = 'block';
+		if (!pw.equals(rePw)) {
+			document.getElementsByClassName('invalid-feedback')[2].style.display='block';
+			//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
 		} else {
-			document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
+			
+			document.getElementsByClassName('valid-feedback')[2].style.display='block';
+			//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
 		}
 
 		//닉네임 중복버튼
@@ -237,33 +247,29 @@ ${list}
 			.then(resolve=>resolve.json())
 			.then(result=>{
 				if(result.retCode == "OK"){
-					document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
+					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
+					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
 					document.querySelector('#nickName').value = '';
+					
 					return;
 				}else {
-					document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
+					
+					document.getElementsByClassName('valid-feedback')[4].style.display='block';
+					//document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
 					document.querySelector('#tell').focus();
 				}
 			})	
 			
 		})
 		//성별 버튼 클릭하면 값 저장 
-		document.querySelector('#genderM').addEventListener('click', function (e) {
-
-			document.querySelector('#genderM').innerHTML = '남성';
-		})
-
-		document.querySelector('#genderW').addEventListener('click', function (e) {
-			document.querySelector('#genderW').value = '여성';
-
-		})
-
+		
 		//회원가입 버튼(회원등록)
 
 		document.querySelector('#join').addEventListener('click', function idCheck() {
 			//동의 체크박스가 체크되어 있지 않으면 가입이 안됨
 			if (document.querySelector('#form-check-input').value == null) {
-				document.querySelector('.invalid-feedback:nth-of-type(6)').style.display = 'block';
+				document.getElementsByClassName('invalid-feedback')[6].style.display='block';
+				//document.querySelector('.invalid-feedback:nth-of-type(6)').style.display = 'block';
 				return;
 			}
 			// 아이디,이름 등 input값이 널이면 가입안됨
@@ -282,10 +288,10 @@ ${list}
 				return;
 			}
 			//성별체크 안하면 가입이 안됨
-			else if (document.querySelector('#gender').value == null) {
-				document.querySelector('.invalid-feedback:nth-of-type(5)').style.display = 'block';
-				return;
-			}
+// 			else if (document.querySelector('#gender').value == null) {
+// 				document.querySelector('.invalid-feedback:nth-of-type(5)').style.display = 'block';
+// 				return;
+// 			}
 			//전화번호 13자리 아니면 가입 안됨
 			if (document.querySelector('#tell').length != 13) {
 				alter("전화번호 다시 확인하세요");

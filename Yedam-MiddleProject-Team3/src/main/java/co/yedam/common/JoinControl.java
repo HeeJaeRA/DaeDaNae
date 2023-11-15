@@ -66,7 +66,7 @@ public class JoinControl implements Command {
 			}
 		} else {
 			try {
-				resp.sendRedirect("/main/joinForm.tiles");
+				resp.sendRedirect("main/joinForm.tiles");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
