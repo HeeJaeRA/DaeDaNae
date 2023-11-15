@@ -21,6 +21,9 @@ import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.member.web.AdminCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.reply.web.AddReplyControl;
+import co.yedam.reply.web.RemoveReplyControl;
+import co.yedam.reply.web.ReplyListControl;
 import co.yedam.restaurant.web.AddressListControl;
 import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
@@ -48,6 +51,11 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		//삭제화면..
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		//댓글
+		map.put("/addReply.do", new AddReplyControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/replyList.do", new ReplyListControl());
+		
 
 		//로그인, 로그아웃, 회원가입
 		map.put("/loginForm.do", new LoginFormControl());
