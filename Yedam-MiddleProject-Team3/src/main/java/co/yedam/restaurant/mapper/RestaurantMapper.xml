@@ -3,15 +3,19 @@
 <mapper namespace="co.yedam.restaurant.mapper.RestaurantMapper">
 
 <select id="selectAllList" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT
+	SELECT * FROM RESTAURANT ORDER BY LIKECNT, STARCNT DESC
 </select>
 
 <select id="selectCategory" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT
+	SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT DESC
 </select>
 
 <select id="selectAddress" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
+	SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT DESC
+</select>
+
+<select id="getRestaurant" resultType="co.yedam.restaurant.service.RestaurantVO">
+	SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
 </select>
 
 </mapper>

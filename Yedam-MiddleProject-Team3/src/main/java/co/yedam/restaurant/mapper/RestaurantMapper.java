@@ -10,9 +10,11 @@ public interface RestaurantMapper {
 	
 	public List<RestaurantVO> selectAllList();
 	
-	public List<RestaurantVO> selectCategory(@Param("category") String rsCategory);
+	public List<RestaurantVO> selectCategory(@Param("category") String rsCate);
 
 	public List<RestaurantVO> selectAddress(@Param("address") String rsGu);
+	
+	public RestaurantVO getRestaurant(@Param("rcode") String rcode);
 	
 	
 }
