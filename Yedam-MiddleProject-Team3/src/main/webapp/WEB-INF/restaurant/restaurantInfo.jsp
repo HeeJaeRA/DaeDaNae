@@ -113,7 +113,7 @@
 				<tr>
 					<td>1</td>
 					<td>test</td>
-					<td class="review_content">너무 맛있어요</td>
+					<td class="review_content">너무맛있어요</td>
 					<td>2023-11-15</td>
 					<td>3</td>
 				</tr>
