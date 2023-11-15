@@ -5,6 +5,7 @@
 <html lang="en">
 
     <head>
+    
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -20,10 +21,8 @@
         <link href="resources/boot-shop/css/modal.css" rel="stylesheet" >
         <!--  수정 필요함 
         <link href="resources/boot-shop/css/loginStyle.css" rel="stylesheet" />
-
         -->
         
-
     </head>
 
     <body>
@@ -33,15 +32,17 @@
         <!-- Section-->
        	<tiles:insertAttribute name="body"></tiles:insertAttribute>
         <!-- Footer-->
-        
         <tiles:insertAttribute name="footer"></tiles:insertAttribute>
+        
     </body>
     
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="resources/boot-shop/js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         
+        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=93uqi3w2v8"></script>
+        <script src="resources/boot-shop/js/scripts.js"></script>
+
 </html>
