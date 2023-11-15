@@ -2,47 +2,26 @@
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.restaurant.mapper.RestaurantMapper">
 
-<<<<<<< HEAD
 	<select id="selectAllList"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT
+		SELECT * FROM RESTAURANT ORDER BY LIKECNT, STARCNT DESC
 	</select>
-=======
-<select id="selectAllList" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT ORDER BY LIKECNT, STARCNT DESC
-</select>
->>>>>>> refs/remotes/origin/develop
 
-<<<<<<< HEAD
 	<select id="selectCategory"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
 		SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT,
-		STARCNT
+		STARCNT DESC
 	</select>
-=======
-<select id="selectCategory" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT DESC
-</select>
->>>>>>> refs/remotes/origin/develop
 
-<<<<<<< HEAD
 	<select id="selectAddress"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
 		SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
+		DESC
 	</select>
 
-	<select id="getResCountByLike" resultType="map">
-		SELECT RS_NAME
-		"RESTAURANT_NAME", LIKECNT FROM RESTAURANT WHERE LIKECNT >= 50 ORDER BY LIKECNT
+	<select id="getRestaurant"
+		resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
 	</select>
-=======
-<select id="selectAddress" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT DESC
-</select>
-
-<select id="getRestaurant" resultType="co.yedam.restaurant.service.RestaurantVO">
-	SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
-</select>
->>>>>>> refs/remotes/origin/develop
 
 </mapper>
