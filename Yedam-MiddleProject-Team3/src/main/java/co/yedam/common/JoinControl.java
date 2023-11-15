@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
 import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 import co.yedam.member.serviceImpl.MemberServiceImpl;
@@ -22,45 +21,43 @@ public class JoinControl implements Command {
 		MemberService svc = new MemberServiceImpl();
 		List<MemberVO> list = svc.memberList();
 
-		
 		String saveDir = req.getServletContext().getRealPath("images");
 		int size = 10 * 2048 * 2048;
-		
-		try{
+
+		try {
 			MultipartRequest mr = new MultipartRequest(req, saveDir, size, "UTF-8", new DefaultFileRenamePolicy());
-			String id = mr.getParameter("id"); 
-			String pw = mr.getParameter("pw"); 
-			String name = mr.getParameter("name"); 
-			String nickName = mr.getParameter("nickname"); 
-			//String grade = mr.getParameter("grade");
+			String id = mr.getParameter("id");
+			String pw = mr.getParameter("pw");
+			String name = mr.getParameter("name");
+			String nickName = mr.getParameter("nickname");
+			// String grade = mr.getParameter("grade");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
 			String gunGu = mr.getParameter("gungu");
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
-			
+
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-			vo.setNickname(nickName);
-			//vo.setGrade(grade);
+			vo.setNickName(nickName);
+			// vo.setGrade(grade);
 			vo.setPhone(phone);
 			vo.setAddress(address);
 			vo.setGunGu(gunGu);
 			vo.setImage(img);
 			vo.setGender(gender);
-					 
-	}catch(Exception e) {
-		e.printStackTrace();
-	}//try.catch
-		
-		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} // try.catch
+
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
-		
+
 		System.out.println(vo);
 		System.out.println(list);
-		
+
 		if (svc.addMember(vo)) {
 			try {
 				resp.sendRedirect("restaurant/restaurantList.tiles");
@@ -74,8 +71,5 @@ public class JoinControl implements Command {
 				e.printStackTrace();
 			}
 		}
-}//execute
-}//class
-
-
-
+	}// execute
+}// class
