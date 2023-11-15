@@ -12,7 +12,7 @@ public class LogoutControl implements Command {
 req.getSession().invalidate();
 		
 		try {
-			resp.sendRedirect("main.do");
+			resp.sendRedirect("restaurant/restaurantList.tiles");
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -21,3 +21,5 @@ req.getSession().invalidate();
 	}
 
 }
+
+

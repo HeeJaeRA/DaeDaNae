@@ -39,38 +39,39 @@
 
 <h3>상세 화면(조회화면)</h3>
 <form action="modifyForm.do" name="myForm">
-	<input type="hidden" name="bno" value="${bno.boardNo }">
+	<input type="hidden" name="bco" value="${bco.boardCode }">
 	<table border="1" class="table">
 		<tr>
 			<th>글번호</th>
-			<td class="boardNo">${bno.boardNo }</td>
+			<td class="boardCode">${bco.boardCode }</td>
 			<th>작성일시</th>
-			<td><fmt:formatDate value ="${bno.writeDate }" pattern = "yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+			<td><fmt:formatDate value="${bco.writeDate }"
+					pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 		</tr>
 		<tr>
 			<th>글제목</th>
-			<td colspan="3">${bno.title }</td>
+			<td colspan="3">${bco.boardTitle }</td>
 		</tr>
 		<tr>
-			<td colspan="4"><textarea rows="5" cols="40">${bno.content }</textarea></td>
+			<td colspan="4"><textarea rows="5" cols="40">${bco.boardContent }</textarea></td>
 		</tr>
-		<tr>
-			<th>이미지</th>
-			<td colspan="3"><c:if test="${!empty bno.image  }">
-					<img width="80px" src="images/${bno.image }">
-				</c:if></td>
-		</tr>
+		<!-- 		<tr> -->
+		<!-- 			<th>이미지</th> -->
+		<%-- 			<td colspan="3"><c:if test="${!empty bno.image  }"> --%>
+		<%-- 					<img width="80px" src="images/${bno.image }"> --%>
+		<%-- 				</c:if></td> --%>
+		<!-- 		</tr> -->
 		<tr>
 			<th>작성자</th>
-			<td>${bno.writer }</td>
+			<td>${bno.userId }</td>
 			<th>조회수</th>
-			<td>${bno.viewCnt }</td>
+			<td>${bco.boardView }</td>
 		</tr>
 		<tr>
 
 			<!-- 로그인 아이디랑 책 작성자랑 같으면 수정삭제가능 아니면 버튼 비활성화 -->
 			<td colspan="2" align="center"><c:choose>
-					<c:when test="${!empty logId && logId ==bno.writer }">
+					<c:when test="${!empty logId && logId ==bco.writer }">
 						<input type="submit" value="수정" class="btn btn-primary">
 						<input class="btn btn-warning" type="button" value="삭제">
 					</c:when>
@@ -103,7 +104,9 @@
 	<a href="#">1</a> <a href="#">2</a> <a href="#">3</a>
 
 </div>
-<!--  <p><a href="boardList.do">목록으로</a></p>-->
+<p>
+	<a href="boardList.do">목록으로</a>
+</p>
 
 <script>
 		document.querySelector('input[type =button]').addEventListener('click',
@@ -136,11 +139,11 @@
 				return;
 				
 			}
-		//	if(pg>Math.ceil(result.dto.total / 5)){
-		//		page = Math.ceil(result.dto.total / 5)
-		//		showList(page);
-		//		return;	
-		//	}
+			if(pg>Math.ceil(result.dto.total / 5)){
+				page = Math.ceil(result.dto.total / 5)
+				showList(page);
+				return;	
+			}
 	
 			
 			result.list.forEach(reply => {
@@ -276,19 +279,19 @@
 				
 			temp.querySelector('button').addEventListener('click' , deleteCallback);
 			
-	//		temp.querySelector('#delReply').addEventListener('click' , function(e){ 
-	//			fetch('delReply.do?rno=' + reply.replyNo)
-	//			.then(resolve => resolve.json())
-	//			.then(result => {
-	//				console.log(result);
-	//				if(result.retCode == 'OK'){	
-	//					temp.remove();
-	//				}else {
-	//					alert('삭제실패');
-	//				}
-	//			})
-	//			
-	//		})
+			temp.querySelector('#delReply').addEventListener('click' , function(e){ 
+				fetch('delReply.do?rno=' + reply.replyNo)
+				.then(resolve => resolve.json())
+				.then(result => {
+					console.log(result);
+					if(result.retCode == 'OK'){	
+						temp.remove();
+					}else {
+						alert('삭제실패');
+					}
+				})
+				
+			})
 			return temp;
 		}
 	

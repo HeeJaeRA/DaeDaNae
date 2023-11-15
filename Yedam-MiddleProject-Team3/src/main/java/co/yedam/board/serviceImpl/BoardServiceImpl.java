@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import co.yedam.board.mapper.BoardMapper;
 import co.yedam.board.service.BoardService;
 import co.yedam.board.service.BoardVO;
-
 import co.yedam.common.DataSourceMybatis;
 
 public class BoardServiceImpl implements BoardService {
@@ -22,13 +21,33 @@ public class BoardServiceImpl implements BoardService {
 		//return dao.selectList();
 		return mapper.selectList();
 	}
+	
+	
+	@Override
+	public List<BoardVO> selectQnaList() {
+		//return dao.selectList();
+		return mapper.selectQnaList();
+	}
+	
+	
+	@Override
+	public List<BoardVO> selectNoticeList() {
+		//return dao.selectList();
+		return mapper.selectNoticeList();
+	}
+	
+	@Override
+	public List<BoardVO> selectFreeList() {
+		//return dao.selectList();
+		return mapper.selectFreeList();
+	}
 
 	@Override
-	public BoardVO getBoard(int boardNo) {
+	public BoardVO getBoard(int boardCode) {
 		//dao.updateCnt(boardNo);
 		//return dao.select(boardNo);
-		mapper.updateCnt(boardNo);
-		return mapper.select(boardNo);
+//		mapper.update(boardCode);
+		return mapper.select(boardCode);
 	}
 
 	@Override
@@ -40,15 +59,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean editBoard(BoardVO vo) {
-	//	return dao.update(vo) == 1;
 		return mapper.update(vo) == 1;
 		
 	}
 
 	@Override
-	public boolean removeBoard(int boardNo) {
+	public boolean removeBoard(int boardCode) {
 	//	return dao.delete(boardNo) == 1;
-		return mapper.delete(boardNo) ==1;
+		return mapper.delete(boardCode) ==1;
 	}
 
 //	@Override

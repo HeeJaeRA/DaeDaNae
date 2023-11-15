@@ -7,14 +7,15 @@ import lombok.Data;
 @Data 
 public class BoardVO {
 	
-	private int boardNo;
-	private String title;
-	private String content;
-	private String writer;
+	private int boardCode;
+	private String boardCategory;
+	private String boardTitle;
+	private String userId;
 	private Date writeDate;
-	private int viewCnt;
-	private String image;
-	private Date lastUpdate;
+	private Date updateDate;
+	private String boardContent;
+	private int boardView;
+	private int likeCnt;
 	
 	
 }

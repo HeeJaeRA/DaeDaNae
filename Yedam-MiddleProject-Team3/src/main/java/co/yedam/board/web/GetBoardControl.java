@@ -15,15 +15,15 @@ public class GetBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "WEB-INF/board/getBoard.do";
+		String path = "WEB-INF/board/getBoard.jsp";
 		
 		// boardNo : 1 => DB search => jsp.
-		String bno = req.getParameter("bno");
+		String bco = req.getParameter("bco");
 		BoardService svc = new BoardServiceImpl();
-		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); // 문자->숫자
+		BoardVO vo = svc.getBoard(Integer.parseInt(bco)); // 문자->숫자
 		
-		req.setAttribute("bno", vo);
-		//System.out.println(vo);
+		req.setAttribute("bco", vo);
+		System.out.println(vo);
 		// 요청재지정.
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
