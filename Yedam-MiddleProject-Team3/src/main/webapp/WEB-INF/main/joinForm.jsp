@@ -16,7 +16,8 @@
 								아이디<input class="form-control" type="text" name="id" id="id"
 									placeholder="아이디를 입력하세요" required=""
 									style="width: 540px; background-color: 808080;">
-								<button type="button" id="join-id">아이디 중복확인</button>
+								<input type="button" id="userid" value="아이디 중복확인" onclick="checkId()">
+								<!-- <button type="button id="join-id"></button> -->
 								<div class="valid-feedback" style="display:none">사용가능한 아이디 입니다!</div>
 								<div class="invalid-feedback" style="display:none">사용 불가능한 아이디 입니다ㅠ</div>
 							</div>
@@ -94,21 +95,20 @@
 
 
 							<div class="col-md-12">
-								성별<input class="form-control" type="text" name="gender" id="gender" 
-									placeholder="성별을 입력하세요(남성, 여성)" required="" 
-									style="width: 540px; background-color: 808080;">
-
-								<div class="valid-feedback" style="display:none"></div>
-								<div class="invalid-feedback" style="display:none">남성, 여성으로 입력해주세요</div>
+							<label>성별
+							<input class="form-control" type="radio" name="gender" value="남성" >
+							<input class="form-control" type="radio" name="gender" value="여성" >
+							</label>
+								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
 							</div>
 
 							<br>
 							
 							<div class="form-check">
-								<input class="form-check-input" class="form-control" type="checkbox" 
+							<input class="form-check-input" class="form-control" type="checkbox" 
 									id="invalidCheck" required="" onclick='is_checked()'>
-								<label class="form-check-label">[필수]동의하세요</label>
-								<div class="invalid-feedback" style="display:none">동의하세요 확인!!!</div>
+							<label class="form-check-label">[필수]동의하세요</label>
+							<div class="invalid-feedback" style="display:none">동의하세요 확인!!!</div>
 							</div>
 
 
@@ -193,26 +193,19 @@
     			event.preventDefault();
  			 };
 			});
-		
-		
-
-		//let invalid = document.querySelectorAll('.invalid-feedback').cloneNode(true);
-		//let valid = document.querySelector('.valid-feedback').cloneNode(true);
+		//아이디 중복버튼
 		let cnt = 0;
 		let cntn = 0;
-		console.log(document.querySelectorAll('.invalid-feedback:nth-of-type(1)'));
-		//let listAry = "${list}";
-		//아이디 중복버튼
-		document.querySelector('#join-id').addEventListener('click', function (e) {
+		function checkId(){
 			cnt += 1;
-			console.log(cnt);
 			fetch('repeatedId.do',{
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: 'id='+id //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
+				body:'id='+id.value //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
+				console.log(id.value);
 				console.log(result);
 				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[0].style.display='block';
@@ -225,20 +218,21 @@
 					document.querySelector('#pw').focus();
 					return;
 				}
-				
 			})
-			.catch(err=>console.log(err));
-			
-		})
+		}
+		
+		
 		//비밀번호 재확인 일치
 		let pw = document.querySelector('#pw').cloneNode(true);
 		let rePw = document.querySelector('#rePw').cloneNode(true);
-		if (pw!=rePw) {
+		if (!pw.equals(rePw) && rePw !=null) {
+			console.log(pw);
+			console.log(rePw);
 			document.getElementsByClassName('invalid-feedback')[2].style.display='block';
 			//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
-		} else {
-			
+		} else if(pw.equals(rePw) && rePw!=null){
 			document.getElementsByClassName('valid-feedback')[2].style.display='block';
+			document.querySelector('#name').focus();
 			//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
 		}
 
@@ -248,7 +242,7 @@
 			fetch('repeatedNick.do',{
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: 'nickName='+nickName
+				body:'nickName='+nickName.value;
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
