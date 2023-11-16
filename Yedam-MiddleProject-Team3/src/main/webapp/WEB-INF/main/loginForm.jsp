@@ -15,7 +15,7 @@
             </label>
             
             <input type="submit" value="Login">
-            <input type="submit" value="Join">
+            <input type="submit" value="Join" onclick="location.href='joinForm.do'">
         </form>
     </div>
 

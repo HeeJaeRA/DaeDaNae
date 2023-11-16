@@ -35,7 +35,7 @@
 		<input type="button" value="종류별" id="categoryBtn">
 		<input type="button" value="지역별" id="addressBtn">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="relateDiv">
-			<c:forEach items="${allList }" var="vo" end="3">
+			<c:forEach items="${addressList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
 						<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
