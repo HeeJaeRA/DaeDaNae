@@ -33,7 +33,6 @@ public class LoginControl implements Command {
 			}
 		}else {
 			try {
-				
 				resp.sendRedirect("main/loginForm.tiles");
 			} catch (IOException e) {
 				e.printStackTrace();
