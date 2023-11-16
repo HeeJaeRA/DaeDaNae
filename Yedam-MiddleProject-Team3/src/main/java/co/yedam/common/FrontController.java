@@ -29,6 +29,8 @@ import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
 import co.yedam.restaurant.web.RestaurantListControl;
+import co.yedam.review.web.AddReviewControl;
+import co.yedam.review.web.ReviewListControl;
 
 
 public class FrontController extends HttpServlet {
@@ -69,8 +71,8 @@ public class FrontController extends HttpServlet {
 		map.put("/repeatedNick.do", new RepeatedNickControl());
 		
 		//리뷰댓글
-		//map.put("/review.do", new ReviewControl());
-		//map.put("/addReview.do", new AddReviewControl());
+		map.put("/reviewList.do", new ReviewListControl());
+		map.put("/addReview.do", new AddReviewControl());
 		//map.put("/updateReview.do", new UpdateReviewControl());
 		//map.put("/removeReview.do", new RemoveReviewControl());
 		

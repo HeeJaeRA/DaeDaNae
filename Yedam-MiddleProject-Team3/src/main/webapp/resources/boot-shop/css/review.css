@@ -12,46 +12,7 @@
     padding: 10px;
     box-sizing: border-box;
 }
-.rating .rate_radio {
-    position: relative;
-    display: inline-block;
-    z-index: 20;
-    opacity: 0.001;
-    width: 60px;
-    height: 60px;
-    background-color: #fff;
-    cursor: pointer;
-    vertical-align: top;
-    display: none;
-}
-.rating .rate_radio + label {
-    position: relative;
-    display: inline-block;
-    margin-left: -4px;
-    z-index: 10;
-    width: 60px;
-    height: 60px;
-    background-image: url('../../images/starrate.png');
-    background-repeat: no-repeat;
-    background-size: 60px 60px;
-    cursor: pointer;
-    background-color: #f0f0f0;
-}
-.rating .rate_radio:checked + label {
-    background-color: #ff8;
-}
-.warning_msg {
-    display: none;
-    position: relative;
-    text-align: center;
-    background: #ffffff;
-    line-height: 26px;
-    width: 100%;
-    color: red;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #e0e0e0;
-}
+
 .btn02 {
     display:block;
     width: 100%;
@@ -63,6 +24,12 @@
     font-size: 1.1em;
     text-align: center;
     background:bisque;
+}
+
+#if {
+    width: 0px;
+    height: 0px;
+    border: 0px;
 }
 
 table, thead, tbody {
