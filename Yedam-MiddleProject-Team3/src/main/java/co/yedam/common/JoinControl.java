@@ -36,6 +36,8 @@ public class JoinControl implements Command {
 			//String gunGu = mr.getParameter("gunGu");
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
+			
+			System.out.println("pw: "+pw);
 
 			vo.setUserId(id);
 			vo.setUserPw(pw);
@@ -47,6 +49,8 @@ public class JoinControl implements Command {
 			//vo.setGunGu(gunGu);
 			vo.setImage(img);
 			vo.setGender(gender);
+			
+			System.out.println(vo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
