@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +22,10 @@
         <link href="resources/boot-shop/css/modal.css" rel="stylesheet" >
 
         <link href="resources/boot-shop/css/review.css" rel="stylesheet" >
+        
         <!--  수정 필요함 
+        
+        	<link rel="stylesheet" href="resources/boot-shop/css/joinStyle.css">
         <link href="resources/boot-shop/css/loginStyle.css" rel="stylesheet" />
         -->
         

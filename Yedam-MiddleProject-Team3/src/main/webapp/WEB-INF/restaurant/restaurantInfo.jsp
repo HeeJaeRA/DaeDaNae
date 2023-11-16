@@ -4,6 +4,8 @@
 
 <!-- Product section-->
 
+${logId }, ${nickname }, ${respon }
+
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
@@ -35,7 +37,7 @@
 		<input type="button" value="종류별" id="categoryBtn">
 		<input type="button" value="지역별" id="addressBtn">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="relateDiv">
-			<c:forEach items="${allList }" var="vo" end="3">
+			<c:forEach items="${addressList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
 						<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
@@ -68,30 +70,23 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="wrap_review">
 			<h2>리뷰 작성</h2>
-			<form name="reviewform" class="reviewform" method="post" action="/addReview.do">
-				<input type="hidden" name="rate" id="rate" value="0" />
-				<p class="title_star">별점과 리뷰를 남겨주세요.</p>
+			<form name="reviewform" class="reviewform" method="post" action="addReview.do" target="_blank">
+			<label hidden = "hidden">가게번호 <input name = "rscode" value="1"></label>
+			<label hidden = "hidden">아이디 <input name = "userid" value="test"></label>
+			<label>작성자 <input name = "nickname" value="${nickname }" readonly></label>
+
 				<div class="review_rating">
-					<div class="warning_msg">별점을 선택해 주세요.</div>
-					<div class="rating">
-						<input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점">
-						<label for="rating1"></label>
-						<input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점">
-						<label for="rating2"></label>
-						<input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점">
-						<label for="rating3"></label>
-						<input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
-						<label for="rating4"></label>
-						<input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
-						<label for="rating5"></label>
-					</div>
+				<label>맛 <input name="startaste" value="3"></label>
+				<label>가격 <input name="starprice" value="3"></label>
+				<label>서비스 <input name="starservice" value="3"></label>
+					
 				</div>
 				<div class="review_contents">
-					<div class="warning_msg">5자 이상으로 작성해 주세요.</div>
-					<textarea rows="10" class="review_textarea"></textarea>
+
+					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" name="save" class="btn02" id="save" value="등록">
+					<input type="submit" id="save" class="btn02" value="등록">
 				</div>
 			</form>
 		</div>
@@ -139,4 +134,6 @@
 	function makeDiv() {
 
 	}
+	
+	
 </script>

@@ -16,8 +16,8 @@
 <!-- function freeB() { -->
 <!--    자유게시판 오픈되게.. -->
 <!-- } -->
-	<a href="noticeBoard.do"><input type="button" value = "공지사항"></a>
-	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a>
+<!-- 	<a href="noticeBoard.do"><input type="button" value = "공지사항"></a> -->
+<!-- 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a> -->
 		
 		
 <h3>QnA게시판</h3>
@@ -59,6 +59,6 @@
 </table>
 
 <p>
-	<a href="addBoard.do">게시글 등록</a>
+	<a href="boardForm.do">게시글 등록</a>
 </p>
 

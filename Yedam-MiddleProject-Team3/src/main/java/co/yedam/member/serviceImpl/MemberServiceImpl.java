@@ -34,10 +34,11 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
 	}
+	//회원가입
 	@Override
 	public boolean addMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+	
+		return mapper.insert(vo)==1;
 	}
 
 }

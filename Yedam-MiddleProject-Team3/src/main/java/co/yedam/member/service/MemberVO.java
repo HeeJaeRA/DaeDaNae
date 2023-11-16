@@ -11,7 +11,6 @@ public class MemberVO {
 	public String grade;
 	public String phone;
 	public String address;
-	public String gunGu;
 	public int money;
 	public String image;
 

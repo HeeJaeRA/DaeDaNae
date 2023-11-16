@@ -30,14 +30,14 @@
 
 	<insert id="insert"
 		parameterType="co.yedam.board.service.BoardVO">
-		INSERT INTO BOARD(BOARD_CODE, BOARD_CATEGORY, BOARD_TITLE, USER_ID,WRITE_DATE,UPDATE_DATE,BOARD_CONTENT,BOARD_VIEW,LIKECNT)
-		VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, #{writeDate},#{updateDate},#{boardContent},#{boardView},#{likeCnt})
+		INSERT INTO BOARD VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, SYSDATE,#{updateDate},#{boardContent},#{boardView},#{likeCnt},#{images})
 	</insert>
 
 	<update id="update" parameterType="co.yedam.board.service.BoardVO">
 		UPDATE BOARD SET
 		BOARD_TITLE=#{boardTitle},
-		UPDATE_DATE=#{updateDate},
+		IMAGES=nvl(#{images},images),
+		UPDATE_DATE=SYSDATE,
 		BOARD_CONTENT=#{boardContent}
 		
 	</update>

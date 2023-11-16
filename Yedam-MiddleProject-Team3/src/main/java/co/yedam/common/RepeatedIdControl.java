@@ -27,11 +27,12 @@ public class RepeatedIdControl implements Command {
 		MemberService svc = new MemberServiceImpl();
 		Map<String, Object> map = new HashMap<>();
 		vo = svc.memberId(id);
-
+		System.out.println(vo);
 		if (vo != null) {
-			map.put("retCode", "Exists");
+			map.put("vo", vo);
+			map.put("retCode","Exists");
 		} else {
-			map.put("retCode", "NotExists");
+			map.put("retCode","NotExists");
 		}
 
 		resp.setContentType("text/json;charset=utf-8");

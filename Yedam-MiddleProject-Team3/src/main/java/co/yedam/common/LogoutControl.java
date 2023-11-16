@@ -9,10 +9,10 @@ public class LogoutControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-req.getSession().invalidate();
+		req.getSession().invalidate();
 		
 		try {
-			resp.sendRedirect("restaurant/restaurantList.tiles");
+			resp.sendRedirect("restaurantList.do");
 		} catch (IOException e) {
 			
 			e.printStackTrace();
