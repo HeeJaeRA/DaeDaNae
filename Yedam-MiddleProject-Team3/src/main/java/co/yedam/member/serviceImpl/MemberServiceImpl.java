@@ -30,25 +30,14 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	public MemberVO memberNick(@Param("nickName")String nickName) {
 		return mapper.memberNick( nickName);
 	}
-	//관리자페이지_쿠폰
-	@Override
-	public List<MemberVO> couponList() {
-		return mapper.getCoupon();
-	}
-	@Override
-	public List<MemberVO> addCoupon() {
-		return null;
-	}
 	@Override
 	public List<MemberVO> memberList() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.memberList();
 	}
 	@Override
 	public boolean addMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

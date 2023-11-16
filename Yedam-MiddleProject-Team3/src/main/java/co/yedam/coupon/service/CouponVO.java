@@ -1,0 +1,14 @@
+package co.yedam.coupon.service;
+
+import lombok.Data;
+
+@Data
+public class CouponVO {
+	private String userId;
+	private String CouponCode;
+	private String couponType;
+	
+	private String userName;
+	private String nickName;
+	private String gender;
+}

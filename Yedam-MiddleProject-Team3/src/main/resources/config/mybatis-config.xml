@@ -22,5 +22,6 @@
 		<mapper resource="co/yedam/board/mapper/BoardMapper.xml" />	
 		<mapper resource="co/yedam/member/mapper/MemberMapper.xml" />			
 		<mapper resource="co/yedam/restaurant/mapper/RestaurantMapper.xml" />		
+		<mapper resource="co/yedam/coupon/mapper/CouponMapper.xml" />		
 	</mappers>
 </configuration>

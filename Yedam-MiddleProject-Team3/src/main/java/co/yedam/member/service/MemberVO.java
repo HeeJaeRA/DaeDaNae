@@ -16,7 +16,5 @@ public class MemberVO {
 	public String image;
 
 	public String gender;
-	
-	public String couponCode;
-	public String couponType;
+
 }

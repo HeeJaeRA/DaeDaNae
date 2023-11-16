@@ -23,5 +23,9 @@
 		resultType="co.yedam.restaurant.service.RestaurantVO">
 		SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
 	</select>
+	
+	<select id="getResCountByLike">
+		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT ORDER BY LIKECNT DESC FETCH FIRST 10 ROWS ONLY
+	</select>
 
 </mapper>
