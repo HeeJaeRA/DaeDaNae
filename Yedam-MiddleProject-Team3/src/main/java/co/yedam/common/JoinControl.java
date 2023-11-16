@@ -64,13 +64,13 @@ public class JoinControl implements Command {
 
 		if (svc.addMember(vo)) {
 			try {
-				resp.sendRedirect("restaurant/restaurantList.tiles");
+				resp.sendRedirect("restaurantList.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				resp.sendRedirect("main/joinForm.tiles");
+				resp.sendRedirect("joinForm.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
