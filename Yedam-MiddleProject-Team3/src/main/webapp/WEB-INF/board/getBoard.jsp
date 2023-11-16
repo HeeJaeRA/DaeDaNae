@@ -71,7 +71,7 @@
 
 			<!-- 로그인 아이디랑 책 작성자랑 같으면 수정삭제가능 아니면 버튼 비활성화 -->
 			<td colspan="2" align="center"><c:choose>
-					<c:when test="${!empty logId && logId == bco.writer }">
+					<c:when test="${!empty logId && logId == bco.userId }">
 						<input type="submit" value="수정" class="btn btn-primary">
 						<input class="btn btn-warning" type="button" value="삭제">
 					</c:when>
