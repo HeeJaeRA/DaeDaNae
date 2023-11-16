@@ -59,6 +59,6 @@
 </table>
 
 <p>
-	<a href="addBoard.do">게시글 등록</a>
+	<a href="boardForm.do">게시글 등록</a>
 </p>
 

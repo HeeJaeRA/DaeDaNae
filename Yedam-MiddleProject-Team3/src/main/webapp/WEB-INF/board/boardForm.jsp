@@ -10,11 +10,6 @@
 			<td><input type="text" name="title" class="form-control"
 				value="${boardCategory }"></td>
 		</tr>
-		<tr>
-			<th>글 번호</th>
-			<td><input type="text" name="boardCode" class="form-control" value="${boardCode }"></td>
-		</tr>
-
 
 		<tr>
 			<th>제목</th>
@@ -22,13 +17,13 @@
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" readonly class="form-control"
+			<td><input type="text" class="form-control"
 				name="writer" value="${userId }"></td>
 			<!--readonly 값수정불가  -->
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td><input type="text" readonly class="form-control"
+			<td><input type="text"  class="form-control"
 				name="writer" value="${writeDate }"></td>
 			<!--readonly 값수정불가  -->
 		</tr>
