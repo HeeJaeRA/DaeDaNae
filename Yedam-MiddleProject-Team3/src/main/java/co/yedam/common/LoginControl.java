@@ -25,7 +25,7 @@ public class LoginControl implements Command {
 		if(svc.loginCheck(id, pw)!=null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("logId", id);
-			//session.setAttribute("respon", vo.grade());
+			session.setAttribute("respon", vo.getGrade());
 			try {
 				resp.sendRedirect("restaurant/restaurantList.tiles");
 			} catch (IOException e) {
