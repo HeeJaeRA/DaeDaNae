@@ -71,18 +71,40 @@ ${logId }, ${nickname }, ${respon }
 		<div class="wrap_review">
 			<h2>리뷰 작성</h2>
 			<form name="reviewform" class="reviewform" method="post" action="addReview.do" target="_blank">
-			<label hidden = "hidden">가게번호 <input name = "rscode" value="1"></label>
-			<label hidden = "hidden">아이디 <input name = "userid" value="test"></label>
+			<label hidden = "hidden">가게번호 <input name = "rscode" value="${vo.rsCode }"></label>
+			<label hidden = "hidden">아이디 <input name = "userid" value="${logId }"></label>
 			<label>작성자 <input name = "nickname" value="${nickname }" readonly></label>
 
 				<div class="review_rating">
-				<label>맛 <input name="startaste" value="3"></label>
-				<label>가격 <input name="starprice" value="3"></label>
-				<label>서비스 <input name="starservice" value="3"></label>
-					
+					<label>맛 
+						<select name="startaste" id="startaste" onchange="chageLangSelect()">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</label> 
+					<label>가격
+						<select name="starprice" id="starprice" onchange="chageLangSelect()">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</label> 
+					<label>서비스
+						<select name="starservice" id="starservice" onchange="chageLangSelect()">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</label> 
 				</div>
 				<div class="review_contents">
-
 					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
