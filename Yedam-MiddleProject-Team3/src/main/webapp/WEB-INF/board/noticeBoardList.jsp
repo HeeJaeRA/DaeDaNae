@@ -16,8 +16,8 @@
 <!-- function freeB() { -->
 <!--    자유게시판 오픈되게.. -->
 <!-- } -->
-	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a>
-	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a>
+<!-- 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a> -->
+<!-- 	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a> -->
 		
 		
 <h3>공지사항</h3>

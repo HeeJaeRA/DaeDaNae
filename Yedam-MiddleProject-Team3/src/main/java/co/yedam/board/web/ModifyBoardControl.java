@@ -28,7 +28,7 @@ public class ModifyBoardControl implements Command {
 		int boardCode = Integer.parseInt(req.getParameter("bco"));
 		String boardCategory = req.getParameter("boardCategory");
 		String boardTitle = req.getParameter("boardTitle");
-		String userID = req.getParameter("userID");
+		String userId = req.getParameter("userId");
 
 		Date writeDate = null;
 		try {
@@ -52,7 +52,7 @@ public class ModifyBoardControl implements Command {
 		vo.setBoardCode(boardCode);
 		vo.setBoardCategory(boardCategory);
 		vo.setBoardTitle(boardTitle);
-		vo.setUserId(userID);
+		vo.setUserId(userId);
 		vo.setWriteDate(writeDate);
 		vo.setUpdateDate(updateDate);
 		vo.setBoardContent(boardContent);

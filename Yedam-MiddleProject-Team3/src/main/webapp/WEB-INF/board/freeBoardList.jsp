@@ -16,11 +16,11 @@
 <!-- function freeB() { -->
 <!--    자유게시판 오픈되게.. -->
 <!-- } -->
-	<a href="noticeBoard.do"><input type="button" value = "공지사항"></a>
-	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a>
+<!-- 	<a href="noticeBoard.do"><input type="button" value = "공지사항"></a> -->
+<!-- 	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a> -->
 		
 		
-<h3>자유게시판</h3>
+<h3>맛집 추천 게시판</h3>
 
 <table class="table" border="1">
 	<thead>

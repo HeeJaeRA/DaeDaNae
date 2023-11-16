@@ -1,4 +1,4 @@
-package co.yedam.member.web;
+package co.yedam.coupon.web;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 import co.yedam.member.serviceImpl.MemberServiceImpl;
 
-public class AdminCouponControl implements Command {
+public class AddCouponControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "admin/adCouponList.tiles";
+		String path = "admin/adCouponAdd.tiles";
 		MemberService mvc = new MemberServiceImpl();
-		List<MemberVO> list = mvc.couponList();
+		List<MemberVO> list = mvc.memberList();
 		
 		System.out.println(list);
 		
-		req.setAttribute("copList", list);
+		req.setAttribute("memList", list);
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

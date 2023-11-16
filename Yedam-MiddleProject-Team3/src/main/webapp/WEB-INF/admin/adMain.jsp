@@ -22,9 +22,10 @@
 		<div class="col-xl-6">
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-chart-bar me-1"></i> Bar Chart Example
+					<i class="fas fa-chart-bar me-1"></i> 인기많은 가게
 				</div>
 				<div class="card-body">
+					<div id="popRes"></div>
 					<canvas id="myBarChart" width="100%" height="40"></canvas>
 				</div>
 			</div>
@@ -76,7 +77,7 @@
 						<td>${vo.userId }</td>
 						<td>${vo.userPw }</td>
 						<td>${vo.userName }</td>
-						<td>${vo.nickname }</td>
+						<td>${vo.nickName }</td>
 						<td>${vo.grade }</td>
 						<td>${vo.phone }</td>
 						<td>${vo.address }</td>
@@ -91,69 +92,41 @@
 		</div>
 	</div>
 	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.setOnLoadCallback(drawBasic);
 	
-		
-	
-	    <div class="card mb-4">    
-		<div class="card-header">
-			<i class="fas fa-table me-1"></i> 업체목록
-		</div>
-		
-		<div class="card-body">
-			<table id="datatablesSimple">
-				<thead>
-					<tr>
-						<th>업체코드</th>
-						<th>카테고리</th>
-						<th>이름</th>
-						<th>주소</th>
-						<th>군구</th>
-						<th>동</th>
-						<th>연락처</th>
-						<th>소개</th>
-						<th>이미지1</th>
-						<th>이미지2</th>
-						<th>이미지3</th>
-						<th>좋아요</th>
-						<th>평점</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<th>업체코드</th>
-						<th>카테고리</th>
-						<th>이름</th>
-						<th>주소</th>
-						<th>군구</th>
-						<th>동</th>
-						<th>연락처</th>
-						<th>소개</th>
-						<th>이미지1</th>
-						<th>이미지2</th>
-						<th>이미지3</th>
-						<th>좋아요</th>
-						<th>평점</th>
-					</tr>
-				</tfoot>
-				<tbody>
-					<c:forEach items="${resList }" var="vo">
-					<tr>
-						<td>${vo.rsCode }</td>
-						<td>${vo.rsCategory }</td>
-						<td>${vo.rsName }</td>
-						<td>${vo.rsAddress }</td>
-						<td>${vo.rsGu }</td>
-						<td>${vo.rsDong }</td>
-						<td>${vo.phone }</td>
-						<td>${vo.rsDesc }</td>
-						<td>${vo.image1 }</td>
-						<td>${vo.image2 }</td>
-						<td>${vo.image3 }</td>
-						<td>${vo.likecnt }</td>
-						<td>${vo.starcnt }</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	function drawBasic() {
+		fetch('drawChart.do')
+		.then(resolve => resolve.json())
+		.then(result => {
+			let dataAry = [['RESTAURANT_NAME', '좋아요수']];
+			console.log(result);
+			result.forEach(item => {
+				
+				dataAry.push([item.RESTAURANT_NAME, item.LIKECNT]);
+			})
+		var data = google.visualization.arrayToDataTable(dataAry);
+		var options = {
+			title : 'Population Restaurant',
+			chartArea : {
+				width : '50%'
+			},
+			hAxis : {
+				title : 'Total Population',
+				minValue : 0
+			},
+			vAxis : {
+				title : '가게이름'
+			}
+		};
+
+		var chart = new google.visualization.BarChart(document.getElementById('popRes'));
+		chart.draw(data, options);
+		})
+		.catch(err => console.log(err));
+	}
+
+</script>

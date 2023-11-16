@@ -19,7 +19,9 @@ import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
-import co.yedam.member.web.AdminCouponControl;
+import co.yedam.coupon.web.AddCouponControl;
+import co.yedam.coupon.web.AdminCouponControl;
+import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
@@ -82,12 +84,16 @@ public class FrontController extends HttpServlet {
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
 
 		//관리자 페이지
-		map.put("/adMain.do", new AdminMainControl());
-		map.put("/adMemberList.do", new AdminmemberListControl());
-		map.put("/adRestaurantList.do", new AdminRestaurantListControl());
-		map.put("/adCouponList.do", new AdminCouponControl());
-		map.put("/chartForm.do", new ChartFormControl());
-		map.put("/drawChart.do", new DrawChartControl());
+		map.put("/adMain.do", new AdminMainControl()); //메인
+		map.put("/adMemberList.do", new AdminmemberListControl()); //멤버리스트
+		map.put("/adRestaurantList.do", new AdminRestaurantListControl()); //가게리스트
+		map.put("/chartForm.do", new ChartFormControl()); //차트
+		map.put("/drawChart.do", new DrawChartControl()); //차트
+		
+		map.put("/adCouponList.do", new AdminCouponControl()); //쿠폰리스트
+		map.put("/adCouponAdd.do", new AddCouponControl());
+		map.put("/adRemoveCoupon.do", new RemoveCouponControl());
+		
 		
 	}
 
