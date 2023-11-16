@@ -27,13 +27,13 @@ public class LoginControl implements Command {
 			session.setAttribute("logId", id);
 			session.setAttribute("respon", vo.getGrade());
 			try {
-				resp.sendRedirect("restaurant/restaurantList.tiles");
+				resp.sendRedirect("restaurantList.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}else {
 			try {
-				resp.sendRedirect("main/loginForm.tiles");
+				resp.sendRedirect("loginForm.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

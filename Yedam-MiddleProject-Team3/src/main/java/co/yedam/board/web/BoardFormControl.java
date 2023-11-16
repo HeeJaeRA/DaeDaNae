@@ -14,7 +14,7 @@ public class BoardFormControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
-		// 일단 주석처리..
+		// 로그인 기능 될때까지 일단 주석처리..
 
 		//
 		// HttpSession session = req.getSession();
