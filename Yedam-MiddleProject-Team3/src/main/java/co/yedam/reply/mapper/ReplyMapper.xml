@@ -12,7 +12,7 @@
 	from(
    	  	 Select /*+INDEX(r reply_pk)*/ rownum rn,r.* 
      	 from reply r    
-    	 where r.board_no=#{boardNo}
+    	 where r.board_code=#{boardCode}
         )a
 	where a.rn > (#{page}-1) * 5
 	and a.rn <= (#{page}) * 5
@@ -23,43 +23,43 @@
 	<select id="selectReply"
 		resultType="co.yedam.reply.service.ReplyVO" 
 		parameterType="int">
-		select * from reply where reply_no=#{replyNo}
+		select * from reply where reply_code=#{replyCode}
 	</select>
 
 	<insert id="insertReply"
 	 parameterType="co.yedam.reply.service.ReplyVO">
 	 
-	 <selectKey keyProperty = "replyNo" resultType="int" order="BEFORE">
+	 <selectKey keyProperty = "replyCode" resultType="int" order="BEFORE">
   			select seq_reply.nextval from dual
     </selectKey>
   
-		INSERT INTO reply(reply_no,board_no,reply,replyer,reply_date)
-		VALUES(#{replyNo},#{boardNo},#{reply},#{replyer},#{replyDate})
+		INSERT INTO reply(board_code,reply_code,user_id,write_date,reply_content,likeCnt)
+		VALUES(#{boardCode},#{replyCode},#{userId},sysdate,#{replyContent},${likeCnt})
 
 	</insert>	
 
 	<update id="updateReply"
 		 parameterType="co.yedam.reply.service.ReplyVO">
-		UPDATE reply SET reply =#{reply}
-		where reply_no=#{replyNo}
+		UPDATE reply SET reply_content =#{replyContent}
+		where reply_Code=#{replyCode}
 	</update>
 
 	<delete id="deleteReply"
 	 parameterType="int">
 		delete from reply
-		 where reply_no=#{replyNo}
+		 where reply_code=#{replyCode}
 	</delete>
 	
 	<select id = "getTotalCnt" resultType = "int">
-		select count(*) from reply where board_no = #{boardNo}
+		select count(*) from reply where board_Code = #{boardCode}
 			
 	</select>
 	
 	<select id = "getReplyCountByWriter" resultType = "map">
 	
-	select replyer "replyer", count(*) "cnt"
+	select user_id "user_id", count(*) "cnt"
 	from reply
-	group by replyer
+	group by user_id
 		
 	</select>
 
