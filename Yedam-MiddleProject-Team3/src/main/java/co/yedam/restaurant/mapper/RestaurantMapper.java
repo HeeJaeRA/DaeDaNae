@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import co.yedam.restaurant.service.ReservationVO;
 import co.yedam.restaurant.service.RestaurantVO;
 
 public interface RestaurantMapper {
@@ -19,5 +20,7 @@ public interface RestaurantMapper {
 	
 	public RestaurantVO getRestaurant(@Param("rcode") String rcode);
 	
+	public int getReser(ReservationVO vo);
 	
+	//updateAble
 }
