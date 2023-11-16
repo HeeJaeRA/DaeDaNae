@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="primary">
 	<div class="container-fluid">
@@ -13,7 +14,14 @@
 		</form>
 
 		<div>
-			<button class="btn btn-light" onclick="location.href='loginForm.do'">로그인</button>
+		<c:choose>
+			<c:when test="${empty logId }">
+				<button class="btn btn-light" onclick="location.href='loginForm.do'">로그인</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btn btn-light" onclick="location.href='logout.do'">로그아웃</button>
+		</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 </nav>

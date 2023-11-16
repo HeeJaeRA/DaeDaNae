@@ -24,10 +24,18 @@ public class LoginControl implements Command {
 		MemberVO vo = svc.loginCheck(id, pw);
 		if(svc.loginCheck(id, pw)!=null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("logId", id);
+			
+			session.setAttribute("logId", vo.getUserId());
+			session.setAttribute("nickname", vo.getNickName());
 			session.setAttribute("respon", vo.getGrade());
+			session.setAttribute("money", vo.getMoney());
+			
 			try {
-				resp.sendRedirect("restaurantList.do");
+				if (vo.getGrade().equals("ADMIN")) {
+					resp.sendRedirect("adMain.do");					
+				} else {
+					resp.sendRedirect("restaurantList.do");					
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -8,6 +8,8 @@
 
 </header>
 
+${logId }, ${nickname }, ${respon }, ${money }
+
 <section class="py-5">
 	<div class="container">
 		<!-- Trigger the modal with a button -->
