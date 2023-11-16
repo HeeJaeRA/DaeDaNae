@@ -21,6 +21,7 @@
         <link href="resources/boot-shop/css/modal.css" rel="stylesheet" >
 
         <link href="resources/boot-shop/css/review.css" rel="stylesheet" >
+        	<link rel="stylesheet" href="resources/boot-shop/css/joinStyle.css">
         <!--  수정 필요함 
         <link href="resources/boot-shop/css/loginStyle.css" rel="stylesheet" />
         -->

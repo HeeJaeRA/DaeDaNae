@@ -29,11 +29,11 @@ public class JoinControl implements Command {
 			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
-			String nickName = mr.getParameter("nickname");
+			String nickName = mr.getParameter("nickName");
 			// String grade = mr.getParameter("grade");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
-			String gunGu = mr.getParameter("gungu");
+			//String gunGu = mr.getParameter("gunGu");
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
 
@@ -44,7 +44,7 @@ public class JoinControl implements Command {
 			// vo.setGrade(grade);
 			vo.setPhone(phone);
 			vo.setAddress(address);
-			vo.setGunGu(gunGu);
+			//vo.setGunGu(gunGu);
 			vo.setImage(img);
 			vo.setGender(gender);
 

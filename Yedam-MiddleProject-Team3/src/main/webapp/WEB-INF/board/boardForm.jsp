@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <h3>게시글 등록화면</h3>
-<form action="addBoard.do" method="post" enctype="multipart/form-data">
+<form action="addBoard.do" method="post" enctype="multipart/form-data"> <!--  enctype="multipart/form-data 이부분 지워야할지 말아야할지 ? -->
 	<table border="1" class="talbe">
 	<th>카테고리</th>
 		<tr>

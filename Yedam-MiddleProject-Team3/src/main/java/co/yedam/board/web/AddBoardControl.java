@@ -25,7 +25,7 @@ public class AddBoardControl implements Command {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	
 		String boardCategory = req.getParameter("boardCategory");
 		String boardTitle = req.getParameter("boardTitle");
-		String userID = req.getParameter("userID");
+		String userID = req.getParameter("userId");
 		Date writeDate = null;
 		Date updateDate = null;
 		
