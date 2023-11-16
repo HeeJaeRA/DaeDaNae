@@ -14,7 +14,7 @@
 <!-- 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a> -->
 		
 		
-<h3>전체게시글(임시..)</h3>
+<h3>전체게시글 조회(임시..)</h3>
 
 <table class="table" border="1">
 	<thead>
