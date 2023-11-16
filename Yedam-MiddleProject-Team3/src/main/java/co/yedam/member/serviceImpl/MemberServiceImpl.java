@@ -44,10 +44,11 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 		// TODO Auto-generated method stub
 		return null;
 	}
+	//회원가입
 	@Override
 	public boolean addMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+	
+		return mapper.insert(vo)==1;
 	}
 
 
