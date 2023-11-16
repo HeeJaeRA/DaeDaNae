@@ -285,11 +285,11 @@
 				return;
 			}
 			//비밀번호 재확인 다르면 가입이 안됨
-			else if (pw != rePw) {
-				document.querySelector('#pw').value = '';
-				document.querySelector('#rePw').value = '';
-				return;
-			}
+// 			else if (pw != rePw) {
+// 				document.querySelector('#pw').value = '';
+// 				document.querySelector('#rePw').value = '';
+// 				return;
+// 			}
 			//아이디,닉네임 중복확인 안하면 가입 안됨
 			else if (cnt == 0 || cntn == 0) {
 				alter("중복확인 하세요");
@@ -310,13 +310,13 @@
 			
 		//회원가입 버튼(회원등록)
 		
-// 		  function formSubmit() {
-//     	const form = document.querySelector('form');
+		  function formSubmit() {
+    	const form = document.querySelector('form');
         
-//         if (isValidCode()) {
-//         	form.submit();
-//         }
-//     }
+        if (isValidCode()) {
+        	form.submit();
+        }
+    }
 		document.querySelector('#join').addEventListener('click', function formSubmit() {
 				//ajax.값=>전달
 				if(check()){
