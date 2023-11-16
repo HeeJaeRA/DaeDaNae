@@ -46,6 +46,7 @@
 				value="저장"> <input type="reset" class="btn btn-warning"
 				value="초기화"></td>
 		</tr>
+		
 	</table>
 
 </form>

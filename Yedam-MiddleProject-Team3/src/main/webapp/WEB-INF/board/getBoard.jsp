@@ -70,14 +70,26 @@
 		<tr>
 
 			<!-- 로그인 아이디랑 책 작성자랑 같으면 수정삭제가능 아니면 버튼 비활성화 -->
-			<td colspan="2" align="center"><c:choose>
+			<!-- 로그인 기능 연동할때까지 주석 -->
+<%-- 			<td colspan="2" align="center"><c:choose> --%>
+<%-- 					<c:when test="${!empty logId && logId == bco.userId }"> --%>
+<!-- 						<input type="submit" value="수정" class="btn btn-primary"> -->
+<!-- 						<input class="btn btn-warning" type="button" value="삭제"> -->
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<!-- 						<input disabled type="submit" value="수정"> -->
+<!-- 						<input disabled type="button" value="삭제"> -->
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose></td> --%>
+				
+				<td colspan="2" align="center"><c:choose>
 					<c:when test="${!empty logId && logId == bco.userId }">
 						<input type="submit" value="수정" class="btn btn-primary">
 						<input class="btn btn-warning" type="button" value="삭제">
 					</c:when>
 					<c:otherwise>
-						<input disabled type="submit" value="수정">
-						<input disabled type="button" value="삭제">
+						<input type="submit" value="수정" class="btn btn-primary">
+						<input class="btn btn-warning" type="button" value="삭제">
 					</c:otherwise>
 				</c:choose></td>
 		</tr>
@@ -106,7 +118,8 @@
 </div>
 
 <p>
-	<a href="boardList.do">목록으로</a>
+	<!-- 스위치 되면 스위치로 하기 -->
+	<a href="freeBoard.do">목록으로</a>
 </p>
 
 <script>
@@ -209,7 +222,8 @@
 		
 		// 댓글등록버튼에 대한 이벤트
 		document.querySelector('#addReply').addEventListener('click',function(e){
-			let replyContent = document.querySelector('#content').value;
+			let reply = document.querySelector('#content').value;
+			// 로그인안한사람은 댓글못담 ㅎ
 			console.log(userId);
 			if(!bco || userId =='null'  || !reply){
 				alert("값을 확인하세요.");
@@ -220,7 +234,7 @@
 			fetch('addReply.do',{
 				method : 'post',
 				headers : {'Content-Type' : 'application/x-www-form-urlencoded'},
-			body : 'bco='+bco+'&replyContent='+replyContent+'&userId='+writer
+			body : 'bco='+bco+'&replyContent='+reply+'&userId=M002' //나중에 실제 로그인한 유저의 ID로 변경.(세션)${logId }로 변경하기
 			})
 			.then(resolve => resolve.json())
 			.then(result => {
