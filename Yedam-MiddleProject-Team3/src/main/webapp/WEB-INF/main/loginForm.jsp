@@ -15,7 +15,11 @@
             </label>
             
             <input type="submit" value="Login">
+<<<<<<< HEAD
             <input type="button" value="Join"  onClick="location.href='joinForm.do'">
+=======
+            <input type="submit" value="Join" onclick="location.href='joinForm.do'">
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
         </form>
     </div>
 

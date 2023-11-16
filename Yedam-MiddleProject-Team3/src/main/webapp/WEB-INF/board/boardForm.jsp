@@ -3,18 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <h3>게시글 등록화면</h3>
-<form action="addBoard.do" method="post" enctype="multipart/form-data">
+<form action="addBoard.do" method="post" enctype="multipart/form-data"> <!--  enctype="multipart/form-data 이부분 지워야할지 말아야할지 ? -->
 	<table border="1" class="talbe">
 	<th>카테고리</th>
 		<tr>
 			<td><input type="text" name="title" class="form-control"
 				value="${boardCategory }"></td>
 		</tr>
-		<tr>
-			<th>글 번호</th>
-			<td><input type="text" name="boardCode" class="form-control" value="${boardCode }"></td>
-		</tr>
-
 
 		<tr>
 			<th>제목</th>
@@ -22,13 +17,13 @@
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" readonly class="form-control"
+			<td><input type="text" class="form-control"
 				name="writer" value="${userId }"></td>
 			<!--readonly 값수정불가  -->
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td><input type="text" readonly class="form-control"
+			<td><input type="text"  class="form-control"
 				name="writer" value="${writeDate }"></td>
 			<!--readonly 값수정불가  -->
 		</tr>

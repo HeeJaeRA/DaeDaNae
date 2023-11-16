@@ -23,10 +23,9 @@ public class AddBoardControl implements Command {
 		
 		BoardVO vo = new BoardVO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	
-		int boardCode = Integer.parseInt(req.getParameter("boardCode"));
 		String boardCategory = req.getParameter("boardCategory");
 		String boardTitle = req.getParameter("boardTitle");
-		String userID = req.getParameter("userID");
+		String userID = req.getParameter("userId");
 		Date writeDate = null;
 		Date updateDate = null;
 		
@@ -35,7 +34,6 @@ public class AddBoardControl implements Command {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}		
-		
 		
 		try {
 			updateDate = sdf.parse(req.getParameter("updateDate"));
@@ -47,7 +45,6 @@ public class AddBoardControl implements Command {
 		int boardView = Integer.parseInt(req.getParameter("boardView"));
 		int likeCnt = Integer.parseInt(req.getParameter("likeCnt"));
 		
-		vo.setBoardCode(boardCode);
 		vo.setBoardCategory(boardCategory);
 		vo.setBoardTitle(boardTitle);
 		vo.setUserId(userID);
