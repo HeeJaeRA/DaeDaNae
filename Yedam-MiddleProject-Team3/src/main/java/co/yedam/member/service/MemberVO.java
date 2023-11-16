@@ -12,7 +12,11 @@ public class MemberVO {
 	public String phone;
 	public String address;
 	public String gunGu;
-	public int resCnt;
 	public int money;
 	public String image;
+
+	public String gender;
+	
+	public String couponCode;
+	public String couponType;
 }

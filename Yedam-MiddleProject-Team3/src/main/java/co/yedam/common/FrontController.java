@@ -14,14 +14,21 @@ import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.FreeBoardControl;
 import co.yedam.board.web.GetBoardControl;
-import co.yedam.board.web.MainControl;
 import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
-import co.yedam.product.web.ProductInfoControl;
-import co.yedam.product.web.ProductListControl;
+import co.yedam.member.web.AdminCouponControl;
+import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.reply.web.AddReplyControl;
+import co.yedam.reply.web.RemoveReplyControl;
+import co.yedam.reply.web.ReplyListControl;
+import co.yedam.restaurant.web.AddressListControl;
+import co.yedam.restaurant.web.AdminRestaurantListControl;
+import co.yedam.restaurant.web.CategoryListControl;
+import co.yedam.restaurant.web.RestaurantInfoControl;
+import co.yedam.restaurant.web.RestaurantListControl;
 
 
 public class FrontController extends HttpServlet {
@@ -30,11 +37,7 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		
-//		map.put("/main.do", new MainPageControl());
 
-		map.put("/main.do", new MainControl());
-		
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		map.put("/noticeBoard.do", new NoticeBoardControl());
@@ -48,6 +51,11 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		//삭제화면..
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		//댓글
+		map.put("/addReply.do", new AddReplyControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/replyList.do", new ReplyListControl());
+		
 
 		//로그인, 로그아웃, 회원가입
 		map.put("/loginForm.do", new LoginFormControl());
@@ -56,15 +64,28 @@ public class FrontController extends HttpServlet {
 		map.put("/joinForm.do", new JoinFormControl());
 		map.put("/join.do", new JoinControl());
 		
+		//회원가입시 중복확인
+		map.put("/repeatedId.do", new RepeatedIdControl());
+		map.put("/repeatedNick.do", new RepeatedNickControl());
+		
 		//리뷰댓글
 		//map.put("/review.do", new ReviewControl());
 		//map.put("/addReview.do", new AddReviewControl());
 		//map.put("/updateReview.do", new UpdateReviewControl());
 		//map.put("/removeReview.do", new RemoveReviewControl());
 		
-		//템플릿 테스트용
-		map.put("/productList.do", new ProductListControl());
-		map.put("/productInfo.do", new ProductInfoControl());
+		map.put("/restaurantList.do", new RestaurantListControl());
+//		map.put("/addressList.do", new AddressListControl());
+//		map.put("/categoryList.do", new CategoryListControl());
+		map.put("/restaurantInfo.do", new RestaurantInfoControl());
+
+		//관리자 페이지
+		map.put("/adMain.do", new AdminMainControl());
+		map.put("/adMemberList.do", new AdminmemberListControl());
+		map.put("/adRestaurantList.do", new AdminRestaurantListControl());
+		map.put("/adCouponList.do", new AdminCouponControl());
+		map.put("/chartForm.do", new ChartFormControl());
+		map.put("/drawChart.do", new DrawChartControl());
 		
 	}
 
@@ -80,5 +101,4 @@ public class FrontController extends HttpServlet {
 		Command controller = map.get(page);
 		controller.execute(req, resp);
 	}
-
 }

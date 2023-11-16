@@ -3,31 +3,29 @@
 
 <tiles-definitions>
 
-	<definition name="productpage" template="/WEB-INF/layouts/main/template.jsp">
-		<put-attribute name="title" value="상품 리스트 템플릿" />
-		<put-attribute name="header" value="/WEB-INF/layouts/main/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/layouts/main/body.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
-	</definition>
-	
-	<definition name="WILDCARD:product/*" extends="productpage">
-		<put-attribute name="body" value="/WEB-INF/product/{1}.jsp" />
-	</definition>
-
-	<definition name="mainpage" template="/WEB-INF/layouts/main/template.jsp">
+	<definition name="restaurantpage" template="/WEB-INF/layouts/restaurant/template.jsp">
 		<put-attribute name="title" value="메인화면" />
-		<put-attribute name="header" value="/WEB-INF/layouts/main/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/layouts/main/body.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/layouts/restaurant/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/restaurant/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/restaurant/footer.jsp" />
 	</definition>
 	
-	<definition name="WILDCARD:main/*" extends="mainpage">
+	<definition name="WILDCARD:restaurant/*" extends="restaurantpage">
+		<put-attribute name="body" value="/WEB-INF/restaurant/{1}.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:board/*" extends="restaurantpage">
+		<put-attribute name="body" value="/WEB-INF/board/{1}.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:main/*" extends="restaurantpage">
 		<put-attribute name="body" value="/WEB-INF/main/{1}.jsp" />
 	</definition>
 	
 	<definition name="adminpage" template="/WEB-INF/layouts/admin/template.jsp">
-		<put-attribute name="title" value="메인화면" />
+		<put-attribute name="title" value="관리자메인화면" />
 		<put-attribute name="header" value="/WEB-INF/layouts/admin/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layouts/admin/menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/admin/body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/admin/footer.jsp" />
 	</definition>
@@ -36,8 +34,8 @@
 		<put-attribute name="body" value="/WEB-INF/admin/{1}.jsp" />
 	</definition>
 
-	<definition name="WILDCARD:*" extends="mainpage">
-		<put-attribute name="body" value="/WEB-INF/product/{1}.jsp" />
+	<definition name="WILDCARD:*/*" extends="mainpage">
+		<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
 	</definition>
 
 </tiles-definitions>

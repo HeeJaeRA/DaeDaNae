@@ -23,7 +23,7 @@ public class GetBoardControl implements Command {
 		BoardVO vo = svc.getBoard(Integer.parseInt(bco)); // 문자->숫자
 		
 		req.setAttribute("bco", vo);
-		System.out.println(vo);
+		System.out.println("vo"+vo);
 		// 요청재지정.
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

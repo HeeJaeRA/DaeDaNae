@@ -13,11 +13,11 @@ public class BoardFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
-		//일단 주석처리..
-		
+
+		// 일단 주석처리..
+
 		//
-	//	HttpSession session = req.getSession();
+		// HttpSession session = req.getSession();
 //		if (session.getAttribute("logId") == null) {
 //			try {
 //				resp.sendRedirect("loginForm.do");//로그인정보가 없으면 로그인폼으로이동 로그인정보 있으면 정상적으로 감 
@@ -36,15 +36,12 @@ public class BoardFormControl implements Command {
 //
 //		}
 //	}
-		
+
 		try {
 			req.getRequestDispatcher("WEB-INF/board/boardForm.jsp").forward(req, resp);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
+		} catch (Exception e) {
+//			e.printStackTrace()
+		}
+
+	}
 }
-	
-}
-	
