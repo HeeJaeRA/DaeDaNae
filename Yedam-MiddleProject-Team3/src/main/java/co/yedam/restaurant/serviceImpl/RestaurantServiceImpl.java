@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.restaurant.mapper.RestaurantMapper;
+import co.yedam.restaurant.service.ReservationVO;
 import co.yedam.restaurant.service.RestaurantService;
 import co.yedam.restaurant.service.RestaurantVO;
 
@@ -39,6 +40,12 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public List<Map<String, Object>> getResCountByLike() {
 		return mapper.getResCountByLike();
+	}
+	//예약현황 등록
+	@Override
+	public boolean addReser(ReservationVO vo) {
+		
+		return mapper.getReser(vo)==1;
 	}
 
 }

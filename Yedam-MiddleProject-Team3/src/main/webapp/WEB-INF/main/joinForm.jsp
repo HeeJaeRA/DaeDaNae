@@ -14,7 +14,7 @@
 							<div class="col-md-12">
 
 								아이디<input class="form-control" type="text" name="id" id="id"
-									placeholder="아이디를 입력하세요" required=""
+									placeholder="아이디를 입력하세요" required="" oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<input type="button" id="userid" value="아이디 중복확인" onclick="checkId()">
 								<!-- <button type="button id="join-id"></button> -->
@@ -24,7 +24,7 @@
 
 							<div class="col-md-12">
 								비밀번호<input class="form-control" type="password" name="pw" id="pw" 
-									placeholder="비밀번호를 입력하세요" required=""
+									placeholder="비밀번호를 입력하세요" required="" onchange="checkPw()"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">사용가능한 비밀번호 입니다</div>
@@ -32,7 +32,7 @@
 							</div>
 							<div class="col-md-12">
 								비밀번호 재확인<input class="form-control" type="password" name="rePw" id="rePw"
-									placeholder="비밀번호를 재입력하세요" required=""
+									placeholder="비밀번호를 재입력하세요" required="" onchange="checkPw()"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">비밀번호가 일치합니다</div>
@@ -50,7 +50,7 @@
 
 							<div class="col-md-12">
 								닉네임<input class="form-control" type="text" name="nickName" id="nickName" 
-									placeholder="닉네임을 입력하세요" required=""
+									placeholder="닉네임을 입력하세요" required="" oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-nick">닉네임 중복확인</button>
 								<div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
@@ -225,21 +225,28 @@
 			})
 		}
 		
-		
-		//비밀번호 재확인 일치
+		function resetfb(){
+			document.getElementsByClassName('invalid-feedback')[0].style.display='none';
+			document.getElementsByClassName('valid-feedback')[0].style.display='none';
+			document.getElementsByClassName('invalid-feedback')[4].style.display='none';
+			document.getElementsByClassName('valid-feedback')[4].style.display='none';
+		}
+		//비밀번호 재확인(비밀번호)
 		let pw = document.querySelector('#pw').cloneNode(true);
 		let rePw = document.querySelector('#rePw').cloneNode(true);
-		if (!pw.equals(rePw) && rePw !=null) {
-			console.log(pw);
-			console.log(rePw);
-			document.getElementsByClassName('invalid-feedback')[2].style.display='block';
-			//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
-		} else if(pw.equals(rePw) && rePw!=null){
-			document.getElementsByClassName('valid-feedback')[2].style.display='block';
-			document.querySelector('#name').focus();
-			//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
+		function checkPw(){
+			if (pw.value!=rePw.value && rePw.value !=null) {
+				console.log(pw);
+				console.log(rePw);
+				document.getElementsByClassName('invalid-feedback')[2].style.display='block';
+				//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
+			} else if(pw.value==rePw.value && rePw.value!=null){
+				document.getElementsByClassName('valid-feedback')[2].style.display='block';
+				document.querySelector('#name').focus();
+				//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
+			}
 		}
-
+		
 		//닉네임 중복버튼
 		document.querySelector('#join-nick').addEventListener('click', function (e) {
 			cntn += 1;

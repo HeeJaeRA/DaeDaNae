@@ -29,6 +29,8 @@ import co.yedam.reply.web.ReplyListControl;
 import co.yedam.restaurant.web.AddressListControl;
 import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
+import co.yedam.restaurant.web.ReservationControl;
+import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
 import co.yedam.restaurant.web.RestaurantListControl;
 import co.yedam.review.web.AddReviewControl;
@@ -73,7 +75,9 @@ public class FrontController extends HttpServlet {
 		//회원가입시 중복확인
 		map.put("/repeatedId.do", new RepeatedIdControl());
 		map.put("/repeatedNick.do", new RepeatedNickControl());
-		
+		//예약하기
+		map.put("/reservationForm.do", new ReservationFormControl());
+		map.put("/reservation.do", new ReservationControl());
 		//리뷰댓글
 		map.put("/reviewList.do", new ReviewListControl());
 		map.put("/addReview.do", new AddReviewControl());
