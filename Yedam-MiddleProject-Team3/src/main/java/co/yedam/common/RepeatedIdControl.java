@@ -29,6 +29,7 @@ public class RepeatedIdControl implements Command {
 		vo = svc.memberId(id);
 
 		if (vo != null) {
+			map.put("vo", vo);
 			map.put("retCode", "Exists");
 		} else {
 			map.put("retCode", "NotExists");

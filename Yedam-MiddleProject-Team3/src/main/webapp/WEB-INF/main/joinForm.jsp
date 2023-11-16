@@ -10,7 +10,7 @@
 					<div class="form-items">
 						<h3>회원가입</h3>
 						<p>빈칸을 작성해 주세요</p>
-						<form method="post" action="join.do" id="myForm" class="requires-validation" novalidate enctype="multipart/form-data">
+						<form method="post" action="join.do" id="myForm" class="requires-validation"  onsubmit="return check()" novalidate enctype="multipart/form-data">
 							<div class="col-md-12">
 
 								아이디<input class="form-control" type="text" name="id" id="id"
@@ -113,7 +113,7 @@
 
 
 
-							<input type="submit" id="join" value="회원가입">
+							<input type="submit" id="join" value="회원가입" onClick="formSubmit()">
 
 						</form>
 					</div>
@@ -200,7 +200,7 @@
 		//let valid = document.querySelector('.valid-feedback').cloneNode(true);
 		let cnt = 0;
 		let cntn = 0;
-		console.log(document.querySelector('.invalid-feedback:nth-of-type(1)'));
+		console.log(document.querySelectorAll('.invalid-feedback:nth-of-type(1)'));
 		//let listAry = "${list}";
 		//아이디 중복버튼
 		document.querySelector('#join-id').addEventListener('click', function (e) {
@@ -209,11 +209,12 @@
 			fetch('repeatedId.do',{
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: 'id=' +id //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
+				body: 'id='+id //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
-				if(result.retCode == "OK"){
+				console.log(result);
+				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[0].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(0)').style.display = 'block';
 					document.querySelector('#id').value = '';
@@ -247,11 +248,12 @@
 			fetch('repeatedNick.do',{
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: 'nickName=' +nickName
+				body: 'nickName='+nickName
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
-				if(result.retCode == "OK"){
+				console.log(result)
+				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
 					document.querySelector('#nickName').value = '';
@@ -282,8 +284,8 @@
 			}
 		
 		
-		//회원가입 버튼(회원등록)
-		document.querySelector('#join').addEventListener('click', function (e) {
+		
+		function check(){
 			// 아이디,이름 등 input값이 널이면 가입안됨
 			if (document.querySelector('.form-control').value == null) {
 				return;
@@ -309,25 +311,39 @@
 			else if (document.querySelector('#phone').length != 13) {
 				alter("전화번호 다시 확인하세요");
 				return;
-			} else {
+			} 
+		}
+			
+		//회원가입 버튼(회원등록)
+		
+// 		  function formSubmit() {
+//     	const form = document.querySelector('form');
+        
+//         if (isValidCode()) {
+//         	form.submit();
+//         }
+//     }
+		document.querySelector('#join').addEventListener('click', function formSubmit() {
 				//ajax.값=>전달
-				fetch('join.do', {
+				if(check()){
+					fetch('join.do', {
+				
 						method: 'post',
 						headers: {
 							'Content-Type': 'application/x-www-form-urlencoded'
 						},
-						body: 'id' + id + '&pw' + pw + '&name' + name + '&nickName' + nickName + '&phone' +
+						body:'id'+id +'&pw'+pw+'&name'+ name+'&nickName'+nickName+'&phone'+
 							phone +
 							'&address' + address + '&image' + image + '&gender' + gender
 					})
 					.then(resolve => resolve.json())
 					.then(result => {
 						consol.log(result);
-						submit();
+						myForm.submit();
 					})
+				}//가입버튼의 if
+		})//회원가입버튼
 
-			} //else
-
-		}) //회원가입 클릭
+		
 	</script>
 

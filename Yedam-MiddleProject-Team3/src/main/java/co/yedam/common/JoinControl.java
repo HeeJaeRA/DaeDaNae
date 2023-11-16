@@ -41,7 +41,7 @@ public class JoinControl implements Command {
 			vo.setUserPw(pw);
 			vo.setUserName(name);
 			vo.setNickName(nickName);
-			// vo.setGrade(grade);
+			//vo.setGrade(grade);
 			vo.setPhone(phone);
 			vo.setAddress(address);
 			//vo.setGunGu(gunGu);
@@ -56,7 +56,7 @@ public class JoinControl implements Command {
 		req.setAttribute("vo", vo);
 
 		System.out.println(vo);
-		System.out.println(list);
+	
 
 		if (svc.addMember(vo)) {
 			try {

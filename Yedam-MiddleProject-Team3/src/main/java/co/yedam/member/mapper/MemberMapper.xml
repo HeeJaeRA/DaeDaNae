@@ -22,9 +22,9 @@
 	
 	<!--회원가입시 등록  -->
 	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
-	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME, GRADE,PHONE,
-	 ADDRESS, MONEY, IMAGE,GENDER,COUPONCODE, COUPONTYPE) VALUES (#{userId}, #{userPw}, #{userName}, 
-	 #{nickName}, USER, #{phone}, #{address},0, NVL(#{image},null), #{gender}, default, default )
+	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME, PHONE,
+	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
+	 #{nickName}, #{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
 	
 	<select id="getCoupon" resultType="co.yedam.member.service.MemberVO">
