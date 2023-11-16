@@ -47,7 +47,15 @@ table, thead, tbody {
     width: 500px;
 }
 
+.star {
+    width: 50px;
+}
+
+.like {
+    width: 50px;
+}
+
 td {
-    width: 150px;
+    width: 100px;
     padding: auto;
 }

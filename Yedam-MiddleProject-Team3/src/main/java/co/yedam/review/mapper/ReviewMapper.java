@@ -12,6 +12,10 @@ public interface ReviewMapper {
 	
 	public int insertReview(ReviewVO vo);
 	
-	public int getTotalCnt(String rsCode);
+	public int deleteReview(int reviewNo);
+	
+	public int likeReview(int reviewNo);
+	
+	public ReviewVO cntStar(@Param("rsCode") String rsCode);
 
 }

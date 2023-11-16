@@ -7,7 +7,11 @@ public interface ReviewService {
 	public List<ReviewVO> reviewList(String rsCode);
 	
 	public boolean addReview(ReviewVO vo);
-
-	public int getTotalCnt(int rsCode);
+	
+	public boolean delReview(int reviewNo);
+	
+	public boolean likeReview(int reviewNo);
+	
+	public ReviewVO cntStar(String rsCode);
 
 }

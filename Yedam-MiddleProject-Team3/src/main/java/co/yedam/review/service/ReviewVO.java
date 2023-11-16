@@ -17,5 +17,7 @@ public class ReviewVO {
 	private int starTaste;
 	private int starPrice;
 	private int starService;
+	
+	private int star;
 
 }

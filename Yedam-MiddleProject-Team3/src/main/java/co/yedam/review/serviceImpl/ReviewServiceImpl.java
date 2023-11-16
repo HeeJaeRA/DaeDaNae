@@ -24,10 +24,20 @@ public class ReviewServiceImpl implements ReviewService {
 	public boolean addReview(ReviewVO vo) {
 		return (mapper.insertReview(vo) == 1);
 	}
-
+	
 	@Override
-	public int getTotalCnt(int rsCode) {
-		return 0;
+	public boolean delReview(int reviewNo) {
+		return (mapper.deleteReview(reviewNo) == 1);
+	}
+	
+	@Override
+	public boolean likeReview(int reviewNo) {
+		return (mapper.likeReview(reviewNo) == 1);
+	}
+	
+	@Override
+	public ReviewVO cntStar(String rsCode) {
+		return mapper.cntStar(rsCode);
 	}
 
 }
