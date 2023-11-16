@@ -95,19 +95,21 @@
 
 
 							<div class="col-md-12">
-							<label>성별
-							<input class="form-control" type="radio" name="gender" value="남성" >
-							<input class="form-control" type="radio" name="gender" value="여성" >
-							</label>
+							<p>성별</p>
+							<br>
+							<label>남성<input class="form-control" type="radio" name="gender" value="남성" ></label>
+							<label>여성<input class="form-control" type="radio" name="gender" value="여성" ></label>
+							
 								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
 							</div>
 
 							<br>
 							
 							<div class="form-check">
+							<label class="form-check-label">
 							<input class="form-check-input" class="form-control" type="checkbox" 
-									id="invalidCheck" required="" onclick='is_checked()'>
-							<label class="form-check-label">[필수]동의하세요</label>
+									id="invalidCheck" required="" value="[필수] 동의하세요" checked>
+							[필수]동의하세요</label>
 							<div class="invalid-feedback" style="display:none">동의하세요 확인!!!</div>
 							</div>
 
@@ -198,21 +200,23 @@
 		let cntn = 0;
 		function checkId(){
 			cnt += 1;
+				
 			fetch('repeatedId.do',{
-				method: 'post',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				method:'post',
+				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
 				body:'id='+id.value //뒤에가 인풋에 넣은 거 앞은 controll에 파라미터
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
 				console.log(id.value);
 				console.log(result);
+				
 				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[0].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(0)').style.display = 'block';
 					document.querySelector('#id').value = '';
+					//document.getElementsByClassName('invalid-feedback')[0].innerHTML=' ';
 				}else {
-					
 					document.getElementsByClassName('valid-feedback')[0].style.display='block';
 					//document.querySelector('.valid-feedback:nth-of-type(0)').style.display = 'block';
 					document.querySelector('#pw').focus();
@@ -240,9 +244,9 @@
 		document.querySelector('#join-nick').addEventListener('click', function (e) {
 			cntn += 1;
 			fetch('repeatedNick.do',{
-				method: 'post',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body:'nickName='+nickName.value;
+				method:'post',
+				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+				body:'nickName='+nickName.value
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
@@ -321,14 +325,10 @@
 				//ajax.값=>전달
 				if(check()){
 					fetch('join.do', {
-				
-						method: 'post',
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						},
+						method:'post',
+						headers:{'Content-Type': 'application/x-www-form-urlencoded'},
 						body:'id'+id +'&pw'+pw+'&name'+ name+'&nickName'+nickName+'&phone'+
-							phone +
-							'&address' + address + '&image' + image + '&gender' + gender
+							phone +'&address' + address + '&image' + image + '&gender' + gender
 					})
 					.then(resolve => resolve.json())
 					.then(result => {
