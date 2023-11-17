@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-    
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -19,10 +19,13 @@
         <link href="resources/boot-shop/css/styles.css" rel="stylesheet" />
         
         <link href="resources/boot-shop/css/modal.css" rel="stylesheet" >
-        <!--  수정 필요함 
-        <link href="resources/boot-shop/css/loginStyle.css" rel="stylesheet" />
-        -->
+
+        <link href="resources/boot-shop/css/review.css" rel="stylesheet" >
         
+        <!--  수정 필요함 
+        	<link rel="stylesheet" href="resources/boot-shop/css/joinStyle.css">
+        	<link href="resources/boot-shop/css/loginStyle.css" rel="stylesheet" />
+        -->
     </head>
 
     <body>
@@ -41,8 +44,6 @@
         <!-- Core theme JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        
-        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=93uqi3w2v8"></script>
         <script src="resources/boot-shop/js/scripts.js"></script>
 
 </html>

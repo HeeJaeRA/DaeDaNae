@@ -18,6 +18,4 @@ public interface MemberMapper {
 	// 회원가입시 등록
 	public int insert(MemberVO vo);
 
-	// 회원 쿠폰 관리
-	public List<MemberVO> getCoupon();
 }

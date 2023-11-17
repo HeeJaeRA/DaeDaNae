@@ -14,8 +14,5 @@ public interface MemberService {
 	// 회원가입 시 등록
 	public boolean addMember(MemberVO vo);
 
-	// 회원 쿠폰 관리
-	public List<MemberVO> couponList();
-	public List<MemberVO> addCoupon();
 
 }

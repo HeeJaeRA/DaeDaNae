@@ -16,13 +16,13 @@
 <!-- function freeB() { -->
 <!--    자유게시판 오픈되게.. -->
 <!-- } -->
-	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a>
-	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a>
+<!-- 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a> -->
+<!-- 	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a> -->
 		
 		
 <h3>공지사항</h3>
 
-<table class="table" border="1">
+<table class="table" border="1" style = "width:800px ;">
 	<thead>
 		<tr>
 		
@@ -49,6 +49,7 @@
 				<td>${vo.boardContent }</td>		
 				<td>${vo.boardView }</td>		
 				<td>${vo.likeCnt }</td>		
+
 				
 			</tr>
 
@@ -59,6 +60,6 @@
 </table>
 
 <p>
-	<a href="addBoard.do">게시글 등록</a>
+	<a href="boardForm.do">게시글 등록</a>
 </p>
 

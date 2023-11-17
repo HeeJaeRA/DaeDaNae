@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.reply.mapper.ReplyMapper">
+
+
+	<select id="replyList"
+		resultType="co.yedam.reply.service.ReplyVO" >
+		
+		<!-- CDATA 쓰는 이유 : 안적으면 등호 부등호 인식못한다.. -->
+		<![CDATA[ 
+	Select * 
+	from(
+   	  	 Select /*+INDEX(r reply_pk)*/ rownum rn,r.* 
+     	 from reply r    
+    	 where r.board_code=#{boardCode}
+        )a
+	where a.rn > (#{page}-1) * 5
+	and a.rn <= (#{page}) * 5
+		]]>
+		
+	</select>
+
+	<select id="selectReply"
+		resultType="co.yedam.reply.service.ReplyVO" 
+		parameterType="int">
+		select * from reply where reply_code=#{replyCode}
+	</select>
+
+	<insert id="insertReply"
+	 parameterType="co.yedam.reply.service.ReplyVO">
+	 
+	 <selectKey keyProperty = "replyCode" resultType="int" order="BEFORE">
+  			select seq_reply.nextval from dual
+    </selectKey>
+  
+		INSERT INTO reply(board_code,reply_code,user_id,write_date,reply_content,likeCnt)
+		VALUES(#{boardCode},#{replyCode},#{userId},sysdate,#{replyContent},${likeCnt})
+
+	</insert>	
+
+	<update id="updateReply"
+		 parameterType="co.yedam.reply.service.ReplyVO">
+		UPDATE reply SET reply_content =#{replyContent}
+		where reply_Code=#{replyCode}
+	</update>
+
+	<delete id="deleteReply"
+	 parameterType="int">
+		delete from reply
+		 where reply_code=#{replyCode}
+	</delete>
+	
+	<select id = "getTotalCnt" resultType = "int">
+		select count(*) from reply where board_Code = #{boardCode}
+			
+	</select>
+	
+	<select id = "getReplyCountByWriter" resultType = "map">
+	
+	select user_id "user_id", count(*) "cnt"
+	from reply
+	group by user_id
+		
+	</select>
+
+</mapper>

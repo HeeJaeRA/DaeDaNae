@@ -8,6 +8,8 @@
 
 </header>
 
+${logId }, ${nickname }, ${respon }, ${money }
+
 <section class="py-5">
 	<div class="container">
 		<!-- Trigger the modal with a button -->
@@ -86,7 +88,7 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">예약하기</a>
+								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>

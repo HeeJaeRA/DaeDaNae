@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="primary">
 	<div class="container-fluid">
@@ -13,7 +14,14 @@
 		</form>
 
 		<div>
-			<button class="btn btn-light" onclick="location.href='loginForm.do'">로그인</button>
+		<c:choose>
+			<c:when test="${empty logId }">
+				<button class="btn btn-light" onclick="location.href='loginForm.do'">로그인</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btn btn-light" onclick="location.href='logout.do'">로그아웃</button>
+		</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 </nav>
@@ -24,11 +32,11 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor04">
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="aboutBoard.do">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="noticeBoard.do">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="freeBoard.do">Free</a></li>
+				<li class="nav-item"><a class="nav-link" href="freeBoard.do">맛집추천</a></li>
 				<li class="nav-item"><a class="nav-link" href="qnaBoard.do">QnA</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Event</a></li>
+				<li class="nav-item"><a class="nav-link" href="eventBoard.do">Event</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
 			<form class="d-flex">

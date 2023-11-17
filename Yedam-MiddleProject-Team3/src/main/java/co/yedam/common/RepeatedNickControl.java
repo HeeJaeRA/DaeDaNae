@@ -20,18 +20,18 @@ public class RepeatedNickControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
 		String nickName = req.getParameter("nickName");
-		MemberVO vo = new MemberVO();
-		vo.setNickName(nickName);
+		MemberVO vo = null;
+		//vo.setNickName(nickName);
 
 		Gson gson = new GsonBuilder().create();
 		MemberService svc = new MemberServiceImpl();
 		Map<String, Object> map = new HashMap<>();
-
-		if (svc.memberNick(nickName) == null) {
+		vo=svc.memberNick(nickName);
+		if (vo!= null) {
 			map.put("vo", vo);
-			map.put("retCode", "OK");
+			map.put("retCode", "Exists");
 		} else {
-			map.put("retCode", "NG");
+			map.put("retCode", "NotEzists");
 		}
 
 		resp.setContentType("text/json;charset=utf-8");

@@ -1,0 +1,61 @@
+.wrap_review{
+    max-width: 480px;
+    margin: 0 auto; /* 화면 가운데로 */
+    background-color: #fff;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+.reviewform textarea{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.btn02 {
+    display:block;
+    width: 100%;
+    font-weight: bold;
+    border: 0;
+    border-radius: 10px;
+    max-height: 50px;
+    padding: 15px 0;
+    font-size: 1.1em;
+    text-align: center;
+    background:bisque;
+}
+
+#if {
+    width: 0px;
+    height: 0px;
+    border: 0px;
+}
+
+table, thead, tbody {
+    border: 1px solid black;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.table_head {
+    font-weight: bold;
+}
+
+.review_content {
+    width: 500px;
+}
+
+.star {
+    width: 50px;
+}
+
+.like {
+    width: 50px;
+}
+
+td {
+    width: 100px;
+    padding: auto;
+}

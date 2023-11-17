@@ -13,13 +13,13 @@ public class ModifyControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// 수정화면오픈
-		String path = "WEB-INF/board/modifyForm.do";
+		String path = "/board/modifyForm.tiles";
 		
-		String bno = req.getParameter("bno");
+		String bco = req.getParameter("bco");
+		System.out.println(bco);
 		BoardService svc = new BoardServiceImpl();
-		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
+		BoardVO vo = svc.getBoard(Integer.parseInt(bco));
 		req.setAttribute("vo", vo);
-		
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

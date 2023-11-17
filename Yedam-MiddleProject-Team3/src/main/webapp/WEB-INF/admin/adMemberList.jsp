@@ -26,7 +26,6 @@
 						<th>등급</th>
 						<th>연락처</th>
 						<th>주소</th>
-						<th>군구</th>
 						<th>적립금</th>
 						<th>이미지</th>
 						<th>성별</th>
@@ -41,7 +40,6 @@
 						<th>등급</th>
 						<th>연락처</th>
 						<th>주소</th>
-						<th>군구</th>
 						<th>적립금</th>
 						<th>이미지</th>
 						<th>성별</th>
@@ -57,7 +55,6 @@
 						<td>${vo.grade }</td>
 						<td>${vo.phone }</td>
 						<td>${vo.address }</td>
-						<td>${vo.gunGu }</td>
 						<td>${vo.money }</td>
 						<td>${vo.image }</td>
 						<td>${vo.gender }</td>
