@@ -59,7 +59,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="restaurantInfo.do?rcode=${vo.rsCode }">예약하기</a>
+									onclick="location.href='reservationForm.do?rcode=${vo.rsCode}'">예약하기</a>
+									
+									<!--href="restaurantInfo.do?rcode=${vo.rsCode }" -->
 							</div>
 						</div>
 					</div>
