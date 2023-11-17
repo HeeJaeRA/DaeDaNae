@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.board.web.AboutBoardControl;
 import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
+import co.yedam.board.web.EventBoardControl;
 import co.yedam.board.web.FreeBoardControl;
 import co.yedam.board.web.GetBoardControl;
 import co.yedam.board.web.ModifyBoardControl;
@@ -19,6 +21,7 @@ import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
+import co.yedam.board.web.RemoveFormControl;
 import co.yedam.coupon.web.AddCouponControl;
 import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.RemoveCouponControl;
@@ -45,19 +48,23 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-
+		//게시판
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		map.put("/noticeBoard.do", new NoticeBoardControl());
 		map.put("/qnaBoard.do", new QnaBoardControl());
 		map.put("/freeBoard.do", new FreeBoardControl());
+		//소개,이벤트
+		map.put("/aboutBoard.do", new AboutBoardControl());		
+		map.put("/eventBoard.do", new EventBoardControl());
 		
 		map.put("/boardForm.do", new BoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
-		//수정화면 수정버튼 누를때 구현
+		//수정화면 => 수정버튼 누를때 구현
 		map.put("/modifyForm.do", new ModifyControl());
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		//삭제화면..
+		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
 		//댓글
 		map.put("/addReply.do", new AddReplyControl());
@@ -112,8 +119,9 @@ public class FrontController extends HttpServlet {
 		String uri = req.getRequestURI();
 		String context = req.getServletContext().getContextPath();
 		String page = uri.substring(context.length());
-
+		System.out.println(page);
 		Command controller = map.get(page);
+		
 		controller.execute(req, resp);
 	}
 }

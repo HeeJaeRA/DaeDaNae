@@ -27,9 +27,9 @@
 	<select id="getResCountByLike">
 		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT ORDER BY LIKECNT DESC FETCH FIRST 10 ROWS ONLY
 	</select >
-	//예약등록
-	<insert id="getReservation" parameterType="co.yedam.restaurant.service.ReservationVO">
-		//insert into join...
-	</insert>
+<!-- 	//예약등록 -->
+<!-- 	<insert id="getReservation" parameterType="co.yedam.restaurant.service.ReservationVO"> -->
+<!-- 		//insert into join... -->
+<!-- 	</insert> -->
 
 </mapper>
