@@ -47,5 +47,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 		
 		return mapper.getReser(vo)==1;
 	}
+	@Override
+	public List<ReservationVO> reservationList(String id) {
+		return mapper.reservationAll(id);
+	}
 
 }

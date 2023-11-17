@@ -56,7 +56,16 @@
 								<div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
 								<div class="invalid-feedback" style="display:none">이미 사용중인 닉네임 입니다</div>
 							</div>
+							
+							
+ 							<div class="col-md-12">
+								전화번호<input class="form-control" type="text" name="birth" id="birth" 
+									placeholder="생년월일 입력하세요(YYYYMMdd)" required="" maxlength="8"
+									style="width: 540px; background-color: 808080;">
 
+								<div class="valid-feedback" style="display:none">확인</div>
+								<div class="invalid-feedback" style="display:none">년도를 4자리로 입력하세요</div>
+							</div>
 
 							<div class="col-md-12">
 								전화번호<input class="form-control" type="tel" name="phone" id="phone" 
@@ -95,10 +104,9 @@
 
 
 							<div class="col-md-12">
-							<p>성별</p>
-							<br>
-							<label>남성<input class="form-control" type="radio" name="gender" value="남성" ></label>
-							<label>여성<input class="form-control" type="radio" name="gender" value="여성" ></label>
+							
+							<label>성별<input class="form-control" type="radio" name="gender" value="남성" >
+							<input class="form-control" type="radio" name="gender" value="여성" ></label>
 							
 								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
 							</div>
@@ -126,6 +134,7 @@
 
 
 	<!-- 주소api -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -157,34 +166,33 @@
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
+                document.getElementById("sample4_detailAddress").focus();
+//                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+//                 if(roadAddr !== ''){
+//                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+//                 } else {
+//                     document.getElementById("sample4_extraAddress").value = '';
+//                 }
 
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
+//                 var guideTextBox = document.getElementById("guide");
+//                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+//                 if(data.autoRoadAddress) {
+//                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+//                     guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+//                     guideTextBox.style.display = 'block';
 
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
+//                 } else if(data.autoJibunAddress) {
+//                     var expJibunAddr = data.autoJibunAddress;
+//                     guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+//                     guideTextBox.style.display = 'block';
+//                 } else {
+//                     guideTextBox.innerHTML = '';
+//                     guideTextBox.style.display = 'none';
+//                 }
             }
         }).open();
     }
     
-   
 </script>
 		
 		
@@ -273,10 +281,6 @@
 			})	
 			
 		})
-		
-		
-		//성별 버튼 클릭하면 값 저장 
-		
 		
 		//동의 체크박스가 체크되어 있지 않으면 가입이 안됨
 			function is_checked() {

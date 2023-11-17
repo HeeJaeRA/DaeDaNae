@@ -20,7 +20,9 @@ public interface RestaurantMapper {
 	
 	public RestaurantVO getRestaurant(@Param("rcode") String rcode);
 	
+	//예약등록
 	public int getReser(ReservationVO vo);
 	
-	//updateAble
+	//예약리스트
+	public List<ReservationVO> reservationAll( String id);
 }

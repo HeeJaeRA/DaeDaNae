@@ -22,9 +22,9 @@
 	
 	<!--회원가입시 등록  -->
 	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
-	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME, PHONE,
+	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY ,PHONE,
 	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
-	 #{nickName}, #{phone}, #{address}, NVL(#{image},null), #{gender})
+	 #{nickName}, #{birthDay}, #{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
 
 </mapper>
