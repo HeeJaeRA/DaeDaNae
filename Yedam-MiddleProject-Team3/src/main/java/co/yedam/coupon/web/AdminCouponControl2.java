@@ -15,11 +15,11 @@ import co.yedam.member.serviceImpl.MemberServiceImpl;
 
 
 
-public class AdminCouponControl implements Command {
+public class AdminCouponControl2 implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "admin/adCouponList.tiles";
+		String path = "admin/adCouponAdd.tiles";
 		CouponService cvc = new CouponServiceImpl();
 		List<CouponVO> clist = cvc.getCoupon();
 		

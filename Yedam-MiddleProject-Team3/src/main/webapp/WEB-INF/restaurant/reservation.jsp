@@ -5,13 +5,7 @@
  <form method="post" action="reservation.do">
 ﻿ <input type="date" id="date" onclick="timetable()">
 <div id="timeTable"style="display:none">
-<% 
-for(int i=11; i<=22; i++){
-%>	
-<input type="button" id="table" value="<%=i%>:00" onclick='btnDisabled()'>;
-<%= if(i%4==2){%>
-<br>
-<%}}%>
+
 
 </div>
 <button type="submit" id="reservation">예약완료</button>

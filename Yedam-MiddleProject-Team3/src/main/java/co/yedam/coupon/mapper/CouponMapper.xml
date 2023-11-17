@@ -7,11 +7,11 @@
 	SELECT C.USER_ID, U.USER_NAME, U.NICKNAME, U.GENDER, C.COUPON_CODE, C.COUPON_TYPE FROM COUPON C LEFT JOIN USERTABLE U ON C.USER_ID = U.USER_ID
 	</select>
 	
-	<insert id="insertCoupon" parameterType="co.yedam.coupon.service.CouponVO">
-	INSERT INTO COUPON (USER_ID, COUPON_CODE, COUPON_TYPE) VALUES (#{userId}, #{couponCode}, #{couponType})
+	<insert id="insertCoupon" >
+	INSERT INTO COUPON (USER_ID, COUPON_CODE, COUPON_TYPE) VALUES (#{id}, DBMS_RANDOM.STRING('X', 9), #{couponType})
 	</insert>
 	
-	<delete id="deleteCoupon" parameterType="int">
+	<delete id="deleteCoupon" >
 	DELETE FROM COUPON WHERE USER_ID = #{id} AND COUPON_CODE = #{cc}
 	</delete>
 

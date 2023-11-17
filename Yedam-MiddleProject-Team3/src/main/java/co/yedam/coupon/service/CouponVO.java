@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class CouponVO {
 	private String userId;
-	private String CouponCode;
+	private String couponCode;
 	private String couponType;
 	
 	private String userName;
-	private String nickName;
+	private String nickname;
 	private String gender;
 }
