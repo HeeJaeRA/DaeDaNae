@@ -59,8 +59,8 @@
 							
 							
  							<div class="col-md-12">
-								전화번호<input class="form-control" type="text" name="birth" id="birth" 
-									placeholder="생년월일 입력하세요(YYYYMMdd)" required="" maxlength="8"
+								생년월일<input class="form-control" type="text" name="birth" id="birth" 
+									placeholder="생년월일 입력하세요(YYYY-MM-dd)" required="" maxlength="10"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">확인</div>
@@ -252,6 +252,9 @@
 				document.getElementsByClassName('valid-feedback')[2].style.display='block';
 				document.querySelector('#name').focus();
 				//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
+			}else{
+				document.getElementsByClassName('valid-feedback')[2].style.display='none';
+				document.getElementsByClassName('invalid-feedback')[2].style.display='none';
 			}
 		}
 		
@@ -306,7 +309,7 @@
 // 				return;
 // 			}
 			//아이디,닉네임 중복확인 안하면 가입 안됨
-			else if (cnt == 0 || cntn == 0) {
+			if (cnt == 0 || cntn == 0) {
 				alter("중복확인 하세요");
 				return;
 			}
@@ -317,7 +320,7 @@
 // 				return;
 // 			}
 			//전화번호 13자리 아니면 가입 안됨
-			else if (document.querySelector('#phone').length != 13) {
+			if (document.querySelector('#phone').length != 13) {
 				alter("전화번호 다시 확인하세요");
 				return;
 			} 
@@ -338,7 +341,7 @@
 					fetch('join.do', {
 						method:'post',
 						headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-						body:'id'+id +'&pw'+pw+'&name'+ name+'&nickName'+nickName+'&phone'+
+						body:'id'+id +'&pw'+pw+'&name'+ name+'&nickName'+nickName+'&birthDay'+birth+'&phone'+
 							phone +'&address' + address + '&image' + image + '&gender' + gender
 					})
 					.then(resolve => resolve.json())
