@@ -30,9 +30,9 @@ public class ReservationControl implements Command {
 		//String을 date로 변환
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		//세션값 넘겨받기
-		//HttpSession session = req.getSession();
-		String id = (String) req.getAttribute("id");
-		String rsCode= (String) req.getAttribute("rcode");
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("id");
+		String rsCode= (String) session.getAttribute("rcode");
 		//파라미터로 받을 값
 		String date= req.getParameter("date");
 		String time= req.getParameter("time");

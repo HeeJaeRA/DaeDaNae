@@ -74,18 +74,15 @@ var time1 =null;
 	
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click',function (e){
-// 		document.querySelectorAll('.table').forEach(item => {
+ 	console.log(time1);	
+//document.querySelectorAll('.table').forEach(item => {
 // 	 		item.removeAttribute("disabled"); //초기화 disable인 상태는 값 안넘어감
 // 	 		document.querySelectorAll('.table').forEach((item,e)=>{
 // 				 const times= item[e].value 
 // 			});
 
 // 			})
-	fetch('reservation.do',{
-		method:'post',
-		headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-		body:'id'+ ${logId} + '&rcode'+0 +'&date'+date+'&time'+time1+'&buyAble'+buyAble
-		})
+	fetch('reservation.do?id='${logId}+'&rcode='+${vo.rsCode} +'&date='+date+'&time='+time1+'&buyAble='+buyAble)
 		.then(resolve=>resolve.json())
 		.then(result=>{
 			console.log("result:"+result);
