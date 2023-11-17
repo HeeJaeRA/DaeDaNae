@@ -22,9 +22,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				<p class="lead">${vo.rsDesc }</p>
 				<div id="map" style="width:100%;height:350px;"></div>
 				<div class="d-flex">
-					<button class="btn btn-outline-primary flex-shrink-0" type="button">
-						<i class="bi-cart-fill me-1"></i> 예약하기
-					</button>
+					<div class="text-center">
+						<a class="btn btn-outline-dark mt-auto"href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
+					</div>
 				</div>
 			</div>
 			<div style="width:100%; height:100px; text-align:center;"><span class="text-muted">내용${vo.rsDesc }</span>
@@ -57,14 +57,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"
-<<<<<<< HEAD
-									href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
-=======
-									onclick="location.href='reservationForm.do?rcode=${vo.rsCode}'">예약하기</a>
-									
-									<!--href="restaurantInfo.do?rcode=${vo.rsCode }" -->
->>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
+								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>

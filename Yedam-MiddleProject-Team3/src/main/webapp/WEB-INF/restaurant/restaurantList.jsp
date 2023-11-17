@@ -88,7 +88,7 @@ ${logId }, ${nickname }, ${respon }, ${money }
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">예약하기</a>
+								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>

@@ -9,12 +9,8 @@ public class MemberVO {
 	public String userId;
 	public String userPw;
 	public String userName;
-<<<<<<< HEAD
 	public String nickname;
-=======
-	public String nickName;
 	public Date birthDay;
->>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 	public String grade;
 	public String phone;
 	public String address;
@@ -24,5 +20,4 @@ public class MemberVO {
 	public String couponCode;
 	public String couponType;
 	
-
 }
