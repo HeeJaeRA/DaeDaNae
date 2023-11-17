@@ -7,7 +7,7 @@
 	<li class="breadcrumb-item active">쿠폰회원목록</li>
 </ol>
 
-
+<%-- ${memList } --%>
 
 <div class="card mb-4">
 	<div class="card-header">
@@ -43,11 +43,11 @@
 					<tr>
 						<td>${vo.userId }</td>
 						<td>${vo.userName }</td>
-						<td>${vo.nickName }</td>
+						<td>${vo.nickname }</td>
 						<td>${vo.gender }</td>
 						<td>${vo.couponCode }</td>
 						<td>${vo.couponType }</td>
-						<td><input name="del" class="" type="button" value="삭제"></td>
+						<td><button class="del" onclick="delfucn(event)">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -57,25 +57,26 @@
 
 
 <script>
-
-
-document.querySelector('input[type=button]').addEventListener('click', function(e){
-	
+function delfucn(e) {
+	// console.log(e.target.parentElement.parentElement.children[4].innerHTML)
+	let id = e.target.parentElement.parentElement.children[0].innerHTML;
+	let cc = e.target.parentElement.parentElement.children[4].innerHTML;
 	fetch('adRemoveCoupon.do', {
-		method : 'post',
-		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		body : 'id=' + id +'&cc' + cc
-	})
-	.then(resolve => resolve.json())
-	.then(result => {
-		if(result.retCode = 'OK') {
-			alert('Success!!');
-			e.target.parentElement.remove();
-		} else {
-			alert('Error!!');
-		}
-	})
-	.catch(err => console.log(err));
-	});
-
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'id=' + id + '&cc=' + cc
+		})
+		.then(resolve => resolve.json())
+		.then(result => {
+			if (result.retCode == 'OK') {
+				alert('Success!!');
+				e.target.parentElement.parentElement.remove();
+			} else {
+				alert('Error!!');
+			}
+		})
+		.catch(err => console.log(err));
+}
 </script>

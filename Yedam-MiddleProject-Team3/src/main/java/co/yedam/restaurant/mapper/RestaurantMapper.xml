@@ -27,9 +27,30 @@
 	<select id="getResCountByLike">
 		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT ORDER BY LIKECNT DESC FETCH FIRST 10 ROWS ONLY
 	</select >
+<<<<<<< HEAD
 <!-- 	//예약등록 -->
 <!-- 	<insert id="getReservation" parameterType="co.yedam.restaurant.service.ReservationVO"> -->
 <!-- 		//insert into join... -->
 <!-- 	</insert> -->
+=======
+<<<<<<< HEAD
+<!-- 	//예약등록 -->
+<!-- 	<insert id="getReservation" parameterType="co.yedam.restaurant.service.ReservationVO"> -->
+<!-- 		//insert into join... -->
+<!-- 	</insert> -->
+=======
+	<!-- 예약등록 -->
+ 	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
+ 	INSERT INTO RESERVATION (user_id, rs_code, res_date, res_time, buyAble )
+ 	values(#{userId}, #{rsCode}, #{date}, #{time}, #{buyAble})
+	</insert> 
+	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
+	<select id="reservationAll"
+		resultType="co.yedam.restaurant.service.ReservationVO">
+		SELECT * FROM RESERVATION where USER_ID = #{userId}
+	</select>
+	
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 
 </mapper>
