@@ -26,7 +26,7 @@ public class LoginControl implements Command {
 			HttpSession session = req.getSession();
 			
 			session.setAttribute("logId", vo.getUserId());
-			session.setAttribute("nickname", vo.getNickName());
+			session.setAttribute("nickname", vo.getNickname());
 			session.setAttribute("respon", vo.getGrade());
 			session.setAttribute("money", vo.getMoney());
 			

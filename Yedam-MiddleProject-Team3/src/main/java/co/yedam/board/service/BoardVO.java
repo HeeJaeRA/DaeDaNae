@@ -17,5 +17,7 @@ public class BoardVO {
 	private int boardView;
 	private int likeCnt;
 	private String images;
+	private String images2;
+	private String images3;
 	
 }

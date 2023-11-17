@@ -30,7 +30,7 @@
 
 	<insert id="insert"
 		parameterType="co.yedam.board.service.BoardVO">
-		INSERT INTO BOARD VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, SYSDATE,#{updateDate},#{boardContent},#{boardView},#{likeCnt},#{images})
+		INSERT INTO BOARD VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, SYSDATE,#{updateDate},#{boardContent},#{boardView},#{likeCnt},#{images},#{images2},#{images3})
 	</insert>
 
 	<update id="update" parameterType="co.yedam.board.service.BoardVO">
@@ -40,6 +40,7 @@
 		UPDATE_DATE=SYSDATE,
 		BOARD_CONTENT=#{boardContent}
 		
+		WHERE BOARD_CODE = #{boardCode}
 	</update>
 
 	<delete id="delete" parameterType="int">

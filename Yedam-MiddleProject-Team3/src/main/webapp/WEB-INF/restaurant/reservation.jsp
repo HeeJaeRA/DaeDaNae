@@ -3,6 +3,11 @@
     <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
  <div>
  <form method="post" action="reservation.do">
+<<<<<<< HEAD
+﻿ <input type="date" id="date" onclick="timetable()">
+<div id="timeTable"style="display:none">
+
+=======
 ﻿ <input type="date" id="date" name="date" value="" onclick="timetable()" >
 <div id="timeTable">
 <c:forEach var="i" begin="11" end="22" step="1">
@@ -11,6 +16,7 @@
 <br>
 </c:if>
 </c:forEach>
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 
 </div>
 <input type="hidden" name="buyAble" value="0">

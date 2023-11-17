@@ -48,8 +48,6 @@ public class ReplyListControl implements Command {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
 		
-		
-		
 		String json = gson.toJson(map);
 		resp.setContentType("text/json;charset = utf-8");
 		try {

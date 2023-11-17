@@ -24,40 +24,29 @@ public class ModifyBoardControl implements Command {
 
 		BoardVO vo = new BoardVO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		int boardCode = Integer.parseInt(req.getParameter("bco"));
-		String boardCategory = req.getParameter("boardCategory");
+		String b = req.getParameter("bco");
+		System.out.println("bco : " + b);
 		String boardTitle = req.getParameter("boardTitle");
 		String userId = req.getParameter("userId");
+		System.out.println("title:" + boardTitle);
+		System.out.println("userId:" + userId);
+		int boardCode = Integer.parseInt(req.getParameter("bco"));
+		
+		
 
-		Date writeDate = null;
-		try {
-			writeDate = sdf.parse("writeDate");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Date updateDate = null;
-		try {
-			updateDate = sdf.parse("updateDate");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String boardContent = req.getParameter("boardContent");
-		int boardView = Integer.parseInt(req.getParameter("boardView"));
-		int likeCnt = Integer.parseInt(req.getParameter("likeCnt"));
+
+	
 
 		vo.setBoardCode(boardCode);
-		vo.setBoardCategory(boardCategory);
+		
 		vo.setBoardTitle(boardTitle);
 		vo.setUserId(userId);
-		vo.setWriteDate(writeDate);
-		vo.setUpdateDate(updateDate);
+	
+		
 		vo.setBoardContent(boardContent);
-		vo.setBoardView(boardView);
-		vo.setLikeCnt(likeCnt);
+
+	
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.editBoard(vo)) {

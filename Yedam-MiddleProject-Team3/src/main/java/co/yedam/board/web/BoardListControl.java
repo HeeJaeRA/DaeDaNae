@@ -17,7 +17,7 @@ public class BoardListControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		String path = "WEB-INF/board/boardList.jsp";
+		String path = "board/boardList.tiles";
 		
 		BoardService svc = new BoardServiceImpl();
 		List<BoardVO> list = svc.boardList();

@@ -15,7 +15,8 @@ public interface CouponMapper {
 	// 회원 쿠폰 관리
 	public List<CouponVO> getCoupon(); //쿠폰리스트
 	
-	public int insertCoupon(CouponVO vo); //등록
+	public int insertCoupon(@Param("id") String userId, @Param("couponType") String couponType); //등록
 	
-	public CouponVO deleteCoupon(String userId, String couponCode); //쿠폰 삭제
+	public int deleteCoupon(@Param("id") String userId, @Param("cc") String couponCode); //쿠폰 삭제
+	
 }

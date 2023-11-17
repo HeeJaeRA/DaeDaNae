@@ -22,7 +22,7 @@
 		
 <h3>공지사항</h3>
 
-<table class="table" border="1">
+<table class="table" border="1" style = "width:800px ;">
 	<thead>
 		<tr>
 		
@@ -49,6 +49,7 @@
 				<td>${vo.boardContent }</td>		
 				<td>${vo.boardView }</td>		
 				<td>${vo.likeCnt }</td>		
+
 				
 			</tr>
 
