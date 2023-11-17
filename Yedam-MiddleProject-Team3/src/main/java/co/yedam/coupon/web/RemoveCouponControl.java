@@ -1,14 +1,17 @@
 package co.yedam.coupon.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import co.yedam.common.Command;
 import co.yedam.coupon.service.CouponService;
-import co.yedam.coupon.service.CouponVO;
 import co.yedam.coupon.serviceImpl.CouponServiceImpl;
 
 public class RemoveCouponControl implements Command {
@@ -18,11 +21,19 @@ public class RemoveCouponControl implements Command {
 		String id = req.getParameter("id");
 		String cc = req.getParameter("cc");
 
+		Map<String, String> map = new HashMap<>();
+		
 		CouponService cvc = new CouponServiceImpl();
-		cvc.delCoupon(id, cc);
+		if(cvc.delCoupon(id, cc)) {
+			map.put("retCode", "OK");
+		} else {
+			map.put("retCode", "NG");
+		}
+		Gson gson = new GsonBuilder().create(); 
 		try {
-			resp.sendRedirect("admin/adRemoveCoupon.tiles");
+			resp.getWriter().print(gson.toJson(map));
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

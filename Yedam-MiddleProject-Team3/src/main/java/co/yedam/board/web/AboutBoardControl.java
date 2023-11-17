@@ -1,22 +1,20 @@
-package co.yedam.restaurant.web;
+package co.yedam.board.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Command;
 
-public class ReservationFormControl implements Command {
+public class AboutBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "restaurant/reservation.tiles";
-		
-		 
+		// TODO Auto-generated method stub
 		try {
-			req.getRequestDispatcher(path).forward(req, resp);
-		}catch(Exception e){
+			req.getRequestDispatcher("board/aboutBoard.tiles").forward(req, resp); 
+		} catch (Exception e) {
 			e.printStackTrace();
+
 		}
 	}
 

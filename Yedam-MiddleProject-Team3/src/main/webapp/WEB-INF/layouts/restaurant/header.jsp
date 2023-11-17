@@ -32,11 +32,11 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor04">
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="aboutBoard.do">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="noticeBoard.do">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="freeBoard.do">Free</a></li>
+				<li class="nav-item"><a class="nav-link" href="freeBoard.do">맛집추천</a></li>
 				<li class="nav-item"><a class="nav-link" href="qnaBoard.do">QnA</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Event</a></li>
+				<li class="nav-item"><a class="nav-link" href="eventBoard.do">Event</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
 			<form class="d-flex">

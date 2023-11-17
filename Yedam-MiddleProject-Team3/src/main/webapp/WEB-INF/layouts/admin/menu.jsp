@@ -41,7 +41,7 @@
 					aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 					<nav class="sb-sidenav-menu-nested nav">
 						<a class="nav-link" href="adCouponList.do">Coupon Get Member</a>
-						<a class="nav-link" href="adCouponAdd.do">Give
+						<a class="nav-link" href="adCouponListA.do">Give
 							Coupon</a>
 					</nav>
 				</div>

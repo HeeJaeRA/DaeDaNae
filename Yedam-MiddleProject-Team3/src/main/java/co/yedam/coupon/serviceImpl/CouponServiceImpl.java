@@ -2,7 +2,6 @@ package co.yedam.coupon.serviceImpl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSourceMybatis;
@@ -20,12 +19,12 @@ public class CouponServiceImpl implements CouponService {
 		return mapper.getCoupon();
 	}
 	@Override
-	public boolean addCoupon(CouponVO vo) {
-		return false;
+	public boolean addCoupon(String id, String ct) {
+		return (mapper.insertCoupon(id, ct) == 1);
 	}
 	@Override
-	public CouponVO delCoupon(@Param("id")String id, @Param("cc")String cc) {
-		return mapper.deleteCoupon(id, cc);
+	public boolean delCoupon(String id, String cc) {
+		return (mapper.deleteCoupon(id, cc) == 1);
 	}
 
 	

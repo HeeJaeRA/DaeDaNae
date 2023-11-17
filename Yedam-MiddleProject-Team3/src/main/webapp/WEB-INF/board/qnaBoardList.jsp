@@ -22,7 +22,7 @@
 		
 <h3>QnA게시판</h3>
 
-<table class="table" border="1">
+<table class="table" border="1" style = "width:800px ;">
 	<thead>
 		<tr>
 		

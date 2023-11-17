@@ -43,13 +43,16 @@ public class AddBoardControl implements Command {
 				String boardTitle = mr.getParameter("boardTitle");
 				String userId = mr.getParameter("userId");		
 				String boardContent = mr.getParameter("boardContent");
-				String imges = mr.getFilesystemName("images");
-				
+				String images = mr.getFilesystemName("images");
+				String images2 = mr.getFilesystemName("images2");
+				String images3 = mr.getFilesystemName("images3");
 				vo.setBoardCategory(boardCategory);
 				vo.setBoardTitle(boardTitle);
 				vo.setUserId(userId);
 				vo.setBoardContent(boardContent);
-				vo.setImages(imges);
+				vo.setImages(images);
+				vo.setImages2(images2);
+				vo.setImages3(images3);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -59,11 +62,32 @@ public class AddBoardControl implements Command {
 				
 		BoardService svc = new BoardServiceImpl();
 		if (svc.addBoard(vo)) {
-			try {
-				resp.sendRedirect("boardList.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		    switch (vo.getBoardCategory()) {
+		        case "자유게시판":
+		            try {
+		                resp.sendRedirect("freeBoard.do");
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		            break;
+
+		        case "QnA게시판":
+		            try {
+		                resp.sendRedirect("qnaBoard.do");
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		            break;
+
+		        case "공지사항":
+		            try {
+		                resp.sendRedirect("noticeBoard.do");
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		            break;
+		    }
+		
 
 		} else {
 			try {
