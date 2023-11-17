@@ -29,6 +29,7 @@ public class RestaurantInfoControl implements Command {
 		List<RestaurantVO> typeList = svc.selectCategory(vo.getRsCategory());
 		
 		req.setAttribute("vo", vo);
+		
 		req.setAttribute("allList", allList);
 		req.setAttribute("addressList", nearList);
 		req.setAttribute("categoryList", typeList);

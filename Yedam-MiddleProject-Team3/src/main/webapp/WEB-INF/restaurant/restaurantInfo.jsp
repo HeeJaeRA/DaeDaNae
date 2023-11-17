@@ -32,7 +32,6 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 		</div>
 	</div>
 
-
 	<div class="container px-4 px-lg-5 mt-5">
 		<h2 class="fw-bolder mb-4">${vo.rsName }과 비슷한 맛집</h2>
 		<input type="button" value="종류별" id="categoryBtn">
@@ -59,7 +58,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="restaurantInfo.do?rcode=${vo.rsCode }">예약하기</a>
+									href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>
@@ -230,7 +229,6 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	}
 
 	// 리뷰 리스트
-
 	function showReviewList() {
 		document.querySelectorAll('#reviewList tr:not(:nth-of-type(1))').forEach(tr => tr.remove());
 		fetch('reviewList.do?rscode=' + rc)
@@ -271,11 +269,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
+						console.log(this);
 						alert('좋아요');
-
-						// console.log(e.target);
-						// e.target.disabled = true;
-
+						e.target.disabled = true;
 						showReviewList();
 					} else {
 						alert('좋아요 실패');
@@ -315,7 +311,15 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	//카테고리별, 지도별 조회 버튼
 	document.querySelector('#categoryBtn').addEventListener('click', function (e) {
 		// document.querySelector('#relateDiv').remove();
-
-		document.querySelector('#relateDiv').innerHTML = '';
+		let gage = '${vo.rsName}';
+		console.log(gage);
+		for (let i = 0; i < 4; i++) {
+			document.querySelector('#relateDiv').children[0].remove();
+			
+		}
 	})
+
+	function makeDiv() {
+
+	}
 </script>
