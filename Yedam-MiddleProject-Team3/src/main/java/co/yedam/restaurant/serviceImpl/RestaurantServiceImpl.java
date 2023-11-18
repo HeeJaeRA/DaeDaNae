@@ -21,6 +21,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<RestaurantVO> selectAllList() {
 		return mapper.selectAllList();
 	}
+	
+	@Override
+	public List<RestaurantVO> selectRandomList() {
+		return mapper.selectRandomList();
+	}
 
 	@Override
 	public List<RestaurantVO> selectCategory(String rsCate) {
@@ -30,6 +35,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public List<RestaurantVO> selectAddress(String rsGu) {
 		return mapper.selectAddress(rsGu);
+	}
+	
+	@Override
+	public List<RestaurantVO> selectSearchList(String rsName) {
+		return mapper.selectSearch(rsName);
 	}
 	
 	@Override

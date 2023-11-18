@@ -83,17 +83,16 @@ ${logId }, ${nickname }, ${vo }
 		// 				 const times= item[e].value 
 		// 			});
 
-		// 			})
-	// 	fetch('reservation.do?id='
-	// 			$ {
-	// 				logId
-	// 			} + '&rcode=' + $ {
-	// 				vo.rsCode
-	// 			} + '&date=' + date + '&time=' + time1 + '&buyAble=' + buyAble)
-	// 		.then(resolve => resolve.json())
-	// 		.then(result => {
-	// 			console.log("result:" + result);
-	// 			submit();
-	// 		})
-	// })
+					})
+		fetch('reservation.do?id='
+				$ {
+					logId
+				} + '&rcode=' + $ {
+					vo.rsCode
+				} + '&date=' + date + '&time=' + time1 + '&buyAble=' + buyAble)
+			.then(resolve => resolve.json())
+			.then(result => {
+				console.log("result:" + result);
+				submit();
+			})
 </script>

@@ -10,25 +10,25 @@ import co.yedam.restaurant.service.RestaurantService;
 import co.yedam.restaurant.service.RestaurantVO;
 import co.yedam.restaurant.serviceImpl.RestaurantServiceImpl;
 
-public class AddressListControl implements Command {
+public class SearchListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "restaurant/restaurantList.tiles";
+		String path = "restaurant/restaurantSearch.tiles";
 		
-		String adr = req.getParameter("address");
-
+		String word = req.getParameter("word");
+		
 		RestaurantService svc = new RestaurantServiceImpl();
-		List<RestaurantVO> list = svc.selectAddress(adr);
-
+		List<RestaurantVO> list = svc.selectSearchList(word);
+		
+		req.setAttribute("searchWord", word);
 		req.setAttribute("mlist", list);
-
+		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

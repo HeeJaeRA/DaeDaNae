@@ -23,8 +23,8 @@ public class RestaurantInfoControl implements Command {
 		
 		RestaurantService svc = new RestaurantServiceImpl();
 		RestaurantVO vo = svc.getRestaurant(rcode);
-				
-		List<RestaurantVO> allList = svc.selectAllList();
+
+		List<RestaurantVO> allList = svc.selectRandomList();
 		List<RestaurantVO> nearList = svc.selectAddress(vo.getRsGu());
 		List<RestaurantVO> typeList = svc.selectCategory(vo.getRsCategory());
 		

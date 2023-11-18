@@ -6,17 +6,23 @@
 		resultType="co.yedam.restaurant.service.RestaurantVO">
 		SELECT * FROM RESTAURANT ORDER BY LIKECNT, STARCNT DESC
 	</select>
+	
+	<select id="selectRandomList" resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM (SELECT * FROM (SELECT * FROM RESTAURANT WHERE STARCNT &gt;= 4) ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM &lt;= 8
+	</select>
 
 	<select id="selectCategory"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT,
-		STARCNT DESC
+		SELECT * FROM (SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT DESC) WHERE ROWNUM &lt;= 8
 	</select>
 
 	<select id="selectAddress"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
-		DESC
+		SELECT * FROM (SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT DESC) WHERE ROWNUM &lt;= 8
+	</select>
+	
+	<select id="selectSearch" resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_GU LIKE '%'||#{word}||'%'
 	</select>
 
 	<select id="getRestaurant"

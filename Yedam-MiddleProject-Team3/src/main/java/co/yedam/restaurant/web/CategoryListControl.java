@@ -16,12 +16,12 @@ public class CategoryListControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "restaurant/restaurantList.tiles";
 		
+		String cate = req.getParameter("category");
+		
 		RestaurantService svc = new RestaurantServiceImpl();
-		List<RestaurantVO> list = svc.selectCategory("한식");
+		List<RestaurantVO> list = svc.selectCategory(cate);
 
-		System.out.println(list);
-
-		req.setAttribute("list", list);
+		req.setAttribute("mlist", list);
 
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

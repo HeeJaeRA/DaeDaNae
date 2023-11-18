@@ -7,8 +7,12 @@ public interface RestaurantService {
 	
 	public List<RestaurantVO> selectAllList();
 	
+	public List<RestaurantVO> selectRandomList();
+	
 	public List<RestaurantVO> selectCategory(String rsCate);
 	public List<RestaurantVO> selectAddress(String rsGu);
+	
+	public List<RestaurantVO> selectSearchList(String rsName);
 	
 	public RestaurantVO getRestaurant(String rcode);
 
@@ -20,7 +24,4 @@ public interface RestaurantService {
 	//레스토랑 예약 목록
 	public List<ReservationVO> reservationList(String id);
 	
-
-
-
 }

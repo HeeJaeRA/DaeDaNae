@@ -37,6 +37,7 @@ import co.yedam.restaurant.web.ReservationControl;
 import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
 import co.yedam.restaurant.web.RestaurantListControl;
+import co.yedam.restaurant.web.SearchListControl;
 import co.yedam.review.web.AddReviewControl;
 import co.yedam.review.web.LikeReviewControl;
 import co.yedam.review.web.RemoveReviewControl;
@@ -72,7 +73,6 @@ public class FrontController extends HttpServlet {
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/replyList.do", new ReplyListControl());
 		
-
 		//로그인, 로그아웃, 회원가입
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());
@@ -96,8 +96,9 @@ public class FrontController extends HttpServlet {
 		//map.put("/updateReview.do", new UpdateReviewControl());
 		
 		map.put("/restaurantList.do", new RestaurantListControl());
-//		map.put("/addressList.do", new AddressListControl());
-//		map.put("/categoryList.do", new CategoryListControl());
+		map.put("/addressList.do", new AddressListControl());
+		map.put("/categoryList.do", new CategoryListControl());
+		map.put("/searchList.do", new SearchListControl());
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
 
 		//관리자 페이지

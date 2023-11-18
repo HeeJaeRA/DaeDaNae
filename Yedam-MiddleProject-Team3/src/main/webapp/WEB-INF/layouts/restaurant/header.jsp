@@ -7,9 +7,9 @@
 		<a class="navbar-brand" href="restaurantList.do"><img
 			src="resources/images/logo.png"></a>
 
-		<form class="d-flex">
+		<form class="d-flex" action="searchList.do" method="POST">
 			<input style="width: 800px;" class="form-control me-sm-2" type="search"
-				placeholder="Search">
+				placeholder="Search" name="word">
 			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 		</form>
 
