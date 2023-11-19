@@ -10,11 +10,11 @@
 					<div class="form-items">
 						<h3>회원가입</h3>
 						<p>빈칸을 작성해 주세요</p>
-						<form method="post" action="join.do" id="myForm" class="requires-validation"  onsubmit="return check()" novalidate enctype="multipart/form-data">
+						<form method="post" action="join.do" id="myForm" class="requires-validation"  enctype="multipart/form-data">
 							<div class="col-md-12">
 
 								아이디<input class="form-control" type="text" name="id" id="id"
-									placeholder="아이디를 입력하세요" required="" oninput="resetfb()"
+									placeholder="아이디를 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<input type="button" id="userid" value="아이디 중복확인" onclick="checkId()">
 								<!-- <button type="button id="join-id"></button> -->
@@ -24,7 +24,7 @@
 
 							<div class="col-md-12">
 								비밀번호<input class="form-control" type="password" name="pw" id="pw" 
-									placeholder="비밀번호를 입력하세요" required="" onchange="checkPw()"
+									placeholder="비밀번호를 입력하세요" required onchange="checkPw()"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">사용가능한 비밀번호 입니다</div>
@@ -32,7 +32,7 @@
 							</div>
 							<div class="col-md-12">
 								비밀번호 재확인<input class="form-control" type="password" name="rePw" id="rePw"
-									placeholder="비밀번호를 재입력하세요" required="" onchange="checkPw()"
+									placeholder="비밀번호를 재입력하세요" required onchange="checkPw()"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">비밀번호가 일치합니다</div>
@@ -42,7 +42,7 @@
 							<div class="col-md-12">
 								이름<input class="form-control" type="text" name="name" id="name" 
 								placeholder="이름을 입력하세요"
-									required="" style="width: 540px; background-color: 808080;">
+									required style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">Username field is valid!</div>
 								<div class="invalid-feedback" style="display:none">Username field cannot be blank!</div>
@@ -50,7 +50,7 @@
 
 							<div class="col-md-12">
 								닉네임<input class="form-control" type="text" name="nickName" id="nickName" 
-									placeholder="닉네임을 입력하세요" required="" oninput="resetfb()"
+									placeholder="닉네임을 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-nick">닉네임 중복확인</button>
 								<div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
@@ -60,7 +60,7 @@
 							
  							<div class="col-md-12">
 								생년월일<input class="form-control" type="text" name="birth" id="birth" 
-									placeholder="생년월일 입력하세요(YYYY-MM-dd)" required="" maxlength="10"
+									placeholder="생년월일 입력하세요(YYYY-MM-dd)" required maxlength="10"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">확인</div>
@@ -69,7 +69,7 @@
 
 							<div class="col-md-12">
 								전화번호<input class="form-control" type="tel" name="phone" id="phone" 
-									placeholder="전화번호를 입력하세요(-(하이픈) 포함)" required="" maxlength="13"
+									placeholder="전화번호를 입력하세요(-(하이픈) 포함)" required maxlength="13"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">바르게 입력 가능합니다</div>
@@ -116,14 +116,15 @@
 							<div class="form-check">
 							<label class="form-check-label">
 							<input class="form-check-input" class="form-control" type="checkbox" 
-									id="invalidCheck" required="" value="[필수] 동의하세요" checked>
+									id="invalidCheck" required value="[필수] 동의하세요" checked>
 							[필수]동의하세요</label>
 							<div class="invalid-feedback" style="display:none">동의하세요 확인!!!</div>
 							</div>
 
 
 
-							<input type="submit" id="join" value="회원가입" onClick="formSubmit()">
+							<input type="submit" id="join" value="회원가입" onclick="return check()">
+							<input type="reset" value="초기화">
 
 						</form>
 					</div>
@@ -203,12 +204,18 @@
     			event.preventDefault();
  			 };
 			});
+		
+		// 정규식
+		// id, pw
+		let regId = /^[a-zA-Z0-9]{6,10}$/;
+		// 휴대전화
+		let regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		let id = document.getElementById("id");
 		//아이디 중복버튼
 		let cnt = 0;
 		let cntn = 0;
 		function checkId(){
 			cnt += 1;
-				
 			fetch('repeatedId.do',{
 				method:'post',
 				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
@@ -223,15 +230,16 @@
 					document.getElementsByClassName('invalid-feedback')[0].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(0)').style.display = 'block';
 					document.querySelector('#id').value = '';
-					//document.getElementsByClassName('invalid-feedback')[0].innerHTML=' ';
-				}else {
+					return false;
+				}
+				else {
 					document.getElementsByClassName('valid-feedback')[0].style.display='block';
 					//document.querySelector('.valid-feedback:nth-of-type(0)').style.display = 'block';
 					document.querySelector('#pw').focus();
-					return;
+					
 				}
 			})
-		}
+		}//chechId
 		
 		function resetfb(){
 			document.getElementsByClassName('invalid-feedback')[0].style.display='none';
@@ -239,11 +247,12 @@
 			document.getElementsByClassName('invalid-feedback')[4].style.display='none';
 			document.getElementsByClassName('valid-feedback')[4].style.display='none';
 		}
+		
 		//비밀번호 재확인(비밀번호)
 		let pw = document.querySelector('#pw').cloneNode(true);
 		let rePw = document.querySelector('#rePw').cloneNode(true);
 		function checkPw(){
-			if (pw.value!=rePw.value && rePw.value !=null) {
+			if (pw.value!=rePw.value&&rePw.value!=null) {
 				console.log(pw);
 				console.log(rePw);
 				document.getElementsByClassName('invalid-feedback')[2].style.display='block';
@@ -274,7 +283,7 @@
 					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
 					document.querySelector('#nickName').value = '';
 					
-					return;
+					return false;
 				}else {
 					
 					document.getElementsByClassName('valid-feedback')[4].style.display='block';
@@ -283,74 +292,92 @@
 				}
 			})	
 			
-		})
-		
-		//동의 체크박스가 체크되어 있지 않으면 가입이 안됨
-			function is_checked() {
-	  		// 1. checkbox element를 찾습니다.
-	  		const checkbox = document.getElementById('invalidCheck');
-	 		 // 2. checked 속성을 체크합니다.
-	 		 const is_checked = checkbox.checked;
-	  		// 3. 결과를 출력합니다.
-	 		// document.getElementById('result').innerText = is_checked;
-			}
+		})//닉네임 중복확인
 		
 		
+		
+		let birth = document.getElementById("birth");
+		let phone = document.getElementById("phone");
+		let address = document.getElementById("sample4_jibunAddress");
 		
 		function check(){
 			// 아이디,이름 등 input값이 널이면 가입안됨
-			if (document.querySelector('.form-control').value == null) {
-				return;
+			if (dd.value == "") {
+			alert("아이디는 필수입니다.")
+			id.focus();
+			return false;
 			}
-			//비밀번호 재확인 다르면 가입이 안됨
-// 			else if (pw != rePw) {
-// 				document.querySelector('#pw').value = '';
-// 				document.querySelector('#rePw').value = '';
-// 				return;
-// 			}
+			if (pw.value == "") {
+				alert("비밀번호를 입력해주세요.")
+				userPassword.focus();
+				return false;
+				}
+			 if (!regId.test(id.value)) {
+						alert("6~12자로 대소문자 구분하여(숫자포함 가능)입력하세요.")
+						id.focus();
+					return false;
+				}
+		
+//			비밀번호 재확인 다르면 가입이 안됨
+			if (pw.value != rePw.value) {
+				document.querySelector('#pw').value = " ";
+				document.querySelector('#rePw').value = " ";
+				userRePassword.focus();
+				return false;
+				}
 			//아이디,닉네임 중복확인 안하면 가입 안됨
 			if (cnt == 0 || cntn == 0) {
 				alter("중복확인 하세요");
-				return;
+				return false;
+			}
+			 if (birth.value.length != 10) {
+				alert("생년월일 YYYY/MM/dd형식으로 입력해주세요.")
+				birth.focus();
+				return false ;
 			}
 			
-			//성별체크 안하면 가입이 안됨
-// 			else if (document.querySelector('#gender').value == null) {
-// 				document.querySelector('.invalid-feedback:nth-of-type(5)').style.display = 'block';
-// 				return;
-// 			}
-			//전화번호 13자리 아니면 가입 안됨
-			if (document.querySelector('#phone').length != 13) {
-				alter("전화번호 다시 확인하세요");
-				return;
-			} 
-		}
+			 if (phone.value.length !=13 || !regPhone.test(phone.value)) {
+				alert("올바른 형식으로 입력해주세요.")
+				userPhone.focus();
+				return false;
+			}
+			if (address.value == "") {
+				alert("주소를 입력해주세요.")
+				userAddress1.focus();
+				return false;
+			}
+		
+			fetch('join.do', {
+				method:'post',
+				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+				body:'id='+id +'&pw='+pw+'&name='+ name+'&nickname'+nickname+'&birthDay'+birth+'&phone'+
+					phone +'&address' + address + '&image' + image + '&gender' + gender
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				consol.log(result);
+				myForm.submit();
+			})
+		}//전송하기 전 check
 			
 		//회원가입 버튼(회원등록)
-		
-		  function formSubmit() {
-    	const form = document.querySelector('form');
-        
-        if (isValidCode()) {
-        	form.submit();
-        }
-    }
-		document.querySelector('#join').addEventListener('click', function formSubmit() {
-				//ajax.값=>전달
-				if(check()){
-					fetch('join.do', {
-						method:'post',
-						headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-						body:'id'+id +'&pw'+pw+'&name'+ name+'&nickName'+nickName+'&birthDay'+birth+'&phone'+
-							phone +'&address' + address + '&image' + image + '&gender' + gender
-					})
-					.then(resolve => resolve.json())
-					.then(result => {
-						consol.log(result);
-						myForm.submit();
-					})
-				}//가입버튼의 if
-		})//회원가입버튼
+
+// 		document.querySelector('#join').addEventListener('click', function formSubmit() {
+// 				//ajax.값=>전달
+// 				if(check()){
+// 					fetch('join.do', {
+// 						method:'post',
+// 						headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+// 						body:'id='+id +'&pw='+pw+'&name='+ name+'&nickname'+nickname+'&birthDay'+birth+'&phone'+
+// 							phone +'&address' + address + '&image' + image + '&gender' + gender
+// 					})
+// 					.then(resolve => resolve.json())
+// 					.then(result => {
+// 						consol.log(result);
+// 						myForm.submit();
+// 					})
+				//}//가입버튼의 if
+		//})//회원가입버튼
 
 		
 	</script>

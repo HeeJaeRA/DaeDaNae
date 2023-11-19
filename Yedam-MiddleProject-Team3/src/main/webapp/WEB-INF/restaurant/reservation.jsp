@@ -9,7 +9,7 @@ ${logId }, ${nickname }, ${vo }
 		<input type="date" id="date" name="date" value="" onclick="timetable()">
 		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
-				<input type="button" class="table" name="time" value="${i}:00" 
+				<input type="button" class="table" id="button${i}" name="time" value="${i}:00" 
 					style="display:none; WIDTH: 60pt; HEIGHT: 60pt">
 					
 				<c:if test="i%4==2">
@@ -46,24 +46,8 @@ ${logId }, ${nickname }, ${vo }
 			item.style.display = 'inline';
 		})
 	}
-	var times = null;
-	var time1 = null;
 	
-	//예약불가능한 시간에 disable처리(일단은 클릭하면 disable인걸로 해놓음 buyable값따라 바뀌게 해야함)
-// 	function changeCol(self) {
-		
-// 				var alist = document.querySelectorAll('a');
-// 				var i = 0;
-// 				while(i < alist.length){
-// 					alist[i].style.color = 'pow derblue';
-// 					i++;
-// 		consoel.log(target.value);	
-// 		console.log(times)
-// 		time1 = times;
-// 		times = null;
-// 	}
-// 	}
-//  var count = 0;
+	
 // 	const buttons = document.querySelectorAll(".table")
 // 	for (const button of buttons) {
 // 	  button.addEventListener('click', function(event) {
@@ -71,38 +55,36 @@ ${logId }, ${nickname }, ${vo }
 // 		   console.log(time.value);
 // 	  })
 // 	}
-// 	document.querySelectorAll('.time').addEventListener('click', function (e){
-// 		target = document.querySelectorAll('.table');
-// 		target.forEach((item,i)=>{
-// 			item[i].style.backgroundColor = 'orange'; 
-// 			times= target.value;
-// 		})
-		
-// 		})
+
+   let id='${logId}';
+   let nickname='${nickname}'
+   let rcode='${vo.rsCode}';
+   let times = null;
+   let time1 = null;
+
 	var timeList = document.querySelectorAll('.table');
 		timeList.forEach(function(item){
-  		item.addEventListener('click',function(){
+  		item.addEventListener('click',function(e){
     	timeList.forEach(function(e){
-          e.classList.remove('active');
+  //        e.classList.remove('active');
+        	item.style.backgroundColor ="orange";
+        	 e.style.backgroundColor="white";
    		 });
-    	item.classList.add('active');
+    	//item.classList.add('active');
+    	console.log(e.target.value);
+    	times = e.target.value;
+    	time1 = times;
+    	times=null;
   	});
 });
-
+		
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click', function (e) {
 		console.log(time1);
-		//document.querySelectorAll('.table').forEach(item => {
-		//	 		item.removeAttribute("disabled"); //초기화 disable인 상태는 값 안넘어감
-		//	 		document.querySelectorAll('.table').forEach((item,e)=>{
-		//				 const times= item[e].value 
-		//			});
-
-		//			})
 		fetch('reservation.do',{
 			method:'post',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-		    body:'id='+${logId}+'&rcode='+${vo.rsCode}+'&date='+date +'&time='+button+'&buyAble='+buyAble
+		    body:'id='+id+'&rcode='+rcode+'&nickname' +nickname +'&date='+date+'&time='+time1+'&buyAble='+buyAble
 		    })
 			.then(resolve => resolve.json())
 			.then(result => {

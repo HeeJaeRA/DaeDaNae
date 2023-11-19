@@ -1,8 +1,8 @@
 package co.yedam.common;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,18 +36,16 @@ public class JoinControl implements Command {
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
-			//String gunGu = mr.getParameter("gunGu");
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
 			
 			System.out.println("pw: "+pw);
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");         
-		
+			      
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-			vo.setNickName(nickName);
-			
+			vo.setNickname(nickName);
 			vo.setBirthDay(formatter.parse(birthDay));
 			
 			vo.setPhone(phone);

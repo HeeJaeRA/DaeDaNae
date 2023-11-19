@@ -1,7 +1,10 @@
 package co.yedam.restaurant.web;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +23,14 @@ public class ReservationControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+
+		//세션값 넘겨받기
+		//HttpSession session = req.getSession();
+		String id =  req.getParameter("id");
+		String rsCode=  req.getParameter("rcode");
+		String nickname= req.getParameter("nickname");
+		System.out.println("id" + id);
+		System.out.println(rsCode);
 		
 		//파라미터로 받을 값
 		String date= req.getParameter("date");
@@ -29,32 +40,30 @@ public class ReservationControl implements Command {
 		System.out.println("time"+time);
 		System.out.println("buyAble"+buyAble);
 		ReservationVO rvo = new ReservationVO();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			rvo.setDate(formatter.parse(date));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		rvo.setTime(time);
-		rvo.setBuyAble(Integer.parseInt(buyAble));
-				
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("YYYY/MM/dd");
+
 		RestaurantService svc = new RestaurantServiceImpl();
 		
-		//세션값 넘겨받기
-		//HttpSession session = req.getSession();
-		String id = (String) req.getAttribute("id");
-		String rsCode= (String) req.getAttribute("rcode");
-		System.out.println(id);
-		System.out.println(rsCode);
 		
 		rvo.setUserId(id);
 		rvo.setRsCode(rsCode);
+		rvo.setNickname(nickname);
+		
+		Date dates =new Date(); 
+		try {
+			dates = formatter.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		rvo.setResDate(dates);
+		rvo.setResTime(time);
+		rvo.setBuyAble(Integer.parseInt(buyAble));
+				
 		
 		System.out.println( "rvo"+rvo);
 		//req.setAttribute("vo", vo);
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		Gson gson = new GsonBuilder().setDateFormat("YYYY/MM/dd").create();
 		Map<String, Object> map = new HashMap<>();	
 		
 		if(svc.addReser(rvo)) {
