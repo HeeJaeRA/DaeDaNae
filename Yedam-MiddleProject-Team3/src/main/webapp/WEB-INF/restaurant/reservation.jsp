@@ -7,10 +7,11 @@ ${logId }, ${nickname }, ${vo }
 	<form method="post" action="reservation.do">
 
 		<input type="date" id="date" name="date" value="" onclick="timetable()">
-		<div id="timeTable">
+		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
-				<input type="button" class="table" name="time" value="${i}:00" onClick='btnDisabled(this)'
+				<input type="button" class="table" name="time" value="${i}:00" 
 					style="display:none; WIDTH: 60pt; HEIGHT: 60pt">
+					
 				<c:if test="i%4==2">
 					<br>
 				</c:if>
@@ -30,69 +31,83 @@ ${logId }, ${nickname }, ${vo }
 	//new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
 	var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
 	document.getElementById("date").setAttribute("min", today);
-	var times = null;
-	var time1 = null;
+	
 	//var X = new Date();//현재 날짜나 시간에 대한 데이터를 받고
 	//var weekday = new Array("MON", "TUE", "WED", "THI", "FRI", "SAT", "SUN");//요일별로 매칭해
 	//var date = X.getDate();//여기서 날짜에 대한 데이터를 가져온 다음
 	//document.getElementById("wdate").innerHTML = date;
 	const dates = document.querySelector('input[type="date"]')
+	
 	//달력에서 날짜 누르면 시간테이블이 보인다
-	function timetable() {
+	function timetable(){
 		console.log("date value:" + dates.value)
 		document.querySelectorAll('.table').forEach(item => {
 			// 		item.disabled = false; 초기화
 			item.style.display = 'inline';
-
 		})
 	}
-
-	var count = 0;
+	var times = null;
+	var time1 = null;
+	
 	//예약불가능한 시간에 disable처리(일단은 클릭하면 disable인걸로 해놓음 buyable값따라 바뀌게 해야함)
-	function btnDisabled(elem) {
-		count++;
-		times = elem.value;
-		// 		console.log(count);
-		if (count == 1) {
-			// 		console.log(elem.value)
-			console.log('1' + times)
-			// 		elem.disabled = 'disabled';
-		} else {
-			document.querySelectorAll('.table').forEach(item => {
-				item.disabled = false; //초기화
-			})
-			elem.disabled = 'disabled';
-		}
-		// 		document.querySelectorAll('.table').forEach((item,i)=>{
-		// 			console.log("time:"+item.value)
-		// 			console.log(i+"번째 time:"+document.querySelectorAll('.table')[i].value) 
-		//  		});
-		console.log(times)
-		time1 = times;
-		times = null;
-	}
-
-
+// 	function changeCol(self) {
+		
+// 				var alist = document.querySelectorAll('a');
+// 				var i = 0;
+// 				while(i < alist.length){
+// 					alist[i].style.color = 'pow derblue';
+// 					i++;
+// 		consoel.log(target.value);	
+// 		console.log(times)
+// 		time1 = times;
+// 		times = null;
+// 	}
+// 	}
+//  var count = 0;
+// 	const buttons = document.querySelectorAll(".table")
+// 	for (const button of buttons) {
+// 	  button.addEventListener('click', function(event) {
+// 		   button.style.backgroundColor = 'yellow';
+// 		   console.log(time.value);
+// 	  })
+// 	}
+// 	document.querySelectorAll('.time').addEventListener('click', function (e){
+// 		target = document.querySelectorAll('.table');
+// 		target.forEach((item,i)=>{
+// 			item[i].style.backgroundColor = 'orange'; 
+// 			times= target.value;
+// 		})
+		
+// 		})
+	var timeList = document.querySelectorAll('.table');
+		timeList.forEach(function(item){
+  		item.addEventListener('click',function(){
+    	timeList.forEach(function(e){
+          e.classList.remove('active');
+   		 });
+    	item.classList.add('active');
+  	});
+});
 
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click', function (e) {
 		console.log(time1);
 		//document.querySelectorAll('.table').forEach(item => {
-		// 	 		item.removeAttribute("disabled"); //초기화 disable인 상태는 값 안넘어감
-		// 	 		document.querySelectorAll('.table').forEach((item,e)=>{
-		// 				 const times= item[e].value 
-		// 			});
+		//	 		item.removeAttribute("disabled"); //초기화 disable인 상태는 값 안넘어감
+		//	 		document.querySelectorAll('.table').forEach((item,e)=>{
+		//				 const times= item[e].value 
+		//			});
 
-					})
-		fetch('reservation.do?id='
-				$ {
-					logId
-				} + '&rcode=' + $ {
-					vo.rsCode
-				} + '&date=' + date + '&time=' + time1 + '&buyAble=' + buyAble)
+		//			})
+		fetch('reservation.do',{
+			method:'post',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		    body:'id='+${logId}+'&rcode='+${vo.rsCode}+'&date='+date +'&time='+button+'&buyAble='+buyAble
+		    })
 			.then(resolve => resolve.json())
 			.then(result => {
 				console.log("result:" + result);
-				submit();
+				//submit();
 			})
+	})
 </script>
