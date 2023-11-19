@@ -2,8 +2,6 @@ package co.yedam.common;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +30,7 @@ public class JoinControl implements Command {
 			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
-			String nickName = mr.getParameter("nickName");
+			String nickname = mr.getParameter("nickName");
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
@@ -45,7 +43,9 @@ public class JoinControl implements Command {
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-			vo.setNickname(nickName);
+
+			vo.setNickname(nickname);
+			
 			vo.setBirthDay(formatter.parse(birthDay));
 			
 			vo.setPhone(phone);

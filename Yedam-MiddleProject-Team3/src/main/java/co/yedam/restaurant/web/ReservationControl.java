@@ -40,8 +40,17 @@ public class ReservationControl implements Command {
 		System.out.println("time"+time);
 		System.out.println("buyAble"+buyAble);
 		ReservationVO rvo = new ReservationVO();
+
 		SimpleDateFormat formatter = new SimpleDateFormat("YYYY/MM/dd");
 
+		try {
+			rvo.setResDate(formatter.parse(date));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rvo.setResTime(time);
+		rvo.setBuyAble(Integer.parseInt(buyAble));
+					
 		RestaurantService svc = new RestaurantServiceImpl();
 		
 		

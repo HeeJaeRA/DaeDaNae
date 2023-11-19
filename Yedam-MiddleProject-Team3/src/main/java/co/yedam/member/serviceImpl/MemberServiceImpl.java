@@ -40,5 +40,9 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	
 		return mapper.insert(vo)==1;
 	}
+	@Override
+	public boolean memberRemove(String id) {
+		return mapper.deleteMember(id);
+	}
 
 }

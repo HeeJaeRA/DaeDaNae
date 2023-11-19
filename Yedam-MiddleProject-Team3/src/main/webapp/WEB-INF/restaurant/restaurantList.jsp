@@ -2,12 +2,52 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<style>
+ #slider {
+            width: 100%;
+            height: 350px;
+        }
+.sliderWrap {
+	position: relative;
+}
+.sliderWrap > div {
+    display: block;
+}
+.sliderWrap > div:first-child {
+	display: block;
+}
+.sliderWrap .slider {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#slider > div > div > img {
+	vertical-align: top;
+	object-fit: fill;
+	width: 100%;
+}
+
+
+</style>
 
 <!-- 배너-->
-<header class="bg-dark py-5" style="background-image : url('resources/images/banner.jpg'); height:300px;">
+<header>
+		<article id="slider">
+			<div class="sliderWrap">
+				<div class="slider">
+					<img src="resources/images/banner.jpg" alt="banner1">
+				</div>
+				<div class="slider">
+					<img src="resources/images/banner2.jpg" alt="banner2">
+				</div>
+				<div class="slider">
+					<img src="resources/images/banner3.jpg" alt="banner3">
+				</div>
+			</div>
+		</article>
 </header>
 
-${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
+<%-- ${logId }, ${nickname }, ${respon }, ${money }, ${mlist} --%>
 
 <section class="py-5">
 	<div class="container">
@@ -116,6 +156,23 @@ ${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
             .catch(err => console.log(err));
 		})
 	})
+	
+	window.onload = function(){
+            let currentIndex = 0;
+            const slider = document.querySelectorAll(".slider"); 
+            slider.forEach(img => img.style.opacity ="0"); 
+            slider[0].style.opacity = "1";
+
+            setInterval(() => { 
+                let nextIndex = (currentIndex + 1) % slider.length;
+
+                slider[currentIndex].style.opacity = "0"; 
+                slider[nextIndex].style.opacity = "1";
+                slider.forEach(img => img.style.transition = "all 1s");
+
+                currentIndex = nextIndex;
+            }, 3000);
+        }
 
 
 </script>
