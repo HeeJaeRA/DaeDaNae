@@ -31,11 +31,11 @@ public class ReservationControl implements Command {
 		ReservationVO rvo = new ReservationVO();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			rvo.setDate(formatter.parse(date));
+			rvo.setResDate(formatter.parse(date));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		rvo.setTime(time);
+		rvo.setResTime(time);
 		rvo.setBuyAble(Integer.parseInt(buyAble));
 				
 		

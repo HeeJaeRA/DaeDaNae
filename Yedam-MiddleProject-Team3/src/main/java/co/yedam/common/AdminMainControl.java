@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 import co.yedam.member.serviceImpl.MemberServiceImpl;
+import co.yedam.restaurant.service.ReservationVO;
 import co.yedam.restaurant.service.RestaurantService;
 import co.yedam.restaurant.service.RestaurantVO;
 import co.yedam.restaurant.serviceImpl.RestaurantServiceImpl;
@@ -22,9 +23,11 @@ public class AdminMainControl implements Command {
 		RestaurantService rvc = new RestaurantServiceImpl();
 		List<MemberVO> memList = mvc.memberList();
 		List<RestaurantVO> resList = rvc.selectAllList();
+		List<ReservationVO> bookList = rvc.reserMemberList();
 		
 		req.setAttribute("memList", memList);
 		req.setAttribute("resList", resList);
+		req.setAttribute("bookList", bookList);
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

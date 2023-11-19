@@ -20,7 +20,10 @@ public interface RestaurantMapper {
 
 	public List<RestaurantVO> selectSearch(@Param("word") String word);
 	
+	//관리자 차트
 	public List<Map<String, Object>> getResCountByLike();
+	
+	public List<Map<String, Object>> getPopResList();
 	
 	public RestaurantVO getRestaurant(@Param("rcode") String rcode);
 	
@@ -28,6 +31,8 @@ public interface RestaurantMapper {
 	public int getReser(ReservationVO vo);
 	
 	//예약리스트
-	public List<ReservationVO> reservationAll( String id);
+	public List<ReservationVO> reservationAll();
+
+	public List<ReservationVO> reserMemberList();
 
 }

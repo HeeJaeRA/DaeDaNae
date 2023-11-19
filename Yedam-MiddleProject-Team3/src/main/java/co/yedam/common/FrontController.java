@@ -27,6 +27,7 @@ import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
 import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
 import co.yedam.reply.web.ReplyListControl;
@@ -103,13 +104,17 @@ public class FrontController extends HttpServlet {
 
 		//관리자 페이지
 		map.put("/adMain.do", new AdminMainControl()); //메인
+		
 		map.put("/adMemberList.do", new AdminmemberListControl()); //멤버리스트
+		map.put("/adRemoveMember.do", new RemoveMemberControl()); //멤버삭제
+		
 		map.put("/adRestaurantList.do", new AdminRestaurantListControl()); //가게리스트
+		
 		map.put("/chartForm.do", new ChartFormControl()); //차트
-		map.put("/drawChart.do", new DrawChartControl()); //차트
+		map.put("/drawChart.do", new DrawChartControl()); //차트1
+		map.put("/drawChart2.do", new DrawChartControl2()); //차트2
 		
 		map.put("/adCouponList.do", new AdminCouponControl()); //쿠폰 삭제용리스트
-		
 		map.put("/adCouponListA.do", new AdminCouponControl2()); //쿠폰 발급용리스트
 		
 		map.put("/adCouponAdd.do", new AddCouponControl()); //쿠폰발급

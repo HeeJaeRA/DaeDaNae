@@ -32,7 +32,7 @@ public class JoinControl implements Command {
 			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
-			String nickName = mr.getParameter("nickName");
+			String nickname = mr.getParameter("nickName");
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
@@ -46,7 +46,7 @@ public class JoinControl implements Command {
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-			vo.setNickName(nickName);
+			vo.setNickname(nickname);
 			
 			vo.setBirthDay(formatter.parse(birthDay));
 			

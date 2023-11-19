@@ -1,4 +1,4 @@
-package co.yedam.coupon.web;
+package co.yedam.member.web;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,31 +11,30 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import co.yedam.common.Command;
-import co.yedam.coupon.service.CouponService;
-import co.yedam.coupon.serviceImpl.CouponServiceImpl;
+import co.yedam.member.service.MemberService;
+import co.yedam.member.serviceImpl.MemberServiceImpl;
 
-public class RemoveCouponControl implements Command {
+public class RemoveMemberControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String id = req.getParameter("id");
-		String cc = req.getParameter("cc");
-
+		
 		Map<String, String> map = new HashMap<>();
 		
-		CouponService cvc = new CouponServiceImpl();
-		if(cvc.delCoupon(id, cc)) {
+		MemberService mvc = new MemberServiceImpl();
+		if(mvc.memberRemove(id)) {
 			map.put("retCode", "OK");
 		} else {
 			map.put("retCode", "NG");
 		}
+		
 		Gson gson = new GsonBuilder().create(); 
 		try {
 			resp.getWriter().print(gson.toJson(map));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

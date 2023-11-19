@@ -9,7 +9,7 @@ public class MemberVO {
 	public String userId;
 	public String userPw;
 	public String userName;
-	public String nickName;
+	public String nickname;
 	public Date birthDay;// string으로 바꿔서 sql은 데이트 형식으로 들어가는 법?
 	public String grade;
 	public String phone;

@@ -1,9 +1,12 @@
 package co.yedam.restaurant.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
+import com.google.gson.internal.bind.DefaultDateTypeAdapter.DateType;
 
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.restaurant.mapper.RestaurantMapper;
@@ -46,11 +49,15 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public RestaurantVO getRestaurant(String rcode) {
 		return mapper.getRestaurant(rcode);
 	}
-
+	//관리자 차트
 	@Override
 	public List<Map<String, Object>> getResCountByLike() {
 		return mapper.getResCountByLike();
 	}
+	@Override
+	public List<Map<String, Object>> getPopResList() {
+		return mapper.getPopResList();
+	}	
 	//예약현황 등록
 	@Override
 	public boolean addReser(ReservationVO vo) {
@@ -59,7 +66,17 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 	@Override
 	public List<ReservationVO> reservationList(String id) {
-		return mapper.reservationAll(id);
+		return mapper.reservationAll();
 	}
+
+	@Override
+	public List<ReservationVO> reserMemberList() {
+		return mapper.reserMemberList();
+	}
+
+
+
+	
+
 
 }

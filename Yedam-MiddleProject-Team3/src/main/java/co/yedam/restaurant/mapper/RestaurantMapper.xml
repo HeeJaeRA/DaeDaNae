@@ -30,8 +30,13 @@
 		SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
 	</select>
 	
+	<!-- 관리자 차트보기 -->
 	<select id="getResCountByLike">
-		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT ORDER BY LIKECNT DESC FETCH FIRST 10 ROWS ONLY
+		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT <![CDATA[WHERE ROWNUM <= 10]]> ORDER BY LIKECNT DESC
+	</select>
+	<select id="getPopResList" resultType="map">
+		<!-- SELECT COUNT(BUYABLE), RES_DATE FROM RESERVATION GROUP BY RES_DATE -->
+		SELECT RS_CATEGORY "CATEGORY", SUM(LIKECNT) LIKECNT FROM RESTAURANT GROUP BY RS_CATEGORY
 	</select>
 
 	<!-- 예약등록 -->
@@ -45,5 +50,11 @@
 		resultType="co.yedam.restaurant.service.ReservationVO">
 		SELECT * FROM RESERVATION where USER_ID = #{userId}
 	</select>
+	
+	<select id="reserMemberList"
+		resultType="co.yedam.restaurant.service.ReservationVO">
+		SELECT R.USER_ID, R.NICKNAME, R2.RS_CODE, R2.RS_NAME, R.RES_DATE, R.RES_TIME FROM RESERVATION R LEFT JOIN RESTAURANT R2 ON R.RS_CODE = R2.RS_CODE
+	</select>
+	
 
 </mapper>

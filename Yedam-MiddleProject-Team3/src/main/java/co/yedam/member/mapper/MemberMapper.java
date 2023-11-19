@@ -17,5 +17,8 @@ public interface MemberMapper {
 
 	// 회원가입시 등록
 	public int insert(MemberVO vo);
+	
+	// 관리자 멤버 삭제
+	public boolean deleteMember(String id);
 
 }

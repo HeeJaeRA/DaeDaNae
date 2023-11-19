@@ -29,6 +29,7 @@
 						<th>적립금</th>
 						<th>이미지</th>
 						<th>성별</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tfoot>
@@ -43,6 +44,7 @@
 						<th>적립금</th>
 						<th>이미지</th>
 						<th>성별</th>
+						<th>삭제</th>
 					</tr>
 				</tfoot>
 				<tbody>
@@ -58,6 +60,7 @@
 						<td>${vo.money }</td>
 						<td>${vo.image }</td>
 						<td>${vo.gender }</td>
+						<td><button class="delM" onclick="delMfucn(event)">삭제</button>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -65,3 +68,26 @@
 		</div>
 	</div>
 	
+<script>
+function delMfucn(e) {
+	// console.log(e.target.parentElement.parentElement.children[4].innerHTML)
+	let id = e.target.parentElement.parentElement.children[0].innerHTML;
+	fetch('adRemoveMember.do', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'id=' + id
+		})
+		.then(resolve => resolve.json())
+		.then(result => {
+			if (result.retCode == 'OK') {
+				alert('Success!!');
+				e.target.parentElement.parentElement.remove();
+			} else {
+				alert('Error!!');
+			}
+		})
+		.catch(err => console.log(err));
+}
+</script>
