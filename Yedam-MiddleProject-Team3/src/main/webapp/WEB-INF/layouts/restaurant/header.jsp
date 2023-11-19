@@ -20,6 +20,7 @@
 			</c:when>
 			<c:otherwise>
 				<button class="btn btn-light" onclick="location.href='logout.do'">로그아웃</button>
+				<button class="btn btn-light" onclick="location.href='#'">마이페이지</button>
 		</c:otherwise>
 		</c:choose>
 		</div>
@@ -41,8 +42,7 @@
 			</ul>
 			<form class="d-flex">
 				<button class="btn btn-outline-primary" type="submit">
-					<i class="bi-cart-fill me-1"></i> 예약정보 <span
-						class="badge bg-primary text-white ms-1 rounded-pill">0</span>
+					<i class="bi-cart-fill me-1"></i> 예약정보
 				</button>
 			</form>
 		</div>

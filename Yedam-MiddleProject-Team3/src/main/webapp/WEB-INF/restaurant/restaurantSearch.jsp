@@ -19,7 +19,7 @@
 				<c:forEach items="${mlist }" var="vo">
 					<div class="col mb-5">
 						<div class="card h-100">
-							<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+							<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 							<div class="card-body p-4">
 								<div class="text-center">
 									<p>${vo.rsCategory }</p>

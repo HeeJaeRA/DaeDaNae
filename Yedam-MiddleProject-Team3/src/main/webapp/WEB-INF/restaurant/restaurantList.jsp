@@ -3,9 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<!-- Header-->
+<!-- 배너-->
 <header class="bg-dark py-5" style="background-image : url('resources/images/banner.jpg'); height:300px;">
-
 </header>
 
 ${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
@@ -67,7 +66,7 @@ ${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
 			<c:forEach items="${mlist }" var="vo">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<p>${vo.rsCategory }</p>

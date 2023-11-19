@@ -11,7 +11,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 				<input type="button" id="imgMain" value="대표사진">
 				<input type="button" id="imgCard1" value="사진1">
 				<input type="button" id="imgCard2" value="사진2">
@@ -57,7 +57,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<div class="card h-100">
 						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
 							hot</div>
-						<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -89,7 +89,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<div class="card h-100">
 						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
 							hot</div>
-						<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -121,7 +121,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<div class="card h-100">
 						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
 							hot</div>
-						<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -406,12 +406,12 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	let img2 = '${vo.image2}';
 	let img3 = '${vo.image3}';
 	document.querySelector('#imgMain').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/store.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img1 + '.jpg';
 	})
 	document.querySelector('#imgCard1').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/' + img1 + '.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img2 + '.jpg';
 	})
 	document.querySelector('#imgCard2').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/' + img2 + '.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img3 + '.jpg';
 	})
 </script>
