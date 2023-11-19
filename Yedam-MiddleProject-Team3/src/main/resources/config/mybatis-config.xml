@@ -7,6 +7,10 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
+	<!-- date타입..? -->
+<!-- 	<typeHandlers> -->
+<!-- 	<typeHandler handler="com.naver.dbill.admin.common.handler.CustomDateHandler"/> -->
+<!-- </typeHandlers> -->
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -26,4 +30,5 @@
 		<mapper resource="co/yedam/reply/mapper/ReplyMapper.xml" />		
 		<mapper resource="co/yedam/review/mapper/ReviewMapper.xml" />	
 	</mappers>
+	
 </configuration>

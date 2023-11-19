@@ -36,7 +36,7 @@
 
 	<!-- 예약등록 -->
  	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
- 	INSERT INTO RESERVATION (user_id, rs_code, res_date, res_time, buyAble )
+ 	INSERT INTO RESERVATION (user_id, rs_code,res_date,res_time, buyAble )
  	values(#{userId}, #{rsCode}, #{date}, #{time}, #{buyAble})
 	</insert> 
 	

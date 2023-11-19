@@ -1,10 +1,7 @@
 package co.yedam.restaurant.web;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Command;
 import co.yedam.restaurant.service.RestaurantService;
