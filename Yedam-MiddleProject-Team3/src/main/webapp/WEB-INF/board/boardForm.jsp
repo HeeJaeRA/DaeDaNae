@@ -48,15 +48,15 @@
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images" class="form-control">
+			<td><input type="file" name="image1" class="form-control">
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images2" class="form-control">
+			<td><input type="file" name="image2" class="form-control">
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images3" class="form-control">
+			<td><input type="file" name="image3" class="form-control">
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" class="btn btn-primary"

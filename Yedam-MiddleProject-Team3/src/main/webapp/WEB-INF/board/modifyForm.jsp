@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th>파일명</th>
-				<td><img src="images/${vo.images }" width="80px">
+				<td><img src="images/${vo.image1 }" width="80px">
 			</tr>
 
 			<tr>

@@ -46,8 +46,10 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getBoard(int boardCode) {
 		//dao.updateCnt(boardNo);
 		//return dao.select(boardNo);
-//		mapper.update(boardCode);
+		mapper.likecnt(boardCode);
+		mapper.boardView(boardCode);
 		return mapper.select(boardCode);
+		
 	}
 
 	@Override

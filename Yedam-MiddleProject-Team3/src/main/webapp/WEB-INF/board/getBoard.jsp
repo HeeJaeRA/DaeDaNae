@@ -40,10 +40,11 @@
 
 ${bco }
 
+
 <h3>상세 화면(조회화면)</h3>
-<form action="modifyForm.do" name="myForm">
+<form action="getBoard.do" name="myForm">
 	<input type="hidden" name="bco" value="${bco.boardCode }">
-	<table border="10" class="table">
+	<table border="1" class="table">
 		<tr>
 			<th>글번호</th>
 			<td class="boardCode">${bco.boardCode }</td>
@@ -62,24 +63,24 @@ ${bco }
 		<tr>
 			<th>첨부파일1</th>
 			<td colspan="3">
-				<c:if test="${!empty bco.images  }">
-					<img width="500px" src="resources/images/${bco.images }">
+				<c:if test="${!empty bco.image1  }">
+					<img width="500px" src="resources/images/${bco.image1 }">
 				</c:if>
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일2</th>
 			<td colspan="3">
-				<c:if test="${!empty bco.images2  }">
-					<img width="300px" src="resources/images/${bco.images2 }">
+				<c:if test="${!empty bco.image2  }">
+					<img width="300px" src="resources/images/${bco.image2 }">
 				</c:if>
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일3</th>
 			<td colspan="3">
-				<c:if test="${!empty bco.images3  }">
-					<img width="500px" src="resources/images/${bco.images3 }">
+				<c:if test="${!empty bco.image3  }">
+					<img width="500px" src="resources/images/${bco.image3 }">
 				</c:if>
 			</td>
 		</tr>
@@ -88,7 +89,13 @@ ${bco }
 			<td>${bco.userId }</td>
 			<th>조회수</th>
 			<td>${bco.boardView }</td>
-			<th>좋아요</th>
+			
+			<td>
+				<div>
+					<button id="likeButton">Like</button>
+					
+				</div>
+			</td>
 			<td>${bco.likeCnt }</td>
 		</tr>
 		<tr>
@@ -140,6 +147,8 @@ ${bco }
 </p>
 
 <script>
+
+
 	document.getElementById('boardDelBtn').addEventListener('click', function (e) {
 		document.forms.myForm.action = 'removeForm.do'
 		document.forms.myForm.submit();
