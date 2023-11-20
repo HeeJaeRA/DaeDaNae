@@ -104,8 +104,9 @@
 
 
 							<div class="col-md-12">
+							<label>성별<br>
 							
-							<label>성별<input class="form-control" type="radio" name="gender" value="남성" checked>
+							남성<input class="form-control" type="radio" name="gender" value="남성" checked>여성
 							<input class="form-control" type="radio" name="gender" value="여성" ></label>
 							
 								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
@@ -349,7 +350,7 @@
 				alert("올바른 형식으로 입력해주세요.");
 				phone.focus();
 				return false;
-			}else if(!regPhone.test(phone)) {
+			}else if(!regPhone.test(phone.value)) {
 				alert("전화번호 형식으로 입력하세요")
 				phone.focus();
 				return false;
