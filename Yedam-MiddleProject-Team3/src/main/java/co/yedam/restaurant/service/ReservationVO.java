@@ -1,8 +1,10 @@
 package co.yedam.restaurant.service;
 
-import lombok.Data;
-@Data
+import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class ReservationVO {
 	
 	private String userId;

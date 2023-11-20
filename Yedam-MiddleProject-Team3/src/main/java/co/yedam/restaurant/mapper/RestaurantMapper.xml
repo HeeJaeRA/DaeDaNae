@@ -56,6 +56,19 @@
 		SELECT R.USER_ID, R.NICKNAME, R2.RS_CODE, R2.RS_NAME, R.RES_DATE, R.RES_TIME FROM RESERVATION R LEFT JOIN RESTAURANT R2 ON R.RS_CODE = R2.RS_CODE
 	</select>
 	
+	<!-- 가게 추가 -->
+	<insert id="addRestaurant" parameterType="co.yedam.restaurant.service.RestaurantVO"> 
+ 	INSERT INTO RESTAURANT (rs_code, rs_category,rs_name, rs_address ,rs_gu, rs_dong,phone,rs_desc,image1,image2,image3,likecnt,starcnt)
+ 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},#{image1},#{image2},#{image3},#{likecnt},#{starcnt})
+	</insert> 
+	
+	<!-- 가게 삭제 -->
+	<delete id="removeRestaurant" parameterType="int">
+		delete from restaurant where
+		rs_code=#{rsCode}
+	</delete>
+	
+
 	<!-- 북마크 -->
 	<insert id="markRestaurnat">
 		INSERT INTO BOOKMARK (USER_ID, RS_CODE) VALUES(#{uid}, #{rcode})

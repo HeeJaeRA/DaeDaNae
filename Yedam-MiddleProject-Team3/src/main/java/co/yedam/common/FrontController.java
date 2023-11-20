@@ -22,6 +22,7 @@ import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
+import co.yedam.board.web.UpdateLikecnt;
 import co.yedam.coupon.web.AddCouponControl;
 import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
@@ -32,6 +33,8 @@ import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
 import co.yedam.reply.web.ReplyListControl;
 import co.yedam.restaurant.web.AddressListControl;
+import co.yedam.restaurant.web.AdminAddRestaurantControl;
+import co.yedam.restaurant.web.AdminRemoveRestaurantControl;
 import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
 import co.yedam.restaurant.web.MarkRestaurnatControl;
@@ -58,6 +61,9 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeBoard.do", new NoticeBoardControl());
 		map.put("/qnaBoard.do", new QnaBoardControl());
 		map.put("/freeBoard.do", new FreeBoardControl());
+		map.put("/updateLikecnt.do", new UpdateLikecnt());
+		
+		
 		//소개,이벤트
 		map.put("/aboutBoard.do", new AboutBoardControl());		
 		map.put("/eventBoard.do", new EventBoardControl());
@@ -115,6 +121,9 @@ public class FrontController extends HttpServlet {
 		map.put("/adRemoveMember.do", new RemoveMemberControl()); //멤버삭제
 		
 		map.put("/adRestaurantList.do", new AdminRestaurantListControl()); //가게리스트
+
+		map.put("/adAddRestaurant.do", new AdminAddRestaurantControl()); //가게추가
+		map.put("/adRemoveRestaurant.do", new AdminRemoveRestaurantControl()); //가게삭제
 		
 		map.put("/chartForm.do", new ChartFormControl()); //차트
 		map.put("/drawChart.do", new DrawChartControl()); //차트1
