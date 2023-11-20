@@ -22,7 +22,6 @@ ${logId }, ${nickname }, ${vo }
 
 		</div>
 		<input type="hidden" id="buyAble" name="buyAble" value="0">
-		<!--<button type="button" onClick='open()'>결제하기</button>-  -->
 		<input type="button" id="reservation" value="예약하기">
 	</form>
 </div>
@@ -137,18 +136,13 @@ ${logId }, ${nickname }, ${vo }
 			merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
 			name: rsname, // 제품명
 			amount: 5000, // 가격
+			m_redirect_url: 'reservationForm.do?rcode=' + rcode
 		}, async function (rsp) { // callback
 			if (rsp.success) { //결제 성공시
-				if (response.status == 200) { // DB저장 성공시
-					alert('결제 완료!')
-				} else { // 결제완료 후 DB저장 실패시
-					alert(`error:[${response.status}]\n결제요청이 승인된 경우 관리자에게 문의바랍니다.`);
-					// DB저장 실패시 status에 따라 추가적인 작업 가능성
-				}
+				alert('결제 완료!');
 			} else if (rsp.success == false) { // 결제 실패시
-				alert(rsp.error_msg)
+				alert(rsp.error_msg);
 			}
-			window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 		});
 	}
 </script>
