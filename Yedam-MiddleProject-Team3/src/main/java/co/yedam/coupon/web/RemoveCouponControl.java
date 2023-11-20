@@ -33,7 +33,6 @@ public class RemoveCouponControl implements Command {
 		try {
 			resp.getWriter().print(gson.toJson(map));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

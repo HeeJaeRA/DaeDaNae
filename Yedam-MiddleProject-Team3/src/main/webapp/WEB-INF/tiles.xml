@@ -17,6 +17,9 @@
 	<definition name="WILDCARD:board/*" extends="restaurantpage">
 		<put-attribute name="body" value="/WEB-INF/board/{1}.jsp" />
 	</definition>
+	<definition name="WILDCARD:reservation/*" extends="restaurantpage">
+		<put-attribute name="body" value="/WEB-INF/board/{1}.jsp" />
+	</definition>
 	
 	<definition name="WILDCARD:main/*" extends="restaurantpage">
 		<put-attribute name="body" value="/WEB-INF/main/{1}.jsp" />

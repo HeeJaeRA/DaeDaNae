@@ -19,10 +19,12 @@ public class DrawChartControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		RestaurantService svc = new RestaurantServiceImpl();
 		List<Map<String, Object>> list = svc.getResCountByLike();
+//		List<Map<String, Object>> list2 = svc.getPopResList();
 		
 		Gson gson = new GsonBuilder().create();
 		try {
 			resp.getWriter().print(gson.toJson(list));
+//			resp.getWriter().print(gson.toJson(list2));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

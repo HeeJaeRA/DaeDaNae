@@ -11,20 +11,25 @@
 	SELECT*FROM USERTABLE
 	</select>
 	
+	<!-- 멤버삭제 : 관리자 -->
+	<delete id="deleteMember">
+	DELETE FROM USERTABLE WHERE USER_ID = #{id}
+	</delete>
+	
 	<!--회원가입시 아이디 닉네임 중복확인용 리스트  -->
 	<select id="memberId" resultType="co.yedam.member.service.MemberVO">
 	SELECT*FROM USERTABLE where user_id=#{id}
 	</select>
 	<!--회원가입시 아이디 닉네임 중복확인용 리스트  -->
 	<select id="memberNick" resultType="co.yedam.member.service.MemberVO">
-	SELECT*FROM USERTABLE where nickName=#{nickName}
+	SELECT*FROM USERTABLE where nickname=#{nickname}
 	</select>
 	
 	<!--회원가입시 등록  -->
 	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
-	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY ,PHONE,
+	 INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY, PHONE,
 	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
-	 #{nickName}, #{birthDay}, #{phone}, #{address}, NVL(#{image},null), #{gender})
+	 #{nickname}, TO_DATE(#{birthDay},'YYYY-MM-DD'),#{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
 
 </mapper>

@@ -18,8 +18,10 @@ public class RestaurantListControl implements Command {
 
 		RestaurantService svc = new RestaurantServiceImpl();
 		List<RestaurantVO> list = svc.selectAllList();
-
+		List<RestaurantVO> mainList = svc.selectRandomList();
+		
 		req.setAttribute("list", list);
+		req.setAttribute("mlist", mainList);
 
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

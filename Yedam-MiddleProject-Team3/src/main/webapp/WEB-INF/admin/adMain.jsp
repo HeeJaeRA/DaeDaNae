@@ -12,10 +12,11 @@
 		<div class="col-xl-6">
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-chart-area me-1"></i> Area Chart Example
+					<i class="fa fa-pie-chart me-1"></i> 인기 카테고리
 				</div>
 				<div class="card-body">
-					<canvas id="myAreaChart" width="100%" height="40"></canvas>
+					<div id="popCate"></div>
+					<canvas id="my3DChart" width="100%" height="40"></canvas>
 				</div>
 			</div>
 		</div>
@@ -36,7 +37,7 @@
 	
     <div class="card mb-4">    
 		<div class="card-header">
-			<i class="fas fa-table me-1"></i> 회원목록
+			<i class="fas fa-table me-1"></i> 예약현황 목록
 		</div>
 		
 		<div class="card-body">
@@ -44,44 +45,32 @@
 				<thead>
 					<tr>
 						<th>아이디</th>
-						<th>패스워드</th>
-						<th>이름</th>
 						<th>닉네임</th>
-						<th>등급</th>
-						<th>연락처</th>
-						<th>주소</th>
-						<th>적립금</th>
-						<th>이미지</th>
-						<th>성별</th>
+						<th>업체코드</th>
+						<th>업체이름</th>
+						<th>예약날짜</th>
+						<th>예약한시간</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
 						<th>아이디</th>
-						<th>패스워드</th>
-						<th>이름</th>
 						<th>닉네임</th>
-						<th>등급</th>
-						<th>연락처</th>
-						<th>주소</th>
-						<th>적립금</th>
-						<th>이미지</th>
-						<th>성별</th>
+						<th>업체코드</th>
+						<th>업체이름</th>
+						<th>예약날짜</th>
+						<th>예약한시간</th>
 					</tr>
 				</tfoot>
 				<tbody>
-					<c:forEach items="${memList }" var="vo">
+					<c:forEach items="${bookList }" var="vo">
 					<tr>
 						<td>${vo.userId }</td>
-						<td>${vo.userPw }</td>
-						<td>${vo.userName }</td>
 						<td>${vo.nickname }</td>
-						<td>${vo.grade }</td>
-						<td>${vo.phone }</td>
-						<td>${vo.address }</td>
-						<td>${vo.money }</td>
-						<td>${vo.image }</td>
-						<td>${vo.gender }</td>
+						<td>${vo.rsCode }</td>
+						<td>${vo. rsName}</td>
+						<td>${vo.resDate }</td>
+						<td>${vo.resTime }</td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -91,9 +80,10 @@
 	
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-
 	google.charts.load('current', {packages: ['corechart', 'bar']});
 	google.charts.setOnLoadCallback(drawBasic);
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
 	
 	function drawBasic() {
 		fetch('drawChart.do')
@@ -125,5 +115,30 @@
 		})
 		.catch(err => console.log(err));
 	}
+	
+	 function drawChart() {
+	    	
+	    	
+	    	fetch('drawChart2.do')
+			.then(resolve => resolve.json())
+			.then(result => {
+				let dataAry = [['CATEGORY', 'LIKECNT']];
+				console.log(result);
+				result.forEach(item => {
+					dataAry.push([item.CATEGORY, item.LIKECNT]);
+				})
+			var data = google.visualization.arrayToDataTable(dataAry);
+			var options = {
+		        title: '인기 많은 카테고리',
+		        is3D: true,
+			};
+			
+		    var chart = new google.visualization.PieChart(document.getElementById('popCate'));
+		    chart.draw(data, options);
+			
+			})
+			.catch(err => console.log(err));
+
+	    }
 
 </script>

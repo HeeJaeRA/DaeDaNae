@@ -1,16 +1,15 @@
 package co.yedam.member.service;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
+
 public class MemberVO {
 	public String userId;
 	public String userPw;
 	public String userName;
 	public String nickname;
-	public Date birthDay;
+	public String birthDay;// string으로 바꿔서 sql은 데이트 형식으로 들어가는 법?
 	public String grade;
 	public String phone;
 	public String address;
@@ -19,5 +18,8 @@ public class MemberVO {
 	public String gender;
 	public String couponCode;
 	public String couponType;
+	
+	public String follower;
+	public String follwing;
 	
 }

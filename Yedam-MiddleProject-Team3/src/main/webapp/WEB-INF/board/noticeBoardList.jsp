@@ -10,7 +10,7 @@
 <!-- 			<option value="QnA게시판" id = "qnaB">QnA게시판</option> -->
 <!-- 			<option value="공지사항" id = noticeB>공지사항</option> -->
 <!-- 		</select> -->
-		
+
 <!-- let freeB = document.getElementById("freeB");    -->
 <!-- freeB.addEventListener("click", freeB());        -->
 <!-- function freeB() { -->
@@ -18,14 +18,25 @@
 <!-- } -->
 <!-- 	<a href="freeBoard.do"><input type="button" value = "자유게시판"></a> -->
 <!-- 	<a href="qnaBoard.do"><input type="button" value = "QnA게시판"></a> -->
-		
-		
+
+<style>
+.button-style {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ff7f00; /* 버튼 배경색 */
+	color: white; /* 버튼 텍스트 색상 */
+	text-decoration: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+</style>
 <h3>공지사항</h3>
 
-<table class="table" border="1" style = "width:800px ;">
+<table class="table" border="1" style="width: 800px;">
 	<thead>
 		<tr>
-		
+
 			<th>글번호</th>
 			<th>제목</th>
 			<th>작성자</th>
@@ -46,11 +57,11 @@
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 				<td><fmt:formatDate value="${vo.updateDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
-				<td>${vo.boardContent }</td>		
-				<td>${vo.boardView }</td>		
-				<td>${vo.likeCnt }</td>		
+				<td>${vo.boardContent }</td>
+				<td>${vo.boardView }</td>
+				<td>${vo.likecnt }</td>
 
-				
+
 			</tr>
 
 		</c:forEach>
@@ -60,6 +71,6 @@
 </table>
 
 <p>
-	<a href="boardForm.do">게시글 등록</a>
+	<a href="boardForm.do" class="button-style">게시글 등록</a>
 </p>
 

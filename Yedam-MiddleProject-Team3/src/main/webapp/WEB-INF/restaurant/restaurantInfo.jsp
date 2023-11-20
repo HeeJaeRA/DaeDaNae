@@ -11,11 +11,23 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+				<input type="button" id="imgMain" value="대표사진">
+				<input type="button" id="imgCard1" value="사진1">
+				<input type="button" id="imgCard2" value="사진2">
 			</div>
 			<div class="col-md-6">
 				<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
-				<h1 class="display-5 fw-bolder">${vo.rsName } / ${reviewCnt.star }점</h1>
+				<h1 class="display-5 fw-bolder">${vo.rsName } /
+					<c:choose>
+						<c:when test='${empty reviewCnt.star }'>
+							0점
+						</c:when>
+						<c:otherwise>
+							${reviewCnt.star }점
+						</c:otherwise>
+					</c:choose>
+				</h1>
 				<div class="fs-5 mb-5">
 					<span class="text"> </span>
 				</div>
@@ -23,11 +35,22 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				<div id="map" style="width:100%;height:350px;"></div>
 				<div class="d-flex">
 					<div class="text-center">
-						<a class="btn btn-outline-dark mt-auto"href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
+						<a class="btn btn-outline-dark mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
 					</div>
 				</div>
 			</div>
-			<div style="width:100%; height:100px; text-align:center;"><span class="text-muted">내용${vo.rsDesc }</span>
+			<div style="width:100%; height:100px; text-align:center;">
+				<c:choose>
+					<c:when test='${empty logId }'>
+						<span class="text-black">내용${vo.rsDesc }</span>
+					</c:when>
+					<c:otherwise>
+						<span class="text-black">내용${vo.rsDesc }</span>
+						<a class="btn btn-outline-dark mt-auto" id="bookmark"
+							onclick="mark(); this.onclick=null;">찜하기</a>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</div>
@@ -36,13 +59,16 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 		<h2 class="fw-bolder mb-4">${vo.rsName }과 비슷한 맛집</h2>
 		<input type="button" value="종류별" id="categoryBtn">
 		<input type="button" value="지역별" id="addressBtn">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="relateDiv">
-			<c:forEach items="${addressList }" var="vo" end="3">
+	</div>
+
+	<div class="container px-4 px-lg-5 mt-5" id="allDiv" style="display: block;">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${allList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							bookmark</div>
-						<img class="card-img-top" src="resources/images/store.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+							hot</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -57,7 +83,72 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
+								<a class="btn btn-outline-dark mt-auto"
+									href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+
+	<div class="container px-4 px-lg-5 mt-5" id="adrDiv" style="display: none;">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${addressList }" var="vo" end="3">
+				<div class="col mb-5">
+					<div class="card h-100">
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+							hot</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="card-body p-4">
+							<div class="text-center">
+								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
+								<h5 class="fw-bolder">${vo.rsName }</h5>
+								<div class="d-flex justify-content-center small text-warning mb-2">
+									<c:forEach var="i" begin="1" end="${vo.starcnt }">
+										<div class="bi-star-fill"></div>
+									</c:forEach>
+								</div>
+								<span class="text-muted">방문자 ${vo.likecnt }명</span>
+							</div>
+						</div>
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto"
+									href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+
+	<div class="container px-4 px-lg-5 mt-5" id="cateDiv" style="display: none;">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${categoryList }" var="vo" end="3">
+				<div class="col mb-5">
+					<div class="card h-100">
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+							hot</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="card-body p-4">
+							<div class="text-center">
+								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
+								<h5 class="fw-bolder">${vo.rsName }</h5>
+								<div class="d-flex justify-content-center small text-warning mb-2">
+									<c:forEach var="i" begin="1" end="${vo.starcnt }">
+										<div class="bi-star-fill"></div>
+									</c:forEach>
+								</div>
+								<span class="text-muted">방문자 ${vo.likecnt }명</span>
+							</div>
+						</div>
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto"
+									href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>
@@ -104,7 +195,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" id="addreview" onclick="addReview()" value="리뷰작성">
+					<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
 				</div>
 			</form>
 		</div>
@@ -143,7 +234,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	</div>
 </section>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=46ff76ad0b944380d5f5b43fdd9dd2d8&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=46ff76ad0b944380d5f5b43fdd9dd2d8&libraries=services"></script>
 <script>
 	// 맵
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -207,7 +299,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						alert('등록 성공');
+						alert('포인트 지급 완료');
 						clearReview();
 						showReviewList();
 					} else {
@@ -219,6 +311,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.catch(err => console.log('error:' + err));
 		});
 	}
+
 	// 리뷰 등록창 초기화
 	function clearReview() {
 		document.querySelector('.review_textarea').value = '';
@@ -268,9 +361,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						console.log(this);
-						alert('좋아요');
-						e.target.disabled = true;
+						// alert('좋아요');
 						showReviewList();
 					} else {
 						alert('좋아요 실패');
@@ -307,18 +398,51 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 		return temp;
 	}
 
-	//카테고리별, 지도별 조회 버튼
+	// 카테고리별, 지도별 조회 버튼
 	document.querySelector('#categoryBtn').addEventListener('click', function (e) {
-		// document.querySelector('#relateDiv').remove();
-		let gage = '${vo.rsName}';
-		console.log(gage);
-		for (let i = 0; i < 4; i++) {
-			document.querySelector('#relateDiv').children[0].remove();
-			
-		}
+		document.querySelector('#allDiv').style.display = 'none';
+		document.querySelector('#adrDiv').style.display = 'none';
+		document.querySelector('#cateDiv').style.display = 'block';
 	})
 
-	function makeDiv() {
+	document.querySelector('#addressBtn').addEventListener('click', function (e) {
+		document.querySelector('#allDiv').style.display = 'none';
+		document.querySelector('#cateDiv').style.display = 'none';
+		document.querySelector('#adrDiv').style.display = 'block';
+	})
 
+	// 이미지 전환 버튼
+	let img1 = '${vo.image1}';
+	let img2 = '${vo.image2}';
+	let img3 = '${vo.image3}';
+	document.querySelector('#imgMain').addEventListener('click', function (e) {
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img1 + '.jpg';
+	})
+	document.querySelector('#imgCard1').addEventListener('click', function (e) {
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img2 + '.jpg';
+	})
+	document.querySelector('#imgCard2').addEventListener('click', function (e) {
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img3 + '.jpg';
+	})
+
+
+	// 찜하기
+	function mark() {
+		fetch('bookMark.do', {
+				method: 'post',
+				headers: {
+					'Content-type': 'application/x-www-form-urlencoded'
+				},
+				body: 'id=' + uid + '&rcode=' + rc
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					alert('성공');
+				} else {
+					alert('실패');
+				}
+			})
+			.catch(err => console.log('err:' + err));
 	}
 </script>

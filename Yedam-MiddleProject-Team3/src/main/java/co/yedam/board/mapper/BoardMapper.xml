@@ -27,16 +27,21 @@
 		UPDATE BOARD SET board_view = board_view+1
 		where board_code = #{boardCode}
 	</update>
+	
+	<update id="likecnt" parameterType="int">
+		UPDATE BOARD SET likecnt = likecnt+1
+		where board_code = #{boardCode}
+	</update>
 
 	<insert id="insert"
 		parameterType="co.yedam.board.service.BoardVO">
-		INSERT INTO BOARD VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, SYSDATE,#{updateDate},#{boardContent},#{boardView},#{likeCnt},#{images},#{images2},#{images3})
+		INSERT INTO BOARD VALUES(seq_board.nextval, #{boardCategory}, #{boardTitle}, #{userId}, SYSDATE,#{updateDate},#{boardContent},#{boardView},#{likecnt},#{image1},#{image2},#{image3})
 	</insert>
 
 	<update id="update" parameterType="co.yedam.board.service.BoardVO">
 		UPDATE BOARD SET
 		BOARD_TITLE=#{boardTitle},
-		IMAGES=nvl(#{images},images),
+		IMAGE1=nvl(#{image1},image1),
 		UPDATE_DATE=SYSDATE,
 		BOARD_CONTENT=#{boardContent}
 		

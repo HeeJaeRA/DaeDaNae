@@ -42,7 +42,7 @@
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 				<td>${vo.boardContent }</td>		
 				<td>${vo.boardView }</td>		
-				<td>${vo.likeCnt }</td>		
+				<td>${vo.likecnt }</td>		
 				
 			</tr>
 

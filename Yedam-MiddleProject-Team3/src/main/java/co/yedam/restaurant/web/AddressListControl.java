@@ -15,13 +15,13 @@ public class AddressListControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "restaurant/restaurantList.tiles";
+		
+		String adr = req.getParameter("address");
 
 		RestaurantService svc = new RestaurantServiceImpl();
-		List<RestaurantVO> list = svc.selectAddress("북구");
+		List<RestaurantVO> list = svc.selectAddress(adr);
 
-		System.out.println(list);
-
-		req.setAttribute("list", list);
+		req.setAttribute("mlist", list);
 
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

@@ -29,6 +29,9 @@ public class LoginControl implements Command {
 			session.setAttribute("nickname", vo.getNickname());
 			session.setAttribute("respon", vo.getGrade());
 			session.setAttribute("money", vo.getMoney());
+			session.setAttribute("image", vo.getImage());
+			session.setAttribute("userName", vo.getUserName());
+			session.setAttribute("point", vo.getMoney());
 			
 			try {
 				if (vo.getGrade().equals("ADMIN")) {

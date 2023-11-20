@@ -9,10 +9,12 @@ public interface MemberService {
 
 	// 회원가입시 중복확인
 	public MemberVO memberId(String id);
-	public MemberVO memberNick(String nickName);
+	public MemberVO memberNick(String nickname);
 
 	// 회원가입 시 등록
 	public boolean addMember(MemberVO vo);
-
+	
+	// 관리자 멤버 삭제
+	public boolean memberRemove(String id);
 
 }

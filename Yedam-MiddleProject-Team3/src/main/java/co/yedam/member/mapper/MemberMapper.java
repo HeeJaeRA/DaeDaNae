@@ -13,9 +13,12 @@ public interface MemberMapper {
 
 	// 회원가입시 아이디, 닉네임 중복확인용
 	public MemberVO memberId(@Param("id") String id);
-	public MemberVO memberNick(@Param("nickName") String nickName);
+	public MemberVO memberNick(@Param("nickname") String nickname);
 
 	// 회원가입시 등록
 	public int insert(MemberVO vo);
+	
+	// 관리자 멤버 삭제
+	public boolean deleteMember(String id);
 
 }

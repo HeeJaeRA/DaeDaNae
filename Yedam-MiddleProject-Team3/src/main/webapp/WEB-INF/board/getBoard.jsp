@@ -2,36 +2,37 @@
 	pageEncoding="UTF-8"%>
 
 <style>
-	#list span {
-		margin: 8px;
-	}
+#list span {
+	margin: 8px;
+}
 
-	.pagination {
-		display: inline-block;
-	}
+.pagination {
+	display: inline-block;
+}
 
-	.pagination {
-		display: inline-block;
-	}
+.pagination {
+	display: inline-block;
+}
 
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-	}
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
 
-	.pagination a.active {
-		background-color: #4CAF50;
-		color: white;
-	}
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+}
 
-	.pagination a:hover:not(.active) {
-		background-color: #ddd;
-	}
-	.table{
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.table {
 	
-	}
+}
 </style>
 
 
@@ -40,17 +41,17 @@
 
 ${bco }
 
+
 <h3>상세 화면(조회화면)</h3>
 <form action="modifyForm.do" name="myForm">
 	<input type="hidden" name="bco" value="${bco.boardCode }">
-	<table border="10" class="table">
+	<table border="1" class="table">
 		<tr>
 			<th>글번호</th>
-			<td class="boardCode">${bco.boardCode }</td>
+			<td class="boardCode" id="bco">${bco.boardCode }</td>
 			<th>작성일시</th>
-			<td>
-				<fmt:formatDate value="${bco.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
-			</td>
+			<td><fmt:formatDate value="${bco.writeDate }"
+					pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 		</tr>
 		<tr>
 			<th>글제목</th>
@@ -61,52 +62,52 @@ ${bco }
 		</tr>
 		<tr>
 			<th>첨부파일1</th>
-			<td colspan="3">
-				<c:if test="${!empty bco.images  }">
-					<img width="500px" src="resources/images/${bco.images }">
-				</c:if>
-			</td>
+			<td colspan="3"><c:if test="${!empty bco.image1  }">
+					<img width="500px" src="resources/images/${bco.image1 }">
+				</c:if></td>
 		</tr>
 		<tr>
 			<th>첨부파일2</th>
-			<td colspan="3">
-				<c:if test="${!empty bco.images2  }">
-					<img width="300px" src="resources/images/${bco.images2 }">
-				</c:if>
-			</td>
+			<td colspan="3"><c:if test="${!empty bco.image2  }">
+					<img width="500px" src="resources/images/${bco.image2 }">
+				</c:if></td>
 		</tr>
 		<tr>
 			<th>첨부파일3</th>
-			<td colspan="3">
-				<c:if test="${!empty bco.images3  }">
-					<img width="500px" src="resources/images/${bco.images3 }">
-				</c:if>
-			</td>
+			<td colspan="3"><c:if test="${!empty bco.image3  }">
+					<img width="500px" src="resources/images/${bco.image3 }">
+				</c:if></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>${bco.userId }</td>
 			<th>조회수</th>
 			<td>${bco.boardView }</td>
-			<th>좋아요</th>
-			<td>${bco.likeCnt }</td>
+
+			<td>
+				<div>
+					<button class="btn btn-warning" type="button" value="like"
+						id="likeBtn">like</button>
+
+				</div>
+			</td>
+			<td id="likeTd">${bco.likecnt }</td>
 		</tr>
 		<tr>
 
 			<!-- 로그인 아이디랑 책 작성자랑 같으면 수정삭제가능 아니면 버튼 비활성화 -->
 			<!-- 로그인 기능 연동할때까지 주석 -->
-			<td colspan="2" align="center">
-				<c:choose>
+			<td colspan="2" align="center"><c:choose>
 					<c:when test="${!empty logId && logId == bco.userId }">
 						<input type="submit" value="수정" class="btn btn-primary">
-						<button class="btn btn-warning" type="button" value="삭제" id="boardDelBtn">삭제 </button>
+						<button class="btn btn-warning" type="button" value="삭제"
+							id="boardDelBtn">삭제</button>
 					</c:when>
 					<c:otherwise>
 						<input disabled type="submit" value="수정" id="boardDelBtn">
 						<input disabled type="button" value="삭제">
 					</c:otherwise>
-				</c:choose>
-			</td>
+				</c:choose></td>
 
 
 		</tr>
@@ -120,7 +121,6 @@ ${bco }
 		<td><input type="text" id="content"></td>
 		<td><button id="addReply">댓글등록</button></td>
 	</tr>
-
 </table>
 
 <h3>댓글목록</h3>
@@ -129,10 +129,7 @@ ${bco }
 		<button id="delReply">삭제</button></li>
 </ul>
 
-<div class="pagination">
-
-
-</div>
+<div class="pagination"></div>
 
 <p>
 	<!-- 스위치 되면 스위치로 하기 -->
@@ -140,6 +137,27 @@ ${bco }
 </p>
 
 <script>
+document.getElementById('likeBtn').addEventListener('click', function (e) {
+	//document.forms.myForm.action = 'updateLikecnt.do'
+	//document.forms.myForm.submit();
+	e.preventDefault();
+	let bco = document.getElementById('bco').innerHTML;
+	fetch('updateLikecnt.do?bco=' + bco)
+	.then(resolve => {
+		return resolve.json()
+	})
+	.then(result => {
+		console.log(result);
+		
+		let num = Number(document.getElementById('likeTd').innerHTML);
+	 	num +=1
+		document.getElementById('likeTd').innerHTML = num;
+	 	
+	})
+	alert('좋아요를 눌렀습니다.')
+});
+
+
 	document.getElementById('boardDelBtn').addEventListener('click', function (e) {
 		document.forms.myForm.action = 'removeForm.do'
 		document.forms.myForm.submit();
@@ -173,11 +191,7 @@ ${bco }
 					showList(1);
 					return;
 				}
-				if (pg > Math.ceil(result.dto.total / 5)) {
-					page = Math.ceil(result.dto.total / 5)
-					showList(page);
-					return;
-				}
+				
 
 
 				result.list.forEach(reply => {

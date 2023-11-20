@@ -23,10 +23,10 @@
 	<div class="chart2">
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-chart-area me-1"></i> 예약 현황
+				<i class="fa fa-pie-chart me-1"></i> 인기많은 카테고리
 			</div>
 			<div class="card-body">
-				<div id="bookRes" style="height:400px;"></div>
+				<div id="popCate" style="height:400px;"></div>
 			</div>
 		</div>
 	</div>
@@ -38,6 +38,9 @@
 
 	google.charts.load('current', {packages: ['corechart', 'bar']});
 	google.charts.setOnLoadCallback(drawBasic);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    
 	
 	function drawBasic() {
 		fetch('drawChart.do')
@@ -70,5 +73,63 @@
 		})
 		.catch(err => console.log(err));
 	}
+	
+
+
+    function drawChart() {
+    	
+    	
+    	fetch('drawChart2.do')
+		.then(resolve => resolve.json())
+		.then(result => {
+			let dataAry = [['CATEGORY', 'LIKECNT']];
+			console.log(result);
+			result.forEach(item => {
+				dataAry.push([item.CATEGORY, item.LIKECNT]);
+			})
+		var data = google.visualization.arrayToDataTable(dataAry);
+		var options = {
+	        title: '인기 많은 카테고리',
+	        is3D: true,
+		};
+		
+	    var chart = new google.visualization.PieChart(document.getElementById('popCate'));
+	    chart.draw(data, options);
+		
+		})
+		.catch(err => console.log(err));
+
+    }
+	
+	
+	
+// 	google.charts.load("current", {packages:["corechart"]});
+// 	google.charts.setOnLoadCallback(drawChart);
+// 	function drawChart() {
+// 		fetch('drawChart.do')
+// 		.then(resolve => resolve.json())
+// 		.then(result => {
+// 			let dataAry = [['RES_DATE', 'BUYABLE']];
+// 			console.log(result);
+// 			result.forEach(item => {
+				
+// 				dataAry.push([item.RES_DATE, item.BUYABLE]);
+// 			})
+// 		var data = google.visualization.arrayToDataTable(dataAry);
+// 		);
+//       	var options = {
+//     	        title: '날짜별 예약현황',
+//     	        legend: { position: 'none' },
+//     	        colors: ['green']
+//     	};
+
+
+// 		var chart = new google.visualization.Histogram(document.getElementById('bookRes'));
+// 		chart.draw(data, options);
+// 		})
+// 		.catch(err => console.log(err));
+    	
+//     }
+
 
 </script>

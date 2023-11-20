@@ -46,10 +46,20 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getBoard(int boardCode) {
 		//dao.updateCnt(boardNo);
 		//return dao.select(boardNo);
-//		mapper.update(boardCode);
+		//mapper.likecnt(boardCode);
+		mapper.boardView(boardCode);
 		return mapper.select(boardCode);
+		
 	}
 
+	@Override
+	public boolean likecnt(int boardCode) {
+		
+		return mapper.likecnt(boardCode) ==1;
+	
+	
+		
+	}
 	@Override
 	public boolean addBoard(BoardVO vo) {
 	//	return dao.insert(vo) == 1;
@@ -68,6 +78,8 @@ public class BoardServiceImpl implements BoardService {
 	//	return dao.delete(boardNo) == 1;
 		return mapper.delete(boardCode) ==1;
 	}
+
+
 
 //	@Override
 //	public MemberVO loginCheck(String id, String pw) {

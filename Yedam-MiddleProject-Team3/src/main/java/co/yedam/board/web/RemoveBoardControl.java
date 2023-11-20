@@ -5,9 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import co.yedam.board.service.BoardService;
 import co.yedam.board.service.BoardVO;
 import co.yedam.board.serviceImpl.BoardServiceImpl;
@@ -17,17 +14,36 @@ public class RemoveBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
+
 		String bco = req.getParameter("bco");
 		BoardService svc = new BoardServiceImpl();
+		BoardVO vo = svc.getBoard(Integer.parseInt(bco)); 
 
 		if (svc.removeBoard(Integer.parseInt(bco))) {
-			try {
-				resp.sendRedirect("boardList.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			switch (vo.getBoardCategory()) {
+			case "자유게시판":
+				try {
+					resp.sendRedirect("freeBoard.do");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
 
+			case "QnA게시판":
+				try {
+					resp.sendRedirect("qnaBoard.do");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "공지사항":
+				try {
+					resp.sendRedirect("noticeBoard.do");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
 		} else {
 			try {
 				resp.sendRedirect("modifyForm.do");
@@ -37,7 +53,7 @@ public class RemoveBoardControl implements Command {
 		}
 	}
 }
-		
+
 //		
 //			// 제목 ,내용, 작성자.
 //			String title = req.getParameter("title");

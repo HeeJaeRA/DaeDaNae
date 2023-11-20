@@ -27,8 +27,8 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 		return mapper.memberId(id);
 	}
 	@Override
-	public MemberVO memberNick(@Param("nickName")String nickName) {
-		return mapper.memberNick( nickName);
+	public MemberVO memberNick(@Param("nickname")String nickname) {
+		return mapper.memberNick(nickname);
 	}
 	@Override
 	public List<MemberVO> memberList() {
@@ -40,5 +40,8 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	
 		return mapper.insert(vo)==1;
 	}
-
+	@Override
+	public boolean memberRemove(String id) {
+		return mapper.deleteMember(id);
+	}
 }

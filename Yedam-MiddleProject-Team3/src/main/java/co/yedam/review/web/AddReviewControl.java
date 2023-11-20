@@ -42,7 +42,7 @@ public class AddReviewControl implements Command {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		if (svc.addReview(vo)) {
+		if (svc.addReview(vo) && svc.updateMoney(userId)) {
 			try {
 				map.put("retCode", "OK");
 				map.put("vo", vo);

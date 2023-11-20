@@ -6,17 +6,23 @@
 		resultType="co.yedam.restaurant.service.RestaurantVO">
 		SELECT * FROM RESTAURANT ORDER BY LIKECNT, STARCNT DESC
 	</select>
+	
+	<select id="selectRandomList" resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM (SELECT * FROM (SELECT * FROM RESTAURANT WHERE STARCNT &gt;= 4) ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM &lt;= 8
+	</select>
 
 	<select id="selectCategory"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT,
-		STARCNT DESC
+		SELECT * FROM (SELECT * FROM RESTAURANT WHERE RS_CATEGORY = #{category} ORDER BY LIKECNT, STARCNT DESC) WHERE ROWNUM &lt;= 8
 	</select>
 
 	<select id="selectAddress"
 		resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT
-		DESC
+		SELECT * FROM (SELECT * FROM RESTAURANT WHERE RS_GU = #{address} ORDER BY LIKECNT, STARCNT DESC) WHERE ROWNUM &lt;= 8
+	</select>
+	
+	<select id="selectSearch" resultType="co.yedam.restaurant.service.RestaurantVO">
+		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_GU LIKE '%'||#{word}||'%'
 	</select>
 
 	<select id="getRestaurant"
@@ -24,20 +30,53 @@
 		SELECT * FROM RESTAURANT WHERE RS_CODE = #{rcode}
 	</select>
 	
+	<!-- 관리자 차트보기 -->
 	<select id="getResCountByLike">
-		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT ORDER BY LIKECNT DESC FETCH FIRST 10 ROWS ONLY
+		SELECT RS_NAME "RESTAURANT_NAME", LIKECNT FROM RESTAURANT <![CDATA[WHERE ROWNUM <= 10]]> ORDER BY LIKECNT DESC
+	</select>
+	<select id="getPopResList" resultType="map">
+		<!-- SELECT COUNT(BUYABLE), RES_DATE FROM RESERVATION GROUP BY RES_DATE -->
+		SELECT RS_CATEGORY "CATEGORY", SUM(LIKECNT) LIKECNT FROM RESTAURANT GROUP BY RS_CATEGORY
 	</select>
 
 	<!-- 예약등록 -->
  	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
- 	INSERT INTO RESERVATION (user_id, rs_code, res_date, res_time, buyAble )
- 	values(#{userId}, #{rsCode}, #{date}, #{time}, #{buyAble})
+ 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, buyAble )
+ 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{buyAble})
 	</insert> 
 	
 	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
 	<select id="reservationAll"
 		resultType="co.yedam.restaurant.service.ReservationVO">
 		SELECT * FROM RESERVATION where USER_ID = #{userId}
+	</select>
+	
+	<select id="reserMemberList"
+		resultType="co.yedam.restaurant.service.ReservationVO">
+		SELECT R.USER_ID, R.NICKNAME, R2.RS_CODE, R2.RS_NAME, R.RES_DATE, R.RES_TIME FROM RESERVATION R LEFT JOIN RESTAURANT R2 ON R.RS_CODE = R2.RS_CODE
+	</select>
+	
+	<!-- 가게 추가 -->
+	<insert id="addRestaurant" parameterType="co.yedam.restaurant.service.RestaurantVO"> 
+ 	INSERT INTO RESTAURANT (rs_code, rs_category,rs_name, rs_address ,rs_gu, rs_dong,phone,rs_desc,image1,image2,image3,likecnt,starcnt)
+ 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},#{image1},#{image2},#{image3},#{likecnt},#{starcnt})
+	</insert> 
+	
+	<!-- 가게 삭제 -->
+	<delete id="removeRestaurant" parameterType="int">
+		delete from restaurant where
+		rs_code=#{rsCode}
+	</delete>
+	
+
+	<!-- 북마크 -->
+	<insert id="markRestaurnat">
+		INSERT INTO BOOKMARK (USER_ID, RS_CODE) VALUES(#{uid}, #{rcode})
+	</insert>
+	
+	<select id="selectBookMarkList">
+		SELECT R.RS_CATEGORY, R.RS_NAME, R.RS_GU, PHONE, R.STARCNT
+		FROM BOOKMARK B LEFT JOIN RESTAURANT R ON B.RS_CODE=R.RS_CODE WHERE USER_ID = #{id}
 	</select>
 
 </mapper>

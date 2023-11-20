@@ -22,21 +22,27 @@ import co.yedam.board.web.NoticeBoardControl;
 import co.yedam.board.web.QnaBoardControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
+import co.yedam.board.web.UpdateLikecnt;
 import co.yedam.coupon.web.AddCouponControl;
 import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
 import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
 import co.yedam.reply.web.ReplyListControl;
 import co.yedam.restaurant.web.AddressListControl;
+import co.yedam.restaurant.web.AdminAddRestaurantControl;
+import co.yedam.restaurant.web.AdminRemoveRestaurantControl;
 import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
+import co.yedam.restaurant.web.MarkRestaurnatControl;
 import co.yedam.restaurant.web.ReservationControl;
 import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
 import co.yedam.restaurant.web.RestaurantListControl;
+import co.yedam.restaurant.web.SearchListControl;
 import co.yedam.review.web.AddReviewControl;
 import co.yedam.review.web.LikeReviewControl;
 import co.yedam.review.web.RemoveReviewControl;
@@ -55,6 +61,9 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeBoard.do", new NoticeBoardControl());
 		map.put("/qnaBoard.do", new QnaBoardControl());
 		map.put("/freeBoard.do", new FreeBoardControl());
+		map.put("/updateLikecnt.do", new UpdateLikecnt());
+		
+		
 		//소개,이벤트
 		map.put("/aboutBoard.do", new AboutBoardControl());		
 		map.put("/eventBoard.do", new EventBoardControl());
@@ -72,7 +81,6 @@ public class FrontController extends HttpServlet {
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/replyList.do", new ReplyListControl());
 		
-
 		//로그인, 로그아웃, 회원가입
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());
@@ -93,28 +101,41 @@ public class FrontController extends HttpServlet {
 		map.put("/addReview.do", new AddReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 		map.put("/likeReview.do", new LikeReviewControl());
-		//map.put("/updateReview.do", new UpdateReviewControl());
+//		map.put("/updateMoney.do", new UpdateMoneyControl());
 		
 		map.put("/restaurantList.do", new RestaurantListControl());
-//		map.put("/addressList.do", new AddressListControl());
-//		map.put("/categoryList.do", new CategoryListControl());
+		map.put("/addressList.do", new AddressListControl());
+		map.put("/categoryList.do", new CategoryListControl());
+		map.put("/searchList.do", new SearchListControl());
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
 
+		//마이페이지
+		map.put("/myPage.do", new MyPageControl());
+		map.put("/myPage.do", new MyBookMarkControl());
+//		map.put("/myBookingList.do", new MyBookingListControl());
+		
 		//관리자 페이지
 		map.put("/adMain.do", new AdminMainControl()); //메인
+		
 		map.put("/adMemberList.do", new AdminmemberListControl()); //멤버리스트
+		map.put("/adRemoveMember.do", new RemoveMemberControl()); //멤버삭제
+		
 		map.put("/adRestaurantList.do", new AdminRestaurantListControl()); //가게리스트
+
+		map.put("/adAddRestaurant.do", new AdminAddRestaurantControl()); //가게추가
+		map.put("/adRemoveRestaurant.do", new AdminRemoveRestaurantControl()); //가게삭제
+		
 		map.put("/chartForm.do", new ChartFormControl()); //차트
-		map.put("/drawChart.do", new DrawChartControl()); //차트
+		map.put("/drawChart.do", new DrawChartControl()); //차트1
+		map.put("/drawChart2.do", new DrawChartControl2()); //차트2
 		
 		map.put("/adCouponList.do", new AdminCouponControl()); //쿠폰 삭제용리스트
-		
 		map.put("/adCouponListA.do", new AdminCouponControl2()); //쿠폰 발급용리스트
 		
 		map.put("/adCouponAdd.do", new AddCouponControl()); //쿠폰발급
 		map.put("/adRemoveCoupon.do", new RemoveCouponControl()); //쿠폰삭제
 		
-		
+		map.put("/bookMark.do", new MarkRestaurnatControl());
 	}
 
 	@Override

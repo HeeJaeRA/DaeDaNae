@@ -27,10 +27,9 @@
 						<th>연락처</th>
 						<th>소개</th>
 						<th>이미지1</th>
-						<th>이미지2</th>
-						<th>이미지3</th>
 						<th>좋아요</th>
 						<th>평점</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tfoot>
@@ -44,10 +43,9 @@
 						<th>연락처</th>
 						<th>소개</th>
 						<th>이미지1</th>
-						<th>이미지2</th>
-						<th>이미지3</th>
 						<th>좋아요</th>
 						<th>평점</th>
+						<th>삭제</th>
 					</tr>
 				</tfoot>
 				<tbody>
@@ -62,13 +60,13 @@
 						<td>${vo.phone }</td>
 						<td>${vo.rsDesc }</td>
 						<td>${vo.image1 }</td>
-						<td>${vo.image2 }</td>
-						<td>${vo.image3 }</td>
 						<td>${vo.likecnt }</td>
 						<td>${vo.starcnt }</td>
+					    <td><button class="" >삭제</button></td>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<button>가게 추가</button>
 		</div>
 	</div>

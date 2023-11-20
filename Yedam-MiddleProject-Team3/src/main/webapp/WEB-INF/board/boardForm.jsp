@@ -19,7 +19,7 @@
 			<td>
 			<select name="boardCategory" id="category" onchange="chageLangSelect()">		
 			<option value="QnA게시판">QnA게시판</option>
-			<option value="자유게시판">맛집 추천 게시판</option>
+			<option value="자유게시판" selected>맛집 추천 게시판</option>
 			<option value="공지사항">공지사항</option>
 			</select>
 			</td>
@@ -48,15 +48,15 @@
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images" class="form-control">
+			<td><input type="file" name="image1" class="form-control">
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images2" class="form-control">
+			<td><input type="file" name="image2" class="form-control">
 		</tr>
 		<tr>
 			<th>파일 첨부</th>
-			<td><input type="file" name="images3" class="form-control">
+			<td><input type="file" name="image3" class="form-control">
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" class="btn btn-primary"

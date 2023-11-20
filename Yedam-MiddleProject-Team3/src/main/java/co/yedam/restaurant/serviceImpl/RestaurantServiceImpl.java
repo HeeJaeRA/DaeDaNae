@@ -1,9 +1,12 @@
 package co.yedam.restaurant.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
+import com.google.gson.internal.bind.DefaultDateTypeAdapter.DateType;
 
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.restaurant.mapper.RestaurantMapper;
@@ -21,6 +24,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<RestaurantVO> selectAllList() {
 		return mapper.selectAllList();
 	}
+	
+	@Override
+	public List<RestaurantVO> selectRandomList() {
+		return mapper.selectRandomList();
+	}
 
 	@Override
 	public List<RestaurantVO> selectCategory(String rsCate) {
@@ -33,14 +41,23 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 	
 	@Override
+	public List<RestaurantVO> selectSearchList(String rsName) {
+		return mapper.selectSearch(rsName);
+	}
+	
+	@Override
 	public RestaurantVO getRestaurant(String rcode) {
 		return mapper.getRestaurant(rcode);
 	}
-
+	//관리자 차트
 	@Override
 	public List<Map<String, Object>> getResCountByLike() {
 		return mapper.getResCountByLike();
 	}
+	@Override
+	public List<Map<String, Object>> getPopResList() {
+		return mapper.getPopResList();
+	}	
 	//예약현황 등록
 	@Override
 	public boolean addReser(ReservationVO vo) {
@@ -49,7 +66,36 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 	@Override
 	public List<ReservationVO> reservationList(String id) {
-		return mapper.reservationAll(id);
+		return mapper.reservationAll();
+	}
+
+	@Override
+	public List<ReservationVO> reserMemberList() {
+		return mapper.reserMemberList();
+	}
+
+	//음식점추가
+	@Override
+	public boolean addRestaurant(RestaurantVO vo) {
+		return mapper.addRestaurant(vo) == 1;
+	}
+
+	@Override
+	public boolean removeRestaurant(int rsCode) {
+		
+		return mapper.removeRestaurant(rsCode) ==1;
+	}
+
+
+
+	@Override
+	public boolean markRestaurnat(String uid, String rcode) {
+		return (mapper.markRestaurnat(uid, rcode) == 1);
+	}
+
+	@Override
+	public List<RestaurantVO> selectBookMarkList(String id) {
+		return mapper.selectBookMarkList(id);
 	}
 
 }
