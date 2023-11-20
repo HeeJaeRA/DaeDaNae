@@ -105,7 +105,7 @@
 
 							<div class="col-md-12">
 							
-							<label>성별<input class="form-control" type="radio" name="gender" value="남성" >
+							<label>성별<input class="form-control" type="radio" name="gender" value="남성" checked>
 							<input class="form-control" type="radio" name="gender" value="여성" ></label>
 							
 								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
@@ -213,7 +213,7 @@
 		let id = document.getElementById("id");
 		//아이디 중복버튼
 		let cnt = 0;
-		let cntn = 0;
+		
 		function checkId(){
 			cnt += 1;
 			fetch('repeatedId.do',{
@@ -239,7 +239,33 @@
 					
 				}
 			})
-		}//chechId
+		}//checkId
+		
+		//닉네임 중복버튼
+		let cntn = 0;
+		document.querySelector('#join-nick').addEventListener('click', function (e) {
+			cntn += 1;
+			fetch('repeatedNick.do',{
+				method:'post',
+				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+				body:'nickname='+nickname.value
+			})
+			.then(resolve=>resolve.json())
+			.then(result=>{
+				console.log(result);
+				if(result.retCode == "Exists"){
+					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
+					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
+					document.querySelector('#nickname').value = '';
+					return false;
+				}else {
+					document.getElementsByClassName('valid-feedback')[4].style.display='block';
+					//document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
+					document.querySelector('#phone').focus();
+				}
+			})	
+			
+		})//닉네임 중복확인
 		
 		function resetfb(){
 			document.getElementsByClassName('invalid-feedback')[0].style.display='none';
@@ -271,32 +297,7 @@
 			}
 		}
 		
-		//닉네임 중복버튼
-		document.querySelector('#join-nick').addEventListener('click', function (e) {
-			cntn += 1;
-			fetch('repeatedNick.do',{
-				method:'post',
-				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-				body:'nickName='+nickname.value
-			})
-			.then(resolve=>resolve.json())
-			.then(result=>{
-				console.log(result)
-				if(result.retCode == "Exists"){
-					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
-					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#nickname').value = '';
-					
-					return false;
-				}else {
-					
-					document.getElementsByClassName('valid-feedback')[4].style.display='block';
-					//document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#phone').focus();
-				}
-			})	
-			
-		})//닉네임 중복확인
+		
 		
 		
 		
@@ -307,7 +308,7 @@
 			let rePw = document.querySelector('#rePw').value;
 			let birth = document.getElementById("birthDay");
 			let phone = document.getElementById("phone");
-			let address = document.getElementById("sample4_postcode");
+			let address = document.getElementById("sample4_jibunAddress");
 			// 아이디,이름 등 input값이 널이면 가입안됨
 			if (id.value == "") {
 			alert("아이디는 필수입니다.")
@@ -335,25 +336,29 @@
 				}
 			//아이디,닉네임 중복확인 안하면 가입 안됨
 			if (cnt == 0 || cntn == 0) {
-				alter("중복확인 하세요");
+				alert("중복확인 하세요");
 				return false;
 			}
 			 if (birth.value.length != 10) {
-				alert("생년월일 YYYY-MM-dd형식으로 입력해주세요.")
+				alert("생년월일 YYYY-MM-dd형식으로 입력해주세요.");
 				birth.focus();
 				return false ;
 			}
 			
-			 if (phone.value.length !=13 || !regPhone.test(phone.value)) {
-				alert("올바른 형식으로 입력해주세요.")
+			 if (phone.value.length !=13 ) {
+				alert("올바른 형식으로 입력해주세요.");
+				phone.focus();
+				return false;
+			}else if(!regPhone.test(phone)) {
+				alert("전화번호 형식으로 입력하세요")
 				phone.focus();
 				return false;
 			}
-			if (address.value == "") {
-				alert("주소를 입력해주세요.")
-				address.focus();
-				return false;
-			}
+// 			if (address.value == "") {
+// 				alert("주소를 입력해주세요.");
+// 				return false;
+// 			}
+		
 		
 			fetch('join.do', {
 				method:'post',
