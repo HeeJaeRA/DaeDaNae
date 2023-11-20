@@ -41,7 +41,7 @@ public class ReservationControl implements Command {
 		System.out.println("buyAble"+buyAble);
 		ReservationVO rvo = new ReservationVO();
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+		//SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
 //		try {
 //			rvo.setResDate(formatter.parse(date));
 //		} catch (Exception e) {
