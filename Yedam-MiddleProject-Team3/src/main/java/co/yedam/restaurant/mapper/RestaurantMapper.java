@@ -34,5 +34,10 @@ public interface RestaurantMapper {
 	public List<ReservationVO> reservationAll();
 
 	public List<ReservationVO> reserMemberList();
+	
+	//가게 추가 및 삭제
+	
+	public int addRestaurant(RestaurantVO vo);
 
+	public int removeRestaurant(int rsCode);
 }

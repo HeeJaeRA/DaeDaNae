@@ -15,7 +15,7 @@ public class BoardVO {
 	private Date updateDate;
 	private String boardContent;
 	private int boardView;
-	private int likeCnt;
+	private int likecnt;
 	private String image1;
 	private String image2;
 	private String image3;

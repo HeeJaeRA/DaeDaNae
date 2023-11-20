@@ -73,7 +73,18 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<ReservationVO> reserMemberList() {
 		return mapper.reserMemberList();
 	}
+	
+	//음식점추가
+	@Override
+	public boolean addRestaurant(RestaurantVO vo) {
+		return mapper.addRestaurant(vo) == 1;
+	}
 
+	@Override
+	public boolean removeRestaurant(int rsCode) {
+		
+		return mapper.removeRestaurant(rsCode) ==1;
+	}
 
 
 	

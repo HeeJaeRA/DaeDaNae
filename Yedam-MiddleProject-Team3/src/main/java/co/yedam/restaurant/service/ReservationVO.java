@@ -13,5 +13,5 @@ public class ReservationVO {
 	private String resTime;//얘도
 	private int buyAble;
 	
-	
+	private String rsName;
 }

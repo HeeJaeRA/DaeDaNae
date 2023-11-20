@@ -10,10 +10,12 @@ public interface BoardService {
 	public List<BoardVO> selectNoticeList();
 	public List<BoardVO> selectFreeList();
 	
-	public BoardVO getBoard(int boardNo);
+	public BoardVO getBoard(int boardCode);
 	public boolean addBoard(BoardVO vo);
 	public boolean editBoard(BoardVO vo);
-	public boolean removeBoard(int boardNo);
+	public boolean removeBoard(int boardCode);
+	public boolean likecnt(int boardCode);
+	
 	
 	//로그인처리
 //	public MemberVO loginCheck(String id, String pw);
