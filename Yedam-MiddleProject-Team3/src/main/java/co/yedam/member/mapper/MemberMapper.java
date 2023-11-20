@@ -21,4 +21,6 @@ public interface MemberMapper {
 	// 관리자 멤버 삭제
 	public boolean deleteMember(String id);
 
+	// 팔로워, 팔로잉 불러오기
+
 }

@@ -20,7 +20,7 @@
 			</c:when>
 			<c:otherwise>
 				<button class="btn btn-light" onclick="location.href='logout.do'">로그아웃</button>
-				<button class="btn btn-light" onclick="location.href='#'">마이페이지</button>
+				<button class="btn btn-light" onclick="location.href='myPage.do'">마이페이지</button>
 		</c:otherwise>
 		</c:choose>
 		</div>

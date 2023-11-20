@@ -17,5 +17,5 @@ public interface MemberService {
 	// 관리자 멤버 삭제
 	public boolean memberRemove(String id);
 
-
+	// 팔로워, 팔로잉 불러오기
 }

@@ -31,5 +31,4 @@
 	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
 	 #{nickname}, #{birthDay}, #{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
-
 </mapper>
