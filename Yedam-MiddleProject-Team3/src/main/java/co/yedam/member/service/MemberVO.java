@@ -19,4 +19,7 @@ public class MemberVO {
 	public String couponCode;
 	public String couponType;
 	
+	public String follower;
+	public String follwing;
+	
 }

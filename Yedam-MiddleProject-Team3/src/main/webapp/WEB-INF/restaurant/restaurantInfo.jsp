@@ -195,7 +195,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" id="addreview" onclick="addReview(); this.onclick=null;" value="리뷰작성">
+					<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
 				</div>
 			</form>
 		</div>
@@ -299,7 +299,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						alert('등록 성공');
+						alert('포인트 지급 완료');
 						clearReview();
 						showReviewList();
 					} else {
@@ -311,6 +311,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.catch(err => console.log('error:' + err));
 		});
 	}
+
 	// 리뷰 등록창 초기화
 	function clearReview() {
 		document.querySelector('.review_textarea').value = '';
@@ -360,9 +361,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						console.log(this);
-						alert('좋아요');
-						e.target.disabled = true;
+						// alert('좋아요');
 						showReviewList();
 					} else {
 						alert('좋아요 실패');

@@ -17,5 +17,4 @@ public interface MemberService {
 	// 관리자 멤버 삭제
 	public boolean memberRemove(String id);
 
-
 }

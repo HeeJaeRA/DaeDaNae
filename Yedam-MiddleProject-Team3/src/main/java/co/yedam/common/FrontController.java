@@ -95,7 +95,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addReview.do", new AddReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 		map.put("/likeReview.do", new LikeReviewControl());
-		//map.put("/updateReview.do", new UpdateReviewControl());
+//		map.put("/updateMoney.do", new UpdateMoneyControl());
 		
 		map.put("/restaurantList.do", new RestaurantListControl());
 		map.put("/addressList.do", new AddressListControl());
@@ -103,6 +103,9 @@ public class FrontController extends HttpServlet {
 		map.put("/searchList.do", new SearchListControl());
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
 
+		//마이페이지
+		map.put("/myPage.do", new MyPageControl());
+		
 		//관리자 페이지
 		map.put("/adMain.do", new AdminMainControl()); //메인
 		
