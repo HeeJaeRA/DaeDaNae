@@ -37,5 +37,7 @@ public interface RestaurantMapper {
 	
 	//북마크
 	public int markRestaurnat(@Param("uid") String uid, @Param("rcode") String rcode);
+	
+	public List<RestaurantVO> selectBookMarkList(String id);
 
 }

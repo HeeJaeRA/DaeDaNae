@@ -14,5 +14,5 @@ public class ReservationVO {
 	private int buyAble;
 	
 	private String rsName;
-	
+
 }

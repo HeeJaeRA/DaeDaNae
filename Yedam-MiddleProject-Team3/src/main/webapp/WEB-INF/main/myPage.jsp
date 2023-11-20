@@ -6,14 +6,14 @@
 <html lang="en">
 <head>
 <style>
-
 section .intro {
 	display: flex;
 	justify-content: center;
 	text-align: center;
 }
+
 .sec1 {
-	width : 500px;
+	width: 500px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
@@ -85,15 +85,19 @@ section .intro {
 					</div>
 
 				</div>
-				
+
 				<div class="col-xl-4">
 					<div class="card">
-						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-							<img src="resources/images/memimg/${image }" alt="Profile" class="rounded-circle" width="150px">
+						<div
+							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+							<img src="resources/images/memimg/${image }" alt="Profile"
+								class="rounded-circle" width="150px">
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>
 							<div class="follow">
-								<p>팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span></p>
+								<p>
+									팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span>
+								</p>
 							</div>
 							<div class="my">
 								<button class="btn btn-danger">회원수정</button>
@@ -107,17 +111,16 @@ section .intro {
 		</section>
 
 
-		
+
 		<div class="container px-4 px-lg-5 mt-5">
 
-			<input type="button" value="나의저장" onclick="" class="btn btn-primary">
-			<input type="button" value="예약현황" onclick="" class="btn btn-primary">
+			<input type="button" value="나의저장" onclick="" class="btn btn-primary"
+				id="bookmar"> <input type="button" value="예약현황" onclick=""
+				class="btn btn-primary" id="booking">
 
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="rslist">
-				
-				
-				
-				<table>
+
+
+				<table class="myZzim">
 					<thead>
 						<tr>
 							<th>카테고리</th>
@@ -128,22 +131,26 @@ section .intro {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>ㅇ</td>
-							<td>ㅇ</td>
-							<td>ㅇ</td>
-							<td>ㅇ</td>
-							<td>ㅇ</td>
-						</tr>
+						<c:forEach items="${bookList }" var="vo">
+							<tr>
+								<td>${vo.rsCategory }</td>
+								<td>${vo.rsName }</td>
+								<td>${vo.rsGu }</td>
+								<td>${vo.phone }</td>
+								<td>${vo.starcnt }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-			</div>
 		</div>
+
 
 	</main>
 	<!-- End #main -->
 
-
+	<script>
+	${logId}
+	</script>
 
 	<!-- Vendor JS Files -->
 	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>

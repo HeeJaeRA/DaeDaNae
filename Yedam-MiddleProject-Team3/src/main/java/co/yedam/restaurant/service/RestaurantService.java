@@ -31,4 +31,5 @@ public interface RestaurantService {
 	// 북마크
 	public boolean markRestaurnat(String uid, String rcode);
 	
+	public List<RestaurantVO> selectBookMarkList(String id);
 }
