@@ -5,7 +5,9 @@
 ${logId }, ${nickname }, ${vo }
 <div>
 	<form method="post" action="reservation.do">
-
+ 		<input type="hidden" name="id" value="${logId}">
+ 		<input type="hidden" name="rcode" value="${vo.rsCode}">
+ 		<input type="hidden" name="nickname" value="${nickname }">
 		<input type="date" id="date" name="date" value="" onclick="timetable()">
 		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
@@ -16,11 +18,12 @@ ${logId }, ${nickname }, ${vo }
 					<br>
 				</c:if>
 			</c:forEach>
+			<input type="hidden" name="time1" value="time1">
 
 		</div>
-		<input type="hidden" name="buyAble" value="0">
+		<input type="hidden" id="buyAble" name="buyAble" value="0">
 		<!--<button type="button" onClick='open()'>결제하기</button>-  -->
-		<button type="submit" id="reservation">예약완료</button>
+		<input type="button" id="reservation" value="예약완료">
 	</form>
 </div>
 
@@ -56,9 +59,9 @@ ${logId }, ${nickname }, ${vo }
 // 	  })
 // 	}
 
-   let id='${logId}';
-   let nickname='${nickname}'
-   let rcode='${vo.rsCode}';
+  // let id='${logId}';
+  // let nickname='${nickname}'
+  // let rcode='${vo.rsCode}';
    let times = null;
    let time1 = null;
 
@@ -68,7 +71,9 @@ ${logId }, ${nickname }, ${vo }
     	timeList.forEach(function(e){
   //        e.classList.remove('active');
         	item.style.backgroundColor ="orange";
-        	 e.style.backgroundColor="white";
+        	e.style.backgroundColor="white";
+        	
+        	item.setAttribute('id','selected');
    		 });
     	//item.classList.add('active');
     	console.log(e.target.value);
@@ -77,19 +82,31 @@ ${logId }, ${nickname }, ${vo }
     	times=null;
   	});
 });
-		
+
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click', function (e) {
-		console.log(time1);
+		let id = '${logId}';
+		let rcode = '${vo.rsCode}';
+		let nickname = '${nickname}';
+		let date = document.querySelector('#date').value;
+		let realtime = document.querySelector('#selected').value;
+		let buyA = document.querySelector('#buyAble').value;
+
 		fetch('reservation.do',{
 			method:'post',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-		    body:'id='+id+'&rcode='+rcode+'&nickname' +nickname +'&date='+date+'&time='+time1+'&buyAble='+buyAble
+		    body:'id=' + id + '&rcode=' + rcode + '&nickname=' + nickname + '&date=' + date + '&time=' + realtime + '&buyAble=' + buyA
 		    })
 			.then(resolve => resolve.json())
 			.then(result => {
 				console.log("result:" + result);
 				//submit();
+				if(result.retCode== "Success"){
+					window.location.href = 'restaurantInfo.do?rcode=' + rcode;
+				}else{
+					window.location.href = 'reservationForm.do' + '?rcode=' + rcode;
+				}
 			})
+			.catch(err => "err:" + err);
 	})
 </script>
