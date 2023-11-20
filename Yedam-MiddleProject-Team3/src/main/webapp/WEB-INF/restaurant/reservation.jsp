@@ -19,9 +19,15 @@ ${logId }, ${nickname }, ${vo }
 				</c:if>
 			</c:forEach>
 			<input type="hidden" name="time1" value="time1">
-
 		</div>
-		<input type="hidden" id="buyAble" name="buyAble" value="0">
+		<!-- <input type="hidden" id="buyAble" name="buyAble" value="0"> -->
+		<select name="buyAble" id="buyAble">
+			<option value="">좌석수</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
 		<input type="button" id="reservation" value="예약하기">
 	</form>
 </div>
@@ -35,6 +41,7 @@ ${logId }, ${nickname }, ${vo }
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
 	let rsname = '${vo.rsName}';
+	let rcode = '${vo.rsCode}';
 
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
@@ -77,7 +84,7 @@ ${logId }, ${nickname }, ${vo }
 	timeList.forEach(function (item) {
 		item.addEventListener('click', function (e) {
 			timeList.forEach(function (e) {
-				//        e.classList.remove('active');
+				//e.classList.remove('active');
 				item.style.backgroundColor = "orange";
 				e.style.backgroundColor = "white";
 
@@ -110,36 +117,34 @@ ${logId }, ${nickname }, ${vo }
 			})
 			.then(resolve => resolve.json())
 			.then(result => {
-				console.log("result:" + result);
-				//submit();
 				if (result.retCode == "Success") {
 					kakaoPay();
 				} else {
-					window.location.href = 'reservationForm.do' + '?rcode=' + rcode;
+					alert('예약실패');
+					window.location.href = 'reservationForm.do?rcode=' + rcode;
 				}
 			})
 			.catch(err => "err:" + err);
 	})
 
 	function kakaoPay(useremail, username) {
-
 		IMP.init("imp43228827"); // 가맹점 식별코드
 		var today = new Date();
 		var hours = today.getHours();
 		var minutes = today.getMinutes();
 		var seconds = today.getSeconds();
 		var makeMerchantUid = hours + minutes + seconds;
-
+		let buyA = document.querySelector('#buyAble').value;
 		IMP.request_pay({
 			pg: 'kakaopay.TC0ONETIME',
 			pay_method: 'card',
 			merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
 			name: rsname, // 제품명
-			amount: 5000, // 가격
-			m_redirect_url: 'reservationForm.do?rcode=' + rcode
+			amount: 5000 * buyA // 가격
 		}, async function (rsp) { // callback
 			if (rsp.success) { //결제 성공시
-				alert('결제 완료!');
+				alert('예약 완료!');
+				window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 			} else if (rsp.success == false) { // 결제 실패시
 				alert(rsp.error_msg);
 			}
