@@ -13,6 +13,8 @@ public interface MemberService {
 
 	// 회원가입 시 등록
 	public boolean addMember(MemberVO vo);
+	//회원 정보 수정
+	public boolean modifyMember(MemberVO vo);
 	
 	// 관리자 멤버 삭제
 	public boolean memberRemove(String id);

@@ -40,6 +40,10 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	
 		return mapper.insert(vo)==1;
 	}
+	//회원 정보 수정
+	public boolean modifyMember(MemberVO vo) {
+		return mapper.memUpdate(vo) ==1;
+	}
 	@Override
 	public boolean memberRemove(String id) {
 		return mapper.deleteMember(id);

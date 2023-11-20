@@ -100,8 +100,8 @@ section .intro {
 								</p>
 							</div>
 							<div class="my">
-								<button class="btn btn-danger">회원수정</button>
-								<button class="btn btn-danger">회원탈퇴</button>
+								<button class="btn btn-danger" onclick = "location.href = 'modifyMemF.do'">회원수정</button>
+								<button class="btn btn-danger" id="deleteMem">회원탈퇴</button>
 							</div>
 						</div>
 					</div>

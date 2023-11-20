@@ -31,5 +31,11 @@
 	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
 	 #{nickname}, TO_DATE(#{birthDay},'YYYY-MM-DD'),#{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
-
+	
+	<!-- 회원 수정 -->
+	<update id= "memUpdate"  parameterType="co.yedam.member.service.MemberVO">
+	UPDATE USERTABLE SET (USER_PW= #{userPw}, USER_NAME= #{userName},BIRTHDAY=TO_DATE(#{birthDay},'YYYY-MM-DD'),
+	 PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},null),GENDER= #{gender}) where user_id=#{user_id}
+	</update>
+	
 </mapper>

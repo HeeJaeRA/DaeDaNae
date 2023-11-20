@@ -20,5 +20,8 @@ public interface MemberMapper {
 	
 	// 관리자 멤버 삭제
 	public boolean deleteMember(String id);
+	
+	//회원 수정
+	public int memUpdate(MemberVO vo);
 
 }

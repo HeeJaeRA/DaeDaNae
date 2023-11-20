@@ -28,6 +28,7 @@ import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
 import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.member.web.ModifyMemControl;
 import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
@@ -91,6 +92,9 @@ public class FrontController extends HttpServlet {
 		//회원가입시 중복확인
 		map.put("/repeatedId.do", new RepeatedIdControl());
 		map.put("/repeatedNick.do", new RepeatedNickControl());
+		//회원정보 수정
+		map.put("/modifyMemF.do", new ModifyMemControl());
+		map.put("/modifyMem.do", new ModifyControl());
 		//예약하기
 		map.put("/reservationForm.do", new ReservationFormControl());
 		//map.put("/pay.do", new PayFormControl());
