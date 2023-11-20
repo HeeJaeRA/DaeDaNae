@@ -30,7 +30,7 @@ public class JoinControl implements Command {
 			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
-			String nickname = mr.getParameter("nickName");
+			String nickname = mr.getParameter("nickname");
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");

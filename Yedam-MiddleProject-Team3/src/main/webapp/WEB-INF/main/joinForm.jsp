@@ -49,7 +49,7 @@
 							</div>
 
 							<div class="col-md-12">
-								닉네임<input class="form-control" type="text" name="nickName" id="nickName" 
+								닉네임<input class="form-control" type="text" name="nickname" id="nickname" 
 									placeholder="닉네임을 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-nick">닉네임 중복확인</button>
@@ -273,7 +273,7 @@
 			fetch('repeatedNick.do',{
 				method:'post',
 				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-				body:'nickName='+nickName.value
+				body:'nickName='+nickname.value
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
@@ -281,7 +281,7 @@
 				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#nickName').value = '';
+					document.querySelector('#nickname').value = '';
 					
 					return false;
 				}else {
