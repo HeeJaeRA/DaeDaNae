@@ -34,6 +34,7 @@ import co.yedam.reply.web.ReplyListControl;
 import co.yedam.restaurant.web.AddressListControl;
 import co.yedam.restaurant.web.AdminRestaurantListControl;
 import co.yedam.restaurant.web.CategoryListControl;
+import co.yedam.restaurant.web.MarkRestaurnatControl;
 import co.yedam.restaurant.web.ReservationControl;
 import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
@@ -123,7 +124,7 @@ public class FrontController extends HttpServlet {
 		map.put("/adCouponAdd.do", new AddCouponControl()); //쿠폰발급
 		map.put("/adRemoveCoupon.do", new RemoveCouponControl()); //쿠폰삭제
 		
-		
+		map.put("/bookMark.do", new MarkRestaurnatControl());
 	}
 
 	@Override

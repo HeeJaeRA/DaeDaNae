@@ -24,7 +24,7 @@
 
 							<div class="col-md-12">
 								비밀번호<input class="form-control" type="password" name="pw" id="pw" 
-									placeholder="비밀번호를 입력하세요" required onchange="checkPw()"
+									placeholder="비밀번호를 입력하세요" required 
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">사용가능한 비밀번호 입니다</div>
@@ -32,7 +32,7 @@
 							</div>
 							<div class="col-md-12">
 								비밀번호 재확인<input class="form-control" type="password" name="rePw" id="rePw"
-									placeholder="비밀번호를 재입력하세요" required onchange="checkPw()"
+									placeholder="비밀번호를 재입력하세요" required onKeyup="checkPw()"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">비밀번호가 일치합니다</div>
@@ -49,7 +49,7 @@
 							</div>
 
 							<div class="col-md-12">
-								닉네임<input class="form-control" type="text" name="nickName" id="nickName" 
+								닉네임<input class="form-control" type="text" name="nickname" id="nickname" 
 									placeholder="닉네임을 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
 								<button type="button" id="join-nick">닉네임 중복확인</button>
@@ -59,7 +59,7 @@
 							
 							
  							<div class="col-md-12">
-								생년월일<input class="form-control" type="text" name="birth" id="birth" 
+								생년월일<input class="form-control" type="text" name="birthDay" id="birthDay" 
 									placeholder="생년월일 입력하세요(YYYY-MM-dd)" required maxlength="10"
 									style="width: 540px; background-color: 808080;">
 
@@ -249,19 +249,23 @@
 		}
 		
 		//비밀번호 재확인(비밀번호)
-		let pw = document.querySelector('#pw').cloneNode(true);
-		let rePw = document.querySelector('#rePw').cloneNode(true);
+		
 		function checkPw(){
-			if (pw.value!=rePw.value&&rePw.value!=null) {
+			let pw = document.querySelector('#pw').value;
+			let rePw = document.querySelector('#rePw').value;
+			if (pw != rePw && rePw!='') {
 				console.log(pw);
 				console.log(rePw);
 				document.getElementsByClassName('invalid-feedback')[2].style.display='block';
+				
 				//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
-			} else if(pw.value==rePw.value && rePw.value!=null){
+			} else if(pw == rePw && rePw!=''){
+				document.getElementsByClassName('invalid-feedback')[2].style.display='none';
 				document.getElementsByClassName('valid-feedback')[2].style.display='block';
 				document.querySelector('#name').focus();
+				
 				//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
-			}else{
+			}else {
 				document.getElementsByClassName('valid-feedback')[2].style.display='none';
 				document.getElementsByClassName('invalid-feedback')[2].style.display='none';
 			}
@@ -273,7 +277,7 @@
 			fetch('repeatedNick.do',{
 				method:'post',
 				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-				body:'nickName='+nickName.value
+				body:'nickName='+nickname.value
 			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
@@ -281,7 +285,7 @@
 				if(result.retCode == "Exists"){
 					document.getElementsByClassName('invalid-feedback')[4].style.display='block';
 					//document.querySelector('.invalid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#nickName').value = '';
+					document.querySelector('#nickname').value = '';
 					
 					return false;
 				}else {
@@ -296,18 +300,21 @@
 		
 		
 		
-		let birth = document.getElementById("birth");
-		let phone = document.getElementById("phone");
-		let address = document.getElementById("sample4_jibunAddress");
+		
 		
 		function check(){
+			let pw = document.querySelector('#pw').value;
+			let rePw = document.querySelector('#rePw').value;
+			let birth = document.getElementById("birthDay");
+			let phone = document.getElementById("phone");
+			let address = document.getElementById("sample4_postcode");
 			// 아이디,이름 등 input값이 널이면 가입안됨
-			if (dd.value == "") {
+			if (id.value == "") {
 			alert("아이디는 필수입니다.")
 			id.focus();
 			return false;
 			}
-			if (pw.value == "") {
+			if (pw == "") {
 				alert("비밀번호를 입력해주세요.")
 				userPassword.focus();
 				return false;
@@ -319,10 +326,11 @@
 				}
 		
 //			비밀번호 재확인 다르면 가입이 안됨
-			if (pw.value != rePw.value) {
-				document.querySelector('#pw').value = " ";
-				document.querySelector('#rePw').value = " ";
+			if (pw!= rePw) {
+				document.querySelector('#pw').value = "";
+				document.querySelector('#rePw').value = "";
 				userRePassword.focus();
+				alert("비밀번호를 확인해주세요.")
 				return false;
 				}
 			//아이디,닉네임 중복확인 안하면 가입 안됨
@@ -331,19 +339,19 @@
 				return false;
 			}
 			 if (birth.value.length != 10) {
-				alert("생년월일 YYYY/MM/dd형식으로 입력해주세요.")
+				alert("생년월일 YYYY-MM-dd형식으로 입력해주세요.")
 				birth.focus();
 				return false ;
 			}
 			
 			 if (phone.value.length !=13 || !regPhone.test(phone.value)) {
 				alert("올바른 형식으로 입력해주세요.")
-				userPhone.focus();
+				phone.focus();
 				return false;
 			}
 			if (address.value == "") {
 				alert("주소를 입력해주세요.")
-				userAddress1.focus();
+				address.focus();
 				return false;
 			}
 		

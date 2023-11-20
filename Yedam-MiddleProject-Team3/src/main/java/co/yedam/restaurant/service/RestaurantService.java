@@ -28,4 +28,7 @@ public interface RestaurantService {
 	//레스토랑 예약목록(회원별)_관리자페이지에서
 	public List<ReservationVO> reserMemberList();
 	
+	// 북마크
+	public boolean markRestaurnat(String uid, String rcode);
+	
 }

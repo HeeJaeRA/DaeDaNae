@@ -30,14 +30,14 @@ public class JoinControl implements Command {
 			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
-			String nickname = mr.getParameter("nickName");
+			String nickname = mr.getParameter("nickname");
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
-			
+			//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+			System.out.println(birthDay);
 			System.out.println("pw: "+pw);
 			      
 			vo.setUserId(id);
@@ -46,7 +46,7 @@ public class JoinControl implements Command {
 
 			vo.setNickname(nickname);
 			
-			vo.setBirthDay(formatter.parse(birthDay));
+			vo.setBirthDay(birthDay);
 			
 			vo.setPhone(phone);
 			vo.setAddress(address);

@@ -41,8 +41,8 @@
 
 	<!-- 예약등록 -->
  	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
- 	INSERT INTO RESERVATION (user_id, rs_code,nickname, res_date ,res_time, buyAble )
- 	values(#{userId}, #{rsCode}, #{nickname}, #{resDate}, #{resTime}, #{buyAble})
+ 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, buyAble )
+ 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{buyAble})
 	</insert> 
 	
 	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
@@ -56,5 +56,9 @@
 		SELECT R.USER_ID, R.NICKNAME, R2.RS_CODE, R2.RS_NAME, R.RES_DATE, R.RES_TIME FROM RESERVATION R LEFT JOIN RESTAURANT R2 ON R.RS_CODE = R2.RS_CODE
 	</select>
 	
+	<!-- 북마크 -->
+	<insert id="markRestaurnat">
+		INSERT INTO BOOKMARK (USER_ID, RS_CODE) VALUES(#{uid}, #{rcode})
+	</insert>
 
 </mapper>

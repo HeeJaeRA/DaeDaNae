@@ -27,8 +27,14 @@
 	
 	<!--회원가입시 등록  -->
 	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
-	 INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY,PHONE,
+	 INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY, PHONE,
 	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
+<<<<<<< HEAD
 	 #{nickname}, #{birthDay}, #{phone}, #{address}, NVL(#{image},null), #{gender})
 	</insert>
+=======
+	 #{nickname}, TO_DATE(#{birthDay},'YYYY-MM-DD'),#{phone}, #{address}, NVL(#{image},null), #{gender})
+	</insert>
+
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 </mapper>
