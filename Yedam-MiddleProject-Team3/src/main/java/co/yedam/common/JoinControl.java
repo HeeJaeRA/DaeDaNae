@@ -43,11 +43,8 @@ public class JoinControl implements Command {
 			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
-
 			vo.setNickname(nickname);
-			
 			vo.setBirthDay(birthDay);
-			
 			vo.setPhone(phone);
 			vo.setAddress(address);
 			//vo.setGunGu(gunGu);

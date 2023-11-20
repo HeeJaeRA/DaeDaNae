@@ -60,7 +60,7 @@
 		</article>
 </header>
 
-<%-- ${logId }, ${nickname }, ${respon }, ${money }, ${mlist} --%>
+${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
 
 <section class="py-5">
 	<div class="container">

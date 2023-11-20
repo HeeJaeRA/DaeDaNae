@@ -39,10 +39,18 @@
 				<li class="nav-item"><a class="nav-link" href="eventBoard.do">Event</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 			<c:choose>
 			<c:when test="${!empty logId }">
+<<<<<<< HEAD
 				<button class="btn btn-outline-info" onclick="location.href='myPage.do'">마이페이지</button>
+=======
+				<button class="btn btn-light" onclick="location.href='myPage.do'">마이페이지</button>
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 			</c:when>
 			</c:choose>
 
