@@ -94,9 +94,6 @@ public class ReservationControl implements Command {
 			}
 		}
 		
-		
-		
-		
 		resp.setContentType("text/json;charset=utf-8");
 		try {
 			resp.getWriter().print(gson.toJson(map));

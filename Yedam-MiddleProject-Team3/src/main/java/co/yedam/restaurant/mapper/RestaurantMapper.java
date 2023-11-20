@@ -34,5 +34,8 @@ public interface RestaurantMapper {
 	public List<ReservationVO> reservationAll();
 
 	public List<ReservationVO> reserMemberList();
+	
+	//북마크
+	public int markRestaurnat(@Param("uid") String uid, @Param("rcode") String rcode);
 
 }

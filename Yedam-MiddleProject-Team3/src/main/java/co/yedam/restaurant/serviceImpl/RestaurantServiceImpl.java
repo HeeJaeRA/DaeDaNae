@@ -73,10 +73,10 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<ReservationVO> reserMemberList() {
 		return mapper.reserMemberList();
 	}
-
-
-
 	
-
+	@Override
+	public boolean markRestaurnat(String uid, String rcode) {
+		return (mapper.markRestaurnat(uid, rcode) == 1);
+	}
 
 }
