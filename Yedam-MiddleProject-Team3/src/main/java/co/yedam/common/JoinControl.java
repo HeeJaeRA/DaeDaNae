@@ -37,7 +37,7 @@ public class JoinControl implements Command {
 			String img = mr.getFilesystemName("image");
 			String gender = mr.getParameter("gender");
 			//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
-			
+			System.out.println(birthDay);
 			System.out.println("pw: "+pw);
 			      
 			vo.setUserId(id);
