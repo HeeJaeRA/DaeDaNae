@@ -45,4 +45,5 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 		return mapper.deleteMember(id);
 	}
 
+
 }

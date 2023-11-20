@@ -20,8 +20,7 @@
 			</c:when>
 			<c:otherwise>
 				<button class="btn btn-light" onclick="location.href='logout.do'">로그아웃</button>
-				<button class="btn btn-light" onclick="location.href='#'">마이페이지</button>
-		</c:otherwise>
+			</c:otherwise>
 		</c:choose>
 		</div>
 	</div>
@@ -41,9 +40,13 @@
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
 			<form class="d-flex">
-				<button class="btn btn-outline-primary" type="submit">
-					<i class="bi-cart-fill me-1"></i> 예약정보
-				</button>
+			
+			<c:choose>
+			<c:when test="${!empty logId }">
+				<button class="btn btn-light" onclick="location.href='#'">마이페이지</button>
+			</c:when>
+			</c:choose>
+
 			</form>
 		</div>
 	</div>

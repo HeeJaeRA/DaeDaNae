@@ -13,5 +13,7 @@ public interface ReviewService {
 	public boolean likeReview(int reviewNo);
 	
 	public ReviewVO cntStar(String rsCode);
+	
+	public boolean updateMoney(String id);
 
 }

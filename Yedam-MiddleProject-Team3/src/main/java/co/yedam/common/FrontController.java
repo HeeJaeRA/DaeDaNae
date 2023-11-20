@@ -95,7 +95,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addReview.do", new AddReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 		map.put("/likeReview.do", new LikeReviewControl());
-		//map.put("/updateReview.do", new UpdateReviewControl());
+//		map.put("/updateMoney.do", new UpdateMoneyControl());
 		
 		map.put("/restaurantList.do", new RestaurantListControl());
 		map.put("/addressList.do", new AddressListControl());

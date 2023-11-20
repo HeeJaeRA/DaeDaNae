@@ -2,24 +2,38 @@
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.review.mapper.ReviewMapper">
 
-<select id="selectList" resultType="co.yedam.review.service.ReviewVO">
-	SELECT * FROM REVIEW WHERE RS_CODE = #{rsCode} ORDER BY REVIEW_CODE DESC
-</select>
+	<select id="selectList"
+		resultType="co.yedam.review.service.ReviewVO">
+		SELECT * FROM REVIEW WHERE RS_CODE = #{rsCode} ORDER BY REVIEW_CODE DESC
+	</select>
 
-<select id="cntStar" resultType="co.yedam.review.service.ReviewVO">
-	SELECT SUM(STAR_TASTE + STAR_PRICE + STAR_SERVICE) / COUNT(*) / 3 AS "star" FROM REVIEW WHERE RS_CODE = #{rsCode}
-</select>
+	<select id="cntStar"
+		resultType="co.yedam.review.service.ReviewVO">
+		SELECT SUM(STAR_TASTE + STAR_PRICE + STAR_SERVICE) / COUNT(*) / 3 AS "star"
+		FROM REVIEW WHERE RS_CODE = #{rsCode}
+	</select>
 
-<insert id="insertReview" parameterType="co.yedam.review.service.ReviewVO">
-	INSERT INTO REVIEW (REVIEW_CODE, RS_CODE, USER_ID, NICKNAME, WRITE_DATE, WRITE_CONTENT, STAR_TASTE, STAR_PRICE, STAR_SERVICE) VALUES (SEQ_REVIEW.NEXTVAL, #{rsCode}, #{userId}, #{nickname}, SYSDATE, #{writeContent}, #{starTaste}, #{starPrice}, #{starService})
-</insert>
+	<insert id="insertReview"
+		parameterType="co.yedam.review.service.ReviewVO">
+		INSERT INTO REVIEW (REVIEW_CODE, RS_CODE, USER_ID, NICKNAME, WRITE_DATE,
+		WRITE_CONTENT, STAR_TASTE, STAR_PRICE, STAR_SERVICE) VALUES
+		(SEQ_REVIEW.NEXTVAL, #{rsCode}, #{userId}, #{nickname}, SYSDATE,
+		#{writeContent}, #{starTaste}, #{starPrice}, #{starService})
+	</insert>
 
-<update id="likeReview" parameterType="int">
-	UPDATE REVIEW SET LIKECNT = LIKECNT + 1 WHERE REVIEW_CODE = #{reviewNo}
-</update>
+	<update id="likeReview" parameterType="int">
+		UPDATE REVIEW SET LIKECNT = LIKECNT + 1 WHERE REVIEW_CODE = #{reviewNo}
+	</update>
 
-<delete id="deleteReview" parameterType="int">
-	DELETE FROM REVIEW WHERE REVIEW_CODE = #{reviewNo}
-</delete>
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM REVIEW WHERE REVIEW_CODE = #{reviewNo}
+	</delete>
+
+
+	<update id="updateMoney">
+		UPDATE USERTABLE SET MONEY = MONEY + 300 WHERE
+		USER_ID = #{id}
+	</update>
+
 
 </mapper>
