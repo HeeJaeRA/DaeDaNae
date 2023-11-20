@@ -25,6 +25,7 @@
 	vertical-align: top;
 	object-fit: fill;
 	width: 100%;
+	height: 350px;
 }
 
 .container {
@@ -59,8 +60,6 @@
 			</div>
 		</article>
 </header>
-
-${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
 
 <section class="py-5">
 	<div class="container">
