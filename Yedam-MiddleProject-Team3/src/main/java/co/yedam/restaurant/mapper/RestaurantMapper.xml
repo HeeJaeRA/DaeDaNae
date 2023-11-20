@@ -60,5 +60,10 @@
 	<insert id="markRestaurnat">
 		INSERT INTO BOOKMARK (USER_ID, RS_CODE) VALUES(#{uid}, #{rcode})
 	</insert>
+	
+	<select id="selectBookMarkList">
+		SELECT R.RS_CATEGORY, R.RS_NAME, R.RS_GU, PHONE, R.STARCNT
+		FROM BOOKMARK B LEFT JOIN RESTAURANT R ON B.RS_CODE=R.RS_CODE WHERE USER_ID = #{id}
+	</select>
 
 </mapper>

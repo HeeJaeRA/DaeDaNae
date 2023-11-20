@@ -39,15 +39,13 @@
 				<li class="nav-item"><a class="nav-link" href="eventBoard.do">Event</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
 			</ul>
-			<form class="d-flex">
 			
 			<c:choose>
 			<c:when test="${!empty logId }">
-				<button class="btn btn-light" onclick="location.href='#'">마이페이지</button>
+				<button class="btn btn-outline-info" onclick="location.href='myPage.do'">마이페이지</button>
 			</c:when>
 			</c:choose>
 
-			</form>
 		</div>
 	</div>
 </nav>

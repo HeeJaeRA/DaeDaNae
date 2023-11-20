@@ -79,4 +79,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return (mapper.markRestaurnat(uid, rcode) == 1);
 	}
 
+	@Override
+	public List<RestaurantVO> selectBookMarkList(String id) {
+		return mapper.selectBookMarkList(id);
+	}
+
 }
