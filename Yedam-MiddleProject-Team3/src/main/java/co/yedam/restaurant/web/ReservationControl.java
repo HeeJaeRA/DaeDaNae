@@ -3,7 +3,6 @@ package co.yedam.restaurant.web;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,26 +30,24 @@ public class ReservationControl implements Command {
 		String nickname= req.getParameter("nickname");
 		System.out.println("id" + id);
 		System.out.println(rsCode);
-		
+		//@DateTimeFormat
+		//@JsonFormat
 		//파라미터로 받을 값
-		String date= req.getParameter("date");
+		String date= req.getParameter(("date"));
 		String time= req.getParameter("time");
 		String buyAble= req.getParameter("buyAble");
 		System.out.println("date"+date);
 		System.out.println("time"+time);
 		System.out.println("buyAble"+buyAble);
 		ReservationVO rvo = new ReservationVO();
-
-		SimpleDateFormat formatter = new SimpleDateFormat("YYYY/MM/dd");
-
-		try {
-			rvo.setResDate(formatter.parse(date));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		rvo.setResTime(time);
-		rvo.setBuyAble(Integer.parseInt(buyAble));
-					
+		
+		//SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+//		try {
+//			rvo.setResDate(formatter.parse(date));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+	
 		RestaurantService svc = new RestaurantServiceImpl();
 		
 		
@@ -58,13 +55,13 @@ public class ReservationControl implements Command {
 		rvo.setRsCode(rsCode);
 		rvo.setNickname(nickname);
 		
-		Date dates =new Date(); 
-		try {
-			dates = formatter.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		rvo.setResDate(dates);
+		rvo.setResDate(date);
+//		try {
+//			rvo.setResDate(formatter.parse(date));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
 		rvo.setResTime(time);
 		rvo.setBuyAble(Integer.parseInt(buyAble));
 				
@@ -72,30 +69,27 @@ public class ReservationControl implements Command {
 		System.out.println( "rvo"+rvo);
 		//req.setAttribute("vo", vo);
 		
-		Gson gson = new GsonBuilder().setDateFormat("YYYY/MM/dd").create();
+		Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-dd").create();
 		Map<String, Object> map = new HashMap<>();	
 		
 		if(svc.addReser(rvo)) {
 			map.put("rvo", rvo);
 			map.put("retCode", "Success");
 			
-			try {
-				resp.sendRedirect("restaurantInfo.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				resp.sendRedirect("restaurantList.do");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 			
 		}else{
 			map.put("retCode", "Fail");
-			try {
-				resp.sendRedirect("reservationForm.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				resp.sendRedirect("reservationForm.do");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		}
-		
-		
-		
 		
 		resp.setContentType("text/json;charset=utf-8");
 		try {

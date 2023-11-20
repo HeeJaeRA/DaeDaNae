@@ -39,5 +39,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO cntStar(String rsCode) {
 		return mapper.cntStar(rsCode);
 	}
+	
+	@Override
+	public boolean updateMoney(String id) {
+		return mapper.updateMoney(id);
+	}
 
 }

@@ -60,7 +60,7 @@
 						<td>${vo.money }</td>
 						<td>${vo.image }</td>
 						<td>${vo.gender }</td>
-						<td><button class="delM" onclick="delMfucn(event)">삭제</button>
+						<td><button class="delM" onclick="delMfucn(event)">삭제</button></td>
 					</tr>
 					</c:forEach>
 				</tbody>

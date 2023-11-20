@@ -73,7 +73,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<ReservationVO> reserMemberList() {
 		return mapper.reserMemberList();
 	}
-	
+
 	//음식점추가
 	@Override
 	public boolean addRestaurant(RestaurantVO vo) {
@@ -87,7 +87,15 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 
-	
 
+	@Override
+	public boolean markRestaurnat(String uid, String rcode) {
+		return (mapper.markRestaurnat(uid, rcode) == 1);
+	}
+
+	@Override
+	public List<RestaurantVO> selectBookMarkList(String id) {
+		return mapper.selectBookMarkList(id);
+	}
 
 }

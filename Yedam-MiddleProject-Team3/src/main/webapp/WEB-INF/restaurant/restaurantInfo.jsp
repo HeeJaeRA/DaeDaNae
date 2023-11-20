@@ -39,7 +39,18 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					</div>
 				</div>
 			</div>
-			<div style="width:100%; height:100px; text-align:center;"><span class="text-black">내용${vo.rsDesc }</span>
+			<div style="width:100%; height:100px; text-align:center;">
+				<c:choose>
+					<c:when test='${empty logId }'>
+						<span class="text-black">내용${vo.rsDesc }</span>
+					</c:when>
+					<c:otherwise>
+						<span class="text-black">내용${vo.rsDesc }</span>
+						<a class="btn btn-outline-dark mt-auto" id="bookmark"
+							onclick="mark(); this.onclick=null;">찜하기</a>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</div>
@@ -184,7 +195,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" id="addreview" onclick="addReview()" value="리뷰작성">
+					<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
 				</div>
 			</form>
 		</div>
@@ -288,7 +299,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						alert('등록 성공');
+						alert('포인트 지급 완료');
 						clearReview();
 						showReviewList();
 					} else {
@@ -300,6 +311,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.catch(err => console.log('error:' + err));
 		});
 	}
+
 	// 리뷰 등록창 초기화
 	function clearReview() {
 		document.querySelector('.review_textarea').value = '';
@@ -349,9 +361,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 				.then(resolve => resolve.json())
 				.then(result => {
 					if (result.retCode == 'OK') {
-						console.log(this);
-						alert('좋아요');
-						e.target.disabled = true;
+						// alert('좋아요');
 						showReviewList();
 					} else {
 						alert('좋아요 실패');
@@ -414,4 +424,25 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	document.querySelector('#imgCard2').addEventListener('click', function (e) {
 		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img3 + '.jpg';
 	})
+
+
+	// 찜하기
+	function mark() {
+		fetch('bookMark.do', {
+				method: 'post',
+				headers: {
+					'Content-type': 'application/x-www-form-urlencoded'
+				},
+				body: 'id=' + uid + '&rcode=' + rc
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					alert('성공');
+				} else {
+					alert('실패');
+				}
+			})
+			.catch(err => console.log('err:' + err));
+	}
 </script>

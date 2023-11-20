@@ -27,7 +27,20 @@
 	width: 100%;
 }
 
+.container {
+	display : flex;
+	justify-content: center;
+}
 
+.container > button {
+	margin : 0 5px;
+}
+
+.modal-body {
+	display : flex;
+	flex-wrap : wrap;
+	justify-content: space-between;
+}
 </style>
 
 <!-- 배너-->
@@ -47,13 +60,13 @@
 		</article>
 </header>
 
-<%-- ${logId }, ${nickname }, ${respon }, ${money }, ${mlist} --%>
+${logId }, ${nickname }, ${respon }, ${money }, ${mlist}
 
 <section class="py-5">
 	<div class="container">
 		<!-- Trigger the modal with a button -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#category">종류별</button>
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#address">지역별</button>
+		<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#category">종류별</button>
+		<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#address">지역별</button>
 
 		<!-- Modal -->
 		<div class="modal fade" id="category" role="dialog">
@@ -64,12 +77,15 @@
 						<h4 class="modal-title">종류별</h4>
 					</div>
 					<div class="modal-body"  id="ccontent">
-						<button type="button" class="btn btn-info btn-lg">한식</button>
-						<button type="button" class="btn btn-info btn-lg">중식</button>
-						<button type="button" class="btn btn-info btn-lg">일식</button>
-						<button type="button" class="btn btn-info btn-lg">양식</button>
-						<button type="button" class="btn btn-info btn-lg">포차</button>
-						<button type="button" class="btn btn-info btn-lg">디저트</button>
+						<button type="button" class="btn btn-success btn-lg">한식</button>
+						<button type="button" class="btn btn-success btn-lg">중식</button>
+						<button type="button" class="btn btn-success btn-lg">일식</button>
+						<button type="button" class="btn btn-success btn-lg">양식</button>
+						<button type="button" class="btn btn-success btn-lg">포차</button>
+						<button type="button" class="btn btn-success btn-lg">디저트</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 
@@ -122,7 +138,7 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
+								<a class="btn btn-warning mt-auto"href="restaurantInfo.do?rcode=${vo.rsCode }">상세보기</a>
 							</div>
 						</div>
 					</div>
