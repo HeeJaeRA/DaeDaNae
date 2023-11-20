@@ -118,7 +118,6 @@ ${logId }, ${nickname }, ${vo }
 				} else {
 					window.location.href = 'reservationForm.do' + '?rcode=' + rcode;
 				}
-				window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 			})
 			.catch(err => "err:" + err);
 	})
@@ -142,7 +141,6 @@ ${logId }, ${nickname }, ${vo }
 			if (rsp.success) { //결제 성공시
 				if (response.status == 200) { // DB저장 성공시
 					alert('결제 완료!')
-					window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 				} else { // 결제완료 후 DB저장 실패시
 					alert(`error:[${response.status}]\n결제요청이 승인된 경우 관리자에게 문의바랍니다.`);
 					// DB저장 실패시 status에 따라 추가적인 작업 가능성
@@ -150,6 +148,7 @@ ${logId }, ${nickname }, ${vo }
 			} else if (rsp.success == false) { // 결제 실패시
 				alert(rsp.error_msg)
 			}
+			window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 		});
 	}
 </script>
