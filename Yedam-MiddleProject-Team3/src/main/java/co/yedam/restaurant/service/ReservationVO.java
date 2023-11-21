@@ -1,6 +1,5 @@
 package co.yedam.restaurant.service;
 
-import java.util.Date;
 
 import lombok.Data;
 
@@ -16,5 +15,6 @@ public class ReservationVO {
 	private int buyAble;
 	
 	private String rsName;
+	private int seatcnt;
 
 }

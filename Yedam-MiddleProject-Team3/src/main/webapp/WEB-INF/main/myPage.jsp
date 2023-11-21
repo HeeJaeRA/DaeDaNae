@@ -4,22 +4,25 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<style>
-section .intro {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-}
+	<style>
+		section .intro {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
 
-.sec1 {
-	width: 500px;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: space-around;
-}
+		.sec1 {
+			width: 500px;
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: space-around;
+			padding: 10px;
+		}
 
+<<<<<<< HEAD
 .copTotal, .pointTotal {
 	display: flex;
 	justify-content: space-around;
@@ -51,14 +54,106 @@ section .intro {
 </style>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+=======
+		.copTotal,
+		.pointTotal {
+			display: flex;
+			justify-content: space-around;
+		}
+>>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
 
-<title>my page</title>
 
-<!-- Template Main CSS File -->
-<link href="resources/my/css/myStyle.css" rel="stylesheet">
+		a,
+		ul,
+		li {
+			text-decoration: none;
+			list-style: none;
+		}
+
+		.tab {
+			display: flex;
+			align-items: center;
+			padding: 1rem;
+		}
+
+		.tab__item {
+			padding: 0.6rem 1.3rem;
+			margin-right: 1rem;
+			border: 1px solid #17a2b8;
+			border-radius: 0.5rem;
+			background-color: #17a2b8;
+		}
+
+		.tab__item:hover {
+			background-color: #087384;
+			color: #fff;
+		}
+
+		.tab__item.active {
+			display: inline-block;
+			border: 1px solid #38b44a;
+			background-color: #38b44a;
+			color: #000;
+			text-decoration: none;
+		}
+
+		.tab__content-wrapper {
+			padding: 1rem
+		}
+
+		.tab__content {
+			display: none;
+		}
+
+		.tab__content.active {
+			display: block;
+		}
+
+		thead,
+		tbody,
+		th {
+			text-align: center;
+			border-radius: 10px;
+		}
+
+		.myOwn {
+			width: 100%;
+			height: auto;
+			/* border : 2px solid coral; */
+			border-collapse: collapse;
+			table-layout: fixed;
+			caption-side: top;
+			word-break: break-all;
+			vertical-align: middle;
+			background-color: rgb(255, 235, 229);
+		}
+
+		caption {
+			text-align: center;
+			font-weight: bold;
+			color: coral;
+		}
+
+		.myOwn td,
+		.myOwn th {
+			border: 1px dashed #ccc;
+			padding: 5px;
+			text-align: center;
+		}
+	</style>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+	<title>my page</title>
+
+	<!-- Template Main CSS File -->
+	<link href="resources/my/css/myStyle.css" rel="stylesheet">
 
 </head>
+
 <body>
+	<%-- ${bookList }, ${bookingList }  --%>
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -76,36 +171,34 @@ section .intro {
 			<div class="intro">
 
 				<div class="sec1">
-					<div class="copList">
-						<h4>나의 쿠폰</h4>
-						<div class="copTotal">
-							<div class="now">
-								<h5>보유 쿠폰</h5>
-								<p>3</p>
-							</div>
-							<div class="done">
-								<h5>사용 쿠폰</h5>
-								<p>3</p>
-							</div>
-							<div class="yet">
-								<h5>소멸 쿠폰</h5>
-								<p>2</p>
-							</div>
+						<div class="copList">
+							<table class="myOwn" cellspacing="0" cellpadding="0">
+								<caption>나의 쿠폰</caption>
+								<tr>
+									<th>보유 쿠폰</th>
+									<th>사용 쿠폰</th>
+									<th>소멸 쿠폰</th>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>3</td>
+									<td>2</td>
+								</tr>
+							</table>
 						</div>
-					</div>
 
 					<div class="myPoint">
-						<h4>나의 포인트</h4>
-						<div class="pointTotal">
-							<div class="now">
-								<h5>보유 포인트</h5>
-								<p>${point }</p>
-							</div>
-							<div class="yet">
-								<h5>소멸 포인트</h5>
-								<p>250</p>
-							</div>
-						</div>
+						<table class="myOwn" cellspacing="0" cellpadding="0">
+							<caption>나의 포인트</caption>
+							<tr>
+								<th>보유 쿠폰</th>
+								<th>소멸 포인트</th>
+							</tr>
+							<tr>
+								<td>${point }</td>
+								<td>250</td>
+							</tr>
+						</table>
 					</div>
 
 				</div>
@@ -113,10 +206,12 @@ section .intro {
 				<div class="col-xl-4">
 
 					<div class="card">
-						<div
-							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-							<!--  <img src="resources/images/memimg/${image }" alt="Profile"
-								class="rounded-circle" width="150px">-->
+
+
+						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+							<img src="resources/images/memimg/${image }" alt="Profile" class="rounded-circle"
+								width="150px">
+
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>
 							<div class="follow">
@@ -145,9 +240,11 @@ section .intro {
 
 							</div>
 							<div class="my">
+
 								<button class="btn btn-danger"
 									onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
 								<button class="btn btn-danger modal_open">회원탈퇴</button>
+
 
 
 							</div>
@@ -161,43 +258,87 @@ section .intro {
 
 
 
-		<div class="container px-4 px-lg-5 mt-5">
+		<div class="tab_menu">
+			<!-- <input type="button" value="나의저장" onclick="" class="btn btn-primary" id="bookmar">
+			<input type="button" value="예약현황" onclick="" class="btn btn-primary" id="booking"> -->
 
-			<input type="button" value="나의저장" onclick="" class="btn btn-primary"
-				id="bookmar"> <input type="button" value="예약현황" onclick=""
-				class="btn btn-primary" id="booking">
+			<!-- 탭 버튼 영역 -->
+			<ul class="tab">
+				<li class="tab__item active">
+					<a href="#tab1">나의저장</a>
+				</li>
+				<li class="tab__item">
+					<a href="#tab2">예약현황</a>
+				</li>
+			</ul>
 
 
+			<!-- 탭 내용 영역 -->
+			<div class="tab__content-wrapper">
+				<div id="tab1" class="tab__content active">
+					<table class="table table-secondary">
+						<thead>
+							<tr>
+								<th>카테고리</th>
+								<th>가게이름</th>
+								<th>장소(군/구)</th>
+								<th>전화번호</th>
+								<th>평점</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${bookList }" var="vo">
+								<tr>
+									<td>${vo.rsCategory }</td>
+									<td>${vo.rsName }</td>
+									<td>${vo.rsGu }</td>
+									<td>${vo.phone }</td>
+									<td>${vo.starcnt }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 
-			<table class="myZzim">
-				<thead>
-					<tr>
-						<th>카테고리</th>
-						<th>가게이름</th>
-						<th>장소(군/구)</th>
-						<th>전화번호</th>
-						<th>평점</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${bookList }" var="vo">
-						<tr>
-							<td>${vo.rsCategory }</td>
-							<td>${vo.rsName }</td>
-							<td>${vo.rsGu }</td>
-							<td>${vo.phone }</td>
-							<td>${vo.starcnt }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+				</div>
+				<div id="tab2" class="tab__content">
+					<table class="table table-secondary">
+						<thead>
+							<tr>
+								<th>가게코드</th>
+								<th>가게이름</th>
+								<th>예약날짜</th>
+								<th>예약시간</th>
+								<th>예약 좌석수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${bookingList }" var="vo2">
+								<tr>
+									<td>${vo2.rsCode }</td>
+									<td>${vo2.rsName }</td>
+									<td>${vo2.resDate }</td>
+									<td>${vo2.resTime }</td>
+									<td>${vo2.seatcnt }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+
 		</div>
+
+
+
 
 
 	</main>
 	<!-- End #main -->
 
 	<script>
+
 	let id ='${logId}';
 	const open = document.querySelector(".modal_open");
 	const close = document.querySelector(".modal_close");
@@ -236,21 +377,42 @@ section .intro {
 		})
 	})
 	
+
 	</script>
 	<!-- Vendor JS Files -->
 	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script
-		src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/my/assets/vendor/chart.js/chart.umd.js"></script>
 	<script src="resources/my/assets/vendor/echarts/echarts.min.js"></script>
 	<script src="resources/my/assets/vendor/quill/quill.min.js"></script>
-	<script
-		src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
 	<script src="resources/my/assets/vendor/tinymce/tinymce.min.js"></script>
 	<script src="resources/my/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
 	<script src="resources/my/js/main.js"></script>
-</body>
-</html>
 
+	<script>
+		const tabItem = document.querySelectorAll(".tab__item");
+		const tabContent = document.querySelectorAll(".tab__content");
+
+		tabItem.forEach((item, index) => {
+			item.addEventListener("click", (e) => {
+				e.preventDefault();
+
+				tabContent.forEach((content) => {
+					content.classList.remove("active");
+				});
+
+				tabItem.forEach((content) => {
+					content.classList.remove("active");
+				});
+
+				tabItem[index].classList.add("active");
+				tabContent[index].classList.add("active");
+			});
+		});
+	</script>
+</body>
+
+</html>

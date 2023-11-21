@@ -31,7 +31,7 @@ public interface RestaurantMapper {
 	public int getReser(ReservationVO vo);
 	
 	//예약리스트
-	public List<ReservationVO> reservationAll();
+	public List<ReservationVO> reservationAll(String id);
 
 	public List<ReservationVO> reserMemberList();
 
