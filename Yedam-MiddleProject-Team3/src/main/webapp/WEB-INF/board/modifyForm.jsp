@@ -3,24 +3,36 @@
 	pageEncoding="UTF-8"%>
 
 	<h3>게시글 수정화면</h3>
-	<form action="modifyBoard.do" method="post">
+	<form action="modifyBoard.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="bco" value = "${vo.boardCode }">
+		<input type="hidden" name="boardCategory" value = "${vo.boardCategory }">
 		<table class = "table" border="1">
 			<tr>
-				<th>제목</th>
+				<th width = '1000px'>제목</th>
 				<td><input type="text" name="boardTitle" value="${vo.boardTitle }"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
 				<td><input type="text" name="userId"
-					value="${vo.userId }"></td>
+					value="${vo.userId }" readonly></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea cols="31" rows="6" name="boardContent">${vo.boardContent }</textarea></td>
+				<td colspan="2"><textarea cols="200" rows="10" name="boardContent">${vo.boardContent }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일명</th>
-				<td><img src="images/${vo.image1 }" width="80px">
+				<td>
+				<input type="file" name="image1" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<th>파일명</th>
+				
+				<td><input type="file" name="image2" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>파일명</th>
+				<td><input type="file" name="image3" class="form-control"></td>
 			</tr>
 
 			<tr>

@@ -20,6 +20,7 @@ public class RemoveBoardControl implements Command {
 		BoardVO vo = svc.getBoard(Integer.parseInt(bco)); 
 
 		if (svc.removeBoard(Integer.parseInt(bco))) {
+			
 			switch (vo.getBoardCategory()) {
 			case "자유게시판":
 				try {

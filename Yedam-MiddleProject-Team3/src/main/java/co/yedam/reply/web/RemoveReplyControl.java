@@ -33,7 +33,6 @@ public class RemoveReplyControl implements Command {
 		try {
 			resp.getWriter().print(gson.toJson(map));  //문자열 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

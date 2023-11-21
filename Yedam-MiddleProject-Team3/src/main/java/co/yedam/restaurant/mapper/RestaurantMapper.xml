@@ -58,12 +58,12 @@
 	
 	<!-- 가게 추가 -->
 	<insert id="addRestaurant" parameterType="co.yedam.restaurant.service.RestaurantVO"> 
- 	INSERT INTO RESTAURANT (rs_code, rs_category,rs_name, rs_address ,rs_gu, rs_dong,phone,rs_desc,image1,image2,image3,likecnt,starcnt)
- 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},#{image1},#{image2},#{image3},#{likecnt},#{starcnt})
+ 	INSERT INTO RESTAURANT (rs_code, rs_category, rs_name, rs_address ,rs_gu, rs_dong,phone, rs_desc, image1, image2, image3) 
+ 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},nvl(#{image1},'store.jpg'),nvl(#{image2},'store.jpg'),nvl(#{image3},'store.jpg'))
 	</insert> 
 	
 	<!-- 가게 삭제 -->
-	<delete id="removeRestaurant" parameterType="int">
+	<delete id="removeRestaurant" parameterType="String">
 		delete from restaurant where
 		rs_code=#{rsCode}
 	</delete>

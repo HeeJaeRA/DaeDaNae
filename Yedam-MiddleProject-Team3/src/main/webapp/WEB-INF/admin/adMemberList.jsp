@@ -72,6 +72,7 @@
 function delMfucn(e) {
 	// console.log(e.target.parentElement.parentElement.children[4].innerHTML)
 	let id = e.target.parentElement.parentElement.children[0].innerHTML;
+	console.log(e.target.parentElement.parentElement.children[0].innerHTML);
 	fetch('adRemoveMember.do', {
 			method: 'post',
 			headers: {

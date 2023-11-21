@@ -161,6 +161,7 @@ caption {
 
 <body>
 	<%-- ${bookList }, ${bookingList }  --%>
+<%-- 	쿠폰${ccnt } --%>
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -187,9 +188,9 @@ caption {
 								<th>소멸 쿠폰</th>
 							</tr>
 							<tr>
-								<td>3</td>
-								<td>3</td>
-								<td>2</td>
+								<td>${ccnt }</td>
+								<td>0</td>
+								<td>0</td>
 							</tr>
 						</table>
 					</div>
@@ -198,12 +199,12 @@ caption {
 						<table class="myOwn" cellspacing="0" cellpadding="0">
 							<caption>나의 포인트</caption>
 							<tr>
-								<th>보유 쿠폰</th>
+								<th>보유 포인트</th>
 								<th>소멸 포인트</th>
 							</tr>
 							<tr>
 								<td>${point }</td>
-								<td>250</td>
+								<td>0</td>
 							</tr>
 						</table>
 					</div>
