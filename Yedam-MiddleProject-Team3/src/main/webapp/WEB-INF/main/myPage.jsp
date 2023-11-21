@@ -141,7 +141,7 @@
 </head>
 
 <body>
-	<%-- ${bookList }, ${bookingList }  --%>
+	${bookList }, ${bookingList }
 	<main id="main" class="main">
 
 		<div class="pagetitle">

@@ -76,9 +76,10 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." /> <input
-					type="button" id="imgMain" value="대표사진"> <input type="button" id="imgCard1" value="사진1"> <input
-					type="button" id="imgCard2" value="사진2">
+				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." /> 
+				<input type="button" id="imgMain" class="btn btn-light" value="대표사진"> 
+				<input type="button" id="imgCard1" class="btn btn-light" value="사진1"> 
+				<input type="button" id="imgCard2" class="btn btn-light" value="사진2">
 			</div>
 			<div class="col-md-6">
 				<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -98,21 +99,15 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 				</div>
 				<p class="lead">${vo.rsDesc }</p>
 				<div id="map" style="width: 100%; height: 350px;"></div>
-				<div class="d-flex">
-					<div class="text-center">
-						<a class="btn btn-outline-dark mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
-					</div>
-				</div>
 			</div>
 			<div style="width: 100%; height: 100px; text-align: center;">
 				<c:choose>
 					<c:when test='${empty logId }'>
-						<span class="text-black">내용${vo.rsDesc }</span>
+						<span class="text-black"></span>
 					</c:when>
 					<c:otherwise>
-						<span class="text-black">내용${vo.rsDesc }</span>
-						<a class="btn btn-outline-dark mt-auto" id="bookmark"
-							onclick="mark(); this.onclick=null;">찜하기</a>
+						<a class="btn btn-danger mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
+						<a class="btn btn-warning mt-auto" id="bookmark" onclick="mark(); this.onclick=null;">찜하기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -121,7 +116,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 
 	<div class="container px-4 px-lg-5 mt-5">
 		<h2 class="fw-bolder mb-4">${vo.rsName }과비슷한맛집</h2>
-		<input type="button" value="종류별" id="categoryBtn"> <input type="button" value="지역별" id="addressBtn">
+		<input type="button" value="종류별" id="categoryBtn" class="btn btn-light"> <input type="button" value="지역별" id="addressBtn" class="btn btn-light">
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5" id="allDiv" style="display: block;">
@@ -255,7 +250,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 				<div class="cmd">
 					<c:choose>
 						<c:when test='${empty reviewCheck }'>
-							<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
+							<input type="button" id="addreview" value="리뷰작성" onclick="addReview();" class="btn btn-success">
 						</c:when>
 						<c:otherwise>
 							<span class="text-muted">이미 리뷰를 작성하셨습니다.</span>
