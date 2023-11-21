@@ -22,45 +22,33 @@
 			padding: 10px;
 		}
 
-<<<<<<< HEAD
-.copTotal, .pointTotal {
-	display: flex;
-	justify-content: space-around;
-}
-
-.hidden {
-	display: none;
-}
-
-.delmodal {
-	position: absolute;
-	width: 700px;
-	height: 400px;
-	display: flex;
-	background-color: rgba(255,110,000,0.9);
-   display: flex; justify-content: center;
-   align-items: center;
-   border-radius: 10px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-   z-index: 300;
-}
-.deltable{
- 	
-}
-</style>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-=======
 		.copTotal,
 		.pointTotal {
 			display: flex;
 			justify-content: space-around;
 		}
->>>>>>> branch 'develop' of https://github.com/HeeJaeRA/DaeDaNae.git
+
+		.hidden {
+			display: none;
+		}
+
+		.delmodal {
+			position: absolute;
+			width: 700px;
+			height: 400px;
+			display: flex;
+			background-color: rgba(255, 110, 000, 0.9);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 10px;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			z-index: 300;
+		}
 
 
 		a,
@@ -171,21 +159,21 @@
 			<div class="intro">
 
 				<div class="sec1">
-						<div class="copList">
-							<table class="myOwn" cellspacing="0" cellpadding="0">
-								<caption>나의 쿠폰</caption>
-								<tr>
-									<th>보유 쿠폰</th>
-									<th>사용 쿠폰</th>
-									<th>소멸 쿠폰</th>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>3</td>
-									<td>2</td>
-								</tr>
-							</table>
-						</div>
+					<div class="copList">
+						<table class="myOwn" cellspacing="0" cellpadding="0">
+							<caption>나의 쿠폰</caption>
+							<tr>
+								<th>보유 쿠폰</th>
+								<th>사용 쿠폰</th>
+								<th>소멸 쿠폰</th>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>3</td>
+								<td>2</td>
+							</tr>
+						</table>
+					</div>
 
 					<div class="myPoint">
 						<table class="myOwn" cellspacing="0" cellpadding="0">
@@ -219,11 +207,13 @@
 									팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span>
 								</p>
 							</div>
-							<div class="delmodal hidden" >
+							<div class="delmodal hidden">
 								<table class="deltable" border="1">
 									<thead>
 										<tr>
-											<th colspan="3"><h4>회원탈퇴</h4></th>
+											<th colspan="3">
+												<h4>회원탈퇴</h4>
+											</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -231,8 +221,7 @@
 											<th colspan="3" style="width:50px;">탈퇴 하시겠습니까?</th>
 										</tr>
 										<tr>
-											<th colspan="3"><input type="button" id="deleteMems"
-												value="네">
+											<th colspan="3"><input type="button" id="deleteMems" value="네">
 												<button class="modal_close">아니요</button></th>
 										</tr>
 									</tbody>
@@ -338,46 +327,46 @@
 	<!-- End #main -->
 
 	<script>
+		let id = '${logId}';
+		const open = document.querySelector(".modal_open");
+		const close = document.querySelector(".modal_close");
+		const modal = document.querySelector(".delmodal");
 
-	let id ='${logId}';
-	const open = document.querySelector(".modal_open");
-	const close = document.querySelector(".modal_close");
-	const modal = document.querySelector(".delmodal");
-	function init(){
-		open.addEventListener("click", function(){
-			modal.classList.remove("hidden");
-		})
-		close.addEventListener("click", function(){
-			modal.classList.add("hidden");
-		})
-	}
-	init();
-	let deleteMem = document.querySelector("#deleteMems").addEventListener("click", function (e){
-		console.log(id)
-		
-		fetch('adRemoveMember.do',{
-			method:'post',
-			headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-			body:'id=${logId}'
-		})
-		.then(resolve=>resolve.json())
-		.then(result=>{
-			console.log(result);
-			if(result.retCode == 'OK'){
-				console.log(result);
-				alert("회원 탈퇴하셨습니다");
-				//회원탈퇴 되면 자동 로그아웃(?)
-				location.href="logout.do";
-			}else{
-				console.log(result);
-				alert("실패!!");
-			}
-			
-			
-		})
-	})
-	
+		function init() {
+			open.addEventListener("click", function () {
+				modal.classList.remove("hidden");
+			})
+			close.addEventListener("click", function () {
+				modal.classList.add("hidden");
+			})
+		}
+		init();
+		let deleteMem = document.querySelector("#deleteMems").addEventListener("click", function (e) {
+			console.log(id)
 
+			fetch('adRemoveMember.do', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: 'id=${logId}'
+				})
+				.then(resolve => resolve.json())
+				.then(result => {
+					console.log(result);
+					if (result.retCode == 'OK') {
+						console.log(result);
+						alert("회원 탈퇴하셨습니다");
+						//회원탈퇴 되면 자동 로그아웃(?)
+						location.href = "logout.do";
+					} else {
+						console.log(result);
+						alert("실패!!");
+					}
+
+
+				})
+		})
 	</script>
 	<!-- Vendor JS Files -->
 	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
