@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
+${mvo }
 	<div class="form-body">
 		<div class="row">
 			<div class="form-holder">
@@ -10,7 +10,7 @@
 					<div class="form-items">
 						<h3>회원정보 수정</h3>
 						<p>수정할 내용을 기입해 주세요</p>
-						<form method="post" action="join.do" id="myForm" class="requires-validation"  enctype="multipart/form-data">
+						<form method="post" action="modifyMem.do" id="myForm" class="requires-validation" enctype="multipart/form-data">
 							<div class="col-md-12">
 
 								아이디<input class="form-control" type="text" name="id" id="id" value="${logId }"
@@ -41,8 +41,8 @@
 
 							<div class="col-md-12">
 								이름<input class="form-control" type="text" name="name" id="name" 
-								placeholder="이름을 입력하세요"
-									required style="width: 540px; background-color: 808080;">
+								placeholder="${mvo.userName}" value="${mvo.userName }"
+									required style="width: 540px; background-color: 808080;" readonly>
 
 								<div class="valid-feedback" style="display:none">Username field is valid!</div>
 								<div class="invalid-feedback" style="display:none">Username field cannot be blank!</div>
@@ -60,8 +60,8 @@
 							
  							<div class="col-md-12">
 								생년월일<input class="form-control" type="text" name="birthDay" id="birthDay" 
-									placeholder="생년월일 입력하세요(YYYY-MM-dd)" required maxlength="10"
-									style="width: 540px; background-color: 808080;">
+									placeholder="${mvo.birthDay }"  value= "${mvo.birthDay }" required maxlength="10"
+									style="width: 540px; background-color: 808080;" readonly>
 
 								<div class="valid-feedback" style="display:none">확인</div>
 								<div class="invalid-feedback" style="display:none">년도를 4자리로 입력하세요</div>
@@ -69,7 +69,7 @@
 
 							<div class="col-md-12">
 								전화번호<input class="form-control" type="tel" name="phone" id="phone" 
-									placeholder="전화번호를 입력하세요(-(하이픈) 포함)" required maxlength="13"
+									placeholder="${mvo.phone }" value="${mvo.phone}" required maxlength="13"
 									style="width: 540px; background-color: 808080;">
 
 								<div class="valid-feedback" style="display:none">바르게 입력 가능합니다</div>
@@ -98,21 +98,21 @@
 
 							<div class="col-md-12">
 								프로필 사진<input class="form-control" type="file" id="image" name="image" 
-									style="width: 540px; background-color: 808080;">
+									value="${mvo.image }"style="width: 540px; background-color: 808080;">
 
 							</div>
 
 
-							<div class="col-md-12">
-							<label>성별<br>
+<!-- 							<div class="col-md-12"> -->
+<!-- 							<label>성별<br> -->
 							
-							남성<input class="form-control" type="radio" name="gender" value="남성" checked>
-							여성<input class="form-control" type="radio" name="gender" value="여성" ></label>
+<!-- 							남성<input class="form-control" type="radio" name="gender" value="남성" checked> -->
+<!-- 							여성<input class="form-control" type="radio" name="gender" value="여성" ></label> -->
 							
-								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div>
-							</div>
+<!-- 								<div class="invalid-feedback" style="display:none"> 성별을 체크해 주세요</div> -->
+<!-- 							</div> -->
 
-							<br>
+							
 							
 							<div class="form-check">
 							<label class="form-check-label">
@@ -123,7 +123,7 @@
 							</div>
 
 
-							<input type="button" id = "modify" value="회원수정" onclick="return checkm()">
+							<input type="submit" id = "modify" value="회원수정" onclick="return checkm()">
 							<input type="reset" value="초기화">
 
 						</form>
@@ -285,8 +285,8 @@
 			fetch('modifyMem.do', {
 				method:'post',
 				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-				body:'pw='+pw+'&name='+ name+'&birthDay='+birth+'&phone='+phone 
-				+'&address=' + address + '&image=' + image + '&gender=' + gender
+				body:'id='+id+'&pw='+pw+'&name='+ name+'&birthDay='+birth+'&phone='+phone 
+				+'&address=' + address + '&image=' + image 
 			})
 			.then(resolve => resolve.json())
 			.then(result => {

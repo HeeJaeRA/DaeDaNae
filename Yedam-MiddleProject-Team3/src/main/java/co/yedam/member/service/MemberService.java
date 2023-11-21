@@ -6,6 +6,8 @@ public interface MemberService {
 	// 로그인 처리
 	public MemberVO loginCheck(String id, String pw);
 	public List<MemberVO> memberList();
+	//멤버 단건조회
+	public MemberVO memberGet(String id);
 
 	// 회원가입시 중복확인
 	public MemberVO memberId(String id);

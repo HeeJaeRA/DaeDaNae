@@ -24,6 +24,30 @@ section .intro {
 	display: flex;
 	justify-content: space-around;
 }
+
+.hidden {
+	display: none;
+}
+
+.delmodal {
+	position: absolute;
+	width: 700px;
+	height: 400px;
+	display: flex;
+	background-color: rgba(255,110,000,0.9);
+   display: flex; justify-content: center;
+   align-items: center;
+   border-radius: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+   z-index: 300;
+}
+.deltable{
+ 	
+}
 </style>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -87,11 +111,12 @@ section .intro {
 				</div>
 
 				<div class="col-xl-4">
+
 					<div class="card">
 						<div
 							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-							<img src="resources/images/memimg/${image }" alt="Profile"
-								class="rounded-circle" width="150px">
+							<!--  <img src="resources/images/memimg/${image }" alt="Profile"
+								class="rounded-circle" width="150px">-->
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>
 							<div class="follow">
@@ -99,14 +124,38 @@ section .intro {
 									팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span>
 								</p>
 							</div>
+							<div class="delmodal hidden" >
+								<table class="deltable" border="1">
+									<thead>
+										<tr>
+											<th colspan="3"><h4>회원탈퇴</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th colspan="3" style="width:50px;">탈퇴 하시겠습니까?</th>
+										</tr>
+										<tr>
+											<th colspan="3"><input type="button" id="deleteMems"
+												value="네">
+												<button class="modal_close">아니요</button></th>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
 							<div class="my">
-								<button class="btn btn-danger" onclick = "location.href = 'modifyMemF.do'">회원수정</button>
-								<button class="btn btn-danger" id="deleteMem">회원탈퇴</button>
+								<button class="btn btn-danger"
+									onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
+								<button class="btn btn-danger modal_open">회원탈퇴</button>
+
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
 
 		</section>
 
@@ -120,28 +169,28 @@ section .intro {
 
 
 
-				<table class="myZzim">
-					<thead>
+			<table class="myZzim">
+				<thead>
+					<tr>
+						<th>카테고리</th>
+						<th>가게이름</th>
+						<th>장소(군/구)</th>
+						<th>전화번호</th>
+						<th>평점</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${bookList }" var="vo">
 						<tr>
-							<th>카테고리</th>
-							<th>가게이름</th>
-							<th>장소(군/구)</th>
-							<th>전화번호</th>
-							<th>평점</th>
+							<td>${vo.rsCategory }</td>
+							<td>${vo.rsName }</td>
+							<td>${vo.rsGu }</td>
+							<td>${vo.phone }</td>
+							<td>${vo.starcnt }</td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${bookList }" var="vo">
-							<tr>
-								<td>${vo.rsCategory }</td>
-								<td>${vo.rsName }</td>
-								<td>${vo.rsGu }</td>
-								<td>${vo.phone }</td>
-								<td>${vo.starcnt }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 
 
@@ -149,9 +198,45 @@ section .intro {
 	<!-- End #main -->
 
 	<script>
-	${logId}
+	let id ='${logId}';
+	const open = document.querySelector(".modal_open");
+	const close = document.querySelector(".modal_close");
+	const modal = document.querySelector(".delmodal");
+	function init(){
+		open.addEventListener("click", function(){
+			modal.classList.remove("hidden");
+		})
+		close.addEventListener("click", function(){
+			modal.classList.add("hidden");
+		})
+	}
+	init();
+	let deleteMem = document.querySelector("#deleteMems").addEventListener("click", function (e){
+		console.log(id)
+		
+		fetch('adRemoveMember.do',{
+			method:'post',
+			headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+			body:'id=${logId}'
+		})
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			console.log(result);
+			if(result.retCode == 'OK'){
+				console.log(result);
+				alert("회원 탈퇴하셨습니다");
+				//회원탈퇴 되면 자동 로그아웃(?)
+				location.href="logout.do";
+			}else{
+				console.log(result);
+				alert("실패!!");
+			}
+			
+			
+		})
+	})
+	
 	</script>
-
 	<!-- Vendor JS Files -->
 	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
 	<script

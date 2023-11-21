@@ -1,9 +1,16 @@
 package co.yedam.common;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
@@ -18,6 +25,9 @@ public class MyPageControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "main/myPage.tiles";
 
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("logId");
+		
 		RestaurantService svc = new RestaurantServiceImpl();
 		MemberService mvc = new MemberServiceImpl();
 		
@@ -28,12 +38,13 @@ public class MyPageControl implements Command {
 		req.setAttribute("list", list);
 		req.setAttribute("mlist", mainList);
 		req.setAttribute("memList", memList);
-
+		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }
