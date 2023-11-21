@@ -47,8 +47,6 @@
 					<button class="btn btn-outline-info"
 						onclick="location.href='myPage.do'">마이페이지</button>
 
-					<button class="btn btn-light" onclick="location.href='myPage.do'">마이페이지</button>
-
 				</c:when>
 			</c:choose>
 
