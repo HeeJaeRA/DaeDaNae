@@ -30,10 +30,16 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	public MemberVO memberNick(@Param("nickname")String nickname) {
 		return mapper.memberNick(nickname);
 	}
+	//멤버리스트 조회
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
 	}
+	//멤버 단건조회
+	public MemberVO memberGet(@Param("id")String id) {
+		return mapper.selectMem(id);
+	}
+	
 	//회원가입
 	@Override
 	public boolean addMember(MemberVO vo) {

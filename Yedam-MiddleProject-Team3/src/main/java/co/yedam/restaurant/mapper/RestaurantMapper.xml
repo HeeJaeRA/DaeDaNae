@@ -48,7 +48,7 @@
 	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
 	<select id="reservationAll"
 		resultType="co.yedam.restaurant.service.ReservationVO">
-		SELECT * FROM RESERVATION where USER_ID = #{userId}
+		SELECT R1.RS_CODE, R2.RS_NAME, R1.RES_DATE, R1.RES_TIME, R1.SEATCNT FROM RESERVATION R1 LEFT JOIN RESTAURANT R2 ON R1.RS_CODE = R2.RS_CODE WHERE USER_ID = #{id}
 	</select>
 	
 	<select id="reserMemberList"

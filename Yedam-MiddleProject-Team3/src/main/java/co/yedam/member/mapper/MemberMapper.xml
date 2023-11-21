@@ -10,6 +10,10 @@
 	<select id="memberList" resultType="co.yedam.member.service.MemberVO">
 	SELECT*FROM USERTABLE
 	</select>
+	<!-- 멤버 단건 조회 -->
+	<select id="selectMem" resultType="co.yedam.member.service.MemberVO">
+	SELECT USER_ID, USER_PW, USER_NAME, NICKNAME, TO_CHAR(BIRTHDAY,'YYYY-MM-DD')AS BIRTHDAY, PHONE, ADDRESS, IMAGE FROM USERTABLE WHERE USER_ID = #{id}
+	</select> 
 	
 	<!-- 멤버삭제 : 관리자 -->
 	<delete id="deleteMember">
@@ -34,8 +38,8 @@
 	
 	<!-- 회원 수정 -->
 	<update id= "memUpdate"  parameterType="co.yedam.member.service.MemberVO">
-	UPDATE USERTABLE SET (USER_PW= #{userPw}, USER_NAME= #{userName},BIRTHDAY=TO_DATE(#{birthDay},'YYYY-MM-DD'),
-	 PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},null),GENDER= #{gender}) where user_id=#{user_id}
+	UPDATE USERTABLE SET USER_PW= #{userPw}, USER_NAME= #{userName},BIRTHDAY=TO_DATE(#{birthDay},'YYYY-MM-DD'),
+	 PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},null) where user_id=#{userId}
 	</update>
 	
 </mapper>

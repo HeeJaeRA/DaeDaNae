@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <style>
 	.wrap_review {
 		max-width: 480px;
@@ -12,6 +11,8 @@
 		padding: 20px;
 		box-sizing: border-box;
 	}
+
+
 
 	.reviewform textarea {
 		width: 100%;
@@ -75,14 +76,14 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
-				<input type="button" id="imgMain" value="대표사진">
-				<input type="button" id="imgCard1" value="사진1">
-				<input type="button" id="imgCard2" value="사진2">
+				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." /> <input
+					type="button" id="imgMain" value="대표사진"> <input type="button" id="imgCard1" value="사진1"> <input
+					type="button" id="imgCard2" value="사진2">
 			</div>
 			<div class="col-md-6">
 				<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
-				<h1 class="display-5 fw-bolder">${vo.rsName } /
+				<h1 class="display-5 fw-bolder">${vo.rsName }
+					/
 					<c:choose>
 						<c:when test='${empty reviewCnt.star }'>
 							0점
@@ -96,14 +97,14 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 					<span class="text"> </span>
 				</div>
 				<p class="lead">${vo.rsDesc }</p>
-				<div id="map" style="width:100%;height:350px;"></div>
+				<div id="map" style="width: 100%; height: 350px;"></div>
 				<div class="d-flex">
 					<div class="text-center">
 						<a class="btn btn-outline-dark mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
 					</div>
 				</div>
 			</div>
-			<div style="width:100%; height:100px; text-align:center;">
+			<div style="width: 100%; height: 100px; text-align: center;">
 				<c:choose>
 					<c:when test='${empty logId }'>
 						<span class="text-black">내용${vo.rsDesc }</span>
@@ -119,9 +120,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5">
-		<h2 class="fw-bolder mb-4">${vo.rsName }과 비슷한 맛집</h2>
-		<input type="button" value="종류별" id="categoryBtn">
-		<input type="button" value="지역별" id="addressBtn">
+		<h2 class="fw-bolder mb-4">${vo.rsName }과비슷한맛집</h2>
+		<input type="button" value="종류별" id="categoryBtn"> <input type="button" value="지역별" id="addressBtn">
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5" id="allDiv" style="display: block;">
@@ -129,8 +129,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 			<c:forEach items="${allList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
 						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
@@ -161,8 +161,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 			<c:forEach items="${addressList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
 						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
@@ -193,8 +193,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 			<c:forEach items="${categoryList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
 						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
@@ -226,26 +226,21 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 			<form name="reviewform" class="reviewform">
 				<label>작성자 <input name="nickname" value="${nickname }" readonly></label>
 				<div class="review_rating">
-					<label>맛
-						<select name="startaste" id="startaste">
+					<label>맛 <select name="startaste" id="startaste">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
 						</select>
-					</label>
-					<label>가격
-						<select name="starprice" id="starprice">
+					</label> <label>가격 <select name="starprice" id="starprice">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
 						</select>
-					</label>
-					<label>서비스
-						<select name="starservice" id="starservice">
+					</label> <label>서비스 <select name="starservice" id="starservice">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
