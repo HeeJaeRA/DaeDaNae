@@ -13,16 +13,16 @@
 /*  	background-color: skyblue;  */
 /*  }  */
 
- div {
-	background-color: white; 
-	height: auto; 
- 	width: 400px; 
- 	margin: 0px; 
-	padding: 20px; 
- 	margin: 0 auto; 
- 	border-radius: 5px; 
-	box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3); 
- } 
+  div { 
+ 	background-color: white;  
+ 	height: auto;  
+  	width: 400px;  
+  	margin: 0px;  
+ 	padding: 20px;  
+  	margin: 0 auto;  
+  	border-radius: 5px;  
+	box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);  
+ }  
 
 td { 
  	width: 50px; 
