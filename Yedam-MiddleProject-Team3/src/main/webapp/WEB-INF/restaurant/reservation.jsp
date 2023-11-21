@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
-${logId }, ${nickname }, ${vo }
 <div>
 	<form method="post" action="reservation.do">
 		<input type="hidden" name="id" value="${logId}">
@@ -13,15 +12,14 @@ ${logId }, ${nickname }, ${vo }
 			<c:forEach var="i" begin="11" end="22" step="1">
 				<input type="button" class="table" id="button${i}" name="time" value="${i}:00"
 					style="display:none; WIDTH: 60pt; HEIGHT: 60pt">
-
 				<c:if test="i%4==2">
 					<br>
 				</c:if>
 			</c:forEach>
-			<input type="hidden" name="time1" value="time1">
+			<!-- <input type="hidden" name="time1" value="time1"> -->
 		</div>
 		<!-- <input type="hidden" id="buyAble" name="buyAble" value="0"> -->
-		<select name="buyAble" id="buyAble">
+		<select name="seatcnt" id="seatcnt">
 			<option value="">좌석수</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -32,7 +30,6 @@ ${logId }, ${nickname }, ${vo }
 	</form>
 </div>
 
-
 <!-- 결제 -->
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <!-- jQuery -->
@@ -42,7 +39,6 @@ ${logId }, ${nickname }, ${vo }
 <script>
 	let rsname = '${vo.rsName}';
 	let rcode = '${vo.rsCode}';
-
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
 	var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
@@ -64,8 +60,6 @@ ${logId }, ${nickname }, ${vo }
 			item.style.display = 'inline';
 		})
 	}
-
-
 	// 	const buttons = document.querySelectorAll(".table")
 	// 	for (const button of buttons) {
 	// 	  button.addEventListener('click', function(event) {
@@ -77,8 +71,8 @@ ${logId }, ${nickname }, ${vo }
 	// let id='${logId}';
 	// let nickname='${nickname}'
 	// let rcode='${vo.rsCode}';
-	let times = null;
-	let time1 = null;
+	// let times = null;
+	// let time1 = null;
 
 	var timeList = document.querySelectorAll('.table');
 	timeList.forEach(function (item) {
@@ -91,10 +85,10 @@ ${logId }, ${nickname }, ${vo }
 				item.setAttribute('id', 'selected');
 			});
 			//item.classList.add('active');
-			console.log(e.target.value);
-			times = e.target.value;
-			time1 = times;
-			times = null;
+			// console.log(e.target.value);
+			// times = e.target.value;
+			// time1 = times;
+			// times = null;
 		});
 	});
 
@@ -105,7 +99,7 @@ ${logId }, ${nickname }, ${vo }
 		let nickname = '${nickname}';
 		let date = document.querySelector('#date').value;
 		let realtime = document.querySelector('#selected').value;
-		let buyA = document.querySelector('#buyAble').value;
+		let seatcnt = document.querySelector('#seatcnt').value;
 
 		fetch('reservation.do', {
 				method: 'post',
@@ -113,7 +107,7 @@ ${logId }, ${nickname }, ${vo }
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
 				body: 'id=' + id + '&rcode=' + rcode + '&nickname=' + nickname + '&date=' + date + '&time=' +
-					realtime + '&buyAble=' + buyA
+					realtime + '&seatcnt=' + seatcnt
 			})
 			.then(resolve => resolve.json())
 			.then(result => {
@@ -134,17 +128,17 @@ ${logId }, ${nickname }, ${vo }
 		var minutes = today.getMinutes();
 		var seconds = today.getSeconds();
 		var makeMerchantUid = hours + minutes + seconds;
-		let buyA = document.querySelector('#buyAble').value;
+		let seatcnt = document.querySelector('#seatcnt').value;
 		IMP.request_pay({
 			pg: 'kakaopay.TC0ONETIME',
 			pay_method: 'card',
 			merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
 			name: rsname, // 제품명
-			amount: 5000 * buyA // 가격
+			amount: 5000 * seatcnt
 		}, async function (rsp) { // callback
 			if (rsp.success) { //결제 성공시
 				alert('예약 완료!');
-				window.location.href = 'restaurantInfo.do?rcode=' + rcode;
+				window.location.href = 'restaurantInfo.do?rcode=' + rcode + '&focus=reviewcontent';
 			} else if (rsp.success == false) { // 결제 실패시
 				alert(rsp.error_msg);
 			}

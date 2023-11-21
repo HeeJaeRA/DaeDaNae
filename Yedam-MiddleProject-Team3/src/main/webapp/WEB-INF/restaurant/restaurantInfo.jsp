@@ -2,11 +2,75 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<style>
+	.wrap_review {
+		max-width: 480px;
+		margin: 0 auto;
+		/* 화면 가운데로 */
+		background-color: #fff;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+
+	.reviewform textarea {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.btn02 {
+		display: block;
+		width: 100%;
+		font-weight: bold;
+		border: 0;
+		border-radius: 10px;
+		max-height: 50px;
+		padding: 15px 0;
+		font-size: 1.1em;
+		text-align: center;
+		background: bisque;
+	}
+
+	#if {
+		width: 0px;
+		height: 0px;
+		border: 0px;
+	}
+
+	table,
+	thead,
+	tbody {
+		border: 1px solid black;
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.table_head {
+		font-weight: bold;
+	}
+
+	.review_content {
+		width: 500px;
+	}
+
+	.star {
+		width: 50px;
+	}
+
+	.like {
+		width: 50px;
+	}
+
+	td {
+		width: 100px;
+		padding: auto;
+	}
+</style>
 
 <!-- Product section-->
-${logId }, ${nickname }, ${respon }, ${reviewCnt }
-
-
+${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
@@ -50,7 +114,6 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 							onclick="mark(); this.onclick=null;">찜하기</a>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
 		</div>
 	</div>
@@ -192,10 +255,17 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					</label>
 				</div>
 				<div class="review_contents">
-					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
+					<textarea rows="10" name="writecontent" id="reviewcontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
+					<c:choose>
+						<c:when test='${empty reviewCheck }'>
+							<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
+						</c:when>
+						<c:otherwise>
+							<span class="text-muted">이미 리뷰를 작성하셨습니다.</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</form>
 		</div>
@@ -438,7 +508,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == 'OK') {
-					alert('성공');
+					alert('찜목록에 추가되었습니다.');
 				} else {
 					alert('실패');
 				}

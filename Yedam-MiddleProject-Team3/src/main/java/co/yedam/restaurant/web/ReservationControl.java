@@ -35,10 +35,10 @@ public class ReservationControl implements Command {
 		//파라미터로 받을 값
 		String date= req.getParameter(("date"));
 		String time= req.getParameter("time");
-		String buyAble= req.getParameter("buyAble");
+		String seatcnt= req.getParameter("seatcnt");
 		System.out.println("date"+date);
 		System.out.println("time"+time);
-		System.out.println("buyAble"+buyAble);
+		System.out.println("seatcnt"+seatcnt);
 		ReservationVO rvo = new ReservationVO();
 		
 		//SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
@@ -63,7 +63,7 @@ public class ReservationControl implements Command {
 //		}
 
 		rvo.setResTime(time);
-		rvo.setBuyAble(Integer.parseInt(buyAble));
+		rvo.setSeatcnt(Integer.parseInt(seatcnt));
 				
 		
 		System.out.println( "rvo"+rvo);
