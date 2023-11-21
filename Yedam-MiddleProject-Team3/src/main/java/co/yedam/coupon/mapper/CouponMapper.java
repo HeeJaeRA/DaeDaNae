@@ -19,4 +19,6 @@ public interface CouponMapper {
 	
 	public int deleteCoupon(@Param("id") String userId, @Param("cc") String couponCode); //쿠폰 삭제
 	
+	public int couponCnt(String id); //본인 쿠폰 개수
+	
 }

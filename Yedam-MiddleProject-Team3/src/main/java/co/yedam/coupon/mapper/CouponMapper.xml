@@ -14,5 +14,9 @@
 	<delete id="deleteCoupon" >
 	DELETE FROM COUPON WHERE USER_ID = #{id} AND COUPON_CODE = #{cc}
 	</delete>
+	
+	<select id="couponCnt" resultType = "int">
+	SELECT COUNT(USER_ID) FROM COUPON WHERE USER_ID = #{id}
+	</select>
 
 </mapper>

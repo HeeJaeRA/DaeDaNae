@@ -151,7 +151,7 @@ public class FrontController extends HttpServlet {
 		String context = req.getServletContext().getContextPath();
 		String page = uri.substring(context.length());
 		Command controller = map.get(page);
-		
+		System.out.println(page);
 		controller.execute(req, resp);
 	}
 }
