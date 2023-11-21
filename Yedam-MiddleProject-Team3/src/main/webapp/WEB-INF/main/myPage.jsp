@@ -160,7 +160,7 @@ caption {
 </head>
 
 <body>
-	<%-- ${bookList }, ${bookingList }  --%>
+<%-- ${bookList }, ${bookingList }  --%>
 <%-- 	쿠폰${ccnt } --%>
 	<main id="main" class="main">
 
