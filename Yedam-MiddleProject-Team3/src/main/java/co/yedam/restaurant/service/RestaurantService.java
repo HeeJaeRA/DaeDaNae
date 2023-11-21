@@ -33,7 +33,7 @@ public interface RestaurantService {
 
 	public boolean addRestaurant(RestaurantVO vo);
 
-	public boolean removeRestaurant(int rsCode);
+	public boolean removeRestaurant(String rsCode);
 
 
 	// 북마크

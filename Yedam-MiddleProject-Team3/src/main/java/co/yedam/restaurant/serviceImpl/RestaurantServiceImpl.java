@@ -81,7 +81,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 	@Override
-	public boolean removeRestaurant(int rsCode) {
+	public boolean removeRestaurant(String rsCode) {
 		
 		return mapper.removeRestaurant(rsCode) ==1;
 	}
@@ -97,5 +97,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<RestaurantVO> selectBookMarkList(String id) {
 		return mapper.selectBookMarkList(id);
 	}
+
+	
 
 }

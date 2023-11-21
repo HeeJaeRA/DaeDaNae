@@ -42,7 +42,7 @@
 			<th>작성자</th>
 			<th>작성일자</th>
 			<th>수정일자</th>
-			<th>내용</th>
+<!-- 			<th>내용</th> -->
 			<th>조회수</th>
 			<th>공감수</th>
 
@@ -57,7 +57,7 @@
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 				<td><fmt:formatDate value="${vo.updateDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
-				<td>${vo.boardContent }</td>
+<%-- 				<td>${vo.boardContent }</td> --%>
 				<td>${vo.boardView }</td>
 				<td>${vo.likecnt }</td>
 

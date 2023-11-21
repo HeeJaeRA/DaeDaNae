@@ -41,5 +41,5 @@ public interface RestaurantMapper {
 	
 	public List<RestaurantVO> selectBookMarkList(String id);
 
-	public int removeRestaurant(int rsCode);
+	public int removeRestaurant(String rsCode);
 }
