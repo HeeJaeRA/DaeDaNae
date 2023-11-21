@@ -62,11 +62,37 @@
 						<td>${vo.image1 }</td>
 						<td>${vo.likecnt }</td>
 						<td>${vo.starcnt }</td>
-					    <td><button class="" >삭제</button></td>
+						<td><button class="delR" onclick="delRfucn(event)">삭제</button></td>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<button>가게 추가</button>
+			<a href = "adAddRestaurantForm.do"><button>가게 추가</button></a>
 		</div>
 	</div>
+	
+		
+<script>
+function delRfucn(e) {
+	// console.log(e.target.parentElement.parentElement.children[4].innerHTML)
+	let rco = e.target.parentElement.parentElement.children[0].innerHTML;
+	fetch('adRemoveRestaurant.do', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'rco=' + rco
+		})
+		.then(resolve => resolve.json())
+		.then(result => {
+			if (result.retCode == 'OK') {
+				alert('Success!!');
+				e.target.parentElement.parentElement.remove();
+			} else {
+				alert('Error!!');
+			}
+		})
+		.catch(err => console.log(err));
+}
+</script>
+	
