@@ -28,6 +28,7 @@ import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
 import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.member.web.ModifyMControl;
 import co.yedam.member.web.ModifyMemControl;
 import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
