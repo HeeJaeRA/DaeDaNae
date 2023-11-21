@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Command;
+import co.yedam.member.service.MemberService;
+import co.yedam.member.service.MemberVO;
+import co.yedam.member.serviceImpl.MemberServiceImpl;
 import co.yedam.restaurant.service.RestaurantService;
 import co.yedam.restaurant.service.RestaurantVO;
 import co.yedam.restaurant.serviceImpl.RestaurantServiceImpl;
@@ -18,6 +21,7 @@ public class ReservationFormControl implements Command {
 		RestaurantService svc = new RestaurantServiceImpl();
 		RestaurantVO vo = svc.getRestaurant(rcode);
 		req.setAttribute("vo", vo);
+		
 		 
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

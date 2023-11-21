@@ -7,18 +7,15 @@
 		<input type="hidden" name="id" value="${logId}">
 		<input type="hidden" name="rcode" value="${vo.rsCode}">
 		<input type="hidden" name="nickname" value="${nickname }">
-		<input type="date" id="date" name="date" value="" onclick="timetable()">
+		<input type="date" id="date" name="date" value="" onchange="handler(event);" onclick="blockTable();">
 		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
 				<input type="button" class="table" id="button${i}" name="time" value="${i}:00"
 					style="display:none; WIDTH: 60pt; HEIGHT: 60pt">
-				<c:if test="i%4==2">
-					<br>
-				</c:if>
 			</c:forEach>
-			<!-- <input type="hidden" name="time1" value="time1"> -->
+
 		</div>
-		<!-- <input type="hidden" id="buyAble" name="buyAble" value="0"> -->
+
 		<select name="seatcnt" id="seatcnt">
 			<option value="">좌석수</option>
 			<option value="1">1</option>
@@ -26,7 +23,7 @@
 			<option value="3">3</option>
 			<option value="4">4</option>
 		</select>
-		<input type="button" id="reservation" value="예약하기">
+		<input type="button" id="reservation" class="btn btn-warning" value="예약하기">
 	</form>
 </div>
 
@@ -37,61 +34,41 @@
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
-	let rsname = '${vo.rsName}';
-	let rcode = '${vo.rsCode}';
+// 	let rsname = '${vo.rsName}';
+// 	let rcode = '${vo.rsCode}';
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
 	var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
 	//new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
 	var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
 	document.getElementById("date").setAttribute("min", today);
-
-	//var X = new Date();//현재 날짜나 시간에 대한 데이터를 받고
-	//var weekday = new Array("MON", "TUE", "WED", "THI", "FRI", "SAT", "SUN");//요일별로 매칭해
-	//var date = X.getDate();//여기서 날짜에 대한 데이터를 가져온 다음
-	//document.getElementById("wdate").innerHTML = date;
 	const dates = document.querySelector('input[type="date"]')
-
-	//달력에서 날짜 누르면 시간테이블이 보인다
-	function timetable() {
-		console.log("date value:" + dates.value)
-		document.querySelectorAll('.table').forEach(item => {
-			// 		item.disabled = false; 초기화
-			item.style.display = 'inline';
-		})
+	function handler(e){
+			console.log("date value:" + dates.value)
+			document.querySelectorAll('.table').forEach(item => {
+				item.style.display = 'inline';
+			})
 	}
-	// 	const buttons = document.querySelectorAll(".table")
-	// 	for (const button of buttons) {
-	// 	  button.addEventListener('click', function(event) {
-	// 		   button.style.backgroundColor = 'yellow';
-	// 		   console.log(time.value);
-	// 	  })
-	// 	}
-
-	// let id='${logId}';
-	// let nickname='${nickname}'
-	// let rcode='${vo.rsCode}';
-	// let times = null;
-	// let time1 = null;
-
+	function blockTable(){
+		document.querySelectorAll('.table').forEach(item => {
+			item.style.display = 'none';
+			item.style.backgroundColor = "white"; 
+		})
+		
+	}
 	var timeList = document.querySelectorAll('.table');
 	timeList.forEach(function (item) {
 		item.addEventListener('click', function (e) {
 			timeList.forEach(function (e) {
-				//e.classList.remove('active');
 				item.style.backgroundColor = "orange";
 				e.style.backgroundColor = "white";
 
 				item.setAttribute('id', 'selected');
 			});
-			//item.classList.add('active');
-			// console.log(e.target.value);
-			// times = e.target.value;
-			// time1 = times;
-			// times = null;
 		});
 	});
 
+	
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click', function (e) {
 		let id = '${logId}';

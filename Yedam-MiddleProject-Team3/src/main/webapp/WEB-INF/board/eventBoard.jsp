@@ -13,7 +13,7 @@
 /*  	background-color: skyblue;  */
 /*  }  */
 
-  div { 
+  .modalStyle { 
  	background-color: white;  
  	height: auto;  
   	width: 400px;  
@@ -91,7 +91,7 @@ td {
 .calenModal {
 	position: absolute;
 	width: 700px;
-	height: 400px;
+	height: 600px;
 	display: flex;
 	background-color: rgba(255, 110, 000, 0.7);
 	display: flex;
@@ -105,6 +105,14 @@ td {
 	margin: auto;
 	z-index: 300;
 }
+.calenModal .modal_close {
+ 
+    position: absolute;
+    top: 20px;
+    right: 17px;
+    
+    cursor: pointer; // 닫기 버튼 클릭 시 홈으로 이동
+  }
 </style>
 </head>
 <body>
@@ -116,7 +124,8 @@ td {
 </body>
 
 <div class= "calenModal hidden">
-<button class="btn btn-danger modal_close">x</button>
+<button class="btn btn-default modal_close" >x</button>
+<div class="modalStyle">
 	<table class="Calendar">
 		<thead>
 			<tr>
@@ -140,6 +149,7 @@ td {
 		
 		</tbody>
 	</table>
+	</div>
 </div>
 <script>
 const open = document.querySelector(".modal_open");
@@ -226,7 +236,7 @@ init();
 		}
 		newDIV.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 		
-		if(document.getElementsByClassName("choiceDay")[0] == new Date())
+		
 	}
 
 	// 이전달 버튼 클릭

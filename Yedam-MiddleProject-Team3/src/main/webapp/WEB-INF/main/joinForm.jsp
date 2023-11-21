@@ -16,7 +16,7 @@
 								아이디<input class="form-control" type="text" name="id" id="id"
 									placeholder="아이디를 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
-								<input type="button" id="userid" value="아이디 중복확인" onclick="checkId()">
+								<input type="button" id="userid" class="btn btn-warning" value="아이디 중복확인" onclick="checkId()">
 								<!-- <button type="button id="join-id"></button> -->
 								<div class="valid-feedback" style="display:none">사용가능한 아이디 입니다!</div>
 								<div class="invalid-feedback" style="display:none">사용 불가능한 아이디 입니다ㅠ</div>
@@ -52,7 +52,7 @@
 								닉네임<input class="form-control" type="text" name="nickname" id="nickname" 
 									placeholder="닉네임을 입력하세요" required oninput="resetfb()"
 									style="width: 540px; background-color: 808080;">
-								<button type="button" id="join-nick">닉네임 중복확인</button>
+								<button type="button" id="join-nick" class="btn btn-warning">닉네임 중복확인</button>
 								<div class="valid-feedback" style="display:none">사용 가능한 닉네임 입니다</div>
 								<div class="invalid-feedback" style="display:none">이미 사용중인 닉네임 입니다</div>
 							</div>
@@ -124,8 +124,8 @@
 
 
 
-							<input type="submit" id="join" value="회원가입" onclick="return check()">
-							<input type="reset" value="초기화">
+							<input type="submit" id="join" value="회원가입" class="btn btn-danger" onclick="return check()">
+							<input type="reset" class="btn btn-danger" value="초기화">
 
 						</form>
 					</div>

@@ -12,7 +12,6 @@ public class ReservationVO {
 	private String resDate; //얘를 문자로 받을까... 날짜로 받을까...
 	private String resTime;//얘도
 	private int seatcnt;
-	
 	private String rsName;
 
 }
