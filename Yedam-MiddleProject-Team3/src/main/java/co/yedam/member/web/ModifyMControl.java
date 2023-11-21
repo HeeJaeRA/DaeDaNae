@@ -13,7 +13,7 @@ import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 import co.yedam.member.serviceImpl.MemberServiceImpl;
 
-public class ModifyControl implements Command {
+public class ModifyMControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -25,23 +25,23 @@ public class ModifyControl implements Command {
 
 		try {
 			MultipartRequest mr = new MultipartRequest(req, saveDir, size, "UTF-8", new DefaultFileRenamePolicy());
-			//String id = mr.getParameter("id");
+			String id = mr.getParameter("id");
 			String pw = mr.getParameter("pw");
 			String name = mr.getParameter("name");
 			String birthDay= mr.getParameter("birthDay");
 			String phone = mr.getParameter("phone");
 			String address = mr.getParameter("address");
 			String img = mr.getFilesystemName("image");
-			String gender = mr.getParameter("gender");  
-			      
-			//vo.setUserPw(id);
+//			String gender = mr.getParameter("gender");  
+			
+			vo.setUserId(id);
 			vo.setUserPw(pw);
 			vo.setUserName(name);
 			vo.setBirthDay(birthDay);
 			vo.setPhone(phone);
 			vo.setAddress(address);
 			vo.setImage(img);
-			vo.setGender(gender);
+//			vo.setGender(gender);
 			
 			System.out.println(vo);
 

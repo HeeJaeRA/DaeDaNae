@@ -25,10 +25,11 @@ public class RemoveMemberControl implements Command {
 		MemberService mvc = new MemberServiceImpl();
 		if(mvc.memberRemove(id)) {
 			map.put("retCode", "OK");
+			
 		} else {
 			map.put("retCode", "NG");
 		}
-		
+		System.out.println(mvc.memberRemove(id));
 		Gson gson = new GsonBuilder().create(); 
 		try {
 			resp.getWriter().print(gson.toJson(map));

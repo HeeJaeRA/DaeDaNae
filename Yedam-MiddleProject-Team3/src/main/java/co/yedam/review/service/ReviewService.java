@@ -15,5 +15,7 @@ public interface ReviewService {
 	public ReviewVO cntStar(String rsCode);
 	
 	public boolean updateMoney(String id);
+	
+	public ReviewVO checkReview(String rsCode, String uid);
 
 }

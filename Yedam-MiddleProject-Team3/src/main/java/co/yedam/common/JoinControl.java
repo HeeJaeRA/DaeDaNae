@@ -21,7 +21,6 @@ public class JoinControl implements Command {
 		MemberVO vo = new MemberVO();
 		MemberService svc = new MemberServiceImpl();
 		List<MemberVO> list = svc.memberList();
-
 		String saveDir = req.getServletContext().getRealPath("images");
 		int size = 10 * 2048 * 2048;
 
@@ -51,8 +50,7 @@ public class JoinControl implements Command {
 			vo.setImage(img);
 			vo.setGender(gender);
 			
-			System.out.println(vo);
-
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} // try.catch
@@ -60,8 +58,6 @@ public class JoinControl implements Command {
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 
-		System.out.println(vo);
-	
 
 		if (svc.addMember(vo)) {
 			try {

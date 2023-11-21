@@ -19,5 +19,7 @@ public interface ReviewMapper {
 	public ReviewVO cntStar(@Param("rsCode") String rsCode);
 
 	public boolean updateMoney(String id);
+	
+	public ReviewVO checkReview(@Param("rsCode") String rsCode, @Param("uid") String uid);
 
 }

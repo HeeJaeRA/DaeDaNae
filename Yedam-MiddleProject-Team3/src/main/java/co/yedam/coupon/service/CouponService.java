@@ -10,6 +10,8 @@ public interface CouponService {
 	public boolean addCoupon(String userId, String couponCode);
 	public boolean delCoupon(String userId, String couponCode);
 	
+	// 본인 쿠폰 개수 
+	public int couponCnt(String id);
 	
 	
 }
