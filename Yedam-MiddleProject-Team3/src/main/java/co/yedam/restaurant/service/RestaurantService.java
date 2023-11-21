@@ -3,6 +3,8 @@ package co.yedam.restaurant.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface RestaurantService {
 
 	public List<RestaurantVO> selectAllList();
@@ -40,4 +42,5 @@ public interface RestaurantService {
 	public boolean markRestaurnat(String uid, String rcode);
 	
 	public List<RestaurantVO> selectBookMarkList(String id);
+	
 }

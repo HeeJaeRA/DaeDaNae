@@ -94,5 +94,5 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public List<RestaurantVO> selectBookMarkList(String id) {
 		return mapper.selectBookMarkList(id);
 	}
-
+	
 }

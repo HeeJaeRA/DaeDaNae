@@ -41,8 +41,8 @@
 
 	<!-- 예약등록 -->
  	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
- 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, buyAble )
- 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{buyAble})
+ 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, seatcnt )
+ 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{seatcnt})
 	</insert> 
 	
 	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
