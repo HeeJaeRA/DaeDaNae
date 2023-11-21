@@ -6,137 +6,156 @@
 <html lang="en">
 
 <head>
-	<style>
-		section .intro {
-			display: flex;
-			justify-content: center;
-			text-align: center;
-		}
+<style>
+section .intro {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
 
-		.sec1 {
-			width: 500px;
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: column;
-			justify-content: space-around;
-			padding: 10px;
-		}
+.sec1 {
+	width: 500px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 10px;
+}
 
-		.copTotal,
-		.pointTotal {
-			display: flex;
-			justify-content: space-around;
-		}
+.copTotal, .pointTotal {
+	display: flex;
+	justify-content: space-around;
+}
 
-		.hidden {
-			display: none;
-		}
+.hidden {
+	display: none;
+}
 
-		.delmodal {
-			position: absolute;
-			width: 700px;
-			height: 400px;
-			display: flex;
-			background-color: rgba(255, 110, 000, 0.9);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-radius: 10px;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
-			z-index: 300;
-		}
+.delmodal {
+	position: absolute;
+	width: 700px;
+	height: 400px;
+	display: flex;
+	background-color: rgba(255, 110, 000, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 300;
+}
+
+a, ul, li {
+	text-decoration: none;
+	list-style: none;
+}
+
+.tab {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+}
+
+.tab__item {
+	padding: 0.6rem 1.3rem;
+	margin-right: 1rem;
+	border: 1px solid #17a2b8;
+	border-radius: 0.5rem;
+	background-color: #17a2b8;
+}
+
+.tab__item:hover {
+	background-color: #087384;
+	color: #fff;
+}
+
+.tab__item.active {
+	display: inline-block;
+	border: 1px solid #38b44a;
+	background-color: #38b44a;
+	color: #000;
+	text-decoration: none;
+}
+
+.tab__content-wrapper {
+	padding: 1rem
+}
+
+.tab__content {
+	display: none;
+}
+
+.tab__content.active {
+	display: block;
+}
+
+thead, tbody, th {
+	text-align: center;
+	border-radius: 10px;
+}
+
+.myOwn {
+	width: 100%;
+	height: auto;
+	/* border : 2px solid coral; */
+	border-collapse: collapse;
+	table-layout: fixed;
+	caption-side: top;
+	word-break: break-all;
+	vertical-align: middle;
+	background-color: rgb(255, 235, 229);
+}
+
+.myOwn2 {
+	border: 2px;
+	width: 60%;
+	height: auto;
+	/* border : 2px solid coral; */
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	table-layout: fixed;
+	caption-side: top;
+	word-break: break-all;
+	vertical-align: middle;
+	background-color: rgb(255, 235, 229, 0.6);
+}
+
+.myOwn2 thead, th, td {
+	border-bottom: 1px solid #444444;
+}
+
+.myOwn2 tr {
+	height: 50px;
+}
+
+.myOwn2 tbody {
+	background-Color: white;
+}
+
+caption {
+	text-align: center;
+	font-weight: bold;
+	color: coral;
+}
+
+.myOwn td, .myOwn th {
+	border: 1px dashed #ccc;
+	padding: 5px;
+	text-align: center;
+}
+</style>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 
-		a,
-		ul,
-		li {
-			text-decoration: none;
-			list-style: none;
-		}
+<title>my page</title>
 
-		.tab {
-			display: flex;
-			align-items: center;
-			padding: 1rem;
-		}
-
-		.tab__item {
-			padding: 0.6rem 1.3rem;
-			margin-right: 1rem;
-			border: 1px solid #17a2b8;
-			border-radius: 0.5rem;
-			background-color: #17a2b8;
-		}
-
-		.tab__item:hover {
-			background-color: #087384;
-			color: #fff;
-		}
-
-		.tab__item.active {
-			display: inline-block;
-			border: 1px solid #38b44a;
-			background-color: #38b44a;
-			color: #000;
-			text-decoration: none;
-		}
-
-		.tab__content-wrapper {
-			padding: 1rem
-		}
-
-		.tab__content {
-			display: none;
-		}
-
-		.tab__content.active {
-			display: block;
-		}
-
-		thead,
-		tbody,
-		th {
-			text-align: center;
-			border-radius: 10px;
-		}
-
-		.myOwn {
-			width: 100%;
-			height: auto;
-			/* border : 2px solid coral; */
-			border-collapse: collapse;
-			table-layout: fixed;
-			caption-side: top;
-			word-break: break-all;
-			vertical-align: middle;
-			background-color: rgb(255, 235, 229);
-		}
-
-		caption {
-			text-align: center;
-			font-weight: bold;
-			color: coral;
-		}
-
-		.myOwn td,
-		.myOwn th {
-			border: 1px dashed #ccc;
-			padding: 5px;
-			text-align: center;
-		}
-	</style>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-
-	<title>my page</title>
-
-	<!-- Template Main CSS File -->
-	<link href="resources/my/css/myStyle.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="resources/my/css/myStyle.css" rel="stylesheet">
 
 </head>
 
@@ -196,9 +215,10 @@
 					<div class="card">
 
 
-						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-							<img src="resources/images/memimg/${image }" alt="Profile" class="rounded-circle"
-								width="150px">
+						<div
+							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+							<img src="resources/images/memimg/${image }" alt="Profile"
+								class="rounded-circle" width="150px">
 
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>
@@ -207,8 +227,9 @@
 									팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span>
 								</p>
 							</div>
+						
 							<div class="delmodal hidden">
-								<table class="deltable" border="1">
+								<table class="deltable myOwn2">
 									<thead>
 										<tr>
 											<th colspan="3">
@@ -218,28 +239,29 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th colspan="3" style="width:50px;">탈퇴 하시겠습니까?</th>
+											<th colspan="3" style="width: 100px;">탈퇴 하시겠습니까?</th>
 										</tr>
 										<tr>
-											<th colspan="3"><input type="button" id="deleteMems" value="네">
-												<button class="modal_close">아니요</button></th>
+
+											<th colspan="3"><input type="button" id="deleteMems" class="btn btn-danger"
+												value="네">
+												<button class="btn btn-danger modal_close">아니요</button></th>
+
 										</tr>
 									</tbody>
 								</table>
-
 							</div>
-							<div class="my">
+						
+						<div class="my">
 
-								<button class="btn btn-danger"
-									onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
-								<button class="btn btn-danger modal_open">회원탈퇴</button>
+							<button class="btn btn-danger"
+								onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
+							<button class="btn btn-danger modal_open">회원탈퇴</button>
 
-
-
-							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 
 
@@ -253,12 +275,8 @@
 
 			<!-- 탭 버튼 영역 -->
 			<ul class="tab">
-				<li class="tab__item active">
-					<a href="#tab1">나의저장</a>
-				</li>
-				<li class="tab__item">
-					<a href="#tab2">예약현황</a>
-				</li>
+				<li class="tab__item active"><a href="#tab1">나의저장</a></li>
+				<li class="tab__item"><a href="#tab2">예약현황</a></li>
 			</ul>
 
 
@@ -370,11 +388,13 @@
 	</script>
 	<!-- Vendor JS Files -->
 	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/my/assets/vendor/chart.js/chart.umd.js"></script>
 	<script src="resources/my/assets/vendor/echarts/echarts.min.js"></script>
 	<script src="resources/my/assets/vendor/quill/quill.min.js"></script>
-	<script src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script
+		src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
 	<script src="resources/my/assets/vendor/tinymce/tinymce.min.js"></script>
 	<script src="resources/my/assets/vendor/php-email-form/validate.js"></script>
 
