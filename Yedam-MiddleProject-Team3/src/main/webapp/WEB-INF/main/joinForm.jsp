@@ -136,7 +136,7 @@
 							</div>
 
 							<br> <span id="number" style="font-size: 50px">000000</span>
-							<input type="button" id="random" value="인증번호 보기"
+							<input type="button" id="random" value="새로고침"
 								onclick="randoms()"> <input type="text" id="code"
 								name="보안코드" placeholder="보안코드를 입력해주세요"> <br><br>
 							<div class="form-check">
