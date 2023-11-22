@@ -61,6 +61,7 @@ p {
 			<tr>
 				<td>${vo.boardCode }</td>
 				<td><a href="getBoard.do?bco=${vo.boardCode }">${vo.boardTitle }</a></td>
+			
 				<td>${vo.userId }</td>
 				<td><fmt:formatDate value="${vo.writeDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>

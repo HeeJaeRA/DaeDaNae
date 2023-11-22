@@ -61,15 +61,15 @@
 			<td colspan="4">
 
 					<c:if test="${!empty bco.image1  }">
-						<img width="800px" src="resources/images/boardimg/${bco.image1 }">
-					</c:if>
+						<img width="600px" src="resources/images/boardimg/${bco.image1 }" style="margin-bottom: 10px;">
+					</c:if><br>
 					<c:if test="${!empty bco.image2  }">
-						<img width="800px" src="resources/images/boardimg/${bco.image2 }">
-					</c:if>
+						<img width="600px" src="resources/images/boardimg/${bco.image2 }" style="margin-bottom: 10px;">
+					</c:if><br>
 					<c:if test="${!empty bco.image3  }">
-						<img width="800px" src="resources/images/boardimg/${bco.image3 }">
+						<img width="600px" src="resources/images/boardimg/${bco.image3 }" style="margin-bottom: 10px;">
 					</c:if>
-					<br><br>
+					<br>
 				<p>	${bco.boardContent }
 				</p>
 
@@ -96,6 +96,7 @@
 <!-- 		</tr> -->
 		<tr>
 			<th>작성자</th>
+			
 			<td>${bco.userId }</td>
 			<th>조회수</th>
 			<td>${bco.boardView }</td>
@@ -141,7 +142,8 @@
 
 <h3>댓글목록</h3>
 <ul id="list">
-	<li style="display: none;" id="template"><span>00</span><span>user01</span> <b>첫번째글입니다.</b><span>2023-10-10</span>
+	<li style="display: none;" id="template"><span>00</span><span>user01</span> <b>첫번째글입니다.</b>
+<!-- 	<span>2023-10-10</span> -->
 		<button id="delReply">삭제</button> <button id="reReply">답글</button></li>
 </ul>
 
@@ -206,6 +208,7 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 	//댓글목록
 	let bco = "${bco.boardCode }";
 	let userId = "${logId }";
+	let nickname = "${nickname}";
 
 
 	bco = document.querySelector('.boardCode').innerHTML;
@@ -391,7 +394,7 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 		temp.style.display = 'block';
 		//temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
 		temp.querySelector('b').innerHTML = reply.replyContent;
-		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId;
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId; 
 		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.writeDate;
 		temp.querySelector('#delReply').addEventListener('click', deleteCallback);
 
