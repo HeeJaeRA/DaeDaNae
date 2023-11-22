@@ -116,7 +116,7 @@ td {
 </style>
 </head>
 <body>
-  <a href="/roulette.jsp">
+  <a href="board/roulette.jsp">
     <button  class="btn btn-warning">룰렛 이벤트 페이지로 이동</button>
   </a>
   <button class="btn btn-warning modal_open" >출석체크</button>
