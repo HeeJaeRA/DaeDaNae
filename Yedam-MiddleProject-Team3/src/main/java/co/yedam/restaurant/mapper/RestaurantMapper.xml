@@ -78,5 +78,9 @@
 		SELECT R.RS_CATEGORY, R.RS_NAME, R.RS_GU, PHONE, R.STARCNT
 		FROM BOOKMARK B LEFT JOIN RESTAURANT R ON B.RS_CODE=R.RS_CODE WHERE USER_ID = #{id}
 	</select>
+	
+	<select id="getReservationInfo">
+		SELECT * FROM RESERVATION WHERE USER_ID = #{uid} AND RS_CODE = #{rcode}
+	</select>
 
 </mapper>

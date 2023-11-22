@@ -23,7 +23,7 @@
 .button-style {
 	display: inline-block;
 	padding: 10px 20px;
-	background-color: #ff7f00; /* 버튼 배경색 */
+	background-color: rgb(255, 128, 64); /* 버튼 배경색 */
 	color: white; /* 버튼 텍스트 색상 */
 	text-decoration: none;
 	border: none;

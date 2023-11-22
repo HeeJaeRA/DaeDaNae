@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
 <div>
 	<form method="post" action="reservation.do">
-		<input type="hidden" name="id" value="${logId}">
-		<input type="hidden" name="rcode" value="${vo.rsCode}">
-		<input type="hidden" name="nickname" value="${nickname }">
-		<input type="date" id="date" name="date" value="" onchange="handler(event);" onclick="blockTable();">
+		<input type="hidden" name="id" value="${logId}"> <input
+			type="hidden" name="rcode" value="${vo.rsCode}"> <input
+			type="hidden" name="nickname" value="${nickname }"> <input
+			type="date" id="date" name="date" value="" onchange="handler(event);"
+			onclick="blockTable();">
 		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
-				<input type="button" class="table" id="button${i}" name="time" value="${i}:00"
-					style="display:none; WIDTH: 60pt; HEIGHT: 60pt">
+				<input type="button" class="table" id="button${i}" name="time"
+					value="${i}:00" style="display: none; WIDTH: 60pt; HEIGHT: 60pt">
 			</c:forEach>
 
 		</div>
@@ -22,20 +23,24 @@
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
-		</select>
-		<input type="button" id="reservation" class="btn btn-warning" value="예약하기">
+		</select> <input type="button" id="reservation" class="btn btn-warning"
+			value="예약하기">
 	</form>
 </div>
 
 <!-- 결제 -->
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
-// 	let rsname = '${vo.rsName}';
-// 	let rcode = '${vo.rsCode}';
+
+let rcode = '${vo.rsCode}';
+let rsname = '${vo.rsName}';
+
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
 	var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
@@ -62,7 +67,6 @@
 			timeList.forEach(function (e) {
 				item.style.backgroundColor = "orange";
 				e.style.backgroundColor = "white";
-
 				item.setAttribute('id', 'selected');
 			});
 		});
@@ -89,6 +93,7 @@
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == "Success") {
+					// alert('예약완료');
 					kakaoPay();
 				} else {
 					alert('예약실패');
@@ -115,7 +120,7 @@
 		}, async function (rsp) { // callback
 			if (rsp.success) { //결제 성공시
 				alert('예약 완료!');
-				window.location.href = 'restaurantInfo.do?rcode=' + rcode + '&focus=reviewcontent';
+				window.location.href = 'restaurantInfo.do?rcode=' + rcode;
 			} else if (rsp.success == false) { // 결제 실패시
 				alert(rsp.error_msg);
 			}

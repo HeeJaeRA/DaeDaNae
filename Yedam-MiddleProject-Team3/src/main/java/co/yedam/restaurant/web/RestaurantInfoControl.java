@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Command;
+import co.yedam.restaurant.service.ReservationVO;
 import co.yedam.restaurant.service.RestaurantService;
 import co.yedam.restaurant.service.RestaurantVO;
 import co.yedam.restaurant.serviceImpl.RestaurantServiceImpl;
@@ -32,9 +33,11 @@ public class RestaurantInfoControl implements Command {
 		List<RestaurantVO> nearList = svc.selectAddress(vo.getRsGu());
 		List<RestaurantVO> typeList = svc.selectCategory(vo.getRsCategory());
 
+		List<ReservationVO> myReservList = svc.getReservationInfo(uid, rcode);
+		
 		ReviewService svcR = new ReviewServiceImpl();
 		ReviewVO voR = svcR.cntStar(rcode);
-		ReviewVO voRc = svcR.checkReview(rcode, uid);
+		List<ReviewVO> voRc = svcR.checkReview(rcode, uid);
 		
 		req.setAttribute("vo", vo);
 		
@@ -42,8 +45,9 @@ public class RestaurantInfoControl implements Command {
 		req.setAttribute("addressList", nearList);
 		req.setAttribute("categoryList", typeList);
 		
-		req.setAttribute("reviewCnt", voR);
+		req.setAttribute("reservList", myReservList);
 		
+		req.setAttribute("reviewCnt", voR);
 		req.setAttribute("reviewCheck", voRc);
 		
 		try {

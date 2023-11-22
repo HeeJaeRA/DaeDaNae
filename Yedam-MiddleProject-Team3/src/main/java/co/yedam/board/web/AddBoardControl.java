@@ -27,7 +27,7 @@ public class AddBoardControl implements Command {
 		if (req.getMethod().equals("GET")) {
 
 		} else if (req.getMethod().equals("POST")) { // 18행 IF...GET방식과 POST방식 비교
-			String saveDir = req.getServletContext().getRealPath("resources/images");
+			String saveDir = req.getServletContext().getRealPath("resources/images/boardimg");
 			int size = 5*1024*1024;
 			//MultipartRequest mr;
 			try {

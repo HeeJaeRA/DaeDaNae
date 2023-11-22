@@ -20,6 +20,6 @@ public interface ReviewMapper {
 
 	public boolean updateMoney(String id);
 	
-	public ReviewVO checkReview(@Param("rsCode") String rsCode, @Param("uid") String uid);
+	public List<ReviewVO> checkReview(@Param("rsCode") String rsCode, @Param("uid") String uid);
 
 }

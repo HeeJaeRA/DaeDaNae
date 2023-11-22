@@ -42,4 +42,7 @@ public interface RestaurantMapper {
 	public List<RestaurantVO> selectBookMarkList(String id);
 
 	public int removeRestaurant(String rsCode);
+	
+	public List<ReservationVO> getReservationInfo(@Param("uid") String uid, @Param("rcode") String rcode);
+	
 }

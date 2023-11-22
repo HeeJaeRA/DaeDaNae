@@ -83,8 +83,6 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return mapper.removeRestaurant(rsCode) ==1;
 	}
 
-
-
 	@Override
 	public boolean markRestaurnat(String uid, String rcode) {
 		return (mapper.markRestaurnat(uid, rcode) == 1);
@@ -93,6 +91,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public List<RestaurantVO> selectBookMarkList(String id) {
 		return mapper.selectBookMarkList(id);
+	}
+	
+	@Override
+	public List<ReservationVO> getReservationInfo(String uid, String rcode) {
+		return mapper.getReservationInfo(uid, rcode);
 	}
 
 }
