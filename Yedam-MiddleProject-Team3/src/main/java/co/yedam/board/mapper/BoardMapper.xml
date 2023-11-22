@@ -42,6 +42,8 @@
 		UPDATE BOARD SET
 		BOARD_TITLE=#{boardTitle},
 		IMAGE1=nvl(#{image1},image1),
+		IMAGE2=nvl(#{image2},image2),
+		IMAGE3=nvl(#{image3},image3),
 		UPDATE_DATE=SYSDATE,
 		BOARD_CONTENT=#{boardContent}
 		

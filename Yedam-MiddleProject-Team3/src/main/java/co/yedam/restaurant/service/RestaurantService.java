@@ -3,6 +3,8 @@ package co.yedam.restaurant.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface RestaurantService {
 
 	public List<RestaurantVO> selectAllList();
@@ -16,6 +18,8 @@ public interface RestaurantService {
 	public List<RestaurantVO> selectSearchList(String rsName);
 
 	public RestaurantVO getRestaurant(String rcode);
+	
+	public boolean likeRS(String rcode);
 
 	// 레스토랑 인기 차트
 	public List<Map<String, Object>> getResCountByLike();
@@ -33,11 +37,14 @@ public interface RestaurantService {
 
 	public boolean addRestaurant(RestaurantVO vo);
 
-	public boolean removeRestaurant(int rsCode);
+	public boolean removeRestaurant(String rsCode);
 
 
 	// 북마크
 	public boolean markRestaurnat(String uid, String rcode);
 	
 	public List<RestaurantVO> selectBookMarkList(String id);
+	
+	public List<ReservationVO> getReservationInfo(String uid, String rcode);
+	
 }

@@ -1,12 +1,9 @@
 package co.yedam.restaurant.serviceImpl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-
-import com.google.gson.internal.bind.DefaultDateTypeAdapter.DateType;
 
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.restaurant.mapper.RestaurantMapper;
@@ -66,7 +63,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 	@Override
 	public List<ReservationVO> reservationList(String id) {
-		return mapper.reservationAll();
+		return mapper.reservationAll(id);
 	}
 
 	@Override
@@ -81,12 +78,10 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 	@Override
-	public boolean removeRestaurant(int rsCode) {
+	public boolean removeRestaurant(String rsCode) {
 		
 		return mapper.removeRestaurant(rsCode) ==1;
 	}
-
-
 
 	@Override
 	public boolean markRestaurnat(String uid, String rcode) {
@@ -96,6 +91,16 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public List<RestaurantVO> selectBookMarkList(String id) {
 		return mapper.selectBookMarkList(id);
+	}
+	
+	@Override
+	public List<ReservationVO> getReservationInfo(String uid, String rcode) {
+		return mapper.getReservationInfo(uid, rcode);
+	}
+
+	@Override
+	public boolean likeRS(String rcode) {
+		return (mapper.likeRestaurant(rcode) == 1);
 	}
 
 }

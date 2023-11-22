@@ -2,26 +2,75 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<style>
+	.wrap_review {
+		max-width: 700px;
+		margin: 0 auto;
+		/* 화면 가운데로 */
+		background-color: #fff;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+
+	.reviewform textarea {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.btn02 {
+		display: block;
+		width: 100%;
+		font-weight: bold;
+		border: 0;
+		border-radius: 10px;
+		max-height: 50px;
+		padding: 15px 0;
+		font-size: 1.1em;
+		text-align: center;
+		background: bisque;
+	}
+
+	#if {
+		width: 0px;
+		height: 0px;
+		border: 0px;
+	}
+
+	.tab__content-wrapper {
+		padding: 1rem
+	}
+
+	.tab__content.active {
+		display: block;
+	}
+
+	thead,
+	tbody,
+	th {
+		text-align: center;
+		border-radius: 10px;
+	}
+</style>
 
 <!-- Product section-->
-${logId }, ${nickname }, ${respon }, ${reviewCnt }
-
-
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
-				<input type="button" id="imgMain" value="대표사진">
-				<input type="button" id="imgCard1" value="사진1">
-				<input type="button" id="imgCard2" value="사진2">
+				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }" alt="..." /> <input type="button"
+					id="imgMain" class="btn btn-light" value="대표사진">
+				<input type="button" id="imgCard1" class="btn btn-light" value="사진1">
+				<input type="button" id="imgCard2" class="btn btn-light" value="사진2">
 			</div>
 			<div class="col-md-6">
 				<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
-				<h1 class="display-5 fw-bolder">${vo.rsName } /
+				<h1 class="display-5 fw-bolder">${vo.rsName }
+					/
 					<c:choose>
 						<c:when test='${empty reviewCnt.star }'>
-							0점
+							${vo.starcnt }점
 						</c:when>
 						<c:otherwise>
 							${reviewCnt.star }점
@@ -29,36 +78,33 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 					</c:choose>
 				</h1>
 				<div class="fs-5 mb-5">
-					<span class="text"> </span>
+					<p class="lead">${vo.rsDesc }</p>
+					<span class="text-muted">좋아요 ${vo.likecnt }명</span>
+					<a class="btn btn-success mt-auto" id="rslike" onclick="like(); this.onclick=null;">좋아요</a>
 				</div>
-				<p class="lead">${vo.rsDesc }</p>
-				<div id="map" style="width:100%;height:350px;"></div>
-				<div class="d-flex">
-					<div class="text-center">
-						<a class="btn btn-outline-dark mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
-					</div>
-				</div>
+				<div id="map" style="width: 100%; height: 350px;"></div>
 			</div>
-			<div style="width:100%; height:100px; text-align:center;">
+			<div style="width: 100%; height: 100px; text-align: center;">
 				<c:choose>
 					<c:when test='${empty logId }'>
-						<span class="text-black">내용${vo.rsDesc }</span>
+						<span class="text-black"></span>
 					</c:when>
 					<c:otherwise>
-						<span class="text-black">내용${vo.rsDesc }</span>
-						<a class="btn btn-outline-dark mt-auto" id="bookmark"
-							onclick="mark(); this.onclick=null;">찜하기</a>
+						<br>
+						<br>
+						<a class="btn btn-danger mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
+						&emsp;
+						<a class="btn btn-warning mt-auto" id="bookmark" onclick="mark(); this.onclick=null;">찜하기</a>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
 		</div>
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5">
-		<h2 class="fw-bolder mb-4">${vo.rsName }과 비슷한 맛집</h2>
-		<input type="button" value="종류별" id="categoryBtn">
-		<input type="button" value="지역별" id="addressBtn">
+		<h2 class="fw-bolder mb-4">${vo.rsName }과(와) 비슷한 맛집</h2>
+		<input type="button" value="종류별" id="categoryBtn" class="btn btn-light"> <input type="button" value="지역별"
+			id="addressBtn" class="btn btn-light">
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5" id="allDiv" style="display: block;">
@@ -66,9 +112,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			<c:forEach items="${allList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -78,7 +124,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 										<div class="bi-star-fill"></div>
 									</c:forEach>
 								</div>
-								<span class="text-muted">방문자 ${vo.likecnt }명</span>
+								<span class="text-muted">좋아요 ${vo.likecnt }명</span>
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -98,9 +144,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			<c:forEach items="${addressList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -110,7 +156,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 										<div class="bi-star-fill"></div>
 									</c:forEach>
 								</div>
-								<span class="text-muted">방문자 ${vo.likecnt }명</span>
+								<span class="text-muted">좋아요 ${vo.likecnt }명</span>
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -130,9 +176,9 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			<c:forEach items="${categoryList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-							hot</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
+						</div>
+						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
@@ -142,7 +188,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 										<div class="bi-star-fill"></div>
 									</c:forEach>
 								</div>
-								<span class="text-muted">방문자 ${vo.likecnt }명</span>
+								<span class="text-muted">좋아요 ${vo.likecnt }명</span>
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -163,8 +209,21 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			<form name="reviewform" class="reviewform">
 				<label>작성자 <input name="nickname" value="${nickname }" readonly></label>
 				<div class="review_rating">
-					<label>맛
-						<select name="startaste" id="startaste">
+					<label>맛 <select name="startaste" id="startaste">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</label> <label>가격 <select name="starprice" id="starprice">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</label> <label>서비스 <select name="starservice" id="starservice">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
@@ -172,66 +231,75 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 							<option value="1">1</option>
 						</select>
 					</label>
-					<label>가격
-						<select name="starprice" id="starprice">
-							<option value="5">5</option>
-							<option value="4">4</option>
-							<option value="3">3</option>
-							<option value="2">2</option>
-							<option value="1">1</option>
-						</select>
-					</label>
-					<label>서비스
-						<select name="starservice" id="starservice">
-							<option value="5">5</option>
-							<option value="4">4</option>
-							<option value="3">3</option>
-							<option value="2">2</option>
-							<option value="1">1</option>
+				</div>
+				<div class="review_visit">
+					<label>방문일자 <select name="visit_date" id="visit_date">
+							<c:forEach items="${reservList}" var="voR">
+								<option>${voR.resDate.substring(0,10) }</option>
+							</c:forEach>
 						</select>
 					</label>
 				</div>
 				<div class="review_contents">
-					<textarea rows="10" name="writecontent" class="review_textarea"></textarea>
+					<textarea rows="10" name="writecontent" id="reviewcontent" class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
-					<input type="button" id="addreview" value="리뷰작성" onclick="addReview();">
+					<c:choose>
+						<c:when test='${empty logId}'>
+							<span class="text-muted">로그인 후 작성 가능합니다.</span>
+						</c:when>
+						<c:when test='${empty reservList}'>
+							<span class="text-muted">예약 후 작성 가능합니다.</span>
+						</c:when>
+						<c:when test='${reservList.size() eq reviewCheck.size()}'>
+							<span class="text-muted">이미 리뷰를 작성하셨습니다.</span>
+						</c:when>
+						<c:otherwise>
+							<input type="button" id="addreview" value="리뷰작성" onclick="addReview();"
+								class="btn btn-success">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<div class="container px-4 px-lg-5 mt-5">
+	<div class="tab__content-wrapper">
 		<h2>리뷰 목록</h2>
-		<table>
-			<thead>
-				<tr class="table_head">
-					<td>작성자</td>
-					<td class="review_content">리뷰 내용</td>
-					<td>작성일자</td>
-					<td class="star">맛</td>
-					<td class="star">가격</td>
-					<td class="star">서비스</td>
-					<td class="like">좋아요</td>
-					<td></td>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody id="reviewList">
-				<tr id="template" style="display: none;">
-					<td>작성자</td>
-					<td class="review_content">리뷰 내용</td>
-					<td>작성일자</td>
-					<td class="star">0</td>
-					<td class="star">0</td>
-					<td class="star">0</td>
-					<td class="like">좋아요수</td>
-					<td><input type="button" id="likereview" value="좋아요"></td>
-					<td><button id="delreview">삭제</button></td>
-				</tr>
-			</tbody>
-		</table>
+		<div id="tab1" class="tab__content active">
+			<table class="table table-secondary">
+				<thead>
+					<tr class="table_head">
+						<td>작성자</td>
+						<td class="review_content">리뷰 내용</td>
+						<td class="visit_date">방문일자</td>
+						<td class="review_date">작성일자</td>
+						<td class="star">맛</td>
+						<td class="star">가격</td>
+						<td class="star">서비스</td>
+						<td class="like">좋아요</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="visibility: collapse;">
+						<td>작성자</td>
+						<td class="review_content">리뷰 내용</td>
+						<td class="visit_date">방문일자</td>
+						<td class="review_date">작성일자</td>
+						<td class="star">0</td>
+						<td class="star">0</td>
+						<td class="star">0</td>
+						<td class="like">좋아요수</td>
+						<td><input type="button" id="likereview" value="좋아요"></td>
+						<td><button id="delreview">삭제</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
+
 </section>
 
 <script type="text/javascript"
@@ -302,6 +370,7 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 						alert('포인트 지급 완료');
 						clearReview();
 						showReviewList();
+						document.location.href = document.location.href;
 					} else {
 						alert('등록 실패');
 						clearReview();
@@ -322,13 +391,13 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 
 	// 리뷰 리스트
 	function showReviewList() {
-		document.querySelectorAll('#reviewList tr:not(:nth-of-type(1))').forEach(tr => tr.remove());
+		document.querySelectorAll('tbody tr:not(:nth-of-type(1))').forEach(tr => tr.remove());
 		fetch('reviewList.do?rscode=' + rc)
 			.then(resolve => resolve.json())
 			.then(result => {
 				result.reviewlist.forEach(review => {
 					let temp = makeRow(review);
-					document.querySelector('#reviewList').append(temp);
+					document.querySelector('tbody').append(temp);
 				})
 			})
 			.catch(err => console.log('err: ', err));
@@ -336,15 +405,16 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	showReviewList();
 
 	function makeRow(review) {
-		let temp = document.querySelector('#template').cloneNode(true);
-		temp.style.display = 'block';
-		temp.querySelector('#template td:nth-of-type(1)').innerHTML = review.nickname;
-		temp.querySelector('#template td:nth-of-type(2)').innerHTML = review.writeContent;
-		temp.querySelector('#template td:nth-of-type(3)').innerHTML = review.writeDate;
-		temp.querySelector('#template td:nth-of-type(4)').innerHTML = review.starTaste;
-		temp.querySelector('#template td:nth-of-type(5)').innerHTML = review.starPrice;
-		temp.querySelector('#template td:nth-of-type(6)').innerHTML = review.starService;
-		temp.querySelector('#template td:nth-of-type(7)').innerHTML = review.likecnt;
+		let temp = document.querySelector('tbody tr').cloneNode(true);
+		temp.style.visibility = 'visible'
+		temp.querySelector('td:nth-of-type(1)').innerHTML = review.nickname;
+		temp.querySelector('td:nth-of-type(2)').innerHTML = review.writeContent;
+		temp.querySelector('td:nth-of-type(3)').innerHTML = visit_date.value;
+		temp.querySelector('td:nth-of-type(4)').innerHTML = review.writeDate;
+		temp.querySelector('td:nth-of-type(5)').innerHTML = review.starTaste;
+		temp.querySelector('td:nth-of-type(6)').innerHTML = review.starPrice;
+		temp.querySelector('td:nth-of-type(7)').innerHTML = review.starService;
+		temp.querySelector('td:nth-of-type(8)').innerHTML = review.likecnt;
 
 		temp.querySelector('#likereview').addEventListener('click', function (e) {
 			if (uid == '') {
@@ -416,15 +486,14 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 	let img2 = '${vo.image2}';
 	let img3 = '${vo.image3}';
 	document.querySelector('#imgMain').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img1 + '.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img1;
 	})
 	document.querySelector('#imgCard1').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img2 + '.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img2;
 	})
 	document.querySelector('#imgCard2').addEventListener('click', function (e) {
-		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img3 + '.jpg';
+		document.querySelector('.card-img-top').src = 'resources/images/rsimg/' + img3;
 	})
-
 
 	// 찜하기
 	function mark() {
@@ -438,7 +507,28 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == 'OK') {
-					alert('성공');
+					alert('찜목록에 추가되었습니다.');
+				} else {
+					alert('실패');
+				}
+			})
+			.catch(err => console.log('err:' + err));
+	}
+
+	// 좋아요
+	function like() {
+		fetch('restaurantLike.do', {
+				method: 'post',
+				headers: {
+					'Content-type': 'application/x-www-form-urlencoded'
+				},
+				body: 'rscode=' + rc
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					alert('좋아요!!');
+					document.location.href = document.location.href;
 				} else {
 					alert('실패');
 				}

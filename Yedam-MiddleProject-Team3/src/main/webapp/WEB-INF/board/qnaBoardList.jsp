@@ -23,17 +23,25 @@
 .button-style {
 	display: inline-block;
 	padding: 10px 20px;
-	background-color: #ff7f00; /* 버튼 배경색 */
+	background-color: rgb(255, 128, 64); /* 버튼 배경색 */
 	color: white; /* 버튼 텍스트 색상 */
 	text-decoration: none;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 }
+table, th {
+	text-align: center;
+}
+p {
+	text-align: right;
+	padding-right: 30px;
+}
 </style>
 <h3>QnA게시판</h3>
 
-<table class="table" border="1" style="width: 800px;">
+<table class="table table-light">
+
 	<thead>
 		<tr>
 
@@ -42,7 +50,7 @@
 			<th>작성자</th>
 			<th>작성일자</th>
 			<th>수정일자</th>
-			<th>내용</th>
+<!-- 			<th>내용</th> -->
 			<th>조회수</th>
 			<th>공감수</th>
 
@@ -52,12 +60,13 @@
 			<tr>
 				<td>${vo.boardCode }</td>
 				<td><a href="getBoard.do?bco=${vo.boardCode }">${vo.boardTitle }</a></td>
+
 				<td>${vo.userId }</td>
 				<td><fmt:formatDate value="${vo.writeDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 				<td><fmt:formatDate value="${vo.updateDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
-				<td>${vo.boardContent }</td>
+<%-- 				<td>${vo.boardContent }</td> --%>
 				<td>${vo.boardView }</td>
 				<td>${vo.likecnt }</td>
 

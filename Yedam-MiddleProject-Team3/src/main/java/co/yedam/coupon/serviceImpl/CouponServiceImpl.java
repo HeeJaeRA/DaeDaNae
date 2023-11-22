@@ -26,6 +26,14 @@ public class CouponServiceImpl implements CouponService {
 	public boolean delCoupon(String id, String cc) {
 		return (mapper.deleteCoupon(id, cc) == 1);
 	}
+	@Override
+	public int couponCnt(String id) {
+		return mapper.couponCnt(id);
+	}
+	@Override
+	public List<CouponVO> getMyCoupon(String id) {
+		return mapper.getMyCoupon(id);
+	}
 
 	
 }

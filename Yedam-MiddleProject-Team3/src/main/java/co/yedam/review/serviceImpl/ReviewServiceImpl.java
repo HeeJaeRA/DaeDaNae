@@ -44,5 +44,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public boolean updateMoney(String id) {
 		return mapper.updateMoney(id);
 	}
+	
+	@Override
+	public List<ReviewVO> checkReview(String rsCode, String uid) {
+		return mapper.checkReview(rsCode, uid);
+	}
 
 }

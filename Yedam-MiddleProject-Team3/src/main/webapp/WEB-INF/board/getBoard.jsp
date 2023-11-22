@@ -39,47 +39,64 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-${bco }
+<%-- ${bco } --%>
 
 
 <h3>상세 화면(조회화면)</h3>
 <form action="modifyForm.do" name="myForm">
 	<input type="hidden" name="bco" value="${bco.boardCode }">
 	<table border="1" class="table">
-		<tr>
-			<th>글번호</th>
-			<td class="boardCode" id="bco">${bco.boardCode }</td>
-			<th>작성일시</th>
-			<td><fmt:formatDate value="${bco.writeDate }"
-					pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+		<th>
+		<th width='1000px;'>글번호</th>
+		<td class="boardCode" id="bco">${bco.boardCode }</td>
+		<th>작성일시</th>
+		<td><fmt:formatDate value="${bco.writeDate }"
+				pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 		</tr>
 		<tr>
 			<th>글제목</th>
 			<td colspan="3">"${bco.boardTitle }"</td>
 		</tr>
 		<tr>
-			<td colspan="4"><textarea rows="10" cols="250" readonly>${bco.boardContent }</textarea></td>
+			<td colspan="4">
+
+					<c:if test="${!empty bco.image1  }">
+						<img width="600px" src="resources/images/boardimg/${bco.image1 }" style="margin-bottom: 10px;">
+					</c:if><br>
+					<c:if test="${!empty bco.image2  }">
+						<img width="600px" src="resources/images/boardimg/${bco.image2 }" style="margin-bottom: 10px;">
+					</c:if><br>
+					<c:if test="${!empty bco.image3  }">
+						<img width="600px" src="resources/images/boardimg/${bco.image3 }" style="margin-bottom: 10px;">
+					</c:if>
+					<br>
+				<p>	${bco.boardContent }
+				</p>
+
+
+			</td>
 		</tr>
-		<tr>
-			<th>첨부파일1</th>
-			<td colspan="3"><c:if test="${!empty bco.image1  }">
-					<img width="500px" src="resources/images/${bco.image1 }">
-				</c:if></td>
-		</tr>
-		<tr>
-			<th>첨부파일2</th>
-			<td colspan="3"><c:if test="${!empty bco.image2  }">
-					<img width="500px" src="resources/images/${bco.image2 }">
-				</c:if></td>
-		</tr>
-		<tr>
-			<th>첨부파일3</th>
-			<td colspan="3"><c:if test="${!empty bco.image3  }">
-					<img width="500px" src="resources/images/${bco.image3 }">
-				</c:if></td>
-		</tr>
+		<!-- 		<tr> -->
+		<!-- 			<th>첨부파일1</th> -->
+		<%-- 			<td colspan="3"><c:if test="${!empty bco.image1  }"> --%>
+		<%-- 					<img width="500px" src="resources/images/${bco.image1 }"> --%>
+		<%-- 				</c:if></td> --%>
+		<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>첨부파일2</th> -->
+<%-- 			<td colspan="3"><c:if test="${!empty bco.image2  }"> --%>
+<%-- 					<img width="500px" src="resources/images/${bco.image2 }"> --%>
+<%-- 				</c:if></td> --%>
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>첨부파일3</th> -->
+<%-- 			<td colspan="3"><c:if test="${!empty bco.image3  }"> --%>
+<%-- 					<img width="500px" src="resources/images/${bco.image3 }"> --%>
+<%-- 				</c:if></td> --%>
+<!-- 		</tr> -->
 		<tr>
 			<th>작성자</th>
+			
 			<td>${bco.userId }</td>
 			<th>조회수</th>
 			<td>${bco.boardView }</td>
@@ -101,7 +118,7 @@ ${bco }
 					<c:when test="${!empty logId && logId == bco.userId }">
 						<input type="submit" value="수정" class="btn btn-primary">
 						<button class="btn btn-warning" type="button" value="삭제"
-							id="boardDelBtn">삭제</button>
+							id="boardDelBtn" onclick="delBfucn(event)">삭제</button>
 					</c:when>
 					<c:otherwise>
 						<input disabled type="submit" value="수정" id="boardDelBtn">
@@ -125,8 +142,9 @@ ${bco }
 
 <h3>댓글목록</h3>
 <ul id="list">
-	<li style="display: none;" id="template"><span>00</span> <b>첫번째글입니다.</b><span>user01</span><span>2023-10-10</span>
-		<button id="delReply">삭제</button></li>
+	<li style="display: none;" id="template"><span>00</span><span>user01</span> <b>첫번째글입니다.</b>
+<!-- 	<span>2023-10-10</span> -->
+		<button id="delReply">삭제</button> <button id="reReply">답글</button></li>
 </ul>
 
 <div class="pagination"></div>
@@ -137,6 +155,28 @@ ${bco }
 </p>
 
 <script>
+// function delBfucn(e) {
+// 	let bco = e.target.parentElement.parentElement.children[0].innerHTML;
+// 	fetch('removeBoard.do', {
+// 			method: 'post',
+// 			headers: {
+// 				'Content-Type': 'application/x-www-form-urlencoded'
+// 			},
+// 			body: 'bco=' + bco
+// 		})
+// 		.then(resolve => resolve.json())
+// 		.then(result => {
+// 			if (result.retCode == 'OK') {
+// 				alert('Success!!');
+// 				//e.target.parentElement.parentElement.remove();
+// 			} else {
+// 				alert('Error!!');
+// 			}
+// 		})
+// 		.catch(err => console.log(err));
+// }
+
+
 document.getElementById('likeBtn').addEventListener('click', function (e) {
 	//document.forms.myForm.action = 'updateLikecnt.do'
 	//document.forms.myForm.submit();
@@ -159,14 +199,16 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 
 
 	document.getElementById('boardDelBtn').addEventListener('click', function (e) {
-		document.forms.myForm.action = 'removeForm.do'
+		document.forms.myForm.action = 'removeBoard.do'
 		document.forms.myForm.submit();
+		alert('삭제 성공');
 
 	});
 
 	//댓글목록
 	let bco = "${bco.boardCode }";
 	let userId = "${logId }";
+	let nickname = "${nickname}";
 
 
 	bco = document.querySelector('.boardCode').innerHTML;
@@ -285,6 +327,37 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 
 			})
 	})
+	
+	document.querySelector('#reReply').addEventListener('click', function (e) {
+		let reply = document.querySelector('#content').value;
+		// 로그인안한사람은 댓글못담 
+		console.log(userId);
+		if (!bco || userId == 'null' || !reply) {
+			alert("값을 확인하세요.");
+			return;
+		}
+
+		//ajax.bco/writer/reply => 전달.
+		fetch('addReply.do', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'bco=' + bco + '&replyContent=' + reply + '&userId=' +
+					'${logId }' //나중에 실제 로그인한 유저의 ID로 변경.(세션)${logId }로 변경하기
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+
+					//document.querySelector('#list').append(makeRow(result.vo));
+					showList(-1); // -1을 넘겨주면 
+				} else {
+					aler('Error.')
+				}
+
+			})
+	})
 
 	function makeRow(reply) {
 
@@ -319,10 +392,10 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 
 		let temp = document.querySelector('#template').cloneNode(true);
 		temp.style.display = 'block';
-		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
+		//temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
 		temp.querySelector('b').innerHTML = reply.replyContent;
-		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.userId;
-		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.writeDate;
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId; 
+		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.writeDate;
 		temp.querySelector('#delReply').addEventListener('click', deleteCallback);
 
 

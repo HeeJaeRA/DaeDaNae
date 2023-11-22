@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="selectSearch" resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_GU LIKE '%'||#{word}||'%'
+		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_DESC LIKE '%'||#{word}||'%'
 	</select>
 
 	<select id="getRestaurant"
@@ -41,14 +41,14 @@
 
 	<!-- 예약등록 -->
  	<insert id="getReser" parameterType="co.yedam.restaurant.service.ReservationVO"> 
- 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, buyAble )
- 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{buyAble})
+ 	INSERT INTO RESERVATION (user_id, rs_code,nickname, RES_DATE,res_time, seatcnt )
+ 	values(#{userId}, #{rsCode}, #{nickname}, TO_DATE(#{resDate},'YYYY-MM-DD'), #{resTime}, #{seatcnt})
 	</insert> 
 	
 	<!-- 예약하면 마이 페이지에 보여주는 리스트 -->
 	<select id="reservationAll"
 		resultType="co.yedam.restaurant.service.ReservationVO">
-		SELECT * FROM RESERVATION where USER_ID = #{userId}
+		SELECT R1.RS_CODE, R2.RS_NAME, R1.RES_DATE, R1.RES_TIME, R1.SEATCNT FROM RESERVATION R1 LEFT JOIN RESTAURANT R2 ON R1.RS_CODE = R2.RS_CODE WHERE USER_ID = #{id}
 	</select>
 	
 	<select id="reserMemberList"
@@ -58,12 +58,12 @@
 	
 	<!-- 가게 추가 -->
 	<insert id="addRestaurant" parameterType="co.yedam.restaurant.service.RestaurantVO"> 
- 	INSERT INTO RESTAURANT (rs_code, rs_category,rs_name, rs_address ,rs_gu, rs_dong,phone,rs_desc,image1,image2,image3,likecnt,starcnt)
- 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},#{image1},#{image2},#{image3},#{likecnt},#{starcnt})
+ 	INSERT INTO RESTAURANT (rs_code, rs_category, rs_name, rs_address ,rs_gu, rs_dong,phone, rs_desc, image1, image2, image3) 
+ 	values(#{rsCode}, #{rsCategory}, #{rsName}, #{rsAddress}, #{rsGu}, #{rsDong},#{phone},#{rsDesc},nvl(#{image1},'store.jpg'),nvl(#{image2},'store.jpg'),nvl(#{image3},'store.jpg'))
 	</insert> 
 	
 	<!-- 가게 삭제 -->
-	<delete id="removeRestaurant" parameterType="int">
+	<delete id="removeRestaurant" parameterType="String">
 		delete from restaurant where
 		rs_code=#{rsCode}
 	</delete>
@@ -78,5 +78,13 @@
 		SELECT R.RS_CATEGORY, R.RS_NAME, R.RS_GU, PHONE, R.STARCNT
 		FROM BOOKMARK B LEFT JOIN RESTAURANT R ON B.RS_CODE=R.RS_CODE WHERE USER_ID = #{id}
 	</select>
+	
+	<select id="getReservationInfo">
+		SELECT * FROM RESERVATION WHERE USER_ID = #{uid} AND RS_CODE = #{rcode}
+	</select>
+	
+	<update id="likeRestaurant">
+		UPDATE RESTAURANT SET LIKECNT = LIKECNT + 1 WHERE RS_CODE = #{rcode}
+	</update>
 
 </mapper>

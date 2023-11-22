@@ -31,7 +31,7 @@ public interface RestaurantMapper {
 	public int getReser(ReservationVO vo);
 	
 	//예약리스트
-	public List<ReservationVO> reservationAll();
+	public List<ReservationVO> reservationAll(String id);
 
 	public List<ReservationVO> reserMemberList();
 
@@ -41,5 +41,10 @@ public interface RestaurantMapper {
 	
 	public List<RestaurantVO> selectBookMarkList(String id);
 
-	public int removeRestaurant(int rsCode);
+	public int removeRestaurant(String rsCode);
+	
+	public List<ReservationVO> getReservationInfo(@Param("uid") String uid, @Param("rcode") String rcode);
+
+	public int likeRestaurant(String rcode);
+	
 }

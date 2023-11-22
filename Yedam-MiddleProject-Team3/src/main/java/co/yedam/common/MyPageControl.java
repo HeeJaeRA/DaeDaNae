@@ -4,29 +4,30 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import co.yedam.coupon.service.CouponService;
+import co.yedam.coupon.service.CouponVO;
+import co.yedam.coupon.serviceImpl.CouponServiceImpl;
 import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 import co.yedam.member.serviceImpl.MemberServiceImpl;
-import co.yedam.restaurant.service.RestaurantService;
-import co.yedam.restaurant.service.RestaurantVO;
-import co.yedam.restaurant.serviceImpl.RestaurantServiceImpl;
 
 public class MyPageControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "main/myPage.tiles";
 
-		RestaurantService svc = new RestaurantServiceImpl();
+		String path = "main/myPage.tiles";
+		
+
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("logId");
+
 		MemberService mvc = new MemberServiceImpl();
 		
-		List<RestaurantVO> list = svc.selectAllList();
-		List<RestaurantVO> mainList = svc.selectRandomList();
 		List<MemberVO> memList = mvc.memberList();
-		
-		req.setAttribute("list", list);
-		req.setAttribute("mlist", mainList);
+
 		req.setAttribute("memList", memList);
 
 		try {
@@ -34,6 +35,7 @@ public class MyPageControl implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -37,14 +37,14 @@ public class AdminAddRestaurantControl implements Command {
 								new DefaultFileRenamePolicy()//리네임 정책
 								);
 
-				String rsCode = mr.getParameter("rsCode");
-				String rsCategory = mr.getParameter("rsCategory");
-				String rsName = mr.getParameter("rsName");		
-				String rsAddress = mr.getParameter("rsAddress");		
-				String rsGu = mr.getParameter("rsGu");		
-				String rsDong = mr.getParameter("rsDong");		
+				String rsCode = mr.getParameter("rs_code");
+				String rsCategory = mr.getParameter("rs_category");
+				String rsName = mr.getParameter("rs_name");		
+				String rsAddress = mr.getParameter("rs_address");		
+				String rsGu = mr.getParameter("rs_gu");		
+				String rsDong = mr.getParameter("rs_dong");		
 				String phone = mr.getParameter("phone");		
-				String rsDesc = mr.getParameter("rsDesc");		
+				String rsDesc = mr.getParameter("rs_desc");		
 				String image1 = mr.getFilesystemName("image1");
 				String image2 = mr.getFilesystemName("image2");
 				String image3 = mr.getFilesystemName("image3");
@@ -60,8 +60,9 @@ public class AdminAddRestaurantControl implements Command {
 				vo.setImage2(image2);
 				vo.setImage3(image3);
 				
+				System.out.println("vo:" + vo);
+				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}//end of if.
@@ -69,6 +70,7 @@ public class AdminAddRestaurantControl implements Command {
 		RestaurantService svc = new RestaurantServiceImpl();
 		svc.addRestaurant(vo);
 			try {
+				//가게 추가화면에서 저장 버튼을 누르면 adRestaurantList.do로 감↓
 				resp.sendRedirect("adRestaurantList.do");
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -29,11 +29,13 @@
 		DELETE FROM REVIEW WHERE REVIEW_CODE = #{reviewNo}
 	</delete>
 
-
 	<update id="updateMoney">
 		UPDATE USERTABLE SET MONEY = MONEY + 300 WHERE
 		USER_ID = #{id}
 	</update>
-
+	
+	<select id="checkReview">
+		SELECT * FROM REVIEW WHERE USER_ID = #{uid} AND RS_CODE = #{rsCode}
+	</select>
 
 </mapper>

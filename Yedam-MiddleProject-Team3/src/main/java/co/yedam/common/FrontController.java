@@ -28,6 +28,9 @@ import co.yedam.coupon.web.AdminCouponControl;
 import co.yedam.coupon.web.AdminCouponControl2;
 import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
+import co.yedam.member.web.ModifyMControl;
+import co.yedam.member.web.ModifyMemControl;
+import co.yedam.member.web.ModifyPwControl;
 import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
@@ -41,8 +44,11 @@ import co.yedam.restaurant.web.MarkRestaurnatControl;
 import co.yedam.restaurant.web.ReservationControl;
 import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
+import co.yedam.restaurant.web.RestaurantLikeControl;
 import co.yedam.restaurant.web.RestaurantListControl;
 import co.yedam.restaurant.web.SearchListControl;
+import co.yedam.restaurant.web.adAddRestaurantFormControl;
+
 import co.yedam.review.web.AddReviewControl;
 import co.yedam.review.web.LikeReviewControl;
 import co.yedam.review.web.RemoveReviewControl;
@@ -87,32 +93,40 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new LogoutControl());
 		map.put("/joinForm.do", new JoinFormControl());
 		map.put("/join.do", new JoinControl());
-		
+		//아이디 찾기
+		map.put("/searchId.do", new SearchIdControl());
+		//비밀번호 찾기
+		map.put("/searchPwForm.do", new SearchPwFormControl());
+		map.put("/searchPw.do", new SearchPwControl());		
+		map.put("/changePw.do", new ModifyPwControl());
 		//회원가입시 중복확인
 		map.put("/repeatedId.do", new RepeatedIdControl());
 		map.put("/repeatedNick.do", new RepeatedNickControl());
+		//회원정보 수정
+		map.put("/modifyMemF.do", new ModifyMemControl());
+		map.put("/modifyMem.do", new ModifyMControl());
+		
 		//예약하기
 		map.put("/reservationForm.do", new ReservationFormControl());
-		//map.put("/pay.do", new PayFormControl());
-		//map.put("/pay.do", new PayControl());
 		map.put("/reservation.do", new ReservationControl());
+//		map.put("reservationCheck.do", new ReservationCheckControl());
+		
 		//리뷰댓글
 		map.put("/reviewList.do", new ReviewListControl());
 		map.put("/addReview.do", new AddReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 		map.put("/likeReview.do", new LikeReviewControl());
-//		map.put("/updateMoney.do", new UpdateMoneyControl());
 		
 		map.put("/restaurantList.do", new RestaurantListControl());
 		map.put("/addressList.do", new AddressListControl());
 		map.put("/categoryList.do", new CategoryListControl());
 		map.put("/searchList.do", new SearchListControl());
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
+		map.put("/restaurantLike.do", new RestaurantLikeControl());
 
 		//마이페이지
 		map.put("/myPage.do", new MyPageControl());
 		map.put("/myPage.do", new MyBookMarkControl());
-//		map.put("/myBookingList.do", new MyBookingListControl());
 		
 		//관리자 페이지
 		map.put("/adMain.do", new AdminMainControl()); //메인
@@ -122,6 +136,7 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/adRestaurantList.do", new AdminRestaurantListControl()); //가게리스트
 
+		map.put("/adAddRestaurantForm.do", new adAddRestaurantFormControl());
 		map.put("/adAddRestaurant.do", new AdminAddRestaurantControl()); //가게추가
 		map.put("/adRemoveRestaurant.do", new AdminRemoveRestaurantControl()); //가게삭제
 		
@@ -147,7 +162,6 @@ public class FrontController extends HttpServlet {
 		String context = req.getServletContext().getContextPath();
 		String page = uri.substring(context.length());
 		Command controller = map.get(page);
-		
 		controller.execute(req, resp);
 	}
 }
