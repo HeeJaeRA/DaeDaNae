@@ -18,6 +18,8 @@ public interface RestaurantService {
 	public List<RestaurantVO> selectSearchList(String rsName);
 
 	public RestaurantVO getRestaurant(String rcode);
+	
+	public boolean likeRS(String rcode);
 
 	// 레스토랑 인기 차트
 	public List<Map<String, Object>> getResCountByLike();

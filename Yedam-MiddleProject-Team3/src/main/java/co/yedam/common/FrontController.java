@@ -44,6 +44,7 @@ import co.yedam.restaurant.web.MarkRestaurnatControl;
 import co.yedam.restaurant.web.ReservationControl;
 import co.yedam.restaurant.web.ReservationFormControl;
 import co.yedam.restaurant.web.RestaurantInfoControl;
+import co.yedam.restaurant.web.RestaurantLikeControl;
 import co.yedam.restaurant.web.RestaurantListControl;
 import co.yedam.restaurant.web.SearchListControl;
 import co.yedam.restaurant.web.adAddRestaurantFormControl;
@@ -121,6 +122,7 @@ public class FrontController extends HttpServlet {
 		map.put("/categoryList.do", new CategoryListControl());
 		map.put("/searchList.do", new SearchListControl());
 		map.put("/restaurantInfo.do", new RestaurantInfoControl());
+		map.put("/restaurantLike.do", new RestaurantLikeControl());
 
 		//마이페이지
 		map.put("/myPage.do", new MyPageControl());

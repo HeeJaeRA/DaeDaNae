@@ -98,4 +98,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return mapper.getReservationInfo(uid, rcode);
 	}
 
+	@Override
+	public boolean likeRS(String rcode) {
+		return (mapper.likeRestaurant(rcode) == 1);
+	}
+
 }

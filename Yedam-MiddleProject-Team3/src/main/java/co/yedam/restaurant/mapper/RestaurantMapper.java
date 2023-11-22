@@ -44,5 +44,7 @@ public interface RestaurantMapper {
 	public int removeRestaurant(String rsCode);
 	
 	public List<ReservationVO> getReservationInfo(@Param("uid") String uid, @Param("rcode") String rcode);
+
+	public int likeRestaurant(String rcode);
 	
 }

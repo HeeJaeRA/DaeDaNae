@@ -4,15 +4,13 @@
 
 <div>
 	<form method="post" action="reservation.do">
-		<input type="hidden" name="id" value="${logId}"> <input
-			type="hidden" name="rcode" value="${vo.rsCode}"> <input
-			type="hidden" name="nickname" value="${nickname }"> <input
-			type="date" id="date" name="date" value="" onchange="handler(event);"
-			onclick="blockTable();">
+		<input type="hidden" name="id" value="${logId}"> <input type="hidden" name="rcode" value="${vo.rsCode}"> <input
+			type="hidden" name="nickname" value="${nickname }"> <input type="date" id="date" name="date" value=""
+			onchange="handler(event);" onclick="blockTable();">
 		<div id="timebutton">
 			<c:forEach var="i" begin="11" end="22" step="1">
-				<input type="button" class="table" id="button${i}" name="time"
-					value="${i}:00" style="display: none; WIDTH: 60pt; HEIGHT: 60pt">
+				<input type="button" class="table" id="button${i}" name="time" value="${i}:00"
+					style="display: none; WIDTH: 60pt; HEIGHT: 60pt">
 			</c:forEach>
 
 		</div>
@@ -23,23 +21,19 @@
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
-		</select> <input type="button" id="reservation" class="btn btn-warning"
-			value="예약하기">
+		</select> <input type="button" id="reservation" class="btn btn-warning" value="예약하기">
 	</form>
 </div>
 
 <!-- 결제 -->
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <!-- jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- iamport.payment.js -->
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
-
-let rcode = '${vo.rsCode}';
-let rsname = '${vo.rsName}';
+	let rcode = '${vo.rsCode}';
+	let rsname = '${vo.rsName}';
 
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
@@ -48,18 +42,20 @@ let rsname = '${vo.rsName}';
 	var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
 	document.getElementById("date").setAttribute("min", today);
 	const dates = document.querySelector('input[type="date"]')
-	function handler(e){
-			console.log("date value:" + dates.value)
-			document.querySelectorAll('.table').forEach(item => {
-				item.style.display = 'inline';
-			})
+
+	function handler(e) {
+		console.log("date value:" + dates.value)
+		document.querySelectorAll('.table').forEach(item => {
+			item.style.display = 'inline';
+		})
 	}
-	function blockTable(){
+
+	function blockTable() {
 		document.querySelectorAll('.table').forEach(item => {
 			item.style.display = 'none';
-			item.style.backgroundColor = "white"; 
+			item.style.backgroundColor = "white";
 		})
-		
+
 	}
 	var timeList = document.querySelectorAll('.table');
 	timeList.forEach(function (item) {
@@ -73,9 +69,7 @@ let rsname = '${vo.rsName}';
 			});
 		});
 	});
-	
 
-	
 	//예약완료 버튼
 	document.querySelector('#reservation').addEventListener('click', function (e) {
 		let id = '${logId}';

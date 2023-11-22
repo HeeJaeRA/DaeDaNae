@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="selectSearch" resultType="co.yedam.restaurant.service.RestaurantVO">
-		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_GU LIKE '%'||#{word}||'%'
+		SELECT * FROM RESTAURANT WHERE RS_NAME LIKE '%'||#{word}||'%' OR RS_DESC LIKE '%'||#{word}||'%'
 	</select>
 
 	<select id="getRestaurant"
@@ -82,5 +82,9 @@
 	<select id="getReservationInfo">
 		SELECT * FROM RESERVATION WHERE USER_ID = #{uid} AND RS_CODE = #{rcode}
 	</select>
+	
+	<update id="likeRestaurant">
+		UPDATE RESTAURANT SET LIKECNT = LIKECNT + 1 WHERE RS_CODE = #{rcode}
+	</update>
 
 </mapper>
