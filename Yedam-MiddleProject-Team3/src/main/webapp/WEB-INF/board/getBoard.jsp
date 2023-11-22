@@ -61,13 +61,13 @@
 			<td colspan="4">
 
 					<c:if test="${!empty bco.image1  }">
-						<img width="800px" src="resources/images/${bco.image1 }">
+						<img width="800px" src="resources/images/boardimg/${bco.image1 }">
 					</c:if>
 					<c:if test="${!empty bco.image2  }">
-						<img width="800px" src="resources/images/${bco.image2 }">
+						<img width="800px" src="resources/images/boardimg/${bco.image2 }">
 					</c:if>
 					<c:if test="${!empty bco.image3  }">
-						<img width="800px" src="resources/images/${bco.image3 }">
+						<img width="800px" src="resources/images/boardimg/${bco.image3 }">
 					</c:if>
 					<br><br>
 				<p>	${bco.boardContent }
@@ -142,7 +142,7 @@
 <h3>댓글목록</h3>
 <ul id="list">
 	<li style="display: none;" id="template"><span>00</span><span>user01</span> <b>첫번째글입니다.</b><span>2023-10-10</span>
-		<button id="delReply">삭제</button></li>
+		<button id="delReply">삭제</button> <button id="reReply">답글</button></li>
 </ul>
 
 <div class="pagination"></div>
@@ -324,6 +324,37 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 
 			})
 	})
+	
+	document.querySelector('#reReply').addEventListener('click', function (e) {
+		let reply = document.querySelector('#content').value;
+		// 로그인안한사람은 댓글못담 
+		console.log(userId);
+		if (!bco || userId == 'null' || !reply) {
+			alert("값을 확인하세요.");
+			return;
+		}
+
+		//ajax.bco/writer/reply => 전달.
+		fetch('addReply.do', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'bco=' + bco + '&replyContent=' + reply + '&userId=' +
+					'${logId }' //나중에 실제 로그인한 유저의 ID로 변경.(세션)${logId }로 변경하기
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+
+					//document.querySelector('#list').append(makeRow(result.vo));
+					showList(-1); // -1을 넘겨주면 
+				} else {
+					aler('Error.')
+				}
+
+			})
+	})
 
 	function makeRow(reply) {
 
@@ -358,10 +389,10 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 
 		let temp = document.querySelector('#template').cloneNode(true);
 		temp.style.display = 'block';
-		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
+		//temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
 		temp.querySelector('b').innerHTML = reply.replyContent;
-		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.userId;
-		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.writeDate;
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId;
+		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.writeDate;
 		temp.querySelector('#delReply').addEventListener('click', deleteCallback);
 
 
