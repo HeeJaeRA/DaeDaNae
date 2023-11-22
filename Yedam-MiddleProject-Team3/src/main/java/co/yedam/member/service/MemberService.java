@@ -21,4 +21,10 @@ public interface MemberService {
 	// 관리자 멤버 삭제
 	public boolean memberRemove(String id);
 
+	//팔로워 출력
+	public FollowVO getFollower(String id);
+	
+	//팔로잉 출력
+	public FollowVO getFollowing(String id);
+	
 }

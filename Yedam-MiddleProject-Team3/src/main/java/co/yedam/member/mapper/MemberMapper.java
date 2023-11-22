@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import co.yedam.member.service.FollowVO;
 import co.yedam.member.service.MemberVO;
 
 public interface MemberMapper {
@@ -26,4 +27,9 @@ public interface MemberMapper {
 	//회원 수정
 	public int memUpdate(MemberVO vo);
 
+	//팔로워 출력
+	public FollowVO getFollower(String id);
+	
+	//팔로잉 출력
+	public FollowVO getFollowing(String id);
 }

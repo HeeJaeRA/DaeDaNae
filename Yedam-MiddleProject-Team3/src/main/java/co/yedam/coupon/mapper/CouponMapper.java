@@ -21,4 +21,6 @@ public interface CouponMapper {
 	
 	public int couponCnt(String id); //본인 쿠폰 개수
 	
+	public List<CouponVO> getMyCoupon(String id); //본인 쿠폰 리스트
+	
 }

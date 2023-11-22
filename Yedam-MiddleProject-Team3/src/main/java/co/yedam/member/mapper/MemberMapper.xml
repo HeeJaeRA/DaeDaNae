@@ -31,15 +31,23 @@
 	
 	<!--회원가입시 등록  -->
 	<insert id="insert" parameterType="co.yedam.member.service.MemberVO">
-	 INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY, PHONE,
-	 ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
-	 #{nickname}, TO_DATE(#{birthDay},'YYYY-MM-DD'),#{phone}, #{address}, NVL(#{image},null), #{gender})
+	INSERT INTO USERTABLE(USER_ID, USER_PW, USER_NAME, NICKNAME,BIRTHDAY, PHONE,
+	ADDRESS, IMAGE,GENDER) VALUES (#{userId}, #{userPw}, #{userName}, 
+	#{nickname}, TO_DATE(#{birthDay},'YYYY-MM-DD'),#{phone}, #{address}, NVL(#{image},'UIMAGE.jpg'), #{gender})
 	</insert>
 	
 	<!-- 회원 수정 -->
 	<update id= "memUpdate"  parameterType="co.yedam.member.service.MemberVO">
 	UPDATE USERTABLE SET USER_PW= #{userPw}, USER_NAME= #{userName},BIRTHDAY=TO_DATE(#{birthDay},'YYYY-MM-DD'),
-	 PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},null) where user_id=#{userId}
+	PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},image) where user_id=#{userId}
 	</update>
+	
+<!-- 	<select id="getFollower" resultType="co.yedam.member.service.FollowVO"> -->
+<!-- 	SELECT COUNT(*) FOLLOWER FROM FOLLOW WHERE FOLLOWER = #{id} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="getFollowing" resultType="co.yedam.member.service.FollowVO"> -->
+<!-- 	SELECT COUNT(*) FOLLWING FROM FOLLOW WHERE FOLLWING = #{id} -->
+<!-- 	</select> -->
 	
 </mapper>

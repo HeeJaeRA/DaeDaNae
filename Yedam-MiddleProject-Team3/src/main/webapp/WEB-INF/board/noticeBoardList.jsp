@@ -30,10 +30,19 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
+table, th {
+	text-align: center;
+}
+p {
+	text-align: right;
+	padding-right: 30px;
+}
+
+
 </style>
 <h3>공지사항</h3>
 
-<table class="table" border="1" style="width: 800px;">
+<table class="table table-light">
 	<thead>
 		<tr>
 
