@@ -1,11 +1,20 @@
 package co.yedam.common;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import co.yedam.board.service.BoardService;
+import co.yedam.board.service.BoardVO;
+import co.yedam.board.serviceImpl.BoardServiceImpl;
 import co.yedam.coupon.service.CouponService;
 import co.yedam.coupon.service.CouponVO;
 import co.yedam.coupon.serviceImpl.CouponServiceImpl;
@@ -23,7 +32,6 @@ public class MyBookMarkControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "main/myPage.tiles";
-		System.out.println("hello");
 		//세션에서 받아오라...
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("logId");
@@ -32,9 +40,13 @@ public class MyBookMarkControl implements Command {
 		CouponService cvc = new CouponServiceImpl();
 //		MemberService mvc = new MemberServiceImpl();
 		
+		BoardService bvc = new BoardServiceImpl();
+		
 		List<ReservationVO> bookingList = rvc.reservationList(id);
 		List<RestaurantVO> bookList = rvc.selectBookMarkList(id);
 		List<CouponVO> copList = cvc.getMyCoupon(id);
+		
+		List<BoardVO> myboardList = bvc.myboardList(id);
 		
 //		FollowVO vo = mvc.getFollower(id);
 //		FollowVO vo2 = mvc.getFollowing(id);
@@ -45,11 +57,12 @@ public class MyBookMarkControl implements Command {
 		req.setAttribute("bookingList", bookingList);
 		req.setAttribute("copList", copList);
 		req.setAttribute("ccnt", ccnt);
+
+		req.setAttribute("myboardList", myboardList);
 		
 //		req.setAttribute("vo", vo);
 //		req.setAttribute("vo2", vo2);
 
-		System.out.println(ccnt);
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		} catch (Exception e) {

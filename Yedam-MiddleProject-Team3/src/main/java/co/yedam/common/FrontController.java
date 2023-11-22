@@ -13,6 +13,7 @@ import co.yedam.board.web.AboutBoardControl;
 import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
+import co.yedam.board.web.BoardListPageControl;
 import co.yedam.board.web.EventBoardControl;
 import co.yedam.board.web.FreeBoardControl;
 import co.yedam.board.web.GetBoardControl;
@@ -63,12 +64,12 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		//게시판
 		map.put("/boardList.do", new BoardListControl());
+		map.put("/boardListPage.do", new BoardListPageControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		map.put("/noticeBoard.do", new NoticeBoardControl());
 		map.put("/qnaBoard.do", new QnaBoardControl());
 		map.put("/freeBoard.do", new FreeBoardControl());
 		map.put("/updateLikecnt.do", new UpdateLikecnt());
-		
 		
 		//소개,이벤트
 		map.put("/aboutBoard.do", new AboutBoardControl());		

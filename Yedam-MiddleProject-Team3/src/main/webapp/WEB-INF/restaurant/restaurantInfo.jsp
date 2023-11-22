@@ -406,7 +406,7 @@
 
 	function makeRow(review) {
 		let temp = document.querySelector('tbody tr').cloneNode(true);
-		temp.style.visibility = 'visible'
+		temp.style.visibility = 'visible';
 		temp.querySelector('td:nth-of-type(1)').innerHTML = review.nickname;
 		temp.querySelector('td:nth-of-type(2)').innerHTML = review.writeContent;
 		temp.querySelector('td:nth-of-type(3)').innerHTML = visit_date.value;

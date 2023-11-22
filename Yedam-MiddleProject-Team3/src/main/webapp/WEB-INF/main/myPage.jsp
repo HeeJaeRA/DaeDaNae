@@ -47,18 +47,21 @@
 		z-index: 300;
 	}
 
-.delmodal.modal_close  {
-	bottom: 10px;
-}
-.delmodal.deleteMems{
-	bottom: 10px;
-}
+	.delmodal.modal_close {
+		bottom: 10px;
+	}
+
+	.delmodal.deleteMems {
+		bottom: 10px;
+	}
 
 
-a, ul, li {
-	text-decoration: none;
-	list-style: none;
-}
+	a,
+	ul,
+	li {
+		text-decoration: none;
+		list-style: none;
+	}
 
 
 	.tab {
@@ -191,6 +194,7 @@ a, ul, li {
 		right: 0;
 		border-top-right-radius: 0.5rem;
 	}
+
 	#myCoptb {
 		margin-bottom: 0;
 	}
@@ -208,7 +212,6 @@ a, ul, li {
 
 <body>
 	<main id="main" class="main">
-
 		<div class="pagetitle">
 			<h1>Profile</h1>
 			<nav>
@@ -287,13 +290,14 @@ a, ul, li {
 											<th colspan="3" style="width: 100px;">탈퇴 하시겠습니까?</th>
 										</tr>
 										<tr>
-										<th  colspan="3"><input type="button" class="btn btn-danger deleteMems" value="네">
-								         <button class="btn btn-danger modal_close">아니요</button> </th>
+											<th colspan="3"><input type="button" class="btn btn-danger deleteMems"
+													value="네">
+												<button class="btn btn-danger modal_close">아니요</button> </th>
 
 										</tr>
 									</tbody>
 								</table>
-								
+
 							</div>
 
 							<div class="my">
@@ -399,12 +403,42 @@ a, ul, li {
 						</tbody>
 					</table>
 				</div>
-
 			</div>
-
-
 		</div>
 
+		<div class="tab_menu">
+			<ul class="tab">
+				<li class="tab__item"><a href="#">게시물 목록</a></li>
+			</ul>
+			<div class="tab__content-wrapper">
+				<div id="tab3" class="tab__content active">
+					<table class="table table-secondary">
+						<thead>
+							<tr>
+								<th>카테고리</th>
+								<th>제목</th>
+								<th>작성일자</th>
+								<th>내용</th>
+								<th>조회수</th>
+								<th>좋아요</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${myboardList }" var="vo3">
+								<tr>
+									<td>${vo3.boardCategory }</td>
+									<td>${vo3.boardTitle }</td>
+									<td>${vo3.writeDate }</td>
+									<td>${vo3.boardContent }</td>
+									<td>${vo3.boardView }</td>
+									<td>${vo3.likecnt }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
 
 

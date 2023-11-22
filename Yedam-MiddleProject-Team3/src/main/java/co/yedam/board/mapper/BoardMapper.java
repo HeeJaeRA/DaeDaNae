@@ -9,6 +9,7 @@ import co.yedam.board.service.BoardVO;
 
 public interface BoardMapper {
 	public List<BoardVO> selectList();
+	public List<BoardVO> selectMyList(String uid);
 	public List<BoardVO> selectNoticeList();
 	public List<BoardVO> selectQnaList();
 	public List<BoardVO> selectFreeList();

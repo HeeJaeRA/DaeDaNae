@@ -45,6 +45,11 @@
 							Coupon</a>
 					</nav>
 				</div>
+				<a class="nav-link" href="boardListPage.do">
+					<div class="sb-nav-link-icon">
+						<i class="fas fa-table"></i>
+					</div> Board
+				</a> 
 			</div>
 		</div>
 		<div class="sb-sidenav-footer">
