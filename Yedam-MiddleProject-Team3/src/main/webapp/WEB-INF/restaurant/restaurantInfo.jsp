@@ -2,83 +2,88 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-	.wrap_review {
-		max-width: 480px;
-		margin: 0 auto;
-		/* 화면 가운데로 */
-		background-color: #fff;
-		height: 100%;
-		padding: 20px;
-		box-sizing: border-box;
-	}
+.wrap_review {
+	max-width: 700px;
+	margin: 0 auto;
+	/* 화면 가운데로 */
+	background-color: #fff;
+	height: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
 
+.reviewform textarea {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+}
 
+.btn02 {
+	display: block;
+	width: 100%;
+	font-weight: bold;
+	border: 0;
+	border-radius: 10px;
+	max-height: 50px;
+	padding: 15px 0;
+	font-size: 1.1em;
+	text-align: center;
+	background: bisque;
+}
 
-	.reviewform textarea {
-		width: 100%;
-		padding: 10px;
-		box-sizing: border-box;
-	}
+#if {
+	width: 0px;
+	height: 0px;
+	border: 0px;
+}
 
-	.btn02 {
-		display: block;
-		width: 100%;
+.tab__content-wrapper {
+	padding: 1rem
+}
+
+.tab__content.active {
+	display: block;
+}
+
+thead, tbody, th {
+	text-align: center;
+	border-radius: 10px;
+}
+
+/* .table_head {
 		font-weight: bold;
-		border: 0;
-		border-radius: 10px;
-		max-height: 50px;
-		padding: 15px 0;
-		font-size: 1.1em;
-		text-align: center;
-		background: bisque;
 	}
 
-	#if {
-		width: 0px;
-		height: 0px;
-		border: 0px;
-	}
-
-	table,
-	thead,
-	tbody {
-		border: 1px solid black;
-		display: block;
-		width: 100%;
-		text-align: center;
-	}
-
-	.table_head {
-		font-weight: bold;
+	.review_date {
+		width: 250px;
 	}
 
 	.review_content {
-		width: 500px;
+		width: 700px;
 	}
 
 	.star {
-		width: 50px;
+		width: 100px;
 	}
 
 	.like {
-		width: 50px;
+		width: 100px;
 	}
 
-	td {
-		width: 100px;
-		padding: auto;
-	}
+	.td {
+		width: 150px;
+	} */
 </style>
 
 <!-- Product section-->
-${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." /> 
-				<input type="button" id="imgMain" class="btn btn-light" value="대표사진"> 
-				<input type="button" id="imgCard1" class="btn btn-light" value="사진1"> 
+				<img class="card-img-top"
+					src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." /> <input
+					type="button" id="imgMain" class="btn btn-light" value="대표사진">
+				<input type="button" id="imgCard1" class="btn btn-light" value="사진1">
 				<input type="button" id="imgCard2" class="btn btn-light" value="사진2">
 			</div>
 			<div class="col-md-6">
@@ -106,8 +111,13 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 						<span class="text-black"></span>
 					</c:when>
 					<c:otherwise>
-						<a class="btn btn-danger mt-auto" href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
-						<a class="btn btn-warning mt-auto" id="bookmark" onclick="mark(); this.onclick=null;">찜하기</a>
+						<br>
+						<br>
+						<a class="btn btn-danger mt-auto"
+							href="reservationForm.do?rcode=${vo.rsCode }">예약하기</a>
+						&emsp;
+						<a class="btn btn-warning mt-auto" id="bookmark"
+							onclick="mark(); this.onclick=null;">찜하기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -115,23 +125,29 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 	</div>
 
 	<div class="container px-4 px-lg-5 mt-5">
-		<h2 class="fw-bolder mb-4">${vo.rsName }과비슷한맛집</h2>
-		<input type="button" value="종류별" id="categoryBtn" class="btn btn-light"> <input type="button" value="지역별" id="addressBtn" class="btn btn-light">
+		<h2 class="fw-bolder mb-4">${vo.rsName }과(와) 비슷한 맛집</h2>
+		<input type="button" value="종류별" id="categoryBtn"
+			class="btn btn-light"> <input type="button" value="지역별"
+			id="addressBtn" class="btn btn-light">
 	</div>
 
-	<div class="container px-4 px-lg-5 mt-5" id="allDiv" style="display: block;">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	<div class="container px-4 px-lg-5 mt-5" id="allDiv"
+		style="display: block;">
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:forEach items="${allList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
-						</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">hot</div>
+						<img class="card-img-top"
+							src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
 								<h5 class="fw-bolder">${vo.rsName }</h5>
-								<div class="d-flex justify-content-center small text-warning mb-2">
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
 									<c:forEach var="i" begin="1" end="${vo.starcnt }">
 										<div class="bi-star-fill"></div>
 									</c:forEach>
@@ -151,19 +167,23 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 		</div>
 	</div>
 
-	<div class="container px-4 px-lg-5 mt-5" id="adrDiv" style="display: none;">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	<div class="container px-4 px-lg-5 mt-5" id="adrDiv"
+		style="display: none;">
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:forEach items="${addressList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
-						</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">hot</div>
+						<img class="card-img-top"
+							src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
 								<h5 class="fw-bolder">${vo.rsName }</h5>
-								<div class="d-flex justify-content-center small text-warning mb-2">
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
 									<c:forEach var="i" begin="1" end="${vo.starcnt }">
 										<div class="bi-star-fill"></div>
 									</c:forEach>
@@ -183,19 +203,23 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 		</div>
 	</div>
 
-	<div class="container px-4 px-lg-5 mt-5" id="cateDiv" style="display: none;">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	<div class="container px-4 px-lg-5 mt-5" id="cateDiv"
+		style="display: none;">
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:forEach items="${categoryList }" var="vo" end="3">
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">hot
-						</div>
-						<img class="card-img-top" src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
+						<div class="badge bg-danger text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">hot</div>
+						<img class="card-img-top"
+							src="resources/images/rsimg/${vo.image1 }.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<span class="text-muted">${vo.rsCategory } / ${vo.rsGu }</span>
 								<h5 class="fw-bolder">${vo.rsName }</h5>
-								<div class="d-flex justify-content-center small text-warning mb-2">
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
 									<c:forEach var="i" begin="1" end="${vo.starcnt }">
 										<div class="bi-star-fill"></div>
 									</c:forEach>
@@ -219,7 +243,8 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 		<div class="wrap_review">
 			<h2>리뷰 작성</h2>
 			<form name="reviewform" class="reviewform">
-				<label>작성자 <input name="nickname" value="${nickname }" readonly></label>
+				<label>작성자 <input name="nickname" value="${nickname }"
+					readonly></label>
 				<div class="review_rating">
 					<label>맛 <select name="startaste" id="startaste">
 							<option value="5">5</option>
@@ -227,33 +252,49 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
-						</select>
+					</select>
 					</label> <label>가격 <select name="starprice" id="starprice">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
-						</select>
+					</select>
 					</label> <label>서비스 <select name="starservice" id="starservice">
 							<option value="5">5</option>
 							<option value="4">4</option>
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
-						</select>
+					</select>
+					</label>
+				</div>
+				<div class="review_visit">
+					<label>방문일자 <select name="visit_date" id="visit_date">
+							<c:forEach items="${reservList}" var="voR">
+								<option>${voR.resDate.substring(0,10) }</option>
+							</c:forEach>
+					</select>
 					</label>
 				</div>
 				<div class="review_contents">
-					<textarea rows="10" name="writecontent" id="reviewcontent" class="review_textarea"></textarea>
+					<textarea rows="10" name="writecontent" id="reviewcontent"
+						class="review_textarea"></textarea>
 				</div>
 				<div class="cmd">
 					<c:choose>
-						<c:when test='${empty reviewCheck }'>
-							<input type="button" id="addreview" value="리뷰작성" onclick="addReview();" class="btn btn-success">
+						<c:when test='${empty logId}'>
+							<span class="text-muted">로그인 후 작성 가능합니다.</span>
+						</c:when>
+						<c:when test='${empty reservList}'>
+							<span class="text-muted">예약 후 작성 가능합니다.</span>
+						</c:when>
+						<c:when test='${reservList.size() eq reviewCheck.size()}'>
+							<span class="text-muted">이미 리뷰를 작성하셨습니다.</span>
 						</c:when>
 						<c:otherwise>
-							<span class="text-muted">이미 리뷰를 작성하셨습니다.</span>
+							<input type="button" id="addreview" value="리뷰작성"
+								onclick="addReview();" class="btn btn-success">
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -261,37 +302,42 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 		</div>
 	</div>
 
-	<div class="container px-4 px-lg-5 mt-5">
+	<div class="tab__content-wrapper">
 		<h2>리뷰 목록</h2>
-		<table>
-			<thead>
-				<tr class="table_head">
-					<td>작성자</td>
-					<td class="review_content">리뷰 내용</td>
-					<td>작성일자</td>
-					<td class="star">맛</td>
-					<td class="star">가격</td>
-					<td class="star">서비스</td>
-					<td class="like">좋아요</td>
-					<td></td>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody id="reviewList">
-				<tr id="template" style="display: none;">
-					<td>작성자</td>
-					<td class="review_content">리뷰 내용</td>
-					<td>작성일자</td>
-					<td class="star">0</td>
-					<td class="star">0</td>
-					<td class="star">0</td>
-					<td class="like">좋아요수</td>
-					<td><input type="button" id="likereview" value="좋아요"></td>
-					<td><button id="delreview">삭제</button></td>
-				</tr>
-			</tbody>
-		</table>
+		<div id="tab1" class="tab__content active">
+			<table class="table table-secondary">
+				<thead>
+					<tr class="table_head">
+						<td>작성자</td>
+						<td class="review_content">리뷰 내용</td>
+						<td class="visit_date">방문일자</td>
+						<td class="review_date">작성일자</td>
+						<td class="star">맛</td>
+						<td class="star">가격</td>
+						<td class="star">서비스</td>
+						<td class="like">좋아요</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="visibility: collapse;">
+						<td>작성자</td>
+						<td class="review_content">리뷰 내용</td>
+						<td class="visit_date">방문일자</td>
+						<td class="review_date">작성일자</td>
+						<td class="star">0</td>
+						<td class="star">0</td>
+						<td class="star">0</td>
+						<td class="like">좋아요수</td>
+						<td><input type="button" id="likereview" value="좋아요"></td>
+						<td><button id="delreview">삭제</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
+
 </section>
 
 <script type="text/javascript"
@@ -382,13 +428,13 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 
 	// 리뷰 리스트
 	function showReviewList() {
-		document.querySelectorAll('#reviewList tr:not(:nth-of-type(1))').forEach(tr => tr.remove());
+		document.querySelectorAll('tbody tr:not(:nth-of-type(1))').forEach(tr => tr.remove());
 		fetch('reviewList.do?rscode=' + rc)
 			.then(resolve => resolve.json())
 			.then(result => {
 				result.reviewlist.forEach(review => {
 					let temp = makeRow(review);
-					document.querySelector('#reviewList').append(temp);
+					document.querySelector('tbody').append(temp);
 				})
 			})
 			.catch(err => console.log('err: ', err));
@@ -396,15 +442,16 @@ ${logId }, ${nickname }, ${respon }, ${reviewCnt }, ${reviewCheck }
 	showReviewList();
 
 	function makeRow(review) {
-		let temp = document.querySelector('#template').cloneNode(true);
-		temp.style.display = 'block';
-		temp.querySelector('#template td:nth-of-type(1)').innerHTML = review.nickname;
-		temp.querySelector('#template td:nth-of-type(2)').innerHTML = review.writeContent;
-		temp.querySelector('#template td:nth-of-type(3)').innerHTML = review.writeDate;
-		temp.querySelector('#template td:nth-of-type(4)').innerHTML = review.starTaste;
-		temp.querySelector('#template td:nth-of-type(5)').innerHTML = review.starPrice;
-		temp.querySelector('#template td:nth-of-type(6)').innerHTML = review.starService;
-		temp.querySelector('#template td:nth-of-type(7)').innerHTML = review.likecnt;
+		let temp = document.querySelector('tbody tr').cloneNode(true);
+		temp.style.visibility = 'visible'
+		temp.querySelector('td:nth-of-type(1)').innerHTML = review.nickname;
+		temp.querySelector('td:nth-of-type(2)').innerHTML = review.writeContent;
+		temp.querySelector('td:nth-of-type(3)').innerHTML = visit_date.value;
+		temp.querySelector('td:nth-of-type(4)').innerHTML = review.writeDate;
+		temp.querySelector('td:nth-of-type(5)').innerHTML = review.starTaste;
+		temp.querySelector('td:nth-of-type(6)').innerHTML = review.starPrice;
+		temp.querySelector('td:nth-of-type(7)').innerHTML = review.starService;
+		temp.querySelector('td:nth-of-type(8)').innerHTML = review.likecnt;
 
 		temp.querySelector('#likereview').addEventListener('click', function (e) {
 			if (uid == '') {

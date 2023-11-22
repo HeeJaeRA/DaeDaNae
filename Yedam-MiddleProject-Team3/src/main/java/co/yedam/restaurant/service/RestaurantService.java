@@ -43,4 +43,6 @@ public interface RestaurantService {
 	
 	public List<RestaurantVO> selectBookMarkList(String id);
 	
+	public List<ReservationVO> getReservationInfo(String uid, String rcode);
+	
 }
