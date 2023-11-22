@@ -14,7 +14,13 @@
 	<select id="selectMem" resultType="co.yedam.member.service.MemberVO">
 	SELECT USER_ID, USER_PW, USER_NAME, NICKNAME, TO_CHAR(BIRTHDAY,'YYYY-MM-DD')AS BIRTHDAY, PHONE, ADDRESS, IMAGE FROM USERTABLE WHERE USER_ID = #{id}
 	</select> 
-	
+	<!--아이디 찾기 -->
+	<select id="searchId" resultType="co.yedam.member.service.MemberVO"> 
+	SELECT*FROM USERTABLE WHERE USER_NAME=#{name} AND PHONE=#{phone}
+	</select>
+	<select id="searchPw" resultType="co.yedam.member.service.MemberVO"> 
+	SELECT*FROM USERTABLE WHERE USER_ID=#{id} AND PHONE=#{phone}
+	</select>
 	<!-- 멤버삭제 : 관리자 -->
 	<delete id="deleteMember">
 	DELETE FROM USERTABLE WHERE USER_ID = #{id}

@@ -39,7 +39,13 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	public MemberVO memberGet(@Param("id")String id) {
 		return mapper.selectMem(id);
 	}
-	
+	//아이디 찾기
+	public MemberVO searchId(@Param("name")String name, @Param("phone")String phone) {
+			return mapper.searchId(name, phone);
+		}
+	public MemberVO searchPw(@Param("id")String id, @Param("phone")String phone) {
+		return mapper.searchId(id, phone);
+	}
 	//회원가입
 	@Override
 	public boolean addMember(MemberVO vo) {

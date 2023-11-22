@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-${mvo }
+<style>
+input:readonly{
+ background-color: sky;}
+ </style>
 	<div class="form-body">
 		<div class="row">
 			<div class="form-holder">
@@ -123,8 +125,8 @@ ${mvo }
 							</div>
 
 
-							<input type="submit" id = "modify" value="회원수정" onclick="return checkm()">
-							<input type="reset" value="초기화">
+							<input type="submit" id = "modify" value="회원수정" class="btn btn-danger"onclick="return checkm()">
+							<input type="reset" value="초기화" class="btn btn-danger">
 
 						</form>
 					</div>

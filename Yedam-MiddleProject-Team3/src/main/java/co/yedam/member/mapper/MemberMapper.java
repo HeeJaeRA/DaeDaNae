@@ -19,6 +19,9 @@ public interface MemberMapper {
 
 	// 회원가입시 등록
 	public int insert(MemberVO vo);
+	//아이디 찾기
+	public MemberVO searchId(@Param("name") String name, @Param("phone") String phone);
+	public MemberVO searchPw(@Param("id") String id, @Param("phone") String phone);
 	
 	// 관리자 멤버 삭제
 	public boolean deleteMember(String id);

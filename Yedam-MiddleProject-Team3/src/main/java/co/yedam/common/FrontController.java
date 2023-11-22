@@ -91,7 +91,11 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new LogoutControl());
 		map.put("/joinForm.do", new JoinFormControl());
 		map.put("/join.do", new JoinControl());
-		
+		//아이디 찾기
+		map.put("/searchId.do", new SearchIdControl());
+		//비밀번호 찾기
+		map.put("/searchPwForm.do", new SearchPwFormControl());
+		map.put("/searchPw.do", new SearchPwControl());		
 		//회원가입시 중복확인
 		map.put("/repeatedId.do", new RepeatedIdControl());
 		map.put("/repeatedNick.do", new RepeatedNickControl());

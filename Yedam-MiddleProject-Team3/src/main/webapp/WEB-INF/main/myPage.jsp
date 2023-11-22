@@ -49,6 +49,14 @@ section .intro {
 	z-index: 300;
 }
 
+.delmodal.modal_close  {
+	bottom: 10px;
+}
+.delmodal.deleteMems{
+	bottom: 10px;
+}
+
+
 a, ul, li {
 	text-decoration: none;
 	list-style: none;
@@ -160,8 +168,8 @@ caption {
 </head>
 
 <body>
-<%-- ${bookList }, ${bookingList }  --%>
-<%-- 	쿠폰${ccnt } --%>
+	<%-- ${bookList }, ${bookingList }  --%>
+	<%-- 	쿠폰${ccnt } --%>
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -228,9 +236,9 @@ caption {
 									팔로잉 <span><b>5</b></span> | 팔로워 <span><b>3</b></span>
 								</p>
 							</div>
-						
+
 							<div class="delmodal hidden">
-								<table class="deltable myOwn2">
+								<table class=" myOwn2">
 									<thead>
 										<tr>
 											<th colspan="3">
@@ -243,26 +251,24 @@ caption {
 											<th colspan="3" style="width: 100px;">탈퇴 하시겠습니까?</th>
 										</tr>
 										<tr>
-
-											<th colspan="3"><input type="button" id="deleteMems" class="btn btn-danger"
-												value="네">
-												<button class="btn btn-danger modal_close">아니요</button></th>
-
+										<th  colspan="3"><input type="button" class="btn btn-danger deleteMems" value="네">
+								         <button class="btn btn-danger modal_close">아니요</button> </th>
 										</tr>
 									</tbody>
 								</table>
+								
 							</div>
-						
-						<div class="my">
 
-							<button class="btn btn-danger"
-								onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
-							<button class="btn btn-danger modal_open">회원탈퇴</button>
+							<div class="my">
 
+								<button class="btn btn-danger"
+									onclick="location.href = 'modifyMemF.do?id=${logId}'">회원수정</button>
+								<button class="btn btn-danger modal_open">회원탈퇴</button>
+
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 
 
@@ -360,7 +366,7 @@ caption {
 			})
 		}
 		init();
-		let deleteMem = document.querySelector("#deleteMems").addEventListener("click", function (e) {
+		let deleteMem = document.querySelector(".deleteMems").addEventListener("click", function (e) {
 			console.log(id)
 
 			fetch('adRemoveMember.do', {

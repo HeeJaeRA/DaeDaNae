@@ -8,11 +8,12 @@ public interface MemberService {
 	public List<MemberVO> memberList();
 	//멤버 단건조회
 	public MemberVO memberGet(String id);
-
+	//아이디 찾기
+	public MemberVO searchId(String name, String phone);
+	public MemberVO searchPw(String id, String phone);
 	// 회원가입시 중복확인
 	public MemberVO memberId(String id);
 	public MemberVO memberNick(String nickname);
-
 	// 회원가입 시 등록
 	public boolean addMember(MemberVO vo);
 	//회원 정보 수정

@@ -59,14 +59,16 @@
 	var timeList = document.querySelectorAll('.table');
 	timeList.forEach(function (item) {
 		item.addEventListener('click', function (e) {
+			console.log(item)
 			timeList.forEach(function (e) {
+				console.log(e)
 				item.style.backgroundColor = "orange";
 				e.style.backgroundColor = "white";
-
 				item.setAttribute('id', 'selected');
 			});
 		});
 	});
+	
 
 	
 	//예약완료 버튼
