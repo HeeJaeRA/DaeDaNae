@@ -233,6 +233,7 @@ function randoms() {
     const token = String(Math.floor(Math.random()*1000000)).padStart(6,"0")
     document.getElementById("number").innerHTML = token
 }
+randoms();
 
 		
 		
@@ -424,7 +425,8 @@ function randoms() {
 				alert("주소를 입력해주세요.");
 				return false;
 			}
-			let random = document.querySelector("#random").value;
+			// let random = document.querySelector("#random").value;
+			let random = document.querySelector("#number").innerHTML;
 			let write = document.querySelector("#code").value;
 			if( random!=write){
 				alert("보안코드를 다시 입력해주세요");
