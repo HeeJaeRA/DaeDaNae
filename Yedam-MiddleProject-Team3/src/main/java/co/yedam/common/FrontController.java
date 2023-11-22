@@ -30,6 +30,7 @@ import co.yedam.coupon.web.RemoveCouponControl;
 import co.yedam.member.web.AdminmemberListControl;
 import co.yedam.member.web.ModifyMControl;
 import co.yedam.member.web.ModifyMemControl;
+import co.yedam.member.web.ModifyPwControl;
 import co.yedam.member.web.RemoveMemberControl;
 import co.yedam.reply.web.AddReplyControl;
 import co.yedam.reply.web.RemoveReplyControl;
@@ -96,6 +97,7 @@ public class FrontController extends HttpServlet {
 		//비밀번호 찾기
 		map.put("/searchPwForm.do", new SearchPwFormControl());
 		map.put("/searchPw.do", new SearchPwControl());		
+		map.put("/changePw.do", new ModifyPwControl());
 		//회원가입시 중복확인
 		map.put("/repeatedId.do", new RepeatedIdControl());
 		map.put("/repeatedNick.do", new RepeatedNickControl());

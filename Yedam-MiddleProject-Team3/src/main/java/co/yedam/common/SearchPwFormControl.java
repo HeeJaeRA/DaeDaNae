@@ -7,7 +7,7 @@ public class SearchPwFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "main/searchForm.tiles";
+		String path = "main/searchPw.tiles";
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

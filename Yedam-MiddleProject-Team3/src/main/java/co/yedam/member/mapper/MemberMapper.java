@@ -23,7 +23,7 @@ public interface MemberMapper {
 	//아이디 찾기
 	public MemberVO searchId(@Param("name") String name, @Param("phone") String phone);
 	public MemberVO searchPw(@Param("id") String id, @Param("phone") String phone);
-	
+	public int pwUpdate(MemberVO vo);
 	// 관리자 멤버 삭제
 	public boolean deleteMember(String id);
 	

@@ -141,7 +141,7 @@ input[type="submit"]{
             <input type="submit" class="login" value="Login">
             <br>
             <label><input type="button" class="btn btn-danger modal_open search" value="아이디 찾기">
-             <input type="button" class="btn btn-danger search"value="비밀번호 찾기" onClick="location.href='searchPwForm.do"></label>
+             <input type="button" class="btn btn-danger search"value="비밀번호 찾기" onClick="location.href='searchPwForm.do'"></label>
             <br>
              <br>
               <br>

@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
+<style>
+.container{
+ margin:30px, 10px, 50px, 10px;
+ 
+}
+</style>
+<div class="container">
 	<div class="form-body">
 		<div class="row">
 			<div class="form-holder">
@@ -19,7 +24,7 @@
 								<input type="button" id="userid" class="btn btn-warning" value="아이디 중복확인" onclick="checkId()">
 								<!-- <button type="button id="join-id"></button> -->
 								<div class="valid-feedback" style="display:none">사용가능한 아이디 입니다!</div>
-								<div class="invalid-feedback" style="display:none">사용 불가능한 아이디 입니다ㅠ</div>
+								<div class="invalid-feedback" style="display:none">이미 존재하는 아이디 입니다 ㅠㅠ</div>
 							</div>
 
 							<div class="col-md-12">
@@ -69,8 +74,8 @@
 
 							<div class="col-md-12">
 								전화번호<input class="form-control" type="tel" name="phone" id="phone" 
-									placeholder="전화번호를 입력하세요(-(하이픈) 포함)" required maxlength="13"
-									style="width: 540px; background-color: 808080;">
+									placeholder="전화번호를 입력하세요(-(하이픈) 자동입력 됩니다)" required maxlength="13"
+									style="width: 540px; background-color: 808080;"  onKeyup = "addHypen(this);">
 
 								<div class="valid-feedback" style="display:none">바르게 입력 가능합니다</div>
 								<div class="invalid-feedback" style="display:none">하이픈 포함 13자로 입력해주세요</div>
@@ -133,7 +138,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 
 	<!-- 주소api -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -204,7 +209,34 @@
   			if (event.keyCode === 13) {
     			event.preventDefault();
  			 };
+ 			
 			});
+		
+		function addHypen(obj) {
+			    var number = obj.value.replace(/[^0-9]/g, "");
+			    var phone = "";
+
+			    if(number.length < 4) {
+			        return number;
+			    } else if(number.length < 7) {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3);
+			    } else if(number.length < 11) {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3, 3);
+			        phone += "-";
+			        phone += number.substr(6);
+			    } else {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3, 4);
+			        phone += "-";
+			        phone += number.substr(7);
+			    }
+			    obj.value = phone;
+			}
 		
 		// 정규식
 		// id, pw
@@ -322,7 +354,7 @@
 				return false;
 				}
 			 if (!regId.test(id.value)) {
-						alert("6~12자로 대소문자 구분하여(숫자포함 가능)입력하세요.")
+						alert("아이디는 6~12자로 대소문자 구분하여(숫자포함 가능)입력하세요.")
 						id.focus();
 					return false;
 				}

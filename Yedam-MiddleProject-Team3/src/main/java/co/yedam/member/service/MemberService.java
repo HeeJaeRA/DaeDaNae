@@ -18,6 +18,7 @@ public interface MemberService {
 	public boolean addMember(MemberVO vo);
 	//회원 정보 수정
 	public boolean modifyMember(MemberVO vo);
+	public boolean modifyPw(MemberVO vo);
 	
 	// 관리자 멤버 삭제
 	public boolean memberRemove(String id);

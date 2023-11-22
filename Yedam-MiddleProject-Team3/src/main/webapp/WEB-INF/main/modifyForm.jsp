@@ -72,7 +72,7 @@ input:readonly{
 							<div class="col-md-12">
 								전화번호<input class="form-control" type="tel" name="phone" id="phone" 
 									placeholder="${mvo.phone }" value="${mvo.phone}" required maxlength="13"
-									style="width: 540px; background-color: 808080;">
+									style="width: 540px; background-color: 808080;" onKeyup = "addHypen(this);">
 
 								<div class="valid-feedback" style="display:none">바르게 입력 가능합니다</div>
 								<div class="invalid-feedback" style="display:none">하이픈 포함 13자로 입력해주세요</div>
@@ -214,6 +214,33 @@ input:readonly{
 		let regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		let id = document.getElementById("id");
 
+		
+		
+		function addHypen(obj) {
+		    var number = obj.value.replace(/[^0-9]/g, "");
+		    var phone = "";
+
+		    if(number.length < 4) {
+		        return number;
+		    } else if(number.length < 7) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3);
+		    } else if(number.length < 11) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 3);
+		        phone += "-";
+		        phone += number.substr(6);
+		    } else {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 4);
+		        phone += "-";
+		        phone += number.substr(7);
+		    }
+		    obj.value = phone;
+		}
 		//비밀번호 재확인(비밀번호)
 		
 		function checkPw(){

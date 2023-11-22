@@ -263,7 +263,7 @@ a, ul, li {
 
 						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 							<img src="resources/images/memimg/${image }" alt="Profile" class="rounded-circle"
-								width="150px">
+								width="150px" height="150px">
 
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>

@@ -45,7 +45,7 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 			return mapper.searchId(name, phone);
 		}
 	public MemberVO searchPw(@Param("id")String id, @Param("phone")String phone) {
-		return mapper.searchId(id, phone);
+		return mapper.searchPw(id, phone);
 	}
 	//회원가입
 	@Override
@@ -56,6 +56,9 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	//회원 정보 수정
 	public boolean modifyMember(MemberVO vo) {
 		return mapper.memUpdate(vo) ==1;
+	}
+	public boolean modifyPw(MemberVO vo) {
+		return mapper.pwUpdate(vo) ==1;
 	}
 	@Override
 	public boolean memberRemove(String id) {

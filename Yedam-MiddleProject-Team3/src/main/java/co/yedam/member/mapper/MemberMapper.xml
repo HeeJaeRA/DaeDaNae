@@ -47,6 +47,10 @@
 	UPDATE USERTABLE SET USER_PW= #{userPw}, USER_NAME= #{userName},BIRTHDAY=TO_DATE(#{birthDay},'YYYY-MM-DD'),
 	PHONE=#{phone},ADDRESS=#{address}, IMAGE=NVL(#{image},image) where user_id=#{userId}
 	</update>
+
+    <update id= "pwUpdate"  parameterType="co.yedam.member.service.MemberVO">
+	UPDATE USERTABLE SET USER_PW= #{userPw} where user_id=#{userId}
+	</update>
 	
 <!-- 	<select id="getFollower" resultType="co.yedam.member.service.FollowVO"> -->
 <!-- 	SELECT COUNT(*) FOLLOWER FROM FOLLOW WHERE FOLLOWER = #{id} -->

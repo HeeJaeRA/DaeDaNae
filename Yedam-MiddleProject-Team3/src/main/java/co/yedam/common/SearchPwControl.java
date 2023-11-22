@@ -23,7 +23,7 @@ public class SearchPwControl implements Command {
 		Map<String, String> map = new HashMap<>();
 		MemberService svc = new MemberServiceImpl();
 		MemberVO vo = svc.searchPw(id, phone);
-		System.out.println(vo);
+		System.out.println("vo" +vo);
 		if(vo!=null) {
 			map.put("retCode","일치");
 			map.put("pw", vo.userPw);
