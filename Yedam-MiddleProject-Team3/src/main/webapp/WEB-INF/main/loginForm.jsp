@@ -114,10 +114,10 @@ input[type="submit"]{
 										</tr>
 										<tr height="50"  class="comp2">
 											<th width="70">전화번호 확인</th>										
-											<th colspan="2" style="width: 100px;"><input type="tel" name="scTel" id="scTel" placeholder="전화번호를 입력하세요" ></th>
+											<th colspan="2" style="width: 100px;"><input type="tel" name="scTel" id="scTel" placeholder="전화번호를 입력하세요" onKeyup="addHypen(this);"></th>
 										</tr>
 										<tr id="showId" style="display: none;" height="80">									
-											<th colspan="3" style="width: 100px;"><p></p></th>
+											<th colspan="3" style="width: 100px;"><p style="font-size:50px"> </p></th>
 										</tr>
 										<tr>
 										<th colspan="3"><input type="button" class="btn btn-danger" id="searchId" value="아이디 찾기">
@@ -201,6 +201,31 @@ document.querySelector('#searchId').addEventListener('click', function(e){
 	})
 	
 })
+
+function addHypen(obj) {
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+    }
+    obj.value = phone;}
 </script>
 
 
