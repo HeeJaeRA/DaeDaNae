@@ -2,52 +2,50 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
 <style>
-section .intro {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-}
+	section .intro {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
 
-.sec1 {
-	width: 500px;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: space-around;
-	padding: 10px;
-}
+	.sec1 {
+		width: 500px;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: space-around;
+		padding: 10px;
+	}
 
-.copTotal, .pointTotal {
-	display: flex;
-	justify-content: space-around;
-}
+	.copTotal,
+	.pointTotal {
+		display: flex;
+		justify-content: space-around;
+	}
 
-.hidden {
-	display: none;
-}
+	.hidden {
+		display: none;
+	}
 
-.delmodal {
-	position: absolute;
-	width: 700px;
-	height: 400px;
-	display: flex;
-	background-color: rgba(255, 110, 000, 0.9);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 10px;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	z-index: 300;
-}
+	.delmodal {
+		position: absolute;
+		width: 700px;
+		height: 400px;
+		display: flex;
+		background-color: rgba(255, 110, 000, 0.9);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		z-index: 300;
+	}
 
 .delmodal.modal_close  {
 	bottom: 10px;
@@ -62,99 +60,140 @@ a, ul, li {
 	list-style: none;
 }
 
-.tab {
-	display: flex;
-	align-items: center;
-	padding: 1rem;
-}
 
-.tab__item {
-	padding: 0.6rem 1.3rem;
-	margin-right: 1rem;
-	border: 1px solid #17a2b8;
-	border-radius: 0.5rem;
-	background-color: #17a2b8;
-}
+	.tab {
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+	}
 
-.tab__item:hover {
-	background-color: #087384;
-	color: #fff;
-}
+	.tab__item {
+		padding: 0.6rem 1.3rem;
+		margin-right: 1rem;
+		border: 1px solid #17a2b8;
+		border-radius: 0.5rem;
+		background-color: #17a2b8;
+	}
 
-.tab__item.active {
-	display: inline-block;
-	border: 1px solid #38b44a;
-	background-color: #38b44a;
-	color: #000;
-	text-decoration: none;
-}
+	.tab__item:hover {
+		background-color: #087384;
+		color: #fff;
+	}
 
-.tab__content-wrapper {
-	padding: 1rem
-}
+	.tab__item.active {
+		display: inline-block;
+		border: 1px solid #38b44a;
+		background-color: #38b44a;
+		color: #000;
+		text-decoration: none;
+	}
 
-.tab__content {
-	display: none;
-}
+	.tab__content-wrapper {
+		padding: 1rem
+	}
 
-.tab__content.active {
-	display: block;
-}
+	.tab__content {
+		display: none;
+	}
 
-thead, tbody, th {
-	text-align: center;
-	border-radius: 10px;
-}
+	.tab__content.active {
+		display: block;
+	}
 
-.myOwn {
-	width: 100%;
-	height: auto;
-	/* border : 2px solid coral; */
-	border-collapse: collapse;
-	table-layout: fixed;
-	caption-side: top;
-	word-break: break-all;
-	vertical-align: middle;
-	background-color: rgb(255, 235, 229);
-}
+	thead,
+	tbody,
+	th {
+		text-align: center;
+		border-radius: 10px;
+	}
 
-.myOwn2 {
-	border: 2px;
-	width: 60%;
-	height: auto;
-	/* border : 2px solid coral; */
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-	table-layout: fixed;
-	caption-side: top;
-	word-break: break-all;
-	vertical-align: middle;
-	background-color: rgb(255, 235, 229, 0.6);
-}
+	.myOwn {
+		width: 100%;
+		height: auto;
+		/* border : 2px solid coral; */
+		border-collapse: collapse;
+		table-layout: fixed;
+		caption-side: top;
+		word-break: break-all;
+		vertical-align: middle;
+		background-color: rgb(255, 235, 229);
+	}
 
-.myOwn2 thead, th, td {
-	border-bottom: 1px solid #444444;
-}
+	.myOwn2 {
+		border: 2px;
+		width: 60%;
+		height: auto;
+		/* border : 2px solid coral; */
+		border-top: 1px solid #444444;
+		border-collapse: collapse;
+		table-layout: fixed;
+		caption-side: top;
+		word-break: break-all;
+		vertical-align: middle;
+		background-color: rgb(255, 235, 229, 0.6);
+	}
 
-.myOwn2 tr {
-	height: 50px;
-}
+	.myOwn2 thead,
+	th,
+	td {
+		border-bottom: 1px solid #444444;
+	}
 
-.myOwn2 tbody {
-	background-Color: white;
-}
+	.myOwn2 tr {
+		height: 50px;
+	}
 
-caption {
-	text-align: center;
-	font-weight: bold;
-	color: coral;
-}
+	.myOwn2 tbody {
+		background-Color: white;
+	}
 
-.myOwn td, .myOwn th {
-	border: 1px dashed #ccc;
-	padding: 5px;
-	text-align: center;
-}
+	caption {
+		text-align: center;
+		font-weight: bold;
+		color: coral;
+	}
+
+	.myOwn td,
+	.myOwn th {
+		border: 1px dashed #ccc;
+		padding: 5px;
+		text-align: center;
+	}
+
+	.popup-btn {
+		color: salmon;
+	}
+
+	#main>section>div.intro>div.sec1>div.copList>table>tbody>tr:nth-child(2)>td:nth-child(1)>a:hover {
+		color: green;
+	}
+
+	.popup-view {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 800px;
+		background-color: #fff;
+		border: 1px solid #b6b6b6;
+		border-radius: 0.5rem;
+		box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+		z-index: 1000;
+		display: none;
+
+	}
+
+	.popup-close {
+		position: absolute;
+		background-color: #000;
+		padding: 14px;
+		display: block;
+		right: 0;
+		border-top-right-radius: 0.5rem;
+	}
+	#myCoptb {
+		margin-bottom: 0;
+	}
 </style>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -168,8 +207,6 @@ caption {
 </head>
 
 <body>
-	<%-- ${bookList }, ${bookingList }  --%>
-	<%-- 	쿠폰${ccnt } --%>
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -196,7 +233,7 @@ caption {
 								<th>소멸 쿠폰</th>
 							</tr>
 							<tr>
-								<td>${ccnt }</td>
+								<td><a href="#" class="popup-btn">${ccnt }</a></td>
 								<td>0</td>
 								<td>0</td>
 							</tr>
@@ -224,10 +261,9 @@ caption {
 					<div class="card">
 
 
-						<div
-							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-							<img src="resources/images/memimg/${image }" alt="Profile"
-								class="rounded-circle" width="150px">
+						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+							<img src="resources/images/memimg/${image }" alt="Profile" class="rounded-circle"
+								width="150px">
 
 							<h3>${nickname }</h3>
 							<h4>${userName }</h4>
@@ -253,6 +289,7 @@ caption {
 										<tr>
 										<th  colspan="3"><input type="button" class="btn btn-danger deleteMems" value="네">
 								         <button class="btn btn-danger modal_close">아니요</button> </th>
+
 										</tr>
 									</tbody>
 								</table>
@@ -271,6 +308,30 @@ caption {
 				</div>
 			</div>
 
+			<!-- 쿠폰모달창 -->
+			<div class="popup-view">
+				<a href="#" class="popup-close">X</a>
+				<div class="tab__content-wrapper">
+					<div>
+						<table class="table table-light" id="myCoptb">
+							<thead>
+								<tr>
+									<th>쿠폰코드</th>
+									<th>쿠폰타입</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${copList }" var="vo">
+									<tr>
+										<td>${vo.couponCode }</td>
+										<td>${vo.couponType }%</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 
 		</section>
 
@@ -392,23 +453,8 @@ caption {
 
 				})
 		})
-	</script>
-	<!-- Vendor JS Files -->
-	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script
-		src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/my/assets/vendor/chart.js/chart.umd.js"></script>
-	<script src="resources/my/assets/vendor/echarts/echarts.min.js"></script>
-	<script src="resources/my/assets/vendor/quill/quill.min.js"></script>
-	<script
-		src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="resources/my/assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="resources/my/assets/vendor/php-email-form/validate.js"></script>
 
-	<!-- Template Main JS File -->
-	<script src="resources/my/js/main.js"></script>
-
-	<script>
+		//탭 --> 리스트 확인
 		const tabItem = document.querySelectorAll(".tab__item");
 		const tabContent = document.querySelectorAll(".tab__content");
 
@@ -428,7 +474,27 @@ caption {
 				tabContent[index].classList.add("active");
 			});
 		});
-	</script>
-</body>
 
-</html>
+		// 쿠폰리스트 모달
+		window.onload = function () {
+			document.querySelector(".popup-btn").addEventListener("click", function () {
+				document.querySelector(".popup-view").style.display = "block";
+			});
+			document.querySelector(".popup-close").addEventListener("click", function () {
+				document.querySelector(".popup-view").style.display = "none";
+			});
+		}
+	</script>
+
+	<!-- Vendor JS Files -->
+	<script src="resources/my/assets/vendor/apexcharts/apexcharts.min.js"></script>
+	<script src="resources/my/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/my/assets/vendor/chart.js/chart.umd.js"></script>
+	<script src="resources/my/assets/vendor/echarts/echarts.min.js"></script>
+	<script src="resources/my/assets/vendor/quill/quill.min.js"></script>
+	<script src="resources/my/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script src="resources/my/assets/vendor/tinymce/tinymce.min.js"></script>
+	<script src="resources/my/assets/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="resources/my/js/main.js"></script>

@@ -13,5 +13,6 @@ public interface CouponService {
 	// 본인 쿠폰 개수 
 	public int couponCnt(String id);
 	
-	
+	//본인 쿠폰 리스트
+	public List<CouponVO> getMyCoupon(String id);
 }

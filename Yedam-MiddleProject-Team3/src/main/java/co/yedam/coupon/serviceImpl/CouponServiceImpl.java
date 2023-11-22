@@ -30,6 +30,10 @@ public class CouponServiceImpl implements CouponService {
 	public int couponCnt(String id) {
 		return mapper.couponCnt(id);
 	}
+	@Override
+	public List<CouponVO> getMyCoupon(String id) {
+		return mapper.getMyCoupon(id);
+	}
 
 	
 }

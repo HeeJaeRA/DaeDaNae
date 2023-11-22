@@ -46,7 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public ReviewVO checkReview(String rsCode, String uid) {
+	public List<ReviewVO> checkReview(String rsCode, String uid) {
 		return mapper.checkReview(rsCode, uid);
 	}
 

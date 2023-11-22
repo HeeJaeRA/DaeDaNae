@@ -38,7 +38,7 @@
 				<li class="nav-item"><a class="nav-link" href="freeBoard.do">맛집추천</a></li>
 				<li class="nav-item"><a class="nav-link" href="qnaBoard.do">QnA</a></li>
 				<li class="nav-item"><a class="nav-link" href="eventBoard.do">Event</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Instagram</a></li>
+				<li class="nav-item"><a class="nav-link" href="https://instagram.com/daedanae_3pj?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target='_blank'>Instagram</a></li>
 			</ul>
 
 			<c:choose>

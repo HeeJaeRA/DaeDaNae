@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.member.mapper.MemberMapper;
+import co.yedam.member.service.FollowVO;
 import co.yedam.member.service.MemberService;
 import co.yedam.member.service.MemberVO;
 
@@ -59,5 +60,13 @@ SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);	//tru
 	@Override
 	public boolean memberRemove(String id) {
 		return mapper.deleteMember(id);
+	}
+	@Override
+	public FollowVO getFollower(String id) {
+		return mapper.getFollower(id);
+	}
+	@Override
+	public FollowVO getFollowing(String id) {
+		return mapper.getFollowing(id);
 	}
 }

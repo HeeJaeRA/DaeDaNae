@@ -16,6 +16,6 @@ public interface ReviewService {
 	
 	public boolean updateMoney(String id);
 	
-	public ReviewVO checkReview(String rsCode, String uid);
+	public List<ReviewVO> checkReview(String rsCode, String uid);
 
 }
