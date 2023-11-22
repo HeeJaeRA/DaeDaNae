@@ -282,7 +282,7 @@ input:readonly{
 				return false;
 				}
 			 if (!regId.test(id.value)) {
-						alert("6~12자로 대소문자 구분하여(숫자포함 가능)입력하세요.")
+						alert("아이디는 6~12자로 대소문자 구분하여(숫자포함 가능)입력하세요.")
 						id.focus();
 					return false;
 				}

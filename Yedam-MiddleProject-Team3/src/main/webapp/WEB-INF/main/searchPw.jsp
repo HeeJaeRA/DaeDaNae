@@ -33,6 +33,7 @@
 </table>
 
 <input type="button"  id="changeP" value="비밀번호 변경" style="display:none;">
+<form class="pwForm">
 <div class="showPwCh" style="display: none;">
 <div class="col-md-12">
 	비밀번호<input class="form-control" type="password" name="pw" id="pw"
@@ -54,7 +55,7 @@
 </div>
 <input type="submit" class="btn btn-danger" value="비밀번호 변경 완료" onclick="return check()">
 </div>
-
+</form>
 
 <script>
 
@@ -143,13 +144,13 @@ function check(){
 	fetch('changePw.do', {
 		method:'post',
 		headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-		body:'id'+scId.value+'&pw='+pw.value
+		body:'id='+scId.value+'&pw='+pw
 	})
 	.then(resolve => resolve.json())
 	.then(result => {
-		consol.log(result);
+		console.log(result);
 		alert("비밀번호가 변경되었습니다");
-		submit();
+		pwForm.submit();
 	})
 }
 		

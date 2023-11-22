@@ -29,7 +29,7 @@ public class SearchPwControl implements Command {
 			map.put("pw", vo.userPw);
 			
 		}else {
-			map.put("retCode","불일치");
+			map.put("retCode","실패");
 		}
 		
 		Gson gson = new GsonBuilder().create(); 
