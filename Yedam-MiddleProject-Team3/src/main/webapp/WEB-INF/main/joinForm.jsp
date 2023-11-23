@@ -327,7 +327,7 @@ randoms();
 				}else {
 					document.getElementsByClassName('valid-feedback')[4].style.display='block';
 					//document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#phone').focus();
+					document.querySelector('#birth').focus();
 				}
 			})	
 			
