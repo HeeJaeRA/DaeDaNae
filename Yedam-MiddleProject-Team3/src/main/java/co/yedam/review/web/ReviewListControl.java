@@ -34,7 +34,6 @@ public class ReviewListControl implements Command {
 		Map<String, Object> map = new HashMap<>();
 		map.put("reviewlist", list);
 
-		resp.setContentType("text/json; charset=UTF-8");
 		try {
 			resp.getWriter().print(gson.toJson(map));
 		} catch (IOException e) {

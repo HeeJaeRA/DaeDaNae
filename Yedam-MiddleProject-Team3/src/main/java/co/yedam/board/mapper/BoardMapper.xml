@@ -3,7 +3,11 @@
 
 <mapper namespace="co.yedam.board.mapper.BoardMapper">
 	<select id="selectList" resultType="co.yedam.board.service.BoardVO">
-		SELECT * FROM BOARD 
+		SELECT * FROM BOARD ORDER BY BOARD_CATEGORY
+	</select>
+	
+	<select id="selectMyList" resultType="co.yedam.board.service.BoardVO">
+		SELECT * FROM BOARD WHERE USER_ID = #{uid}
 	</select>
 	
 	<select id="selectQnaList" resultType="co.yedam.board.service.BoardVO">

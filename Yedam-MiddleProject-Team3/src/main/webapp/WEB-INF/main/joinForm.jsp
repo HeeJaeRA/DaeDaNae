@@ -136,7 +136,7 @@
 							</div>
 
 							<br> <span id="number" style="font-size: 50px">000000</span>
-							<input type="button" id="random" value="인증번호 보기"
+							<input type="button" id="random" value="새로고침"
 								onclick="randoms()"> <input type="text" id="code"
 								name="보안코드" placeholder="보안코드를 입력해주세요"> <br><br>
 							<div class="form-check">
@@ -233,6 +233,7 @@ function randoms() {
     const token = String(Math.floor(Math.random()*1000000)).padStart(6,"0")
     document.getElementById("number").innerHTML = token
 }
+randoms();
 
 		
 		
@@ -326,7 +327,7 @@ function randoms() {
 				}else {
 					document.getElementsByClassName('valid-feedback')[4].style.display='block';
 					//document.querySelector('.valid-feedback:nth-of-type(4)').style.display = 'block';
-					document.querySelector('#phone').focus();
+					document.querySelector('#birth').focus();
 				}
 			})	
 			
@@ -424,7 +425,8 @@ function randoms() {
 				alert("주소를 입력해주세요.");
 				return false;
 			}
-			let random = document.querySelector("#random").value;
+			// let random = document.querySelector("#random").value;
+			let random = document.querySelector("#number").innerHTML;
 			let write = document.querySelector("#code").value;
 			if( random!=write){
 				alert("보안코드를 다시 입력해주세요");

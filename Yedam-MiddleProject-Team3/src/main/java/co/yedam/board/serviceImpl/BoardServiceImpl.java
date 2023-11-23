@@ -22,6 +22,10 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectList();
 	}
 	
+	@Override
+	public List<BoardVO> myboardList(String uid) {
+		return mapper.selectMyList(uid);
+	}
 	
 	@Override
 	public List<BoardVO> selectQnaList() {

@@ -47,7 +47,7 @@ public class RemoveBoardControl implements Command {
 			}
 		} else {
 			try {
-				resp.sendRedirect("modifyForm.do");
+				resp.sendRedirect("boardListPage.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

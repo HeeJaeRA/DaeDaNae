@@ -1,11 +1,17 @@
 package co.yedam.board.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import co.yedam.board.service.BoardService;
 import co.yedam.board.service.BoardVO;
@@ -17,22 +23,23 @@ public class BoardListControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		String path = "board/boardList.tiles";
+		resp.setContentType("text/json; charset=UTF-8");
 		
 		BoardService svc = new BoardServiceImpl();
 		List<BoardVO> list = svc.boardList();
 
-		req.setAttribute("list", list);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-		// 다른페이지로 이동할정보를 가지고있다
-		// 페이지 요청(boardList.do) -> 요청 재 지정(board/boardList.jsp).
-		
-		RequestDispatcher rd = req.getRequestDispatcher(path);// .forward(req, resp);
+		Map<String, Object> map = new HashMap<>();
+
+		map.put("boardlist", list);
+
 		try {
-			rd.forward(req, resp);
-		} catch (Exception e) {
+			resp.getWriter().print(gson.toJson(map));
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

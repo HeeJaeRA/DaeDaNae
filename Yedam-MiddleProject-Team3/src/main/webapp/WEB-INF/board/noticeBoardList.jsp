@@ -51,7 +51,6 @@ p {
 			<th>작성자</th>
 			<th>작성일자</th>
 			<th>수정일자</th>
-<!-- 			<th>내용</th> -->
 			<th>조회수</th>
 			<th>공감수</th>
 
@@ -67,7 +66,6 @@ p {
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 				<td><fmt:formatDate value="${vo.updateDate }"
 						pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
-<%-- 				<td>${vo.boardContent }</td> --%>
 				<td>${vo.boardView }</td>
 				<td>${vo.likecnt }</td>
 
@@ -81,6 +79,13 @@ p {
 </table>
 
 <p>
-	<a href="boardForm.do" class="button-style">게시글 등록</a>
+	<c:choose>
+		<c:when test='${logId eq "test"}'>
+			<a href="boardForm.do" class="button-style">게시글 등록</a>
+		</c:when>
+		<c:otherwise>
+			<span> </span>
+		</c:otherwise>
+	</c:choose>
 </p>
 
