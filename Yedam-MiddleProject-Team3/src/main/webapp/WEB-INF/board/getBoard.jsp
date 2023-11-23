@@ -2,37 +2,35 @@
 	pageEncoding="UTF-8"%>
 
 <style>
-#list span {
-	margin: 8px;
-}
+	#list span {
+		margin: 8px;
+	}
 
-.pagination {
-	display: inline-block;
-}
+	.pagination {
+		display: inline-block;
+	}
 
-.pagination {
-	display: inline-block;
-}
+	.pagination {
+		display: inline-block;
+	}
 
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-}
+	.pagination a {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+	}
 
-.pagination a.active {
-	background-color: #4CAF50;
-	color: white;
-}
+	.pagination a.active {
+		background-color: #4CAF50;
+		color: white;
+	}
 
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-}
+	.pagination a:hover:not(.active) {
+		background-color: #ddd;
+	}
 
-.table {
-	
-}
+	.table {}
 </style>
 
 
@@ -50,8 +48,9 @@
 		<th width='1000px;'>글번호</th>
 		<td class="boardCode" id="bco">${bco.boardCode }</td>
 		<th>작성일시</th>
-		<td><fmt:formatDate value="${bco.writeDate }"
-				pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+		<td>
+			<fmt:formatDate value="${bco.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+		</td>
 		</tr>
 		<tr>
 			<th>글제목</th>
@@ -60,17 +59,17 @@
 		<tr>
 			<td colspan="4">
 
-					<c:if test="${!empty bco.image1  }">
-						<img width="600px" src="resources/images/boardimg/${bco.image1 }" style="margin-bottom: 10px;">
-					</c:if><br>
-					<c:if test="${!empty bco.image2  }">
-						<img width="600px" src="resources/images/boardimg/${bco.image2 }" style="margin-bottom: 10px;">
-					</c:if><br>
-					<c:if test="${!empty bco.image3  }">
-						<img width="600px" src="resources/images/boardimg/${bco.image3 }" style="margin-bottom: 10px;">
-					</c:if>
-					<br>
-				<p>	${bco.boardContent }
+				<c:if test="${!empty bco.image1  }">
+					<img width="600px" src="resources/images/boardimg/${bco.image1 }" style="margin-bottom: 10px;">
+				</c:if><br>
+				<c:if test="${!empty bco.image2  }">
+					<img width="600px" src="resources/images/boardimg/${bco.image2 }" style="margin-bottom: 10px;">
+				</c:if><br>
+				<c:if test="${!empty bco.image3  }">
+					<img width="600px" src="resources/images/boardimg/${bco.image3 }" style="margin-bottom: 10px;">
+				</c:if>
+				<br>
+				<p> ${bco.boardContent }
 				</p>
 
 
@@ -82,29 +81,28 @@
 		<%-- 					<img width="500px" src="resources/images/${bco.image1 }"> --%>
 		<%-- 				</c:if></td> --%>
 		<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<th>첨부파일2</th> -->
-<%-- 			<td colspan="3"><c:if test="${!empty bco.image2  }"> --%>
-<%-- 					<img width="500px" src="resources/images/${bco.image2 }"> --%>
-<%-- 				</c:if></td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<th>첨부파일3</th> -->
-<%-- 			<td colspan="3"><c:if test="${!empty bco.image3  }"> --%>
-<%-- 					<img width="500px" src="resources/images/${bco.image3 }"> --%>
-<%-- 				</c:if></td> --%>
-<!-- 		</tr> -->
+		<!-- 		<tr> -->
+		<!-- 			<th>첨부파일2</th> -->
+		<%-- 			<td colspan="3"><c:if test="${!empty bco.image2  }"> --%>
+		<%-- 					<img width="500px" src="resources/images/${bco.image2 }"> --%>
+		<%-- 				</c:if></td> --%>
+		<!-- 		</tr> -->
+		<!-- 		<tr> -->
+		<!-- 			<th>첨부파일3</th> -->
+		<%-- 			<td colspan="3"><c:if test="${!empty bco.image3  }"> --%>
+		<%-- 					<img width="500px" src="resources/images/${bco.image3 }"> --%>
+		<%-- 				</c:if></td> --%>
+		<!-- 		</tr> -->
 		<tr>
 			<th>작성자</th>
-			
-			<td>${bco.userId }</td>
+
+			<td>${mem.nickname }</td>
 			<th>조회수</th>
 			<td>${bco.boardView }</td>
 
 			<td>
 				<div>
-					<button class="btn btn-warning" type="button" value="like"
-						id="likeBtn">like</button>
+					<button class="btn btn-warning" type="button" value="like" id="likeBtn">like</button>
 
 				</div>
 			</td>
@@ -114,17 +112,19 @@
 
 			<!-- 로그인 아이디랑 책 작성자랑 같으면 수정삭제가능 아니면 버튼 비활성화 -->
 			<!-- 로그인 기능 연동할때까지 주석 -->
-			<td colspan="2" align="center"><c:choose>
+			<td colspan="2" align="center">
+				<c:choose>
 					<c:when test="${!empty logId && logId == bco.userId }">
 						<input type="submit" value="수정" class="btn btn-primary">
-						<button class="btn btn-warning" type="button" value="삭제"
-							id="boardDelBtn" onclick="delBfucn(event)">삭제</button>
+						<button class="btn btn-warning" type="button" value="삭제" id="boardDelBtn"
+							onclick="delBfucn(event)">삭제</button>
 					</c:when>
 					<c:otherwise>
 						<input disabled type="submit" value="수정" id="boardDelBtn">
 						<input disabled type="button" value="삭제">
 					</c:otherwise>
-				</c:choose></td>
+				</c:choose>
+			</td>
 
 
 		</tr>
@@ -143,8 +143,8 @@
 <h3>댓글목록</h3>
 <ul id="list">
 	<li style="display: none;" id="template"><span>00</span><span>user01</span> <b>첫번째글입니다.</b>
-<!-- 	<span>2023-10-10</span> -->
-		<button id="delReply">삭제</button> <button id="reReply">답글</button></li>
+		<!-- 	<span>2023-10-10</span> -->
+		<button id="delReply">삭제</button>
 </ul>
 
 <div class="pagination"></div>
@@ -155,47 +155,52 @@
 </p>
 
 <script>
-// function delBfucn(e) {
-// 	let bco = e.target.parentElement.parentElement.children[0].innerHTML;
-// 	fetch('removeBoard.do', {
-// 			method: 'post',
-// 			headers: {
-// 				'Content-Type': 'application/x-www-form-urlencoded'
-// 			},
-// 			body: 'bco=' + bco
-// 		})
-// 		.then(resolve => resolve.json())
-// 		.then(result => {
-// 			if (result.retCode == 'OK') {
-// 				alert('Success!!');
-// 				//e.target.parentElement.parentElement.remove();
-// 			} else {
-// 				alert('Error!!');
-// 			}
-// 		})
-// 		.catch(err => console.log(err));
-// }
+
+let bco = "${bco.boardCode }";
+	let userId = "${logId }";
+	let nickname = "${nickname}";
+
+	// function delBfucn(e) {
+	// 	let bco = e.target.parentElement.parentElement.children[0].innerHTML;
+	// 	fetch('removeBoard.do', {
+	// 			method: 'post',
+	// 			headers: {
+	// 				'Content-Type': 'application/x-www-form-urlencoded'
+	// 			},
+	// 			body: 'bco=' + bco
+	// 		})
+	// 		.then(resolve => resolve.json())
+	// 		.then(result => {
+	// 			if (result.retCode == 'OK') {
+	// 				alert('Success!!');
+	// 				//e.target.parentElement.parentElement.remove();
+	// 			} else {
+	// 				alert('Error!!');
+	// 			}
+	// 		})
+	// 		.catch(err => console.log(err));
+	// }
 
 
-document.getElementById('likeBtn').addEventListener('click', function (e) {
-	//document.forms.myForm.action = 'updateLikecnt.do'
-	//document.forms.myForm.submit();
-	e.preventDefault();
-	let bco = document.getElementById('bco').innerHTML;
-	fetch('updateLikecnt.do?bco=' + bco)
-	.then(resolve => {
-		return resolve.json()
-	})
-	.then(result => {
-		console.log(result);
-		
-		let num = Number(document.getElementById('likeTd').innerHTML);
-	 	num +=1
-		document.getElementById('likeTd').innerHTML = num;
-	 	
-	})
-	alert('좋아요를 눌렀습니다.')
-});
+	document.getElementById('likeBtn').addEventListener('click', function (e) {
+		//document.forms.myForm.action = 'updateLikecnt.do'
+		//document.forms.myForm.submit();
+		e.preventDefault();
+		let bco = document.getElementById('bco').innerHTML;
+		fetch('updateLikecnt.do?bco=' + bco)
+			.then(resolve => {
+				return resolve.json()
+			})
+			.then(result => {
+				console.log(result);
+
+				let num = Number(document.getElementById('likeTd').innerHTML);
+				num += 1
+				document.getElementById('likeTd').innerHTML = num;
+
+			})
+		alert('좋아요를 눌렀습니다.')
+	});
 
 
 	document.getElementById('boardDelBtn').addEventListener('click', function (e) {
@@ -206,9 +211,6 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 	});
 
 	//댓글목록
-	let bco = "${bco.boardCode }";
-	let userId = "${logId }";
-	let nickname = "${nickname}";
 
 
 	bco = document.querySelector('.boardCode').innerHTML;
@@ -233,7 +235,7 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 					showList(1);
 					return;
 				}
-				
+
 
 
 				result.list.forEach(reply => {
@@ -283,7 +285,11 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 			document.querySelector('.pagination').append(aTag);
 
 		}
-		//a 에 클릭이벤트 등록.
+		//a 에 클릭이벤트 등록.function deleteCallback(e) {
+		if (userId != reply.userId) {
+			alert('권한이 없습니다')
+			return;
+		}
 		document.querySelectorAll('.pagination a') //a태그를 다 가져온다
 			.forEach(elem => {
 				elem.addEventListener('click', function (e) {
@@ -301,10 +307,16 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 		let reply = document.querySelector('#content').value;
 		// 로그인안한사람은 댓글못담 
 		console.log(userId);
-		if (!bco || userId == 'null' || !reply) {
-			alert("값을 확인하세요.");
+		if (!bco || userId == '' || !reply) {
+			alert("권한이 없습니다.");
 			return;
 		}
+
+		// 		if (userId != reply.userId) {
+		// 			alert('권한이 없습니다')
+		// 			return;
+		// 		}
+
 
 		//ajax.bco/writer/reply => 전달.
 		fetch('addReply.do', {
@@ -328,37 +340,6 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 			})
 	})
 	
-	document.querySelector('#reReply').addEventListener('click', function (e) {
-		let reply = document.querySelector('#content').value;
-		// 로그인안한사람은 댓글못담 
-		console.log(userId);
-		if (!bco || userId == 'null' || !reply) {
-			alert("값을 확인하세요.");
-			return;
-		}
-
-		//ajax.bco/writer/reply => 전달.
-		fetch('addReply.do', {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				body: 'bco=' + bco + '&replyContent=' + reply + '&userId=' +
-					'${logId }' //나중에 실제 로그인한 유저의 ID로 변경.(세션)${logId }로 변경하기
-			})
-			.then(resolve => resolve.json())
-			.then(result => {
-				if (result.retCode == 'OK') {
-
-					//document.querySelector('#list').append(makeRow(result.vo));
-					showList(-1); // -1을 넘겨주면 
-				} else {
-					aler('Error.')
-				}
-
-			})
-	})
-
 	function makeRow(reply) {
 
 		function deleteCallback(e) {
@@ -394,7 +375,7 @@ document.getElementById('likeBtn').addEventListener('click', function (e) {
 		temp.style.display = 'block';
 		//temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyCode;
 		temp.querySelector('b').innerHTML = reply.replyContent;
-		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId; 
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.userId;
 		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.writeDate;
 		temp.querySelector('#delReply').addEventListener('click', deleteCallback);
 
