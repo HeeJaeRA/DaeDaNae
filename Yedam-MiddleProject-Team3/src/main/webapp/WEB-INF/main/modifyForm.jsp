@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-input:readonly{
- background-color: sky;}
- 
+
 .container {
 	align: center;
 	margin-top:90px;
@@ -71,7 +69,7 @@ input:readonly{
  							<div class="col-md-12">
 								생년월일<input class="form-control" type="text" name="birthDay" id="birthDay" 
 									placeholder="${mvo.birthDay }"  value= "${mvo.birthDay }" required maxlength="10"
-									style="width: 540px; background-color: 808080;" readonly>
+									style="width: 540px; BACKGROUND-COLOR: 808080;" readonly>
 
 								<div class="valid-feedback" style="display:none">확인</div>
 								<div class="invalid-feedback" style="display:none">년도를 4자리로 입력하세요</div>
@@ -318,7 +316,25 @@ input:readonly{
 				phone.focus();
 				return false;
 			}
+			 if (phone.value.length !=13 ) {
+					alert("올바른 형식으로 입력해주세요.");
+					phone.focus();
+					return false;
+				}else if(!regPhone.test(phone.value)) {
+					alert("전화번호 형식으로 입력하세요")
+					phone.focus();
+					return false;
+				}
+				if (address.value == "") {
+					alert("주소를 입력해주세요.");
+					return false;
+				}
 
+				 var agree = document.getElementById('invalidCheck');
+			        if(invalidCheck.checked == false ) {
+			            alert(" 약관을 동의해 주세요.")
+			            return false;
+			        }
 			fetch('modifyMem.do', {
 				method:'post',
 				headers:{'Content-Type': 'application/x-www-form-urlencoded'},
