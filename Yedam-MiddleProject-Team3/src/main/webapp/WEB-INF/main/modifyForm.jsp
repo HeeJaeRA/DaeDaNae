@@ -4,7 +4,15 @@
 <style>
 input:readonly{
  background-color: sky;}
+ 
+.container {
+	align: center;
+	margin-top:90px;
+	margin-bottom:90px;
+	
+}
  </style>
+ <div class="container">
 	<div class="form-body">
 		<div class="row">
 			<div class="form-holder">
@@ -134,7 +142,7 @@ input:readonly{
 			</div>
 		</div>
 	</div>
-
+</div>
 
 	<!-- 주소api -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -249,18 +257,18 @@ input:readonly{
 			if (pw != rePw && rePw!='') {
 				console.log(pw);
 				console.log(rePw);
-				document.getElementsByClassName('invalid-feedback')[2].style.display='block';
+				document.getElementsByClassName('invalid-feedback')[1].style.display='block';
 				
 				//document.querySelector('invalid-feedback:nth-of-type(2)').style.display = 'block';
 			} else if(pw == rePw && rePw!=''){
-				document.getElementsByClassName('invalid-feedback')[2].style.display='none';
-				document.getElementsByClassName('valid-feedback')[2].style.display='block';
+				document.getElementsByClassName('invalid-feedback')[1].style.display='none';
+				document.getElementsByClassName('valid-feedback')[1].style.display='block';
 				document.querySelector('#name').focus();
 				
 				//document.querySelector('.valid-feedback:nth-of-type(2)').style.display = 'block';
 			}else {
-				document.getElementsByClassName('valid-feedback')[2].style.display='none';
-				document.getElementsByClassName('invalid-feedback')[2].style.display='none';
+				document.getElementsByClassName('valid-feedback')[1].style.display='none';
+				document.getElementsByClassName('invalid-feedback')[1].style.display='none';
 			}
 		}
 		function checkm(){
@@ -269,7 +277,7 @@ input:readonly{
 			let birth = document.getElementById("birthDay");
 			let phone = document.getElementById("phone");
 			let gender = document.getElementById("gender");
-			let address = document.getElementById("sample4_jibunAddress");
+			let address = document.getElementById("sample4_postcode");
 			// 아이디,이름 등 input값이 널이면 가입안됨
 			if (id.value == "") {
 			alert("아이디는 필수입니다.")

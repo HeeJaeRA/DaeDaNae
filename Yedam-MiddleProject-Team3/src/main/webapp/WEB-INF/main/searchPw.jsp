@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <style>
 .container {
-	text-align: center;
+	align: center;
+	margin-top:90px;
+	margin-bottom:90px;
+	
 }
 
 tr {
